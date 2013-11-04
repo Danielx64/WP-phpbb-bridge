@@ -991,6 +991,7 @@ class phpbb
 				'author_profile'	=> ($poster_id != ANONYMOUS) ? get_username_string('profile', $poster_id, $row['username'], $row['user_colour']) : get_username_string('profile', $poster_id, $wp_poster_data->user_nicename, $row['user_colour']),
 				'username'			=> ($poster_id != ANONYMOUS) ? $row['username'] : $wp_poster_data->display_name ,
 				'user_colour'		=> ($poster_id != ANONYMOUS) ? $row['user_colour'] :'',
+				'author_pm'			=>  $poster_id,
 
 			//	'online'			=> false,
 				'avatar'			=> (self::$user->optionget('viewavatars')) ? get_user_avatar($row['user_avatar'], $row['user_avatar_type'], $row['user_avatar_width'], $row['user_avatar_height']) : false,
@@ -1104,7 +1105,7 @@ class phpbb
 
 			'U_PROFILE'		=> $user_cache[$wp_poster_id]['profile'],
 		//	'U_SEARCH'		=> $user_cache[$wp_poster_id]['search'],
-			'U_PM'			=> ( self::$config['allow_privmsg'] && self::$auth->acl_get('u_sendpm') && ($user_cache[$wp_poster_id]['allow_pm'] || self::$auth->acl_gets('a_', 'm_') || self::$auth->acl_getf_global('m_'))) ? self::append_sid("ucp", 'i=pm&amp;mode=compose&amp;&u=' . $poster_id) : '',
+			'U_PM'			=> ( self::$config['allow_privmsg'] && self::$auth->acl_get('u_sendpm') && ($user_cache[$wp_poster_id]['allow_pm'] || self::$auth->acl_gets('a_', 'm_') || self::$auth->acl_getf_global('m_'))) ? self::append_sid("ucp", 'i=pm&amp;mode=compose&amp;&u=' . $user_cache[$wp_poster_id]['author_pm']) : '',
 			'U_EMAIL'		=> $user_cache[$wp_poster_id]['email'],
 			'U_WWW'			=> $user_cache[$wp_poster_id]['www'],
 			'U_ICQ'			=> $user_cache[$wp_poster_id]['icq'],
