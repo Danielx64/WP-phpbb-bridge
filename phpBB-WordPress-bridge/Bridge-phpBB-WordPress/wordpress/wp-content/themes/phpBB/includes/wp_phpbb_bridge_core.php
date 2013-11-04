@@ -1104,7 +1104,7 @@ class phpbb
 
 			'U_PROFILE'		=> $user_cache[$wp_poster_id]['profile'],
 		//	'U_SEARCH'		=> $user_cache[$wp_poster_id]['search'],
-		//	'U_PM'			=> ($poster_id != ANONYMOUS && self::$config['allow_privmsg'] && self::$auth->acl_get('u_sendpm') && ($user_cache[$wp_poster_id]['allow_pm'] || self::$auth->acl_gets('a_', 'm_') || self::$auth->acl_getf_global('m_'))) ? self::append_sid("ucp", 'i=pm&amp;mode=compose&amp;action=quotepost&amp;p=' . $row['post_id']) : '',
+			'U_PM'			=> ( self::$config['allow_privmsg'] && self::$auth->acl_get('u_sendpm') && ($user_cache[$wp_poster_id]['allow_pm'] || self::$auth->acl_gets('a_', 'm_') || self::$auth->acl_getf_global('m_'))) ? self::append_sid("ucp", 'i=pm&amp;mode=compose&amp;&u=' . $poster_id) : '',
 			'U_EMAIL'		=> $user_cache[$wp_poster_id]['email'],
 			'U_WWW'			=> $user_cache[$wp_poster_id]['www'],
 			'U_ICQ'			=> $user_cache[$wp_poster_id]['icq'],
