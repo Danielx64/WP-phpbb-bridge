@@ -6,18 +6,12 @@
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
 
 		<title lang="en"><![CDATA[BRIDGE phpBB & WordPress]]></title>
-		<title lang="es"><![CDATA[PUENTE phpBB & WordPress]]></title>
 
 		<description lang="en"><![CDATA[WordPress - phpBB Integration Mod
 		This Birdge makes possible to integrate your phpBB into your Wordpress Blog, sharing the Board style and users
 		Users Can login at the Blog using the phpBB account or Wordpress account, 
 			If the phpBB users do not exist in WP it will be automatically created as a "Subscriber"
 			If the WP users do not exist in phpBB it will be automatically created as a "Registered users" ( and "Newly registered users" if you have it enabled )]]></description>
-		<description lang="es"><![CDATA[Integración WordPress - phpBB Mod
-		Este Birdge permite integrar el phpBB en tu blog de Wordpress, compartiendo el estilo de el foro y los usuarios
-		Los usuarios pueden ingresar en el Blog con la cuenta de phpBB o una cuenta de Wordpress,
-			Si los usuarios de phpBB no existen en WP, éste se creará automáticamente como un "suscriptor"
-			Si los usuarios de WP no existen en phpBB, éste se creará automáticamente como "usuarios registrados" (y "Nuevos Usuarios Registrados" si lo ha activado)]]></description>
 
 		<author-notes lang="en"><![CDATA[Please keep in mind that this version is still in development, so not everything may be in place or working.
 * Works on phpBB version 3.0.9 and WordPress version 3.2.1
@@ -27,15 +21,6 @@
 * Before adding this MOD to your forum, you should back up all files related to this MOD.
 * This BRIDGE modify the database.
 * Do not try to install with AutoMOD
-]]></author-notes>
-		<author-notes lang="es"><![CDATA[Por favor, tenga en cuenta que este MOD aún se encuentra en etapa de desarrollo, por lo cual no todo puede estar correcto o funcionar a la perfección.
-* Funciona en phpBB versión 3.0.9 y WordPress versión 3.2.1
-* No es recomendable que usted instale esta versión en un foro en vivo.
-* Reporte cualquier error o problema que pueda encontrar en el Rastreador : http://github.com/mssti/BRIDGE-phpBB---WordPress/issues
-* También, buenas ideas y reportes serán siempre bienvenidos.
-* Antes de agregar este MOD a su foro, usted debería realizar una copia de seguridad de todos los archivos relacionados con este MOD.
-* Este BRIDGE modifica la base de datos.
-* No intente instalar con AutoMOD
 ]]></author-notes>
 
 		<author-group>
@@ -229,14 +214,10 @@
 		</history>
 
 		<link-group>
-			<link type="template" href="contrib/subsilver2.xml" lang="en">Changes for Subsilver2 based style</link>
-			<link type="template" href="contrib/subsilver2.xml" lang="es">Cambios para estilos basados en Subsilver2</link>
 
 			<link type="contrib" href="contrib/add-on_localise_blog_post_image.xml" lang="en">Add-on : localise button image</link>
-			<link type="contrib" href="contrib/add-on_localise_blog_post_image.xml" lang="es">Agregado : Botones regionalizados</link>
 
 			<link type="contrib" href="contrib/add-on_phpBB_modules.xml" lang="en">Add-on : Modules for phpBB</link>
-			<link type="contrib" href="contrib/add-on_phpBB_modules.xml" lang="es">Agregado : Módulos para phpBB</link>
 		</link-group>
 	</header>
 
