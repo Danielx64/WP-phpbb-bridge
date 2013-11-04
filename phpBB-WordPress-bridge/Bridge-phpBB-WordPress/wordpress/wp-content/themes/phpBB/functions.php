@@ -428,6 +428,9 @@ function wp_phpbb_javascript($login = false)
 	wp_register_script('wp_phpbb_bridge', get_bloginfo('stylesheet_directory') . '/js/wp_phpbb_bridge_js.js', false, WP_PHPBB_BRIDGE_VERSION);
 	wp_print_scripts('wp_phpbb_bridge');
 
+	wp_register_script('quote', get_bloginfo('stylesheet_directory') . '/js/quote.js', false, WP_PHPBB_BRIDGE_VERSION);
+	wp_print_scripts('quote');
+
 	// jQuery for reply to comments
 	if (is_single())
 	{
