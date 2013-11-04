@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="./contrib/modx.prosilver.en.xsl"?>
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+	<header>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+
+		<title lang="en"><![CDATA[BRIDGE phpBB & WordPress]]></title>
+		<title lang="es"><![CDATA[PUENTE phpBB & WordPress]]></title>
+
+		<description lang="en"><![CDATA[WordPress - phpBB Integration Mod
+		This Birdge makes possible to integrate your phpBB into your Wordpress Blog, sharing the Board style and users
+		Users Can login at the Blog using the phpBB account or Wordpress account, 
+			If the phpBB users do not exist in WP it will be automatically created as a "Subscriber"
+			If the WP users do not exist in phpBB it will be automatically created as a "Registered users" ( and "Newly registered users" if you have it enabled )]]></description>
+		<description lang="es"><![CDATA[Integración WordPress - phpBB Mod
+		Este Birdge permite integrar el phpBB en tu blog de Wordpress, compartiendo el estilo de el foro y los usuarios
+		Los usuarios pueden ingresar en el Blog con la cuenta de phpBB o una cuenta de Wordpress,
+			Si los usuarios de phpBB no existen en WP, éste se creará automáticamente como un "suscriptor"
+			Si los usuarios de WP no existen en phpBB, éste se creará automáticamente como "usuarios registrados" (y "Nuevos Usuarios Registrados" si lo ha activado)]]></description>
+
+		<author-notes lang="en"><![CDATA[Please keep in mind that this version is still in development, so not everything may be in place or working.
+* Works on phpBB version 3.0.9 and WordPress version 3.2.1
+* It is not recommended that you install this version on a live forum.
+* Report any bugs or problems you encounter to our issue tracker http://github.com/mssti/BRIDGE-phpBB---WordPress/issues
+* Also, good ideas and bug reports are always welcome.
+* Before adding this MOD to your forum, you should back up all files related to this MOD.
+* This BRIDGE modify the database.
+* Do not try to install with AutoMOD
+]]></author-notes>
+		<author-notes lang="es"><![CDATA[Por favor, tenga en cuenta que este MOD aún se encuentra en etapa de desarrollo, por lo cual no todo puede estar correcto o funcionar a la perfección.
+* Funciona en phpBB versión 3.0.9 y WordPress versión 3.2.1
+* No es recomendable que usted instale esta versión en un foro en vivo.
+* Reporte cualquier error o problema que pueda encontrar en el Rastreador : http://github.com/mssti/BRIDGE-phpBB---WordPress/issues
+* También, buenas ideas y reportes serán siempre bienvenidos.
+* Antes de agregar este MOD a su foro, usted debería realizar una copia de seguridad de todos los archivos relacionados con este MOD.
+* Este BRIDGE modifica la base de datos.
+* No intente instalar con AutoMOD
+]]></author-notes>
+
+		<author-group>
+			<author>
+				<realname><![CDATA[Gabriel]]></realname>
+				<username><![CDATA[leviatan21]]></username>
+				<homepage><![CDATA[http://www.mssti.com/phpbb3/]]></homepage>
+				<email><![CDATA[info@mssti.com]]></email>
+				<contributions-group>
+					<contributions status="current" from="2011-06-01" position="Developer"/>
+				</contributions-group>
+			</author>
+
+		</author-group>
+
+		<mod-version>0.0.9</mod-version>
+
+		<installation>
+			<level>easy</level>
+			<time>300</time>
+			<target-version>3.0.9</target-version>
+		</installation>
+
+		<history>
+			<entry>
+				<date>2011-11-01</date>
+				<rev-version>0.0.9</rev-version>
+				<changelog lang="en">
+					<change> [ADD-ON] Modules for phpbb : WP Portal on index and Cross-site Posting </change>
+					<change> [FIX] minor bugs </change>
+				</changelog>
+				<changelog lang="es">
+					<change> [AGREGADO] Módulos para phpBB : Portal del WP y Publicación cruzada </change>
+					<change> [CORRECCIÓN] Pequeños errores </change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2011-10-01</date>
+				<rev-version>0.0.8</rev-version>
+				<changelog lang="en">
+					<change> [CHANGE] New settings at "wordpress/wp-content/themes/phpBB/includes/wp_phpbb_bridge_constants.php" file, concerning to Administrators</change>
+					<change> [CHANGE] cross site login/logout </change>
+					<change> [FIX] minor bugs </change>
+					<change> [FIX] Moderation actions </change>
+					<change> [FIX] minor html bugs </change>
+					<change> [FIX] Pagination with rewrite </change>
+					<change> [FIX] Comments filters </change>
+					<change> [FIX] Widget style for subsilver2 </change>
+				</changelog>
+				<changelog lang="es">
+					<change> [CAMBIO] Nuevas configuraciones en el archivo wordpress/wp-content/themes/phpBB/includes/wp_phpbb_bridge_constants.php relacionado a los Administradores</change>
+					<change> [CAMBIO] Identificarse/Desconectarse entre sitios</change>
+					<change> [CORRECCIÓN] Pequeños errores </change>
+					<change> [CORRECCIÓN] Acciones de Moderación </change>
+					<change> [CORRECCIÓN] Pequeños errores html </change>
+					<change> [CORRECCIÓN] Paginacion con rewrite </change>
+					<change> [CORRECCIÓN] Filtros en comentarios </change>
+					<change> [CORRECCIÓN] Estilo de Widget para subsilver2 </change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2011-08-13</date>
+				<rev-version>0.0.7.1</rev-version>
+				<changelog lang="en">
+					<change> [FIX] minor bugs </change>
+				</changelog>
+				<changelog lang="es">
+					<change> [CORRECCIÓN] Pequeños errores </change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2011-08-01</date>
+				<rev-version>0.0.7</rev-version>
+				<changelog lang="en">
+					<change> [FEATURE] Support for Subsilver2 style</change>
+					<change> [CHANGE] Main WP theme folder name change, from "prosilver" to "phpBB" </change>
+					<change> [ADD-ON] localise button image, thanks to nextgen for the beautiful images </change>
+				</changelog>
+				<changelog lang="es">
+					<change> [CARACTERÍSTICA] Soporte para estilo Subsilver2</change>
+					<change> [CAMBIO] Carpeta principal del tema en WP, cambio de nombre de "prosilver" a "phpBB" </change>
+					<change> [AGREGADO] botón en idioma local, gracias a nextgen por los hermosos botones </change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2011-07-21</date>
+				<rev-version>0.0.6</rev-version>
+				<changelog lang="en">
+					<change> [FEATURE] Handle delete a previous posted entry in phpbb </change>
+					<change> [FIX] Comments date (Thanks to angelismo) </change>
+					<change> [FIX] Style for error pages (Thanks to Saske) </change>
+					<change> [FIX] Spanish language error </change>
+					<change> [FIX] Comment filters </change>
+				</changelog>
+				<changelog lang="es">
+					<change> [CARACTERÍSTICA] AL eliminar una entrada desde WP, también elimina el tema en phpbb si fué creado </change>
+					<change> [CORRECCIÓN] Fecha de comentarios (Gracias a angelismo) </change>
+					<change> [CORRECCIÓN] Estilo para páginas de error (Gracias a Saske) </change>
+					<change> [CORRECCIÓN] Error en el idioma Español </change>
+					<change> [CORRECCIÓN] Filtro en comentarios </change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2011-07-12</date>
+				<rev-version>0.0.5-PL1</rev-version>
+				<changelog lang="en">
+					<change> [FEATURE] Not only post a new entry, also update a previous posted entry in phpbb</change>
+					<change> [FEATURE] Different css classes for body according the page</change>
+					<change> [CHANGE] Improve post from WP to phpBB (html to bbcode)</change>
+					<change> [FIX] Link to registry in comments when WP require</change>
+				</changelog>
+				<changelog lang="es">
+					<change> [CARACTERÍSTICA] No solamene publicar nuevas entradas a Blog en phpBB, también actualizamos una entrada publicada anteriormente </change>
+					<change> [CARACTERÍSTICA] Diferentes clases css de acuerdo a cada página </change>
+					<change> [CAMBIO] Mejoras al publicar desde WP a phpBB (html to bbcode) </change>
+					<change> [CORRECCIÓN] Enlace a registrarse en los comentario, cuando WP asi lo requiera </change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2011-07-12</date>
+				<rev-version>0.0.5</rev-version>
+				<changelog lang="en">
+					<change> [CHANGE] Update to WP 3.2 </change>
+					<change> [CHANGE] Several improvements </change>
+					<change> [FIX] Several fix (Thanks to Netgen) </change>
+				</changelog>
+				<changelog lang="es">
+					<change> [CAMBIO] Actualizado para WP 3.2 </change>
+					<change> [CAMBIO] Muchas mejoras </change>
+					<change> [CORRECCIÓN] Muchos arreglos (Gracias a Netgen) </change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2011-06-26</date>
+				<rev-version>0.0.4</rev-version>
+				<changelog lang="en">
+					<change> [FEATURE] Now we have a WP Plugin to manage settings too </change>
+					<change> [CHANGE] More about settings + checks + names </change>
+					<change> [CHANGE] Several improvements </change>
+				</changelog>
+				<changelog lang="es">
+					<change> [CARACTERÍSTICA] Tenemos un Plugin en WP pata administrar la configuración </change>
+					<change> [CAMBIO] Mas relacionado con la configuración + chequeos + nombres </change>
+					<change> [CAMBIO] Muchas mejoras </change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2011-06-26</date>
+				<rev-version>0.0.3-pl1</rev-version>
+				<changelog lang="en">
+					<change> [FEATURE] New Path Config Settins + WP_jQuery + Submit Entry to phpBB </change>
+					<change> [CHANGE] Several improvements</change>
+				</changelog>
+				<changelog lang="es">
+					<change> [CARACTERÍSTICA] Nuevas configuraciones + jQuery para WP + Publicar Entradas en phpBB </change>
+					<change> [CAMBIO] Muchas mejoras</change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2011-06-28</date>
+				<rev-version>0.0.3</rev-version>
+				<changelog lang="en">
+					<change> [FEATURE] Now we have and manage widgets </change>
+					<change> [CHANGE] Several improvements </change>
+				</changelog>
+				<changelog lang="es">
+					<change> [CARACTERÍSTICA] Tenemos y administramos widgets </change>
+					<change> [CAMBIO] Muchas mejoras </change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2011-06-26</date>
+				<rev-version>0.0.2</rev-version>
+				<changelog lang="en">
+					<change> [CHANGE] Several improvements </change>
+				</changelog>
+				<changelog lang="es">
+					<change> [CAMBIO] Muchas mejoras </change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2011-06-20</date>
+				<rev-version>0.0.1</rev-version>
+				<changelog lang="en">
+					<change> Initialize DEV Stage </change>
+				</changelog>
+				<changelog lang="es">
+					<change> Initializado en etapa DEV </change>
+				</changelog>
+			</entry>
+		</history>
+
+		<link-group>
+			<link type="template" href="contrib/subsilver2.xml" lang="en">Changes for Subsilver2 based style</link>
+			<link type="template" href="contrib/subsilver2.xml" lang="es">Cambios para estilos basados en Subsilver2</link>
+
+			<link type="contrib" href="contrib/add-on_localise_blog_post_image.xml" lang="en">Add-on : localise button image</link>
+			<link type="contrib" href="contrib/add-on_localise_blog_post_image.xml" lang="es">Agregado : Botones regionalizados</link>
+
+			<link type="contrib" href="contrib/add-on_phpBB_modules.xml" lang="en">Add-on : Modules for phpBB</link>
+			<link type="contrib" href="contrib/add-on_phpBB_modules.xml" lang="es">Agregado : Módulos para phpBB</link>
+		</link-group>
+	</header>
+
+	<action-group>
+
+		<copy>
+			<file from="root/wordpress/wp-content/plugins/*.*" to="wordpress/wp-content/plugins/*.*"/>
+			<file from="root/wordpress/wp-content/themes/*.*" to="wordpress/wp-content/themes/*.*"/>
+			<file from="root/phpbb3/language/en/mods/*.*" to="phpbb3/language/en/mods/*.*"/>
+			<file from="root/phpbb3/styles/prosilver/*.*" to="phpbb3/styles/prosilver/*.*"/>
+		</copy>
+
+		<open src="includes/functions_content.php">
+			<edit>
+				<find><![CDATA[/**
+* make_clickable function
+*
+* Replace magic urls of form http://xxx.xxx., www.xxx. and xxx@xxx.xxx.
+* Cuts down displayed size of link if over 50 chars, turns absolute links
+* into relative versions when the server/script path matches the link
+*/
+function make_clickable($text, $server_url = false, $class = 'postlink')]]></find>
+				<action type="before-add"><![CDATA[// BRIDGE phpBB & WordPress - Start
+if (!function_exists('make_clickable'))
+{
+// BRIDGE phpBB & WordPress - End
+]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[	return preg_replace($magic_url_match, $magic_url_replace, $text);
+}]]></find>
+				<action type="after-add"><![CDATA[// BRIDGE phpBB & WordPress - Start
+}
+// BRIDGE phpBB & WordPress - End
+]]></action>
+			</edit>
+		</open>
+
+		<open src="styles/prosilver/template/overall_header.html">
+			<edit>
+				<find><![CDATA[</head>]]></find>
+				<action type="before-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
+<!-- IF PHPBB_IN_BLOG -->{BLOG_HEADER}<!-- ENDIF -->
+<!-- BRIDGE phpBB & WordPress - End //-->
+]]></action>
+				<comment lang="en"><![CDATA[You must do this change to ALL styles you have installed, based off Prosilver. I use "Prosilver" as an example.]]></comment>
+				<comment lang="es"><![CDATA[Usted debe hacer este cambio en TODOS los estilos que tiene instalado, basados de Prosilver. Yo uso "Prosilver" como ejemplo.]]></comment>
+			</edit>
+
+			<edit>
+				<find><![CDATA[		<div class="navbar">
+			<div class="inner"><span class="corners-top"><span></span></span>]]></find>
+				<action type="after-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
+		<!-- IF not PHPBB_IN_BLOG -->
+<!-- BRIDGE phpBB & WordPress - End //-->
+]]></action>
+			</edit>
+
+			<edit>
+				<find><![CDATA[			<span class="corners-bottom"><span></span></span></div>
+		</div>]]></find>
+				<action type="before-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
+		<!-- ELSE -->
+			<!-- INCLUDE wordpress/overall_header.html -->
+		<!-- ENDIF -->
+<!-- BRIDGE phpBB & WordPress - End //-->
+]]></action>
+			</edit>
+
+		</open>
+
+		<open src="styles/prosilver/template/overall_footer.html">
+			<edit>
+				<find><![CDATA[	<div class="navbar">
+		<div class="inner"><span class="corners-top"><span></span></span>]]></find>
+				<action type="after-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
+	<!-- IF not PHPBB_IN_BLOG -->
+<!-- BRIDGE phpBB & WordPress - End //-->
+]]></action>
+				<comment lang="en"><![CDATA[You must do this change to ALL styles you have installed, based off Prosilver. I use "Prosilver" as an example.]]></comment>
+				<comment lang="es"><![CDATA[Usted debe hacer este cambio en TODOS los estilos que tiene instalado, basados de Prosilver. Yo uso "Prosilver" como ejemplo.]]></comment>
+			</edit>
+
+			<edit>
+				<find><![CDATA[		<span class="corners-bottom"><span></span></span></div>
+	</div>]]></find>
+				<action type="before-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
+	<!-- ELSE -->
+			<!-- INCLUDE wordpress/overall_footer.html -->
+	<!-- ENDIF -->
+<!-- BRIDGE phpBB & WordPress - End //-->
+]]></action>
+			</edit>
+
+			<edit>
+				<find><![CDATA[	<div class="copyright">Powered by <a href="http://www.phpbb.com/">phpBB</a>&reg; Forum Software &copy; phpBB Group]]></find>
+				<action type="after-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
+<!-- IF PHPBB_IN_BLOG -->{BLOG_FOOTER}<!-- ENDIF -->
+<!-- BRIDGE phpBB & WordPress - End //-->
+]]></action>
+			</edit>
+		</open>
+
+		<open src="styles/prosilver/theme/stylesheet.css">
+			<edit>
+				<find><![CDATA[@import url("colours.css");]]></find>
+				<action type="before-add"><![CDATA[/* BRIDGE phpBB & WordPress - Start */
+@import url("wp_phpbb_bridge.css");
+/* BRIDGE phpBB & WordPress - End */
+]]></action>
+				<comment lang="en"><![CDATA[You must do this change to ALL themes you have installed, based off Prosilver. I use "Prosilver" as an example.]]></comment>
+				<comment lang="es"><![CDATA[Usted debe hacer este cambio en TODOS los temas que tiene instalado, basados de Prosilver. Yo uso "Prosilver" como ejemplo.]]></comment>
+			</edit>
+		</open>
+
+
+		<diy-instructions lang="en"><![CDATA[IMPORTANT ! 
+
+#####################################################################
+OPEN :
+wordpress/wp-content/themes/phpBB/includes/wp_phpbb_bridge_constants.php
+
+EDIT :
+edit settings as required
+
+#####################################################################
+Log on to the phpBB Administration Control Panel
+
+#####################################################################
+A) Refresh the templates :
+
+	A.1) Navigate to "Styles" Tab.
+	A.2) Under "Style components " click on "Templates".
+	A.3) Under "Actions" click on "Refresh".
+	A.4) in the next screen, click on "Yes" ( Repeat last 2 steps to each instaled style ).
+
+#####################################################################
+B) Refresh the theme :
+
+	B.1) Navigate to "Styles" Tab.
+	B.2) Under "Style components " click on "Theme".
+	B.3) Under "Actions" click on "Refresh".
+	B.4) in the next screen, click on "Yes" ( Repeat last 2 steps to each instaled style ).
+
+#####################################################################
+Log on to the wordpress Administration Dashboard
+
+#####################################################################
+C) Install the Plugin :
+
+	C.1) Navigate to "Plugins" 
+	C.2) Under Available plugins, look for "BRIDGE phpBB & WordPress"
+	C.3) Click on "Activate"
+
+#####################################################################
+D) Configure the Plugin :
+
+	D.1) After enable the "BRIDGE phpBB & WordPress" Plugin you will see a new menu named "BRIDGE phpBB & WordPress Plugin Page"
+	D.2) click on "BRIDGE phpBB & WordPress Plugin Page"
+	D.3) fill the form and submit
+
+#####################################################################
+E) Install the theme :
+
+	E.1) Navigate to "Appareance -> Themes" 
+	E.2) Under Available Themes, look for Prosilver 
+	E.3) Click on "Activate"
+
+#####################################################################
+F) Enjoy it !.]]>
+		</diy-instructions>
+	</action-group>
+</mod>
