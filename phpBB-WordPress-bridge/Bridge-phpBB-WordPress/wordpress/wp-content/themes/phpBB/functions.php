@@ -393,8 +393,6 @@ function wp_phpbb_stylesheet($login = false)
 	{
 		wp_register_style('wp_phpbb_bridge_style', get_bloginfo('stylesheet_directory') . '/style.css', false, WP_PHPBB_BRIDGE_VERSION);
 		wp_print_styles('wp_phpbb_bridge_style');
-	//	wp_register_style('wp_phpbb_bridge_login', get_bloginfo('stylesheet_directory') . '/css/login.css', false, WP_PHPBB_BRIDGE_VERSION);
-	//	wp_print_styles('wp_phpbb_bridge_login');
 	}
 	else
 	{
@@ -435,12 +433,6 @@ function wp_phpbb_javascript($login = false)
 	{
 		wp_register_script('jquery-validate', get_bloginfo('stylesheet_directory') . '/js/jquery.validate.js', array('jquery'), '1.5.2');
 		wp_print_scripts('jquery-validate');
-	}
-
-	if ($login)
-	{
-		wp_register_script('jquery-login-box', get_bloginfo('stylesheet_directory') . '/js/wp_phpbb_bridge_login_box.js', array('jquery'), WP_PHPBB_BRIDGE_VERSION);
-		wp_print_scripts('jquery-login-box');
 	}
 }
 
