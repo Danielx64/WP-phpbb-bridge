@@ -297,12 +297,13 @@ class phpbb
 		}
 
 		// Get the WP user data
-		$wp_user_data = get_userdata($wp_user_id);	//$wp_user_data = get_userdata($wp_user->ID);
+		//$wp_user_data = get_userdata($wp_user_id);
+		$wp_user_data = get_userdata($wp_user->ID);
 
 		if (!isset($wp_user_data->phpbb_userid) || $wp_user_data->phpbb_userid == 0 || $wp_user_data->phpbb_userid != self::$user->data['user_id'])
 		{
-			$wp_user_data->phpbb_userid = self::$user->data['user_id'];
-			update_metadata('user', $wp_user_id, 'phpbb_userid', $wp_user_data->phpbb_userid);
+			$wp_user_data = self::$user->data['user_id'];
+			update_metadata('user', $wp_user_id, 'phpbb_userid', $wp_user_data);
 		}
 
 		// If all went fine, we doesnt' needed this values anymore (added at functions.php -> function wp_phpbb_phpbb_loginbox_head())
