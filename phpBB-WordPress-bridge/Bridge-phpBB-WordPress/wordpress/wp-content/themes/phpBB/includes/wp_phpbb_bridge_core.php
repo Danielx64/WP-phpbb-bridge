@@ -51,7 +51,7 @@ class bridge
 
 		// Measn the plugin is not enabbled yet!
 		// or the plugin is not set yet!
-		if (!in_array('wp_phpbb3_bridge_options.php', $plugins) || $active == '' || $path == '')
+		if (!in_array('phpbb-wp-bridge/wp_phpbb3_bridge_options.php', $plugins) || $active == '' || $path == '')
 		{
 			// Get the proper error and message
 			$wp_phpbb_bridge_settings = self::wp_phpbb_bridge_check($active, $path, $theme);
