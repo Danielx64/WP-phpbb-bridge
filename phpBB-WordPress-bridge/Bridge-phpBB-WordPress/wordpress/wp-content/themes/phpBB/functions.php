@@ -13,6 +13,18 @@
 * @ignore
 **/
 
+add_action( 'admin_init', 'redirect_non_admin_users' );
+/**
+ * Redirect non-admin users to home page
+ *
+ * This function is attached to the 'admin_init' action hook.
+ */
+function redirect_non_admin_users() {
+	if ( ! current_user_can( 'manage_options' ) && '/wp-admin/admin-ajax.php' != $_SERVER['PHP_SELF'] ) {
+		wp_redirect( "http://localhost/forums/ucp.php" );
+		exit;
+	}
+}
 
 // Hide WordPress Admin Bar
 add_filter('show_admin_bar', '__return_false');
