@@ -16,7 +16,7 @@
 // Basic Wordpress files and options
 define('SHORTINIT', true);
 define('ABSPATH', dirname(__FILE__) . '/../../../');
-define('TEMPLATEPATH', dirname(__FILE__) . '');
+define('TEMPLATEPATH', 'get_template_directory()');
 require_once(ABSPATH . 'wp-config.php');
 
 // Basic phpBB files and options
