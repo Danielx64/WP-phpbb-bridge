@@ -54,10 +54,10 @@ function propress_add_theme_page() {
 	$propress_settings_page = add_theme_page(
 		// $page_title
 		// Name displayed in HTML title tag
-		__( 'Theme Options', 'propress' ), 
+		__( 'BRIDGE phpBB & WordPress Settings', 'propress' ), 
 		// $menu_title
 		// Name displayed in the Admin Menu
-		__( 'Theme Options', 'propress' ), 
+		__( 'BRIDGE phpBB & WordPress', 'propress' ), 
 		// $capability
 		// User capability required to access page
 		propress_get_settings_page_cap(), 
@@ -89,7 +89,7 @@ function propress_admin_options_page() {
 		<?php propress_get_page_tab_markup(); ?>
 		<?php if ( isset( $_GET['settings-updated'] ) ) {
     			echo '<div class="updated"><p>';
-				echo __( 'Theme settings updated successfully.', 'propress' );
+				echo __( 'BRIDGE phpBB & WordPress Plugin settings updated successfully.', 'propress' );
 				echo '</p></div>';
 		} ?>
 		<form action="options.php" method="post">
@@ -175,7 +175,7 @@ function propress_get_option_parameters() {
 			'section' => 'header',
 			'tab' => 'general',
 			'since' => '1.2',
-			'default' => ''
+			'default' => './forums/'
 		),
 		'phpbb_script_path' => array(
 			'name' => 'phpbb_script_path',
@@ -186,9 +186,9 @@ function propress_get_option_parameters() {
 			'section' => 'header',
 			'tab' => 'general',
 			'since' => '1.2',
-			'default' => '0'
+			'default' => 'forums/'
 		),
-		'flw' => array(
+		'wordpress_script_path' => array(
 			'name' => 'wordpress_script_path',
 			'title' => __( 'Server root path to WordPress: (*)', 'propress' ),
 			'type' => 'text',
@@ -197,13 +197,14 @@ function propress_get_option_parameters() {
 			'section' => 'header',
 			'tab' => 'general',
 			'since' => '1.2',
-			'default' => '0'
+			'default' => '/'
 		),
 
 		'wp_phpbb_bridge_permissions_forum_id' => array(
 			'name' => 'wp_phpbb_bridge_permissions_forum_id',
 			'title' => __( 'Permissions forum ID: ', 'propress' ),
 			'type' => 'text',
+			'sanitize' => 'absint',
 			'description' => __( 'The number of your Forum (not Category) where to use permissions.', 'propress' ),
 			'section' => 'header',
 			'tab' => 'general',
@@ -214,6 +215,7 @@ function propress_get_option_parameters() {
 			'name' => 'wp_phpbb_bridge_widgets_column_width',
 			'title' => __( 'Widgets column width:', 'propress' ),
 			'type' => 'text',
+			'sanitize' => 'absint',
 			'description' => __( 'The right column width, in pixels. ', 'propress' ),
 			'section' => 'header',
 			'tab' => 'general',
@@ -224,6 +226,7 @@ function propress_get_option_parameters() {
 			'name' => 'wp_phpbb_bridge_comments_avatar_width',
 			'title' => __( 'Comments avatars width: ', 'propress' ),
 			'type' => 'text',
+			'sanitize' => 'absint',
 			'description' => __( 'The width size of avatars in comments, in pixels.', 'propress' ),
 			'section' => 'header',
 			'tab' => 'general',
@@ -234,16 +237,18 @@ function propress_get_option_parameters() {
 			'name' => 'usesth',
 			'title' => __( 'Full Path to ucp.php', 'propress' ),
 			'type' => 'text',
+			'sanitize' => 'url',
 			'description' => __( '', 'propress' ),
 			'section' => 'header',
 			'tab' => 'general',
 			'since' => '1.2',
-			'default' => ''
+			'default' => 'http://localhost/forums/ucp.php'
 		),
 		'wp_phpbb_bridge_blog_founder_user_id' => array(
 			'name' => 'wp_phpbb_bridge_blog_founder_user_id',
 			'title' => __( 'Wordpress founder ID:', 'propress' ),
 			'type' => 'text',
+			'sanitize' => 'absint',
 			'description' => __( '', 'propress' ),
 			'section' => 'header',
 			'tab' => 'general',
@@ -254,6 +259,7 @@ function propress_get_option_parameters() {
 			'name' => 'wp_phpbb_bridge_forum_founder_user_id',
 			'title' => __( 'Forum founder ID:', 'propress' ),
 			'type' => 'text',
+			'sanitize' => 'absint',
 			'description' => __( '', 'propress' ),
 			'section' => 'header',
 			'tab' => 'general',
@@ -264,6 +270,7 @@ function propress_get_option_parameters() {
 			'name' => 'wp_phpbb_bridge_post_forum_id',
 			'title' => __( 'Post forum ID:', 'propress' ),
 			'type' => 'text',
+			'sanitize' => 'absint',
 			'description' => __( '', 'propress' ),
 			'section' => 'header',
 			'tab' => 'general',
