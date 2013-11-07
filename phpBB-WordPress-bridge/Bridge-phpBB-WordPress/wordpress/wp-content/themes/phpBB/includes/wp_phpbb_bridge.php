@@ -44,12 +44,6 @@ if (!defined('IN_PHPBB'))
 	define('IN_PHPBB', true);
 }
 
-// Include the constant for the path to phpBB
-if (!file_exists(WP_PHPBB_BRIDGE_ROOT . 'includes/wp_phpbb_bridge_constants.' . PHP_EXT))
-{
-	die('<p>No "Bridge" constant found. Check the "' . WP_PHPBB_BRIDGE_ROOT . 'includes/wp_phpbb_bridge_constants.' . PHP_EXT . '" file.</p>');
-}
-require(WP_PHPBB_BRIDGE_ROOT . 'includes/wp_phpbb_bridge_constants.' . PHP_EXT);
 
 // Include core classes
 if (!file_exists(WP_PHPBB_BRIDGE_ROOT . 'includes/wp_phpbb_bridge_core.' . PHP_EXT))

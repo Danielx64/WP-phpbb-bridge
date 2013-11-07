@@ -37,13 +37,13 @@ class bridge
 		global $wp_phpbb_bridge_config;
 
 		// Some default options
-		$wp_phpbb_bridge_settings = array('error' => false, 'message' => '', 'action' => '');
-		$plugins = (array) get_option('active_plugins', array());
-		$theme	 = get_option('template');
+	$propress_options = get_option( 'theme_propress_options' );
+	$phpbb_root_path =  $propress_options['phpbb_root_path'];
+
 		// bypass our own settings
-		$active	 = get_option('wp_phpbb_bridge', $wp_phpbb_bridge_config['phpbb_bridge']);
+		$active	 = $propress_options['wp_phpbb_bridge'];
 		// bypass our own settings
-		$path	 = get_option('phpbb_root_path', $wp_phpbb_bridge_config['phpbb_root_path']);
+		$path	 = $phpbb_root_path;
 		if (defined('PHPBB_INAJAX') && PHPBB_INAJAX == true)
 		{
 			$path = '../../../' . $path;
@@ -51,29 +51,12 @@ class bridge
 
 		// Measn the plugin is not enabbled yet!
 		// or the plugin is not set yet!
-		if (!in_array('phpbb-wp-bridge/wp_phpbb3_bridge_options.php', $plugins) || $active == '' || $path == '')
-		{
-			// Get the proper error and message
-			$wp_phpbb_bridge_settings = self::wp_phpbb_bridge_check($active, $path, $theme);
-
-			// must check that the user has the required capability
-			if (current_user_can('manage_options') && !in_array('wp_phpbb3_bridge_options.php', $plugins))
-			{
-				$redir = admin_url('plugins.php');
-				$wp_phpbb_bridge_settings['action'] = '<a href="' . $redir . '" title="' . esc_attr__('Activate Bridge', 'wp_phpbb3_bridge') . '">' . __('Activate Bridge', 'wp_phpbb3_bridge') . '</a>';
-			}
-
-			wp_die($wp_phpbb_bridge_settings['message'] . '<br />' . $wp_phpbb_bridge_settings['action']);
-		}
 
 		// Check against WP settings
-		$wp_phpbb_bridge_settings = self::wp_phpbb_bridge_check($active, $path, $theme);
+		$wp_phpbb_bridge_settings = $propress_options;
 
 		// If checks fails, display the proper message
-		if ($wp_phpbb_bridge_settings['error'])
-		{
-			wp_die(__('<h2>Error in WordPress Settings</h2>', 'wp_phpbb3_bridge') . '<br />' . $wp_phpbb_bridge_settings['message'] . '<br />' . $wp_phpbb_bridge_settings['action']);
-		}
+
 
 		if (defined('WP_ADMIN') && WP_ADMIN == true)
 		{
@@ -92,7 +75,6 @@ class bridge
 		$phpbb_root_path = PHPBB_ROOT_PATH;
 		$phpEx = PHP_EXT;
 	}
-
 	/**
 	 * Check the Bridge settings...
 	 *
@@ -217,8 +199,10 @@ class phpbb
 		self::$cache	= &$cache;
 
 		// Set the absolute wordpress/phpbb path
-		self::$absolute_phpbb_script_path = generate_board_url(true) . '/' . get_option('phpbb_script_path', bridge::$config['phpbb_script_path']);
-		self::$absolute_wordpress_script_path = generate_board_url(true) . '/' . get_option('wordpress_script_path', bridge::$config['wordpress_script_path']);
+		$propress_options = get_option( 'theme_propress_options' );
+		
+		self::$absolute_phpbb_script_path = generate_board_url(true) . '/' . $propress_options['phpbb_script_path'];
+		self::$absolute_wordpress_script_path = generate_board_url(true) . '/' . $propress_options['wordpress_script_path'];
 
 		// enhance phpbb $config data with WP $config data
 		self::wp_get_config();
@@ -418,12 +402,13 @@ class phpbb
 	*/
 	public static function wp_get_config()
 	{
-		$wp_phpbb_bridge_forum_founder_user_id	= (isset(bridge::$config['wp_phpbb_bridge_forum_founder_user_id'])	&& (int) bridge::$config['wp_phpbb_bridge_forum_founder_user_id']	!= 0) ? (int) bridge::$config['wp_phpbb_bridge_forum_founder_user_id']	: 2;
-		$wp_phpbb_bridge_blog_founder_user_id	= (isset(bridge::$config['wp_phpbb_bridge_blog_founder_user_id'])	&& (int) bridge::$config['wp_phpbb_bridge_blog_founder_user_id']	!= 0) ? (int) bridge::$config['wp_phpbb_bridge_blog_founder_user_id']	: 2;
-		$wp_phpbb_bridge_permissions_forum_id	= (isset(bridge::$config['wp_phpbb_bridge_permissions_forum_id'])	&& (int) bridge::$config['wp_phpbb_bridge_permissions_forum_id']	!= 0) ? (int) bridge::$config['wp_phpbb_bridge_permissions_forum_id']	: 0;
-		$wp_phpbb_bridge_post_forum_id			= (isset(bridge::$config['wp_phpbb_bridge_post_forum_id'])			&& (int) bridge::$config['wp_phpbb_bridge_post_forum_id']			!= 0) ? (int) bridge::$config['wp_phpbb_bridge_post_forum_id']			: 0;
-		$wp_phpbb_bridge_widgets_column_width	= (isset(bridge::$config['wp_phpbb_bridge_widgets_column_width'])	&& (int) bridge::$config['wp_phpbb_bridge_widgets_column_width']	!= 0) ? (int) bridge::$config['wp_phpbb_bridge_widgets_column_width']	: 300;
-		$wp_phpbb_bridge_comments_avatar_width	= (isset(bridge::$config['wp_phpbb_bridge_comments_avatar_width'])	&& (int) bridge::$config['wp_phpbb_bridge_comments_avatar_width']	!= 0) ? (int) bridge::$config['wp_phpbb_bridge_comments_avatar_width']	: 32;
+		$propress_options = get_option( 'theme_propress_options' );
+		$wp_phpbb_bridge_forum_founder_user_id	= $propress_options['wp_phpbb_bridge_blog_founder_user_id'];
+		$wp_phpbb_bridge_blog_founder_user_id	= $propress_options['wp_phpbb_bridge_forum_founder_user_id'];
+		$wp_phpbb_bridge_permissions_forum_id	= $propress_options['wp_phpbb_bridge_permissions_forum_id'];
+		$wp_phpbb_bridge_post_forum_id			= $propress_options['wp_phpbb_bridge_post_forum_id'];
+		$wp_phpbb_bridge_widgets_column_width	= $propress_options['wp_phpbb_bridge_widgets_column_width'];
+		$wp_phpbb_bridge_comments_avatar_width	= $propress_options['wp_phpbb_bridge_comments_avatar_width'];
 
 		self::$config = array_merge(self::$config, array(
 			// Disable to call the function leave_newly_registered()
@@ -590,8 +575,8 @@ class phpbb
 	//		'U_LOGIN_LOGOUT'	=> (!is_user_logged_in()) ? append_sid(get_option('siteurl') . '/', array('action' => 'login', 'redirect' => $redirect)) : append_sid(get_option('siteurl') . '/', array('action' => 'logout', 'redirect' => $redirect), true, self::$user->session_id),
 			'S_LOGIN_REDIRECT'	=> build_hidden_fields(array('redirect' => $redirect)),
 	//		'U_LOGIN_LOGOUT_POPUP'	=> (!self::wp_phpbb_user_logged()) ? site_url("wp-login.php?action=login&amp;interim-login=1&amp;sid=" . phpbb::$user->session_id . "&amp;redirect_to=" . $redirect, 'login') : site_url("wp-login.php?action=logout&amp;sid=" . phpbb::$user->session_id . "&amp;redirect_to=" . $redirect, 'login'),
-			'U_LOGIN_LOGOUT_POPUP'	=> (!self::wp_phpbb_user_logged()) ? "$web_path/ucp.php?mode=login&amp;redirect=" . $redirect  : "$web_path/ucp.php?mode=logout&amp;sid=" . phpbb::$user->session_id . "&amp;redirect=" . $redirect ,
-	//		'U_LOGIN_LOGOUT_POPUP'	=> (!self::wp_phpbb_user_logged()) ? site_url("wp-login.php?action=login&amp;interim-login=1&amp;sid=" . phpbb::$user->session_id . "&amp;redirect_to=" . $redirect, 'login') : site_url("wp-login.php?action=logout&amp;sid=" . phpbb::$user->session_id . "&amp;redirect_to=" . $redirect, 'login'),
+	//		'U_LOGIN_LOGOUT_POPUP'	=> (!self::wp_phpbb_user_logged()) ? "$web_path/ucp.php?mode=login&amp;redirect=" . $redirect  : "$web_path/ucp.php?mode=logout&amp;sid=" . phpbb::$user->session_id . "&amp;redirect=" . $redirect ,
+			'U_LOGIN_LOGOUT_POPUP'	=> (!self::wp_phpbb_user_logged()) ? site_url("wp-login.php?action=login&amp;interim-login=1&amp;sid=" . phpbb::$user->session_id . "&amp;redirect_to=" . $redirect, 'login') : site_url("wp-login.php?action=logout&amp;sid=" . phpbb::$user->session_id . "&amp;redirect_to=" . $redirect, 'login'),
 
 			'U_WP_ACP'			=> (self::$user->data['user_type'] == USER_FOUNDER || current_user_can('level_8')) ? admin_url() : '',
 			'U_POST_NEW_TOPIC'	=> (self::$user->data['user_type'] == USER_FOUNDER || current_user_can('level_8')) ? admin_url('post-new.php') : '',
