@@ -83,7 +83,7 @@ function wp_phpbb_logout($sid)
 		global $wp_phpbb_bridge_config, $phpbb_root_path, $phpEx, $phpbb_session_id;
 		global $auth, $config, $db, $template, $user, $cache;
 		global $table_prefix, $wp_user;
-		include( 'get_template_directory() /includes/wp_phpbb_bridge.php');
+		require( get_template_directory() . '/includes/wp_phpbb_bridge.php');
 	}
 
 	// phpBB redirection
@@ -136,7 +136,7 @@ function wp_phpbb_phpbb_loginbox_head()
 		global $wp_phpbb_bridge_config, $phpbb_root_path, $phpEx;
 		global $auth, $config, $db, $template, $user, $cache;
 		global $table_prefix, $wp_user;
-		include( 'get_template_directory()/includes/wp_phpbb_bridge.php');
+		require( get_template_directory() . '/includes/wp_phpbb_bridge.php' );
 	}
 
 	if (empty($wp_error))
@@ -779,7 +779,7 @@ function wp_phpbb_trasheddelete_post_handler($post_id)
 		{
 			global $wp_phpbb_bridge_config, $phpbb_root_path, $phpEx;
 			global $auth, $config, $db, $template, $user, $cache;
-			include( 'get_template_directory()/includes/wp_phpbb_bridge.php');
+			require( get_template_directory() . '/includes/wp_phpbb_bridge.php' );
 		}
 
 		$post_data = array();
@@ -837,7 +837,7 @@ function wp_phpbb_posting($post_ID, $post)
 	{
 		global $wp_phpbb_bridge_config, $phpbb_root_path, $phpEx;
 		global $auth, $config, $db, $template, $user, $cache;
-		include('get_template_directory() /includes/wp_phpbb_bridge.php');
+		require( get_template_directory() . '/includes/wp_phpbb_bridge.php' );
 	}
 
 	if (!phpbb::$config['wp_phpbb_bridge_post_forum_id'])
