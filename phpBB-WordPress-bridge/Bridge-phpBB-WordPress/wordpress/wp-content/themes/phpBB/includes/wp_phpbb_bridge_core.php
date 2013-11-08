@@ -578,8 +578,8 @@ class phpbb
 	//		'U_LOGIN_LOGOUT_POPUP'	=> (!self::wp_phpbb_user_logged()) ? "$web_path/ucp.php?mode=login&amp;redirect=" . $redirect  : "$web_path/ucp.php?mode=logout&amp;sid=" . phpbb::$user->session_id . "&amp;redirect=" . $redirect ,
 			'U_LOGIN_LOGOUT_POPUP'	=> (!self::wp_phpbb_user_logged()) ? site_url("wp-login.php?action=login&amp;interim-login=1&amp;sid=" . phpbb::$user->session_id . "&amp;redirect_to=" . $redirect, 'login') : site_url("wp-login.php?action=logout&amp;sid=" . phpbb::$user->session_id . "&amp;redirect_to=" . $redirect, 'login'),
 
-			'U_WP_ACP'			=> (self::$user->data['user_type'] == USER_FOUNDER || current_user_can('level_8')) ? admin_url() : '',
-			'U_POST_NEW_TOPIC'	=> (self::$user->data['user_type'] == USER_FOUNDER || current_user_can('level_8')) ? admin_url('post-new.php') : '',
+			'U_WP_ACP'			=> (self::$user->data['user_type'] == USER_FOUNDER || current_user_can('Contributor')) ? admin_url() : '',
+			'U_POST_NEW_TOPIC'	=> (self::$user->data['user_type'] == USER_FOUNDER || current_user_can('Contributor')) ? admin_url('post-new.php') : '',
 
 			'BLOG_POST_IMG'		=> self::wp_imageset('button_blogpost_new', 'WP_POST_TOPIC', 'BLOG_POST_IMG_CLASS'),
 			'POST_IMG'			=> self::$user->img('button_topic_new', 'POST_NEW_TOPIC'),

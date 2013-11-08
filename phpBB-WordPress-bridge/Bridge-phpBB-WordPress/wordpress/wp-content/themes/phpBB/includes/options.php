@@ -99,7 +99,7 @@ function propress_admin_options_page() {
 			// Output each settings section, and each
 			// Settings field in each section
 			do_settings_sections( $settings_section );
-		?>
+		?><br />
 			<?php submit_button( __( 'Save Settings', 'propress' ), 'primary', 'theme_propress_options[submit-' . $currenttab . ']', false ); ?>
 			<?php submit_button( __( 'Reset Defaults', 'propress' ), 'secondary', 'theme_propress_options[reset-' . $currenttab . ']', false ); ?>
 		</form>

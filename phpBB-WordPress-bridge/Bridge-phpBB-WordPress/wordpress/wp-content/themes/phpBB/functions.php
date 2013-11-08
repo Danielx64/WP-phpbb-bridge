@@ -109,7 +109,7 @@ function wp_phpbb_logout($sid)
 	}
 
 	// phpBB redirection
-	$redirect = request_var('redirect', get_option('home'));
+	$redirect = request_var('redirect', home_url());
 	// WP redirection
 	$redirect_to = request_var('redirect_to', $redirect);
 
@@ -173,7 +173,7 @@ function wp_phpbb_phpbb_loginbox_head()
 	$action = request_var('action', 'login');
 	$checkemail = request_var('checkemail', '');
 	$home_url = get_option('siteurl');
-	$ajax_url = get_bloginfo('stylesheet_directory') . '/wp_phpbb_bridge_login_box.php';
+	$ajax_url = get_stylesheet_directory_uri() . '/wp_phpbb_bridge_login_box.php';
 
 // Main HTML code - Start
 	// We pass the user session ID to ensure some minimun security, similar to phpbb/ucp.php
@@ -197,7 +197,7 @@ function wp_phpbb_phpbb_loginbox_head()
 	$is_phpbb_user_logged_in = false;
 
 	// phpBB redirection
-	$redirect = !empty( $_REQUEST['redirect'] ) ? $_REQUEST['redirect'] : get_option('home');
+	$redirect = !empty( $_REQUEST['redirect'] ) ? $_REQUEST['redirect'] : home_url();
 	// WP redirection
 	$redirect_to = !empty( $_REQUEST['redirect_to'] ) ? $_REQUEST['redirect_to'] : $redirect;
 
@@ -437,9 +437,9 @@ function wp_phpbb_stylesheet($login = false)
 {
 	if ($login)
 	{
-		wp_register_style('wp_phpbb_bridge_style', get_bloginfo('stylesheet_directory') . '/style.css', false, WP_PHPBB_BRIDGE_VERSION);
+		wp_register_style('wp_phpbb_bridge_style', get_stylesheet_directory_uri() . '/style.css', false, WP_PHPBB_BRIDGE_VERSION);
 		wp_print_styles('wp_phpbb_bridge_style');
-	//	wp_register_style('wp_phpbb_bridge_login', get_bloginfo('stylesheet_directory') . '/css/login.css', false, WP_PHPBB_BRIDGE_VERSION);
+	//	wp_register_style('wp_phpbb_bridge_login', get_stylesheet_directory_uri() . '/css/login.css', false, WP_PHPBB_BRIDGE_VERSION);
 	//	wp_print_styles('wp_phpbb_bridge_login');
 	}
 	else
@@ -469,25 +469,25 @@ function wp_phpbb_javascript($login = false)
 	wp_deregister_script('jquery');
 
 	// jQuery for login and reply to comments
-	wp_register_script('jquery', get_bloginfo('stylesheet_directory') . '/js/jquery-1.5.0.min.js', false, '1.5.0');
+	wp_register_script('jquery', get_stylesheet_directory_uri() . '/js/jquery-1.5.0.min.js', false, '1.5.0');
 	wp_print_scripts('jquery');
 
 	// javascript for general proposes
-	wp_register_script('wp_phpbb_bridge', get_bloginfo('stylesheet_directory') . '/js/wp_phpbb_bridge_js.js', false, WP_PHPBB_BRIDGE_VERSION);
+	wp_register_script('wp_phpbb_bridge', get_stylesheet_directory_uri() . '/js/wp_phpbb_bridge_js.js', false, WP_PHPBB_BRIDGE_VERSION);
 	wp_print_scripts('wp_phpbb_bridge');
 
-	wp_register_script('quote', get_bloginfo('stylesheet_directory') . '/js/quote.js', false, WP_PHPBB_BRIDGE_VERSION);
+	wp_register_script('quote', get_stylesheet_directory_uri() . '/js/quote.js', false, WP_PHPBB_BRIDGE_VERSION);
 	wp_print_scripts('quote');
 
 	// jQuery for reply to comments
 	if (is_single())
 	{
-		wp_register_script('jquery-validate', get_bloginfo('stylesheet_directory') . '/js/jquery.validate.js', array('jquery'), '1.5.2');
+		wp_register_script('jquery-validate', get_stylesheet_directory_uri() . '/js/jquery.validate.js', array('jquery'), '1.5.2');
 		wp_print_scripts('jquery-validate');
 	}
 	if ($login)
 	{
-		wp_register_script('jquery-login-box', get_bloginfo('stylesheet_directory') . '/js/wp_phpbb_bridge_login_box.js', array('jquery'), WP_PHPBB_BRIDGE_VERSION);
+		wp_register_script('jquery-login-box', get_stylesheet_directory_uri() . '/js/wp_phpbb_bridge_login_box.js', array('jquery'), WP_PHPBB_BRIDGE_VERSION);
 		wp_print_scripts('jquery-login-box');
 	}
 }
