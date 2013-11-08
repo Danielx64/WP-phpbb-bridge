@@ -17,9 +17,9 @@ function propress_validate_wordpress() {
 	// Don't validate during an install/upgrade.
 	if ( defined('WP_INSTALLING') || !apply_filters( 'validate_current_theme', true ) )
 		return true;
-if (!function_exists('wp_cache_switch_to_blog')){
+if  (version_compare(get_bloginfo('version'), '3.6.1', '<')){
 		switch_theme( WP_DEFAULT_THEME );
-			    wp_die( __('Propress requires WordPress 3.5.0 and higher. The default theme has been loaded.', 'propress') );
+			    wp_die( __('Propress requires WordPress 3.6.1 and higher. The default theme has been loaded.', 'propress') );
 		return false;
 	}
 	return true;
