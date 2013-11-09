@@ -1242,7 +1242,8 @@ function wp_phpbb_save_extra_profile_fields($user_id)
 	}
 	else
 	{
-		update_usermeta($user_id, 'phpbb_userid', $phpbb_user_id);
+		update_user_meta($user_id, 'phpbb_userid', $phpbb_user_id);
+		//update_usermeta($user_id, 'phpbb_userid', $phpbb_user_id);
 	}
 }
 
