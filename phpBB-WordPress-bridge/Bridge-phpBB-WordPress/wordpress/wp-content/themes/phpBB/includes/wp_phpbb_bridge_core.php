@@ -685,7 +685,7 @@ class phpbb
 	public static function wp_page_header()
 	{
 		$blog_header = "\n";
-		$blog_header .= '<link rel="pingback" href="' . get_bloginfo('pingback_url') . '" />' . "\n";
+		// $blog_header .= '<link rel="pingback" href="' . get_bloginfo('pingback_url') . '" />' . "\n";
 
 		// Main layout 1 column
 		$blog_header .= '<link rel="stylesheet" type="text/css" media="all" href="' . get_bloginfo('stylesheet_url') . '?ver=' . WP_PHPBB_BRIDGE_VERSION . '" />' . "\n";
