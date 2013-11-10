@@ -477,7 +477,10 @@ function propress_enqueue_js_scripts() {
 	if ($login)
 	{
 		wp_enqueue_script('phpbb-bridge-login-js', get_template_directory_uri() . '/js/wp_phpbb_bridge_login_box.js', array('jquery'));
+		wp_enqueue_style( 'phpbb-login', get_template_directory_uri() . '/css/login.css');
 	}
+		wp_enqueue_style( 'phpbb-sytle', get_template_directory_uri() . '/style.css');
+
 }
 add_action( 'wp_enqueue_scripts', 'propress_enqueue_js_scripts' );
 
