@@ -179,7 +179,7 @@ function wp_phpbb_phpbb_loginbox_head()
 	// We pass the user session ID to ensure some minimun security, similar to phpbb/ucp.php
 	add_action('login_form', 'phpbb_login_form', 100);
 	// Add some JavaScript files
-	wp_phpbb_javascript(true);
+	// wp_phpbb_javascript(true);
 	// Add some StyleSheet files
 	wp_phpbb_stylesheet(true);
 
@@ -464,33 +464,22 @@ function wp_phpbb_stylesheet($login = false)
 /**
  * Insert some js files
  */
-function wp_phpbb_javascript($login = false)
-{
-	wp_deregister_script('jquery');
-
-	// jQuery for login and reply to comments
-	wp_register_script('jquery', get_stylesheet_directory_uri() . '/js/jquery-1.5.0.min.js', false, '1.5.0');
-	wp_print_scripts('jquery');
-
-	// javascript for general proposes
-	wp_register_script('wp_phpbb_bridge', get_stylesheet_directory_uri() . '/js/wp_phpbb_bridge_js.js', false, WP_PHPBB_BRIDGE_VERSION);
-	wp_print_scripts('wp_phpbb_bridge');
-
-	wp_register_script('quote', get_stylesheet_directory_uri() . '/js/quote.js', false, WP_PHPBB_BRIDGE_VERSION);
-	wp_print_scripts('quote');
-
-	// jQuery for reply to comments
-	if (is_single())
-	{
-		wp_register_script('jquery-validate', get_stylesheet_directory_uri() . '/js/jquery.validate.js', array('jquery'), '1.5.2');
-		wp_print_scripts('jquery-validate');
+function propress_enqueue_js_scripts() {
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) { 
+		wp_enqueue_script( 'comment-reply' );
 	}
+	if ( is_singular() && comments_open() ) { 
+		wp_enqueue_script('quote-js', get_template_directory_uri() . '/js/quote.js', array('jquery'));
+		wp_enqueue_script('validate-js', get_template_directory_uri() . '/js/jquery.validate.js', array('jquery'));
+
+	}
+	wp_enqueue_script('phpbb-bridge-js', get_template_directory_uri() . '/js/wp_phpbb_bridge_js.js', array('jquery'));
 	if ($login)
 	{
-		wp_register_script('jquery-login-box', get_stylesheet_directory_uri() . '/js/wp_phpbb_bridge_login_box.js', array('jquery'), WP_PHPBB_BRIDGE_VERSION);
-		wp_print_scripts('jquery-login-box');
+		wp_enqueue_script('phpbb-bridge-login-js', get_template_directory_uri() . '/js/wp_phpbb_bridge_login_box.js', array('jquery'));
 	}
 }
+add_action( 'wp_enqueue_scripts', 'propress_enqueue_js_scripts' );
 
 /**
  * Pagination routine, generates page number sequence

@@ -691,7 +691,6 @@ class phpbb
 		$blog_header .= '<link rel="stylesheet" type="text/css" media="all" href="' . get_bloginfo('stylesheet_url') . '?ver=' . WP_PHPBB_BRIDGE_VERSION . '" />' . "\n";
 
 		// Some js files
-		add_action('wp_head', 'wp_phpbb_javascript');
 
 		/* Always have wp_head() just before the closing </head>
 		 * tag of your theme, or you will break many plugins, which
