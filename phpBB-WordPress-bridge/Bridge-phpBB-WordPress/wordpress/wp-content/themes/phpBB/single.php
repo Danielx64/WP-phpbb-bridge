@@ -46,8 +46,8 @@ if (have_posts())
 
 			'MINI_POST_IMG'		=> phpbb::$user->img('icon_post_target', 'POST'),
 			'U_MINI_POST'		=> apply_filters('the_permalink', get_permalink()) . "#post-$post_id",
-			'POST_SUBJECT'		=> get_the_title(),
-			'MESSAGE'			=> wp_do_action('the_content'),
+			'POST_SUBJECT'		=> censor_text(get_the_title()),
+			'MESSAGE'			=> censor_text(wp_do_action('the_content')),
 
 			'POST_TAGS'			=> get_the_tag_list(phpbb::$user->lang['WP_TITLE_TAGS'] . ': ', ', ', ''),
 			'POST_CATS'			=> sprintf(phpbb::$user->lang['WP_POSTED_IN'], get_the_category_list(', ')),
