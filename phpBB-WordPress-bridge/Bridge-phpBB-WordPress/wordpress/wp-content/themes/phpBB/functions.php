@@ -63,6 +63,8 @@ remove_action('wp_head', 'parent_post_rel_link', 10, 0);
 remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0);
 
 // Add session id
+add_filter('comment_form', 'generate_smilies', 1, 2);
+
 add_filter('logout_url', 'wp_phpbb_loginout', 1, 2);
 add_filter('login_url', 'wp_phpbb_loginout', 1, 2);
 add_filter('wp_redirect', 'wp_phpbb_loginout', 1, 2);
@@ -769,16 +771,14 @@ class WP_Widget_phpbb_recet_topics extends WP_Widget
 **/
 $wp_phpbb_posting = (int) get_option('wp_phpbb_bridge_post_forum_id');
 
-if ($wp_phpbb_posting)
-{
 	add_action('publish_post', 'wp_phpbb_posting', 10, 2);
-}
+
 
 /**
  * After delete or trash an entry restur to the index page, instead the same page (that do not exist anymore)
  */
-add_action('after_delete_post', 'wp_phpbb_trasheddelete_post_handler', 10, 1);
-add_action('trashed_post', 'wp_phpbb_trasheddelete_post_handler', 10, 1);
+//add_action('after_delete_post', 'wp_phpbb_trasheddelete_post_handler', 10, 1);
+//add_action('trashed_post', 'wp_phpbb_trasheddelete_post_handler', 10, 1);
 function wp_phpbb_trasheddelete_post_handler($post_id)
 {
 	$wp_phpbb_posting = (int) get_option('wp_phpbb_bridge_post_forum_id');
@@ -996,7 +996,7 @@ function wp_phpbb_post_data($message, $subject, $topic_id, $post_id, $user_row, 
 	$data = array(
 		'post_id'				=> $post_id,
 		'topic_id'				=> $topic_id,
-		'forum_id'				=> (int) $post_data['forum_id'],
+		'forum_id'				=> '2',
 		'icon_id'				=> (isset($post_data['enable_sig'])) ? (bool) $post_data['enable_sig'] : true,
 		'topic_status'			=> 1,
 		'topic_title'			=> $subject,
@@ -1019,11 +1019,6 @@ function wp_phpbb_post_data($message, $subject, $topic_id, $post_id, $user_row, 
 		'post_edit_locked'		=> (isset($post_data['post_edit_locked'])) ? $post_data['post_edit_locked'] : false,
 		'force_approved_state'	=> (isset($post_data['force_approved_state'])) ? $post_data['force_approved_state'] : true,
 
-		// Just in case 
-		'seo_desc'				=> (isset($post_data['seo_desc'])) ? $post_data['seo_desc'] : '',
-		'seo_key'				=> (isset($post_data['seo_key'])) ? $post_data['seo_key'] : '',
-		'seo_post_key'			=> (isset($post_data['seo_post_key'])) ? $post_data['seo_post_key'] : '',
-		'topic_seo_title'		=> (isset($post_data['topic_seo_title'])) ? $post_data['topic_seo_title'] : '',
 	);
 
 	// Merge the data we grabbed from the forums/topics/posts tables
