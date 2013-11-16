@@ -72,6 +72,22 @@ if (!function_exists('make_clickable'))
 ]]></action>
 			</edit>
 		</open>
+		<open src="includes/functions_user.php">
+			<edit>
+				<find><![CDATA[function validate_username($username, $allowed_username = false)]]></find>
+				<action type="before-add"><![CDATA[if (!function_exists('validate_username'))
+{]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[			return 'USERNAME_DISALLOWED';
+		}
+	}
+
+	return false;
+}]]></find>
+				<action type="after-add"><![CDATA[}]]></action>
+			</edit>
+		</open>
 		<open src="styles/prosilver/template/overall_footer.html">
 			<edit>
 				<find><![CDATA[	<div class="navbar">
