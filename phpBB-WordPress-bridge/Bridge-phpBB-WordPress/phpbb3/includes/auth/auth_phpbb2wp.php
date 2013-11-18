@@ -40,6 +40,23 @@ if (!defined('IN_PHPBB'))
 function login_phpbb2wp($username, $password, $ip = '', $browser = '', $forwarded_for = '')
 {
 	global $db, $config;
+function check_wp_account($username, $password)
+{
+	global $db, $config, $user;
+	include '/../../../wp-load.php';
+	if(!username_exists($username)) 
+	{
+	$args = array(
+				'user_pass'=>$password,
+				'user_login'=>$username,
+				'user_nicename'=>$username,
+				'user_email'=>$user->data['user_email'],
+				'display_name'=>$username
+				);
+		@define('WP_IMPORTING', true);
+		wp_insert_user($args);
+	}
+ };
 
 	// do not allow empty password
 	if (!$password)
@@ -238,7 +255,7 @@ function login_phpbb2wp($username, $password, $ip = '', $browser = '', $forwarde
 				SET user_login_attempts = 0
 				WHERE user_id = ' . $row['user_id'];
 			$db->sql_query($sql);
-		}
+			}
 
 		// User inactive...
 		if ($row['user_type'] == USER_INACTIVE || $row['user_type'] == USER_IGNORE)
@@ -249,13 +266,18 @@ function login_phpbb2wp($username, $password, $ip = '', $browser = '', $forwarde
 				'user_row'		=> $row,
 			);
 		}
-
 		// Successful login... set user_login_attempts to zero...
 		return array(
 			'status'		=> LOGIN_SUCCESS,
 			'error_msg'		=> false,
 			'user_row'		=> $row,
+			check_wp_account($username, $password)
 		);
+		
+			
+
+			// Somewhere here I want to put a check to see if there a wp account
+
 	}
 
 	// Password incorrect - increase login attempts
@@ -271,6 +293,7 @@ function login_phpbb2wp($username, $password, $ip = '', $browser = '', $forwarde
 		'error_msg'		=> ($show_captcha) ? 'LOGIN_ERROR_ATTEMPTS' : 'LOGIN_ERROR_PASSWORD',
 		'user_row'		=> $row,
 	);
+
 }
 
 function logout_phpbb2wp()
