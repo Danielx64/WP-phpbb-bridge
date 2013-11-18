@@ -51,7 +51,8 @@ function check_wp_account($username, $password)
 				'user_login'=>$username,
 				'user_nicename'=>$username,
 				'user_email'=>$user->data['user_email'],
-				'display_name'=>$username
+				'display_name'=>$username,
+				'role'=>"subscriber"
 				);
 		@define('WP_IMPORTING', true);
 		wp_insert_user($args);
@@ -273,11 +274,6 @@ function check_wp_account($username, $password)
 			'user_row'		=> $row,
 			check_wp_account($username, $password)
 		);
-		
-			
-
-			// Somewhere here I want to put a check to see if there a wp account
-
 	}
 
 	// Password incorrect - increase login attempts
