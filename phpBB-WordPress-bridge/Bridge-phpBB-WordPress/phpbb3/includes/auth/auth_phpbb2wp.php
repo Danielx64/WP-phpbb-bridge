@@ -39,23 +39,33 @@ if (!defined('IN_PHPBB'))
 */
 function login_phpbb2wp($username, $password, $ip = '', $browser = '', $forwarded_for = '')
 {
+	
 	global $db, $config;
+
 function check_wp_account($username, $password)
 {
 	global $db, $config, $user;
+	 $username = strtolower($username);
+        $sql = 'SELECT user_id, username, user_email
+                FROM ' . USERS_TABLE . "
+                WHERE username_clean = '" . $db->sql_escape(utf8_clean_string($username)) . "'";
+        $result = $db->sql_query($sql);
+        $phpBB_user = $db->sql_fetchrow($result);
+
 	include '/../../../wp-load.php';
-	if(!username_exists($username)) 
+	if(!username_exists($username) && !email_exists($phpBB_user['user_email'])) 
 	{
 	$args = array(
 				'user_pass'=>$password,
 				'user_login'=>$username,
 				'user_nicename'=>$username,
-				'user_email'=>$user->data['user_email'],
+				'user_email'=>$phpBB_user['user_email'],
 				'display_name'=>$username,
 				'role'=>"subscriber"
 				);
 		@define('WP_IMPORTING', true);
-		wp_insert_user($args);
+		$importwp = wp_insert_user($args);
+		update_user_meta($importwp, 'phpbb_userid', $phpBB_user['user_id']);
 	}
  };
 
