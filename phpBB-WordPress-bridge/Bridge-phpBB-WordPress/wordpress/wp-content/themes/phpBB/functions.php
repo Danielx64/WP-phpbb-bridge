@@ -17,14 +17,14 @@ function propress_validate_wordpress() {
 	// Don't validate during an install/upgrade.
 	if ( defined('WP_INSTALLING') || !apply_filters( 'validate_current_theme', true ) )
 		return true;
-if  (version_compare(get_bloginfo('version'), '3.6.1', '<')){
+if  (version_compare(get_bloginfo('version'), '3.7.1', '<')){
 		switch_theme( WP_DEFAULT_THEME );
-			    wp_die( __('Propress requires WordPress 3.6.1 and higher. The default theme has been loaded.', 'propress') );
+			    wp_die( __('Propress requires WordPress 3.7.1 and higher. The default theme has been loaded.', 'propress') );
 		return false;
 	}
 	return true;
 }
-add_action( 'after_setup_theme', 'propress_validate_wordpress' );
+//add_action( 'after_setup_theme', 'propress_validate_wordpress' );
 
 
 require( get_template_directory() . '/includes/options.php' );
@@ -63,7 +63,6 @@ remove_action('wp_head', 'parent_post_rel_link', 10, 0);
 remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0);
 
 // Add session id
-add_filter('comment_form', 'generate_smilies', 1, 2);
 
 add_filter('logout_url', 'wp_phpbb_loginout', 1, 2);
 add_filter('login_url', 'wp_phpbb_loginout', 1, 2);
@@ -443,8 +442,6 @@ function wp_phpbb_stylesheet($login = false)
 		wp_print_styles('wp_phpbb_bridge_style');
 	//	wp_register_style('wp_phpbb_bridge_login', get_stylesheet_directory_uri() . '/css/login.css', false, WP_PHPBB_BRIDGE_VERSION);
 	//	wp_print_styles('wp_phpbb_bridge_login');
-		wp_enqueue_script('phpbb-bridge-login-js', get_template_directory_uri() . '/js/wp_phpbb_bridge_login_box.js', array('jquery'));
-		wp_enqueue_style( 'phpbb-login', get_template_directory_uri() . '/css/login.css');
 
 	}
 	else
