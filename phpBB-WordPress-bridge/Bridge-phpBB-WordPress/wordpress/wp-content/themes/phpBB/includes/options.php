@@ -54,10 +54,10 @@ function propress_add_theme_page() {
 	$propress_settings_page = add_theme_page(
 		// $page_title
 		// Name displayed in HTML title tag
-		__( 'BRIDGE phpBB & WordPress Settings', 'propress' ), 
+		__( '[BRIDGE] phpBB to Wordpress', 'propress' ), 
 		// $menu_title
 		// Name displayed in the Admin Menu
-		__( 'BRIDGE phpBB & WordPress', 'propress' ), 
+		__( '[BRIDGE] phpBB to Wordpress', 'propress' ), 
 		// $capability
 		// User capability required to access page
 		propress_get_settings_page_cap(), 
