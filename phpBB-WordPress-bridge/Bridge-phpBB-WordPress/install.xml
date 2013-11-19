@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
 <!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
 <!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
@@ -6,20 +5,17 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator 1.2.6 by tumba25 (offline version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[BRIDGE phpBB & WordPress]]></title>
+		<title lang="en"><![CDATA[[BRIDGE] phpBB to WordPress]]></title>
 		<description lang="en"><![CDATA[WordPress - phpBB Integration Mod
 		This Birdge makes possible to integrate your phpBB into your Wordpress Blog, sharing the Board style and users
 		Users Can login at the Blog using the phpBB account or Wordpress account, 
 			If the phpBB users do not exist in WP it will be automatically created as a "Subscriber"
 			If the WP users do not exist in phpBB it will be automatically created as a "Registered users" ( and "Newly registered users" if you have it enabled )]]></description>
 		<author-notes lang="en"><![CDATA[Please keep in mind that this version is still in development, so not everything may be in place or working.
-* Works on phpBB version 3.0.9 and WordPress version 3.2.1
+* Works on phpBB version 3.0.12 and WordPress version 3.7.1
 * It is not recommended that you install this version on a live forum.
-* Report any bugs or problems you encounter to our issue tracker http://github.com/mssti/BRIDGE-phpBB---WordPress/issues
-* Also, good ideas and bug reports are always welcome.
 * Before adding this MOD to your forum, you should back up all files related to this MOD.
-* This BRIDGE modify the database.
-* Do not try to install with AutoMOD]]></author-notes>
+* This BRIDGE modify the database.]]></author-notes>
 		<author-group>
 			<author>
 				<realname><![CDATA[Gabriel]]></realname>
@@ -32,7 +28,10 @@
 			</author>
 			<author>
 				<realname><![CDATA[Daniel]]></realname>
-				<username><![CDATA[*Daniel]]></username>
+				<username><![CDATA[Danielx64]]></username>
+				<contributions-group>
+					<contributions status="current" position="Devloper"/>
+				</contributions-group>
 			</author>
 		</author-group>
 		<mod-version>0.1.0</mod-version>
@@ -44,8 +43,9 @@
 	</header>
 	<action-group>
 		<copy>
-			<file from="root/phpbb3/language/en/mods/*.*" to="phpbb3/language/en/mods/*.*"/>
-			<file from="root/phpbb3/styles/prosilver/*.*" to="phpbb3/styles/prosilver/*.*"/>
+			<file from="root/phpbb3/language/en/mods/*.*" to="language/en/mods/*.*"/>
+			<file from="root/phpbb3/styles/prosilver/*.*" to="styles/prosilver/*.*"/>
+			<file from="root/phpbb3/includes/auth/*.*" to="includes/auth/*.*"/>
 		</copy>
 		<open src="includes/functions_content.php">
 			<edit>
@@ -108,13 +108,6 @@ if (!function_exists('make_clickable'))
 <!-- BRIDGE phpBB & WordPress - End //-->
 ]]></action>
 			</edit>
-			<edit>
-				<find><![CDATA[	<div class="copyright">{CREDIT_LINE}]]></find>
-				<action type="after-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
-<!-- IF PHPBB_IN_BLOG -->{BLOG_FOOTER}<!-- ENDIF -->
-<!-- BRIDGE phpBB & WordPress - End //-->
-]]></action>
-			</edit>
 		</open>
 		<open src="styles/prosilver/template/overall_header.html">
 			<edit>
@@ -154,41 +147,5 @@ if (!function_exists('make_clickable'))
 				<comment lang="en"><![CDATA[You must do this change to ALL themes you have installed, based off Prosilver. I use "Prosilver" as an example.]]></comment>
 			</edit>
 		</open>
-		<diy-instructions lang="en"><![CDATA[IMPORTANT ! 
-
-
-#####################################################################
-Log on to the phpBB Administration Control Panel
-
-#####################################################################
-A) Refresh the templates :
-
-	A.1) Navigate to "Styles" Tab.
-	A.2) Under "Style components " click on "Templates".
-	A.3) Under "Actions" click on "Refresh".
-	A.4) in the next screen, click on "Yes" ( Repeat last 2 steps to each instaled style ).
-
-#####################################################################
-B) Refresh the theme :
-
-	B.1) Navigate to "Styles" Tab.
-	B.2) Under "Style components " click on "Theme".
-	B.3) Under "Actions" click on "Refresh".
-	B.4) in the next screen, click on "Yes" ( Repeat last 2 steps to each instaled style ).
-
-#####################################################################
-Log on to the wordpress Administration Dashboard
-
-#####################################################################
-E) Install the theme :
-
-	E.1) Navigate to "Appareance -> Themes" 
-	E.2) Under Available Themes, look for Prosilver 
-	E.3) Click on "Activate"
-	E.4) After enable the theme you will see a new menu named "BRIDGE phpBB & WordPress"
-	E.5) click on "BRIDGE phpBB & WordPress"
-	E.6) fill the form and submit
-#####################################################################
-F) Enjoy it !.]]></diy-instructions>
 	</action-group>
 </mod>
