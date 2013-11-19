@@ -768,7 +768,7 @@ class WP_Widget_phpbb_recet_topics extends WP_Widget
 **/
 $wp_phpbb_posting = (int) get_option('wp_phpbb_bridge_post_forum_id');
 
-	add_action('publish_post', 'wp_phpbb_posting', 10, 2);
+add_action('publish_post', 'wp_phpbb_posting', 10, 2);
 
 
 /**
@@ -986,6 +986,8 @@ function wp_phpbb_posting($post_ID, $post)
 function wp_phpbb_post_data($message, $subject, $topic_id, $post_id, $user_row, $post_data, $message_parser)
 {
 	$message = wp_phpbb_html_to_bbcode($message);
+	$propress_options = get_option( 'theme_propress_options' );
+	$forumid =  $propress_options['wp_phpbb_bridge_post_forum_id'];
 
 	$message_parser->message = $message;
 	$message_parser->parse(true, true, true);
@@ -993,7 +995,7 @@ function wp_phpbb_post_data($message, $subject, $topic_id, $post_id, $user_row, 
 	$data = array(
 		'post_id'				=> $post_id,
 		'topic_id'				=> $topic_id,
-		'forum_id'				=> '2',
+		'forum_id'				=> $forumid,
 		'icon_id'				=> (isset($post_data['enable_sig'])) ? (bool) $post_data['enable_sig'] : true,
 		'topic_status'			=> 1,
 		'topic_title'			=> $subject,
