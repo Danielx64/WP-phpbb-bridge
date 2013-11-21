@@ -282,7 +282,7 @@ function check_wp_account($username, $password)
 			'status'		=> LOGIN_SUCCESS,
 			'error_msg'		=> false,
 			'user_row'		=> $row,
-			check_wp_account($username, $password)
+			//check_wp_account($username, $password)
 		);
 	}
 
