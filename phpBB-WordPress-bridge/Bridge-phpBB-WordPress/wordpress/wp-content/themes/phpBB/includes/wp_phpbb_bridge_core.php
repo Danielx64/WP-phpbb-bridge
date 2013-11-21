@@ -268,8 +268,8 @@ class phpbb
 		$wp_user_id = self::wp_phpbb_get_userid();
 
 	//	if ($wp_user_id != 0)
-	//	if ($wp_user_id <= 0 && is_user_logged_in())
-		if ($wp_user_id <= 0 && self::wp_phpbb_user_logged())
+		if ($wp_user_id <= 0 && is_user_logged_in())
+	//	if ($wp_user_id <= 0 && self::wp_phpbb_user_logged())
 		{
 			wp_logout();
 			wp_redirect('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
