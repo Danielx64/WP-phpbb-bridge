@@ -52,7 +52,8 @@ function check_wp_account($username, $password)
         $result = $db->sql_query($sql);
         $phpBB_user = $db->sql_fetchrow($result);
 
-	include '/../../../wp-load.php';
+		$path = $config['phpbb2wp_wppath'];
+		include ''.$path.'wp-load.php';
 	if(!username_exists($username) && !email_exists($phpBB_user['user_email'])) 
 	{
 	$args = array(
@@ -282,7 +283,7 @@ function check_wp_account($username, $password)
 			'status'		=> LOGIN_SUCCESS,
 			'error_msg'		=> false,
 			'user_row'		=> $row,
-			//check_wp_account($username, $password)
+			check_wp_account($username, $password)
 		);
 	}
 
@@ -302,12 +303,36 @@ function check_wp_account($username, $password)
 
 }
 
-function logout_phpbb2wp()
+function logout_phpbb2wp($config)
 {
-		include '/../../../wp-load.php';
+		global $config;
+		$path = $config['phpbb2wp_wppath'];
+		include ''.$path.'wp-load.php';
 		wp_logout();
 		//wp_set_auth_cookie($phpbb_session_id);
 		wp_clear_auth_cookie();
+}
+
+/**
+* This function is used to output any required fields in the authentication
+* admin panel. It also defines any required configuration table fields.
+*/
+function acp_phpbb2wp(&$new)
+{
+	global $user;
+
+	$tpl = '
+	<dl>
+		<dt><label for="phpbb2wp_wppath">:</label><br /><span>' . $user->lang['LDAP_PASSWORD_EXPLAIN'] . '</span></dt>
+		<dd><input type="text" id="phpbb2wp_wppath" size="40" name="config[phpbb2wp_wppath]" value="' . $new['phpbb2wp_wppath'] . '" autocomplete="off" /></dd>
+	</dl>
+	';
+
+	// These are fields required in the config table
+	return array(
+		'tpl'		=> $tpl,
+		'config'	=> array('phpbb2wp_wppath')
+	);
 }
 
 ?>
