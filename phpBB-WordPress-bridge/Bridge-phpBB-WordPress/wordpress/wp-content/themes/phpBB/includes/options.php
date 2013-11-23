@@ -100,6 +100,15 @@ function propress_admin_options_page() {
 			// Settings field in each section
 			do_settings_sections( $settings_section );
 		?><br />
+			If you are not sure what is the full path to your forum then create a file "ie: mypath.php" into the folder phpBB3 and enter the following code in it:
+			 <code><?php echo $_SERVER['SCRIPT_FILENAME']; ?></code> You will get something like this :<br /><code><?php echo $_SERVER['SCRIPT_FILENAME']; ?></code>
+			 <br />
+			 The above code will return to you the full path to your forum + the file name "mypath.php".
+			 <br />
+			 Place the "mypath.php" with the "config.php" and then copy all that path to use it in the theme configuration.
+			 <br />
+			 Hope this help you :)
+<br />
 			<?php submit_button( __( 'Save Settings', 'propress' ), 'primary', 'theme_propress_options[submit-' . $currenttab . ']', false ); ?>
 			<?php submit_button( __( 'Reset Defaults', 'propress' ), 'secondary', 'theme_propress_options[reset-' . $currenttab . ']', false ); ?>
 		</form>
