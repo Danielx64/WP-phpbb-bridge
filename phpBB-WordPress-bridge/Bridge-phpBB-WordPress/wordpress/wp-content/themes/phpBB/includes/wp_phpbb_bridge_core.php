@@ -544,7 +544,7 @@ class phpbb
 		// Do the phpBB page header stuff first
 		page_header($wp_title, false);
 
-		$redirect = request_var('redirect', get_option('siteurl'));
+		$redirect = request_var('redirect', home_url(add_query_arg(array())));
 		
 //		$u_login_logout = site_url('wp-login.php', 'login');
 //		$u_login_popup = get_option('siteurl') . '/?action=popup';
