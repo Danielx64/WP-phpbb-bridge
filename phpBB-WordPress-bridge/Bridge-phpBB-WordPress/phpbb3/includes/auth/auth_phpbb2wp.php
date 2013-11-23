@@ -283,7 +283,7 @@ function check_wp_account($username, $password)
 			'status'		=> LOGIN_SUCCESS,
 			'error_msg'		=> false,
 			'user_row'		=> $row,
-			check_wp_account($username, $password)
+			//check_wp_account($username, $password)
 		);
 	}
 
@@ -323,7 +323,7 @@ function acp_phpbb2wp(&$new)
 
 	$tpl = '
 	<dl>
-		<dt><label for="phpbb2wp_wppath">:</label><br /><span>' . $user->lang['LDAP_PASSWORD_EXPLAIN'] . '</span></dt>
+		<dt><label for="phpbb2wp_wppath">' . $user->lang['WPHPBB_INFO'] . ':</label><br /><span>' . $user->lang['WPHPBB_INFO_EXPLAIN'] . '</span></dt>
 		<dd><input type="text" id="phpbb2wp_wppath" size="40" name="config[phpbb2wp_wppath]" value="' . $new['phpbb2wp_wppath'] . '" autocomplete="off" /></dd>
 	</dl>
 	';
