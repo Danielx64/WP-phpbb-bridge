@@ -74,7 +74,7 @@ if (have_posts())
 
 	// Let us decide which comments text display and for who can see it
 	// The user who is viewing is an administrator
-	if ($is_admin = current_user_can('level_8'))
+	if ($is_admin = current_user_can('administrator'))
 	{
 		add_filter('query', 'wp_phpbb_query_filter');
 	}
@@ -224,7 +224,7 @@ function wp_phpbb_update_comment_count($comment_count)
 	$post_id = get_the_ID();
 
 	// The user who is viewing is an administrator
-	if ($is_admin = current_user_can('level_8'))
+	if ($is_admin = current_user_can('administrator'))
 	{
 		$comment_count = (int) $wpdb->get_var( $wpdb->prepare("SELECT COUNT(*) FROM $wpdb->comments WHERE comment_post_ID = %d ", $post_id) );
 	}
