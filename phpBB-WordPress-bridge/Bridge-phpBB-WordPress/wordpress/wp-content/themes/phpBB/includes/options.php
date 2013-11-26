@@ -101,7 +101,7 @@ function propress_admin_options_page() {
 			do_settings_sections( $settings_section );
 		?><br />
 			If you are not sure what is the full path to your forum then create a file "ie: mypath.php" into the folder phpBB3 and enter the following code in it:
-			 <code>echo $_SERVER['SCRIPT_FILENAME']; ?></code> You will get something like this :<br /><code><?php echo $_SERVER['SCRIPT_FILENAME']; ?></code>
+			 <code>echo $_SERVER['SCRIPT_FILENAME']; </code> You will get something like this :<br /><code><?php echo $_SERVER['SCRIPT_FILENAME']; ?></code>
 			 <br />
 			 The above code will return to you the full path to your forum + the file name "mypath.php".
 			 <br />
