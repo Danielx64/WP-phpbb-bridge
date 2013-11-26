@@ -286,7 +286,38 @@ function propress_get_option_parameters() {
 			'since' => '1.2',
 			'default' => '1'
 		),
-
+		'awpa' => array(
+			'name' => 'awpa',
+			'title' => __( 'Who can access the wp-admin area?', 'propress' ),
+			'type' => 'select',
+			'valid_options' => array( 
+				'edit_dashboard' => array(
+					'name' => 'edit_dashboard',
+					'title' => __( 'Administrators only', 'propress' )
+				),
+				'read_private_pages' => array(
+					'name' => 'read_private_pages',
+					'title' => __( 'Editor and Administrators only' , 'propress' )
+				),
+				'delete_published_posts' => array(
+					'name' => 'delete_published_posts',
+					'title' => __(  'Author, Editor and Administrators only', 'propress' )
+				),
+				'edit_posts' => array(
+					'name' => 'edit_posts',
+					'title' =>  __( 'Contributor, Author, Editor and Administrators only', 'propress' )
+				),
+				'read' => array(
+					'name' => 'read',
+					'title' =>  __( 'Subscriber, Contributor, Author, Editor and Administrators', 'propress' )
+				)
+			),
+			'description' => __( 'User level', 'propress' ),
+			'section' => 'header',
+			'tab' => 'general',
+			'since' => '1.3',
+			'default' => 'read'
+		),
     );
     return apply_filters( 'propress_get_option_parameters', $options );
 }
