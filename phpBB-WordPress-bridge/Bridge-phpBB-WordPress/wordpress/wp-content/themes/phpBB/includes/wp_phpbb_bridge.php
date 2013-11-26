@@ -18,13 +18,12 @@
  * 
  * functions.php
  * includes/wp_phpbb_bridge.php
- * includes/wp_phpbb_bridge_constants.php
  * includes/wp_phpbb_bridge_core.php
  * index.php
  */
 
 define('IN_WP_PHPBB_BRIDGE', true);
-define('WP_PHPBB_BRIDGE_ROOT', TEMPLATEPATH . '/');
+define('WP_PHPBB_BRIDGE_ROOT',  get_template_directory().'/');
 define('PHP_EXT', substr(strrchr(__FILE__, '.'), 1));
 define('WP_TABLE_PREFIX', $table_prefix);
 

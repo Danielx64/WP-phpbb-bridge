@@ -1138,7 +1138,7 @@ class phpbb
 
 	public static function wp_page_footer()
 	{
-		$blog_footer  = '&nbsp;|&nbsp;Powered by <a href="http://wordpress.org/" title="Semantic Personal Publishing Platform" rel="generator" id="site-generator" onclick="window.open(this.href);return false;">WordPress</a>&nbsp;|&nbsp;Bridge by <a href="http://www.mssti.com/phpbb3" title="Micro Software &amp; Servicio Técnico Informático" onclick="window.open(this.href);return false;">.:: MSSTI ::.</a><br />';
+		$blog_footer  = '&nbsp;|&nbsp;Powered by <a href="http://wordpress.org/" title="Semantic Personal Publishing Platform" rel="generator" id="site-generator">WordPress</a><br />';
 		$blog_footer .= '<!-- If you\'d like to support WordPress, having the "powered by" link somewhere on your blog is the best way; it\'s our only promotion or advertising. -->' . "\n";
 		$blog_footer .= sprintf(self::$user->lang['WP_RSS_NOTES'], '<a href="' . get_bloginfo('rss2_url') . '">' . self::$user->lang['WP_RSS_ENRIES_LINK'] . '</a>', '<a href="' . get_bloginfo('comments_rss2_url') . '">' . self::$user->lang['WP_RSS_COMMENTS_LINK'] . '</a>');
 
