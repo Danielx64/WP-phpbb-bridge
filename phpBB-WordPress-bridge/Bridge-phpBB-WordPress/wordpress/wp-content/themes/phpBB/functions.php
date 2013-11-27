@@ -16,7 +16,12 @@ require( get_template_directory() . '/includes/custom.php' );
 /**
 * @ignore
 **/
+
+$propress_options = get_option( 'theme_propress_options' );
+if (!$propress_options['wp_phpbb_bridge'] ) {
 add_action( 'admin_init', 'redirect_non_admin_users' );
+}
+
 /**
  * Redirect non-admin users to home page
  *

@@ -167,13 +167,13 @@ function propress_get_option_parameters() {
     $options = array(
 		'wp_phpbb_bridge' => array(
 			'name' => 'wp_phpbb_bridge',
-			'title' => __( 'Enable Bridge', 'propress' ),
+			'title' => __( 'Emable wp-admin redirect?', 'propress' ),
 			'type' => 'checkbox',
-			'description' => __( 'This will make the Bridge unavailable to use.', 'propress' ),
+			'description' => __( '', 'propress' ),
 			'section' => 'header',
 			'tab' => 'general',
-			'since' => '1.2',
-			'default' => true
+			'since' => '1.0',
+			'default' => false
 		),
 		'phpbb_root_path' => array(
 			'name' => 'phpbb_root_path',
@@ -183,7 +183,7 @@ function propress_get_option_parameters() {
 			'description' => __( 'The path where phpBB is located relative to the domain name. ', 'propress' ),
 			'section' => 'header',
 			'tab' => 'general',
-			'since' => '1.2',
+			'since' => '1.0',
 			'default' => './forums/'
 		),
 		'phpbb_script_path' => array(
@@ -194,7 +194,7 @@ function propress_get_option_parameters() {
 			'description' => __( 'Relative path from the server root.', 'propress' ),
 			'section' => 'header',
 			'tab' => 'general',
-			'since' => '1.2',
+			'since' => '1.0',
 			'default' => 'forums/'
 		),
 		'wordpress_script_path' => array(
@@ -205,7 +205,7 @@ function propress_get_option_parameters() {
 			'description' => __( 'Relative path from the server root.', 'propress' ),
 			'section' => 'header',
 			'tab' => 'general',
-			'since' => '1.2',
+			'since' => '1.0',
 			'default' => '/'
 		),
 
@@ -217,7 +217,7 @@ function propress_get_option_parameters() {
 			'description' => __( 'The number of your Forum (not Category) where to use permissions.', 'propress' ),
 			'section' => 'header',
 			'tab' => 'general',
-			'since' => '1.2',
+			'since' => '1.0',
 			'default' => '2'
 		),
 		'wp_phpbb_bridge_widgets_column_width' => array(
@@ -228,7 +228,7 @@ function propress_get_option_parameters() {
 			'description' => __( 'The right column width, in pixels. ', 'propress' ),
 			'section' => 'header',
 			'tab' => 'general',
-			'since' => '1.2',
+			'since' => '1.0',
 			'default' => '300'
 		),
 		'wp_phpbb_bridge_comments_avatar_width' => array(
@@ -239,7 +239,7 @@ function propress_get_option_parameters() {
 			'description' => __( 'The width size of avatars in comments, in pixels.', 'propress' ),
 			'section' => 'header',
 			'tab' => 'general',
-			'since' => '1.2',
+			'since' => '1.0',
 			'default' => '32'
 		),
 		'usesth' => array(
@@ -250,7 +250,7 @@ function propress_get_option_parameters() {
 			'description' => __( '', 'propress' ),
 			'section' => 'header',
 			'tab' => 'general',
-			'since' => '1.2',
+			'since' => '1.0',
 			'default' => 'http://localhost/forums/ucp.php'
 		),
 		'wp_phpbb_bridge_blog_founder_user_id' => array(
@@ -261,7 +261,7 @@ function propress_get_option_parameters() {
 			'description' => __( '', 'propress' ),
 			'section' => 'header',
 			'tab' => 'general',
-			'since' => '1.2',
+			'since' => '1.0',
 			'default' => '1'
 		),
 		'wp_phpbb_bridge_forum_founder_user_id' => array(
@@ -272,7 +272,7 @@ function propress_get_option_parameters() {
 			'description' => __( '', 'propress' ),
 			'section' => 'header',
 			'tab' => 'general',
-			'since' => '1.2',
+			'since' => '1.0',
 			'default' => '2'
 		),
 		'wp_phpbb_bridge_post_forum_id' => array(
@@ -283,8 +283,8 @@ function propress_get_option_parameters() {
 			'description' => __( '', 'propress' ),
 			'section' => 'header',
 			'tab' => 'general',
-			'since' => '1.2',
-			'default' => '1'
+			'since' => '1.0',
+			'default' => '2'
 		),
 		'awpa' => array(
 			'name' => 'awpa',
@@ -315,7 +315,7 @@ function propress_get_option_parameters() {
 			'description' => __( 'User level', 'propress' ),
 			'section' => 'header',
 			'tab' => 'general',
-			'since' => '1.3',
+			'since' => '1.0',
 			'default' => 'read'
 		),
     );
