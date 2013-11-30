@@ -562,6 +562,7 @@ class phpbb
 			'U_BLOG'			=> append_sid($blog_path),
 
 			'PAGE_TITLE'		=> $wp_title,
+			'MAIN_MENU'			=> wp_nav_menu(),
 			'SITENAME'			=> get_bloginfo('name', 'display'),
 			'SITE_DESCRIPTION'	=> get_bloginfo('description', 'display'),
 			'BLOG_HEADER'		=> self::wp_page_header(),
