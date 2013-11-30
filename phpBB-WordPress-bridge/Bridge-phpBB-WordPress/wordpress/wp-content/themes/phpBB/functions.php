@@ -867,4 +867,58 @@ function wp_phpbb_save_extra_profile_fields($user_id)
 	}
 }
 
+//add_action('after_delete_post', 'wp_phpbb_trasheddelete_post_handler', 10, 1);
+//add_action('trashed_post', 'wp_phpbb_trasheddelete_post_handler', 10, 1);
+function wp_phpbb_trasheddelete_post_handler($post_id)
+{
+	$wp_phpbb_posting = (int) get_option('wp_phpbb_bridge_post_forum_id');
+
+	// Handle delete mode...
+	if ($wp_phpbb_posting)
+	{
+		global $table_prefix, $wp_user;
+
+		if (!defined('IN_WP_PHPBB_BRIDGE'))
+		{
+			global $wp_phpbb_bridge_config, $phpbb_root_path, $phpEx;
+			global $auth, $config, $db, $template, $user, $cache;
+			include(TEMPLATEPATH . '/includes/wp_phpbb_bridge.php');
+		}
+
+		$post_data = array();
+
+		// We are ading a new entry or we are editting ?
+		$phpbb_post_id = get_post_meta($post_id, 'phpbb_post_id', true );	//	$phpbb_post_id=array('forum_id' => 2, 'topic_id' => 47, 'post_id' => 74);
+		if (!empty($phpbb_post_id))
+		{
+			$sql = 'SELECT f.*, t.*, p.*
+				FROM ' . FORUMS_TABLE . ' f, ' . TOPICS_TABLE . ' t, ' . POSTS_TABLE . ' p
+				WHERE p.post_id = ' . (int) $phpbb_post_id['post_id'] . '
+					AND t.topic_id = p.topic_id
+					AND f.forum_id = t.forum_id';
+			$result = phpbb::$db->sql_query($sql);
+			$post_data = phpbb::$db->sql_fetchrow($result);
+			phpbb::$db->sql_freeresult($result);
+		}
+		
+		if ($post_data)
+		{
+			if (!function_exists('delete_post'))
+			{
+				include(PHPBB_ROOT_PATH . 'includes/functions_posting.' . PHP_EXT);
+			}
+			delete_post($post_data['forum_id'], $post_data['topic_id'], $post_data['post_id'], $post_data);
+		}
+	}
+
+	if (defined('WP_ADMIN') && WP_ADMIN == true)
+	{
+	}
+	else
+	{
+    	wp_redirect(get_option('siteurl'));
+	    exit;
+	}    	
+}
+
 ?>
