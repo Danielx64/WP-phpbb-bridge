@@ -52,6 +52,12 @@ remove_action('wp_head', 'start_post_rel_link', 10, 0);
 remove_action('wp_head', 'parent_post_rel_link', 10, 0);
 remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0);
 
+function phpbb_bridge_setup() {
+	// This theme uses wp_nav_menu() in one location.
+	register_nav_menu( 'primary', __( 'Navigation Menu', 'phpbb_bridge' ) );
+}
+add_action( 'after_setup_theme', 'phpbb_bridge_setup' );
+
 // Add session id
 
 add_filter('logout_url', 'wp_phpbb_loginout', 1, 2);
