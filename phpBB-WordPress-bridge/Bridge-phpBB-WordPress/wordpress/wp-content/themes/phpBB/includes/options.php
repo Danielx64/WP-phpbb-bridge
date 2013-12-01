@@ -318,34 +318,6 @@ function propress_get_option_parameters() {
 			'since' => '1.0',
 			'default' => 'read'
 		),
-		'pts' => array(
-			'name' => 'pts',
-			'title' => __( 'Post Thumbnail Size ', 'propress' ),
-			'type' => 'select',
-			'valid_options' => array( 
-				'thumbnail' => array(
-					'name' => 'thumbnail',
-					'title' => __( 'Thumbnail (default 150px x 150px max)', 'propress' )
-				),
-				'medium' => array(
-					'name' => 'medium',
-					'title' => 'Medium resolution (default 300px x 300px max)'
-				),
-				'large' => array(
-					'name' => 'large',
-					'title' => 'Large resolution (default 640px x 640px max)'
-				),
-				'full' => array(
-					'name' => 'full',
-					'title' => 'Original image resolution (unmodified)'
-				)
-			),
-			'description' => __( 'Feature image size', 'propress' ),
-			'section' => 'other',
-			'tab' => 'general',
-			'since' => '1.2',
-			'default' => 'thumbnail'
-		),
     );
     return apply_filters( 'propress_get_option_parameters', $options );
 }
