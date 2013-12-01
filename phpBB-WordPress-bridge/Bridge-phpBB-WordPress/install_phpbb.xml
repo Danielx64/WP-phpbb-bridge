@@ -78,7 +78,7 @@ if (!function_exists('make_clickable') && $wpbbmode !='login' && $wpbbmode !='lo
 				<find><![CDATA[function validate_username($username, $allowed_username = false)]]></find>
 				<action type="before-add"><![CDATA[
 $wpbbmode = request_var('mode','');
-if (!function_exists('validate_username') && $wpbbmode !='login' && $wpbbmode !='logout')
+if (!function_exists('validate_username') && $wpbbmode !='login' && $wpbbmode !='logout' && !defined('IN_ADMIN'))
 {]]></action>
 			</edit>
 			<edit>
