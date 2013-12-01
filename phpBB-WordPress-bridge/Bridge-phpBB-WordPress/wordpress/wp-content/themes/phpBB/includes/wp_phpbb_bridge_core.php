@@ -540,6 +540,26 @@ class phpbb
 		{
 			$wp_title .= ' | ' . sprintf(self::$user->lang['WP_PAGE_NUMBER'], max($paged, $page));
 		}
+// Credits to Dion Designs for the hack :)
+		$menu = array(
+			'theme_location'	=> '',
+			'menu'				=> '',
+			'container'			=> '',
+			'container_class'	=> '',
+			'container_id'		=> '',
+			'menu_class'		=> '',
+			'menu_id'			=> '',
+			'echo'				=> false,
+			'fallback_cb'		=> 'wp_page_menu',
+			'before'			=> '&nbsp;&nbsp;',
+			'after'				=> '&nbsp;&nbsp;',
+			'link_before'		=> '',
+			'link_after'		=> '',
+			'items_wrap'		=> '<ul id="wpmenu" class="linklist leftside">%3$s</ul>',
+			'depth'				=> 0,
+			'walker'			=> ''
+		);
+		$wpmenu = wp_nav_menu($menu);
 
 		// Do the phpBB page header stuff first
 		page_header($wp_title, false);
@@ -562,13 +582,13 @@ class phpbb
 			'U_BLOG'			=> append_sid($blog_path),
 
 			'PAGE_TITLE'		=> $wp_title,
-			'MAIN_MENU'			=> wp_nav_menu(),
+
 			'SITENAME'			=> get_bloginfo('name', 'display'),
 			'SITE_DESCRIPTION'	=> get_bloginfo('description', 'display'),
 			'BLOG_HEADER'		=> self::wp_page_header(),
 			'S_DISPLAY_SEARCH'	=> false,
 			'S_CLOCK'			=> self::clock(),
-
+			'WP_MENU'			=> $wpmenu,
 			'S_REGISTER_ENABLED'=> (self::$config['require_activation'] != USER_ACTIVATION_DISABLE) ? true : false,
 	//		'U_REGISTER_POPUP'	=> site_url("wp-login.php?action=register&amp;interim-login=1&amp;sid=" . phpbb::$user->session_id . "&amp;redirect_to=" . $redirect, 'login'),
 	//		'U_REGISTER_POPUP'	=> site_url("wp-login.php?action=register&amp;interim-login=1&amp;sid=" . phpbb::$user->session_id . "&amp;redirect_to=wp-login.php?checkemail=registered&amp;interim-login=1", 'login'),
