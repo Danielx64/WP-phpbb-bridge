@@ -22,44 +22,14 @@ Step 4 - Configure the theme.
 Click on “[BRIDGE] phpBB to WordPress” Most of the settings are pretty easy to understand. If you are getting errors about common.php not being found,
 please check the paths as that is the most likely issue. If you still need help, feel free to ask.
 
-Step 5 patch the wordpress files
+How to reset the theme settings
 
-Edit wp-includes\formatting.php
+You may run into a case where you need to reset the phpbb theme settings and you are unable to to so from wp-admin as you are getting a white screen.
 
-Find:
+In order to reset the settings you will need to log into something like phpmyadmin or what ever database management system that your webhost has installed.
 
-function make_clickable( $text ) {
+After you logged into your database management system, you will need to first select the database that has your wp_options table. 
 
-Add before:
+After that you will need to look for a row that has theme_propress_options in it. Once you done that, you can just click on the delete button and click on yes or ok.
 
-if (!function_exists('make_clickable'))
-{
-
-Find:
-
-	return $r;
-}
-
-Add after
-}
-
-Edit wp-includes\formatting.php
-
-Find:
-
-function validate_username( $username ) {
-
-add before:
-
-if (!function_exists('validate_username'))
-{
-
-Find:
-
-	return apply_filters( 'validate_username', $valid, $username );
-}
-
-Add after
-}
-
-Save files. Please note that you will need to do the changes again after upgrading wordpress
+Now the settings should be back to the default settings.

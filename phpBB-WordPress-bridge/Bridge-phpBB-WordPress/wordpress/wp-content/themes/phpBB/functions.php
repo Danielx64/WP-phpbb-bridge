@@ -18,8 +18,8 @@ require( get_template_directory() . '/includes/custom.php' );
 **/
 
 $propress_options = get_option( 'theme_propress_options' );
-if (!$propress_options['wp_phpbb_bridge'] ) {
-add_action( 'admin_init', 'redirect_non_admin_users' );
+if ($propress_options['wp_phpbb_bridge'] ) {
+//add_action( 'admin_init', 'redirect_non_admin_users' );
 }
 
 /**
