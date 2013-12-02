@@ -84,7 +84,7 @@ $lang = array_merge($lang, array(
 //	'WP_TITLE_SEARCH'				=> 'Blog Search',
 	'WP_SEARCH_NOT_FOUND'			=> 'Not Found',
 	'WP_SEARCH_NOT_FOUND_EXPLAIN'	=> 'Sorry, but you are looking for something that isn’t here.',
-	'WP_JUMP_TO_POST'				=> 'Jump to entrie',
+	'WP_JUMP_TO_POST'				=> 'Jump to entries',
 
 	// WP entries
 	'WP_POST_NOT_FOUND_EXPLAIN'	=> 'Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.',
@@ -105,8 +105,8 @@ $lang = array_merge($lang, array(
 	'WP_COMMENTS_PASSWORED'		=> 'Enter your password to view comments.',
 	'WP_COMMENTS_TO'			=> ' to “%s” ',
 	// Index & Topics navigation
-	'PREVIOUS_ENTRIE'			=> '« Previous Entrie',
-	'NEXT_ENTRIE'				=> 'Next Entrie » ',
+	'PREVIOUS_ENTRIE'			=> '« Previous Entries',
+	'NEXT_ENTRIE'				=> 'Next Entries » ',
 	// Comment pagination
 	'WP_PAGINATION'				=> 'Pages',
 	'WP_PAGINATION_PREVIOUS'	=> 'Older Comments',
@@ -124,7 +124,7 @@ $lang = array_merge($lang, array(
 	'WP_COMMENT_REPLY_EXPLAIN'			=> 'Reply to this comment',
 	'WP_COMMENT_SPAM'					=> 'Spam',
 	'WP_COMMENT_SPAM_EXPLAIN'			=> 'Mark this comment as spam',
-	'WP_COMMENT_REPORTED_NOTE'			=> 'This comment is maked as Spam',
+	'WP_COMMENT_REPORTED_NOTE'			=> 'This comment is marked as Spam',
 	'WP_COMMENT_UNSPAM'					=> 'Not Spam',
 	'WP_COMMENT_UNSPAM_EXPLAIN'			=> 'Mark this comment as not Spam',
 	'WP_COMMENT_TRASH'					=> 'Trash',
@@ -165,10 +165,6 @@ $lang = array_merge($lang, array(
 	'WP_BLOG_POST_PREFIX'				=> 'This is a [b]Blog entry[/b]. To read the original post, please Click » %1$s HERE %2$s',
 	'WP_BLOG_POST_TAIL'					=> '[b]Entry details: [/b]',
 
-	// WordPress posting 
-	'WP_FORUM_SUBJECT_PREFIX'			=> '[FORUM]: ',
-	'WP_FORUM_POST_PREFIX'				=> 'This is a <strong>Forum entry</strong>. To read the original post, please Click » %1$s HERE %2$s',
-	'WP_FORUM_POST_TAIL'				=> '<strong>Entry details: </strong>',
 ));
 
 ?>
