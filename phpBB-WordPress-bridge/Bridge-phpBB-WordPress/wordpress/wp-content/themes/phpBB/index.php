@@ -33,6 +33,7 @@ if (have_posts())
 
 		//
 		$topicrow = array(
+			'FEATURED_IMG'		=> '<div style="float:left;margin:0 15px 5px 0">' . get_the_post_thumbnail($post_id, 'dd-featured', array('class' => 'featured_image')) . '</div>',
 			'POST_ID'			=> $post_id,
 			'POST_DATE'			=> phpbb::$user->format_date($post_date_time, false, true),
 			'U_POST_FEED'		=> get_post_comments_feed_link($post_id),

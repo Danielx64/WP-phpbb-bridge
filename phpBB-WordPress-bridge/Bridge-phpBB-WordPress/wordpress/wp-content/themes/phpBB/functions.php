@@ -53,6 +53,11 @@ remove_action('wp_head', 'parent_post_rel_link', 10, 0);
 remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0);
 
 function phpbb_bridge_setup() {
+	// This theme uses post thumbnails
+	add_theme_support( 'post-thumbnails' );
+	add_image_size( 'dd-featured', 384, 256 );
+	add_image_size( 'dd-featured-mini', 72, 48 );
+
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menu( 'primary', __( 'Navigation Menu', 'phpbb_bridge' ) );
 }
