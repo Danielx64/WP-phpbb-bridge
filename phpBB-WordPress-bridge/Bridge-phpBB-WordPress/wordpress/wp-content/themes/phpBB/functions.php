@@ -64,75 +64,15 @@ function phpbb_bridge_setup() {
 add_action( 'after_setup_theme', 'phpbb_bridge_setup' );
 
 // Add session id
+add_filter( 'logout_url', 'wp_phpbb_logout' );
 
-add_filter('logout_url', 'wp_phpbb_loginout', 1, 2);
-add_filter('login_url', 'wp_phpbb_loginout', 1, 2);
-add_filter('wp_redirect', 'wp_phpbb_loginout', 1, 2);
-/**
- * Append phpbb session id to url.
- *
- * @param (string) $url			The url the session id needs to be appended to (can have params)
- * @param (string) $redirect
- * @return (string) $url
- */
-function wp_phpbb_loginout($url = '', $redirect)
+function wp_phpbb_logout()
 {
-	$sid = (isset($_GET['sid']) && !is_array($_GET['sid'])) ? $_GET['sid'] : '';
-	if ($url === 'wp-login.php?loggedout=true')
-	{
-		$message = wp_phpbb_logout($sid);
-		wp_die($message);
-	}
-
-	if ($sid)
-	{	$args = array('sid' => $sid);
-
-		$url = add_query_arg($args, $url);
-		$url = str_replace('&amp;', '&', $url);
-		$url = str_replace('&', '&amp;', $url);
-	}
-	return $url;
+	$propress_options = get_option( 'theme_propress_options' );
+	$temp =  $propress_options['usesth'];
+	 return !is_admin() ? $temp.'?mode=logout&amp;sid='.phpbb::$user->session_id : '';
 }
 
-/**
- * phpBB logout
- *
- * @param (string) $sid User session ID
- * @return (string) message
- */
-function wp_phpbb_logout($sid)
-{
-	if (!defined('IN_WP_PHPBB_BRIDGE'))
-	{
-		global $wp_phpbb_bridge_config, $phpbb_root_path, $phpEx, $phpbb_session_id;
-		global $auth, $config, $db, $template, $user, $cache;
-		global $table_prefix, $wp_user;
-		require( get_template_directory() . '/includes/wp_phpbb_bridge.php');
-	}
-
-	// phpBB redirection
-	$redirect = request_var('redirect', home_url());
-	// WP redirection
-	$redirect_to = request_var('redirect_to', $redirect);
-
-	if (phpbb::$user->data['user_id'] != ANONYMOUS && $sid === phpbb::$user->session_id)
-	{
-		phpbb::$user->session_kill();
-		phpbb::$user->session_begin();
-
-		wp_clear_auth_cookie();
-
-		$message = phpbb::$user->lang['LOGOUT_REDIRECT'];
-	}
-	else
-	{
-		$message = (phpbb::$user->data['user_id'] == ANONYMOUS) ? phpbb::$user->lang['LOGOUT_REDIRECT'] : phpbb::$user->lang['LOGOUT_FAILED'];
-	}
-
-	$message = $message . '<br /><br />' . sprintf(phpbb::$user->lang['RETURN_INDEX'], '<a class="close-window" href="' . $redirect_to . '" onclick="parent.modalWindow.close();">', '</a> ');
-
-	return $message;
-}
 
 /**
  * Add a form field with the phpbb user session ID
