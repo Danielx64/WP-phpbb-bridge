@@ -84,8 +84,6 @@ function phpbb_login_form()
 	echo '<input type="hidden" name="sid" value="' . $phpbb_session_id . '" />';
 }
 
-// http://wordpress.org/extend/plugins/dynamic-content-gallery-plugin/
-// add_theme_support('post-thumbnails');
 
 /**
  * Insert some js files and or Extra layout 2 columns
@@ -112,17 +110,9 @@ function wp_phpbb_stylesheet()
  * Insert some js files
  */
 function propress_enqueue_js_scripts() {
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) { 
-		wp_enqueue_script( 'comment-reply' );
-	}
-	if ( is_singular() && comments_open() ) { 
-		wp_enqueue_script('quote-js', get_template_directory_uri() . '/js/quote.js', array('jquery'));
-		wp_enqueue_script('validate-js', get_template_directory_uri() . '/js/jquery.validate.js', array('jquery'));
-
-	}
 	wp_enqueue_script('phpbb-bridge-js', get_template_directory_uri() . '/js/wp_phpbb_bridge_js.js', array('jquery'));
 
-		wp_enqueue_style( 'phpbb-sytle', get_template_directory_uri() . '/style.css');
+	wp_enqueue_style( 'phpbb-sytle', get_template_directory_uri() . '/style.css');
 
 }
 add_action( 'wp_enqueue_scripts', 'propress_enqueue_js_scripts' );

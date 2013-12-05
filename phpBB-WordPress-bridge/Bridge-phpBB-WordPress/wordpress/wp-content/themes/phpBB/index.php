@@ -36,8 +36,6 @@ if (have_posts())
 			'FEATURED_IMG'		=> '<div style="float:left;margin:0 15px 5px 0">' . get_the_post_thumbnail($post_id, 'dd-featured', array('class' => 'featured_image')) . '</div>',
 			'POST_ID'			=> $post_id,
 			'POST_DATE'			=> phpbb::$user->format_date($post_date_time, false, true),
-			'U_POST_FEED'		=> get_post_comments_feed_link($post_id),
-			'U_POST_COMMENT'	=> get_permalink() . '#respond',
 			'U_POST_EDIT'		=> get_edit_post_link($post_id),
 			// This both links looks similar, but the return is quite differente according the EMPTY_TRASH_DAYS 
 			'U_POST_DELETE'		=> (!EMPTY_TRASH_DAYS) ? get_delete_post_link($post_id) : '',
@@ -50,17 +48,6 @@ if (have_posts())
 
 			'POST_TAGS'			=> get_the_tag_list(phpbb::$user->lang['WP_TITLE_TAGS'] . ': ', ', ', '<br />'),
 			'POST_CATS'			=> sprintf(phpbb::$user->lang['WP_POSTED_IN'] , get_the_category_list(', ')),
-			'POST_COMENT'		=> wp_do_action('comments_popup_link', phpbb::$user->lang['WP_NO_COMMENTS'], phpbb::$user->lang['WP_ONE_COMMENT'], phpbb::$user->lang['WP_COMMENTS'], 'wp-comments-icon', phpbb::$user->lang['WP_COMMENTS_OFF']),
-			'PAGINATION'		=> wp_topic_generate_pagination(apply_filters('the_permalink', get_permalink()), (int) get_comments_number($post_id), (int) get_option('comments_per_page')),
-			'U_FOLLOW_FEED'		=> sprintf(phpbb::$user->lang['WP_FOLLOW_FEED'], get_post_comments_feed_link($post_id)),
-			// Both Comments and Pings are open
-			'U_YES_COMMENT_YES_PING'	=> (('open' == $post-> comment_status) && ('open' == $post->ping_status)) ? sprintf(phpbb::$user->lang['WP_YES_COMMENT_YES_PING'], get_permalink(), get_trackback_url()) : '',
-			// Only Pings are Open
-			'U_NO_COMMENT_YES_PING'		=> (!('open' == $post-> comment_status) && ('open' == $post->ping_status)) ? sprintf(phpbb::$user->lang['WP_NO_COMMENT_YES_PING'], get_trackback_url()) : '',
-			// Comments are open, Pings are not
-			'U_YES_COMMENT_NO_PING'		=> (('open' == $post-> comment_status) && !('open' == $post->ping_status)) ? phpbb::$user->lang['WP_YES_COMMENT_NO_PING'] : '',
-			// Neither Comments, nor Pings are open
-			'U_NO_COMMENT_NO_PING'		=> (!('open' == $post-> comment_status) && !('open' == $post->ping_status))? phpbb::$user->lang['WP_NO_COMMENT_NO_PING'] : '',
 		);
 
 		$autor = phpbb::phpbb_the_autor_full($post->post_author, false);
@@ -75,8 +62,6 @@ if (have_posts())
 phpbb::$template->assign_vars(array(
 	'IN_SINGLE'			=> false,
 	'IN_ERROR'			=> !$have_posts,
-	// http://wordpress.org/extend/plugins/dynamic-content-gallery-plugin/
-//	'DYNAMIC_CONTENT_GALLERY' => (function_exists('dynamic_content_gallery')) ? wp_do_action('dynamic_content_gallery') : false,
 
 	'EDIT_IMG' 			=> phpbb::$user->img('icon_post_edit', 'EDIT_POST'),
 	'DELETE_IMG' 		=> phpbb::$user->img('icon_post_delete', 'DELETE_POST'),

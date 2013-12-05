@@ -209,17 +209,6 @@ function propress_get_option_parameters() {
 			'default' => '/'
 		),
 
-		'wp_phpbb_bridge_permissions_forum_id' => array(
-			'name' => 'wp_phpbb_bridge_permissions_forum_id',
-			'title' => __( 'Permissions forum ID: ', 'propress' ),
-			'type' => 'text',
-			'sanitize' => 'absint',
-			'description' => __( 'The number of your Forum (not Category) where to use permissions.', 'propress' ),
-			'section' => 'header',
-			'tab' => 'general',
-			'since' => '1.0',
-			'default' => '2'
-		),
 		'wp_phpbb_bridge_widgets_column_width' => array(
 			'name' => 'wp_phpbb_bridge_widgets_column_width',
 			'title' => __( 'Widgets column width:', 'propress' ),
