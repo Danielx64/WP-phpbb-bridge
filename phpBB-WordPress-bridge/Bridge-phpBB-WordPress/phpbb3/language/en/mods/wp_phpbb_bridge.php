@@ -44,14 +44,9 @@ $lang = array_merge($lang, array(
 	'WP_PAGE_NUMBER'			=> 'Page %s',
 
 	// footer
-	'WP_RSS_NOTES'				=> '%1$s and %2$s',
-	'WP_RSS_ENRIES_LINK'		=> 'Entries (RSS)',
-	'WP_RSS_COMMENTS_LINK'		=> 'Comments (RSS)',
 	'WP_DEBUG_NOTE'				=> '%d queries. %s seconds.',
 
 	// Navbar
-	'WP_TITLE_WEB'				=> 'Web',
-	'WP_TITLE_WEB_EXPLAIN '		=> 'Click here to go to the Web',
 	'WP_TITLE_BLOG'				=> 'Blog',
 	'WP_TITLE_BLOG_EXPLAIN'		=> 'Click here to go to the Blog',
 	'WP_TITLE_FORUM'			=> 'Forum',
@@ -90,27 +85,13 @@ $lang = array_merge($lang, array(
 	'WP_POST_NOT_FOUND_EXPLAIN'	=> 'Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.',
 	'WP_READ_MORE'				=> 'Read full entry »',
 	'WP_POSTED_IN'				=> 'Posted in: %s',
-	'WP_FOLLOW_FEED'			=> 'You can follow any responses to this entry through the <a href="%s" class="wp_icon-feed">feed</a>.',
-	'WP_YES_COMMENT_YES_PING'	=> 'You can <a href="%1$s#respond">leave a response</a>, or <a href="%2$s" rel="trackback">trackback</a> from your own site.',
-	'WP_NO_COMMENT_YES_PING'	=> 'Responses are currently closed, but you can <a href="%s" rel="trackback">trackback</a> from your own site.',
-	'WP_YES_COMMENT_NO_PING'	=> 'You can skip to the end and leave a response. Pinging is currently not allowed.',
-	'WP_NO_COMMENT_NO_PING'		=> 'Both comments and pings are currently closed.',
 
 	'WP_POST_TOPIC'				=> 'Create a new entry',
-	'WP_NO_COMMENTS'			=> 'No Comments',
-	'WP_ONE_COMMENT'			=> '1 Comment',
-	'WP_COMMENTS'				=> '%s Comments',
-	'WP_COMMENTS_ON'			=> 'Comment on %s',
-	'WP_COMMENTS_OFF'			=> 'Comments Off',
 	'WP_COMMENTS_PASSWORED'		=> 'Enter your password to view comments.',
 	'WP_COMMENTS_TO'			=> ' to “%s” ',
 	// Index & Topics navigation
 	'PREVIOUS_ENTRIE'			=> '« Previous Entries',
 	'NEXT_ENTRIE'				=> 'Next Entries » ',
-	// Comment pagination
-	'WP_PAGINATION'				=> 'Pages',
-	'WP_PAGINATION_PREVIOUS'	=> 'Older Comments',
-	'WP_PAGINATION_NEXT'		=> 'Newer Comments',
 
 	// Moderation actions
 	'WP_COMMENT_APPROVE'				=> 'Approve',
@@ -134,22 +115,6 @@ $lang = array_merge($lang, array(
 	'WP_COMMENT_UNTRASHED_NOTE'			=> 'This comment is in the Trash',
 	'WP_COMMENT_DELETE'					=> 'Delete',
 	'WP_COMMENT_DELETE_EXPLAIN'			=> 'Delete Permanently',
-
-	// Comment form
-	'WP_LOGIN_NEED'						=> 'You must be <a href="%s">logged in</a> to post a comment.',
-	'WP_LOGGED_IN'						=> 'Logged in as',
-	'WP_LOGGED_AS_OUT'					=> '%1$s. <a href="%2$s" title="Log out of this account">Log out?</a>',
-	'WP_REQUIRED_FIELDS'				=> 'Required fields are marked as :',
-	'WP_USERNAME_REQUIRED_NOTE'			=> '* Please, fill the field "Username" with your name or nickname.',
-	'WP_EMAIL_REQUIRED_NOTE'			=> '* Please, fill the field "E-mail address" with a valid email.',
-	'WP_EMAIL_REQUIRED_MINLENGTH'		=> '* The field "E-mail address" must contain at least 10 characters.',
-	'WP_WEBSITE_REQUIRED_NOTE'			=> '* Please, fill the field "Website" with a valid url.',
-	'WP_WEBSITE_REQUIRED_MINLENGTH'		=> '* The field "Website" must contain at least 10 characters.',
-	'WP_MESSAGE_REQUIRED_NOTE'			=> '* Please, fill the field "Message body" with a valid comment.',
-	'WP_MESSAGE_REQUIRED_MINLENGTH'		=> '* The field "Message body" must contain at least 20 characters.',
-
-	'WP_EMAIL_NOTE'						=> 'Your email address will not be published.',
-	'WP_ALLOWED_TAGS'					=> 'You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: %s',
 
 	'WP_ERROR_GENERAL'					=> 'Not Found',
 	'WP_ERROR_404'						=> 'Apologies, but the page you requested could not be found. Perhaps searching will help.',
