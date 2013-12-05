@@ -872,4 +872,33 @@ function wp_phpbb_trasheddelete_post_handler($post_id)
 	}    	
 }
 
+// Thank-you Dion Designs :)
+function show_phpbb_link($content) {
+		if (!defined('IN_WP_PHPBB_BRIDGE'))
+		{
+			global $wp_phpbb_bridge_config, $phpbb_root_path, $phpEx;
+			global $auth, $config, $db, $template, $user, $cache;
+			include(TEMPLATEPATH . '/includes/wp_phpbb_bridge.php');
+		}
+	$postID = get_the_ID();
+	if(empty($postID)) {
+		return $content;
+	}
+	$sql = 'SELECT topic_id, forum_id, topic_replies FROM phpbb_topics WHERE topic_first_post_id = ' . $postID;
+	$result = phpbb::$db->sql_query($sql);
+	$post_data = phpbb::$db->sql_fetchrow($result);
+	$board_url = generate_board_url(false) . '/';
+	$web_path = (defined('PHPBB_USE_BOARD_URL_PATH') && PHPBB_USE_BOARD_URL_PATH) ? $board_url : PHPBB_ROOT_PATH;
+
+	if ($post_data) {
+		$rbutton = '';
+		if ($post_data['topic_replies'] != 0) {
+			$rbutton = '&nbsp;&nbsp;&nbsp;&nbsp;<a class="ddbutton" href="' . $web_path  . 'viewtopic.php?t=' . $post_data['topic_id'] . '">View the Discussion</a>';
+		}
+		$content .= '<div class="xpost-link">' . '<a class="ddbutton" href="' . $web_path . 'posting.php?mode=reply&amp;f=' . $post_data['forum_id'] . '&amp;t=' . $post_data['topic_id'] . '">Comment On this Article</a>' . $rbutton . '</div>';
+	}
+	return $content;
+}
+add_filter('the_content', 'show_phpbb_link');
+
 ?>
