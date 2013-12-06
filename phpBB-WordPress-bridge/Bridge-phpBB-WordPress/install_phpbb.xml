@@ -16,6 +16,7 @@
 * It is not recommended that you install this version on a live forum.
 * Before adding this MOD to your forum, you should back up all files related to this MOD.
 * This BRIDGE modify the database.]]></author-notes>
+		<github><![CDATA[https://github.com/danielx64/WP-phpbb-bridge/]]></github>
 		<author-group>
 			<author>
 				<realname><![CDATA[Gabriel]]></realname>
@@ -34,12 +35,15 @@
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>0.7.3</mod-version>
+		<mod-version>0.8.0</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>300</time>
 			<target-version>3.0.12</target-version>
 		</installation>
+		<link-group>
+			<link type="template" href="contrib/subsilver2.xml" lang="en">Edits for subsilver2</link>
+		</link-group>
 	</header>
 	<action-group>
 		<copy>
@@ -76,8 +80,7 @@ if (!function_exists('make_clickable') && $wpbbmode !='login' && $wpbbmode !='lo
 		<open src="includes/functions_user.php">
 			<edit>
 				<find><![CDATA[function validate_username($username, $allowed_username = false)]]></find>
-				<action type="before-add"><![CDATA[
-$wpbbmode = request_var('mode','');
+				<action type="before-add"><![CDATA[$wpbbmode = request_var('mode','');
 if (!function_exists('validate_username') && $wpbbmode !='login' && $wpbbmode !='logout' && !defined('IN_ADMIN'))
 {]]></action>
 			</edit>
