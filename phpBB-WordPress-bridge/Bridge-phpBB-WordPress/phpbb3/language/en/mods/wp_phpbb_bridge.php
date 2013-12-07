@@ -1,7 +1,7 @@
 <?php
 /**
  * 
- * @package: phpBB 3.0.9 :: BRIDGE phpBB & WordPress -> root/language/en/mods :: [en][English]
+ * @package: phpBB 3.0.9 :: BRIDGE phpBB to WordPress -> root/language/en/mods :: [en][English]
  * @version: $Id: wp_phpbb_bridge.php, v0.0.9 2011/10/25 11:10:25 leviatan21 Exp $
  * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
  * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
@@ -42,6 +42,7 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 	// the page title numbering
 	'WP_PAGE_NUMBER'			=> 'Page %s',
+	'WP_MOD_TITLE'			=> 'phpBB to WordPress',
 
 	// footer
 	'WP_DEBUG_NOTE'				=> '%d queries. %s seconds.',
