@@ -554,7 +554,8 @@ function wp_phpbb_posting($post_ID, $post)
 		$phpbb_post_id = (isset($data['post_id']) && $data['post_id']) ? $data['post_id'] : 0;
 		if ($phpbb_forum_id != 0 && $phpbb_topic_id != 0 && $phpbb_post_id != 0)
 		{
-			add_post_meta($post_ID, 'phpbb_post_id', array('forum_id' => $phpbb_forum_id, 'topic_id' => $phpbb_topic_id, 'post_id' => $phpbb_post_id), true);
+			$sql = 'UPDATE ' . TOPICS_TABLE . ' SET topic_wp_xpost = ' . $post_ID .  " WHERE topic_id =".$phpbb_topic_id;
+			$result = $db->sql_query($sql);
 		}
 	}
 }
@@ -874,7 +875,7 @@ function show_phpbb_link($content) {
 	if(empty($postID)) {
 		return $content;
 	}
-	$sql = 'SELECT topic_id, forum_id, topic_replies FROM phpbb_topics WHERE topic_first_post_id = ' . $postID;
+	$sql = 'SELECT topic_id, forum_id, topic_replies FROM ' . TOPICS_TABLE . ' WHERE topic_wp_xpost = ' . $postID;
 	$result = phpbb::$db->sql_query($sql);
 	$post_data = phpbb::$db->sql_fetchrow($result);
 	$board_url = generate_board_url(false) . '/';
@@ -883,7 +884,7 @@ function show_phpbb_link($content) {
 	if ($post_data) {
 		$rbutton = '';
 		if ($post_data['topic_replies'] != 0) {
-			$rbutton = '&nbsp;&nbsp;&nbsp;&nbsp;<a class="ddbutton" href="' . $web_path  . 'viewtopic.php?t=' . $post_data['topic_id'] . '">View the Discussion</a>';
+			$rbutton = '&nbsp;&nbsp;&nbsp;&nbsp;<a class="ddbutton" href="' . $web_path . 'viewtopic.php?f='. $post_data['forum_id'] . '&amp;t=' . $post_data['topic_id'] . '">View the Discussion</a>';
 		}
 		$content .= '<div class="xpost-link">' . '<a class="ddbutton" href="' . $web_path . 'posting.php?mode=reply&amp;f=' . $post_data['forum_id'] . '&amp;t=' . $post_data['topic_id'] . '">Comment On this Article</a>' . $rbutton . '</div>';
 	}
