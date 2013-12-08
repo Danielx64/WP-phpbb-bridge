@@ -161,5 +161,6 @@ if (!function_exists('validate_username') && $wpbbmode !='login' && $wpbbmode !=
 				<comment lang="en"><![CDATA[You must do this change to ALL themes you have installed, based off Prosilver. I use "Prosilver" as an example.]]></comment>
 			</edit>
 		</open>
+		<php-installer><![CDATA[install_phpbb.php]]></php-installer>
 	</action-group>
 </mod>
