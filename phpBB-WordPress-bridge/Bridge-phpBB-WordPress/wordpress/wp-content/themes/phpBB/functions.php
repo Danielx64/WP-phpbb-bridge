@@ -59,7 +59,10 @@ function phpbb_bridge_setup() {
 	add_image_size( 'dd-featured-mini', 72, 48 );
 
 	// This theme uses wp_nav_menu() in one location.
-	register_nav_menu( 'primary', __( 'Navigation Menu', 'phpbb_bridge' ) );
+	register_nav_menu( 'primary', __( 'Navigation Menu', 'wp_phpbb3_bridge' ) );
+	
+	load_theme_textdomain( 'wp_phpbb3_bridge', get_template_directory() . '/langs' );
+
 }
 add_action( 'after_setup_theme', 'phpbb_bridge_setup' );
 

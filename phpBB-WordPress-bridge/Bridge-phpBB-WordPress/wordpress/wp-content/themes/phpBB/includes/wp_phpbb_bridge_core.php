@@ -92,7 +92,7 @@ class bridge
 		if (!$active)
 		{
 			$error = true;
-			$message .= __('The "BRIDGE phpBB & WordPress" is deactivated', 'wp_phpbb3_bridge');
+			$message .= __('The "[BRIDGE] phpBB to Wordpress" is deactivated', 'wp_phpbb3_bridge');
 		}
 
 		if ($path)
