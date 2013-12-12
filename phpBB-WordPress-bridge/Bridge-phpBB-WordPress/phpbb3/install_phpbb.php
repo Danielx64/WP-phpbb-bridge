@@ -1,8 +1,8 @@
 <?php
 /**
 *
-* @package phpBB3 phpBB to WordPress
-* @version $Id$
+* @author Danielx64 (Daniel)
+* @package umil
 * @copyright (c) 2013 Danielx64
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -30,7 +30,7 @@ $versions = array(
 	'0.8.0'		=> array(
 
 		'table_column_add' => array(
-			array(TOPICS_TABLE, 'topic_wp_xpost', array('MTEXT_UNI', '')),
+			array(TOPICS_TABLE, 'topic_wp_xpost', array('MTEXT_UNI', '0')),
 		),
 		
 		'config_add'	=> array(
@@ -43,7 +43,28 @@ $versions = array(
 			array('theme'),
 		),
 	),
+	'0.8.1'		=> array(
+		'custom'	=> 'ubm_custom_install',
+
+		'cache_purge'	=> array(
+			array('template'),
+			array('theme'),
+		),
+	),
 );
+
+function ubm_custom_install($action, $version)
+{
+	global $db, $user, $umil, $phpbb_root_path, $phpEx;
+
+	switch ($version)
+	{
+		case '0.8.1' :
+				$db->sql_query('ALTER TABLE ' . TOPICS_TABLE . '  CHANGE `topic_wp_xpost` `topic_wp_xpost` VARCHAR( 10 ) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL');
+				$umil->umil_end();
+		break;
+	}
+}
 
 include($phpbb_root_path . 'umil/umil_auto.' . $phpEx);
 
