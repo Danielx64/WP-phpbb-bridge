@@ -35,7 +35,6 @@ $versions = array(
 		
 		'config_add'	=> array(
 						array('phpbb2wp_wppath', '/../../../'),
-
 		),
 
 		'cache_purge'	=> array(
@@ -51,6 +50,20 @@ $versions = array(
 			array('theme'),
 		),
 	),
+	'0.8.3'		=> array(
+		
+		'config_add'	=> array(
+						array('show_homepage', '0'),
+						array('homepage_url', 'http://your_own_site.com'),
+						array('homepage_title', 'Your homepage title'),
+		),
+
+		'cache_purge'	=> array(
+			array('template'),
+			array('theme'),
+		),
+	),
+
 );
 
 function ubm_custom_install($action, $version)

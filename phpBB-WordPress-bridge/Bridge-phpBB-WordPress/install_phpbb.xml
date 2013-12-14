@@ -13,7 +13,6 @@
 			If the phpBB users do not exist in WP it will be automatically created as a "Subscriber"]]></description>
 		<author-notes lang="en"><![CDATA[Please keep in mind that this version is still in development, so not everything may be in place or working.
 * Works on phpBB version 3.0.12 and WordPress version 3.7.1
-* It is not recommended that you install this version on a live forum.
 * Before adding this MOD to your forum, you should back up all files related to this MOD.
 * This BRIDGE modify the database.]]></author-notes>
 		<github><![CDATA[https://github.com/danielx64/WP-phpbb-bridge/]]></github>
@@ -35,7 +34,7 @@
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>0.8.1</mod-version>
+		<mod-version>0.8.3</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>300</time>
@@ -50,7 +49,30 @@
 			<file from="phpbb3/language/en/mods/*.*" to="language/en/mods/*.*"/>
 			<file from="phpbb3/styles/prosilver/*.*" to="styles/prosilver/*.*"/>
 			<file from="phpbb3/includes/auth/*.*" to="includes/auth/*.*"/>
+			<file from="phpbb3/umil/*.*" to="umil/*.*"/>
+			<file from="phpbb3/install_phpbb.php" to="install_phpbb.php"/>
 		</copy>
+		<open src="includes/acp/acp_board.php">
+				<edit>
+				<find><![CDATA[$user->add_lang('acp/board');]]></find>
+				<action type="replace-with"><![CDATA[$user->add_lang(array('mods/wp_phpbb_bridge', 'acp/board'));
+]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[						'site_desc'				=> array('lang' => 'SITE_DESC',				'validate' => 'string',	'type' => 'text:40:255', 'explain' => false),]]></find>
+				<action type="after-add"><![CDATA[						'show_homepage'			=> array('lang' => 'SHOW_HOMEPAGE',			'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
+						'homepage_url'			=> array('lang' => 'HOMEPAGE_URL',			'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),
+						'homepage_title'		=> array('lang' => 'HOMEPAGE_TITLE',		'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),]]></action>
+			</edit>
+		</open>
+		<open src="includes/functions.php">
+			<edit>
+				<find><![CDATA[		'SITE_LOGO_IMG'			=> $user->img('site_logo'),]]></find>
+				<action type="after-add"><![CDATA[		'S_SHOW_HOMEPAGE'		=> ($config['show_homepage']) ? true : false ,
+		'U_HOMEPAGE'			=> $config['homepage_url'],
+		'U_HOMEPAGE_TITLE'		=> $config['homepage_title'],]]></action>
+			</edit>
+		</open>
 		<open src="includes/functions_content.php">
 			<edit>
 				<find><![CDATA[/**
@@ -92,14 +114,6 @@ if (!function_exists('validate_username') && $wpbbmode !='login' && $wpbbmode !=
 	return false;
 }]]></find>
 				<action type="after-add"><![CDATA[}]]></action>
-			</edit>
-		</open>
-		<open src="language/en/acp/board.php">
-			<edit>
-				<find><![CDATA[	'LDAP_USER_FILTER_EXPLAIN'		=> 'Optionally you can further limit the searched objects with additional filters. For example <samp>objectClass=posixGroup</samp> would result in the use of <samp>(&amp;(uid=$username)(objectClass=posixGroup))</samp>',]]></find>
-				<action type="after-add"><![CDATA[	'WPHPBB_INFO'				=> 'WordPress Path',
-	'WPHPBB_INFO_EXPLAIN'		=> 'This is the path to your WordPress installation. Put in the full path to your wordpress root folder.',
-]]></action>
 			</edit>
 		</open>
 		<open src="styles/prosilver/template/overall_footer.html">

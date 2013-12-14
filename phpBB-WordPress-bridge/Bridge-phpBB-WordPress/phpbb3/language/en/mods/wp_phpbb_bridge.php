@@ -131,6 +131,14 @@ $lang = array_merge($lang, array(
 	'WP_BLOG_POST_PREFIX'				=> 'This is a [b]Blog entry[/b]. To read the original post, please Click » %1$s HERE %2$s',
 	'WP_BLOG_POST_TAIL'					=> '[b]Entry details: [/b]',
 
+	'HOMEPAGE_URL'					=> 'Homepage url',
+	'HOMEPAGE_URL_EXPLAIN'			=> 'Enter here your homepage’s URL. You can either use something like "../site", if your homepage is at the same domain, or use the absolute path for other domains.. ',
+	'HOMEPAGE_TITLE'				=> 'Homepage title',
+	'HOMEPAGE_TITLE_EXPLAIN'		=> 'This title will show when you have your mouse over your homepage link. If you don´t want to show a title, just leave this field blank.',
+	'SHOW_HOMEPAGE'					=> 'Show your homepage URL on the header',
+	'SHOW_HOMEPAGE_EXPLAIN'			=> 'If you select "No" your homepage URL will not be shown on the header',
+	'WPHPBB_INFO'					=> 'WordPress Path',
+	'WPHPBB_INFO_EXPLAIN'			=> 'This is the path to your WordPress installation. Put in the full path to your wordpress root folder.',
 ));
 
 ?>
