@@ -353,50 +353,6 @@ class phpbb
 	}
 
 	/**
-	 * Get all available usuer data from wordpress tables
-	 * 	An alternative alternative to the WP get_userdata(), because we will have a name function conflict
-	 *
-	 * @param (integer)		$wp_user_id
-	 * @return (array)	
-	public static function wp_phpbb_get_userdata($wp_user_id)
-	{
-		global $wpdb;
-		
-		$wp_user_id = (int) $wp_user_id;
-		$wpuser = array();
-
-		$users = $wpdb->get_row($wpdb->prepare("SELECT * FROM $wpdb->users WHERE ID = %d LIMIT 1", $wp_user_id));
-
-		if (!empty($users))
-		{
-			foreach($users as $id => $value)
-			{
-				$wpuser[$id] = $value;
-			}
-		}
-		else
-		{
-			$wpuser = array(
-				'user_nicename'	=>  '',
-				'ID'			=> 0,
-			);
-		}
-
-		$usermeta = $wpdb->get_results($wpdb->prepare("SELECT meta_key, meta_value FROM $wpdb->usermeta WHERE user_id = %d ", $wp_user_id));
-
-		if (!empty($usermeta))
-		{
-			foreach($usermeta as $key => $value)
-			{
-				$wpuser[$value->meta_key] = $value->meta_value;
-			}
-		}
-
-		return $wpuser;
-	}
-	 */
-
-	/**
 	* Set and Force some variables
 	* We do this instead made an ACP module for phpBB to manage this bridge configurations
 	*/
@@ -562,9 +518,6 @@ class phpbb
 		page_header($wp_title, false);
 
 		$redirect = request_var('redirect', home_url(add_query_arg(array())));
-		
-//		$u_login_logout = site_url('wp-login.php', 'login');
-//		$u_login_popup = get_option('siteurl') . '/?action=popup';
 
 		self::$template->assign_vars(array(
 			'PHPBB_IN_FORUM'	=> false,
@@ -574,7 +527,6 @@ class phpbb
 			'SCRIPT_NAME'		=> 'blog ' . self::wp_location(),
 			'IN_HOME'			=> is_home(),
 
-		//	'U_WEB'				=> append_sid($web_path),
 			'U_INDEX'			=> append_sid($web_path),
 			'U_BLOG'			=> append_sid($blog_path),
 
@@ -587,14 +539,9 @@ class phpbb
 			'S_CLOCK'			=> self::clock(),
 			'WP_MENU'			=> $wpmenu,
 			'S_REGISTER_ENABLED'=> (self::$config['require_activation'] != USER_ACTIVATION_DISABLE) ? true : false,
-	//		'U_REGISTER_POPUP'	=> site_url("wp-login.php?action=register&amp;interim-login=1&amp;sid=" . phpbb::$user->session_id . "&amp;redirect_to=" . $redirect, 'login'),
-	//		'U_REGISTER_POPUP'	=> site_url("wp-login.php?action=register&amp;interim-login=1&amp;sid=" . phpbb::$user->session_id . "&amp;redirect_to=wp-login.php?checkemail=registered&amp;interim-login=1", 'login'),
 			'U_REGISTER_POPUP'	=> "$web_path/ucp.php?mode=register",
-	//		'U_LOGIN_LOGOUT'	=> (!is_user_logged_in()) ? append_sid(get_option('siteurl') . '/', array('action' => 'login', 'redirect' => $redirect)) : append_sid(get_option('siteurl') . '/', array('action' => 'logout', 'redirect' => $redirect), true, self::$user->session_id),
 			'S_LOGIN_REDIRECT'	=> build_hidden_fields(array('redirect' => $redirect)),
-	//		'U_LOGIN_LOGOUT_POPUP'	=> (!self::wp_phpbb_user_logged()) ? site_url("wp-login.php?action=login&amp;interim-login=1&amp;sid=" . phpbb::$user->session_id . "&amp;redirect_to=" . $redirect, 'login') : site_url("wp-login.php?action=logout&amp;sid=" . phpbb::$user->session_id . "&amp;redirect_to=" . $redirect, 'login'),
 			'U_LOGIN_LOGOUT_POPUP'	=> (!self::wp_phpbb_user_logged()) ? "$web_path/ucp.php?mode=login&amp;redirect=" . $redirect  : "$web_path/ucp.php?mode=logout&amp;sid=" . phpbb::$user->session_id . "&amp;redirect=" . $redirect ,
-	//		'U_LOGIN_LOGOUT_POPUP'	=> (!self::wp_phpbb_user_logged()) ? site_url("wp-login.php?action=login&amp;interim-login=1&amp;sid=" . phpbb::$user->session_id . "&amp;redirect_to=" . $redirect, 'login') : site_url("wp-login.php?action=logout&amp;sid=" . phpbb::$user->session_id . "&amp;redirect_to=" . $redirect, 'login'),
 
 			'U_WP_ACP'			=> (self::$user->data['user_type'] == USER_FOUNDER || current_user_can('Contributor')) ? admin_url() : '',
 			'U_POST_NEW_TOPIC'	=> (self::$user->data['user_type'] == USER_FOUNDER || current_user_can('Contributor')) ? admin_url('post-new.php') : '',
@@ -1158,7 +1105,6 @@ class phpbb
 	{
 		$blog_footer  = '&nbsp;|&nbsp;Powered by <a href="http://wordpress.org/" title="Semantic Personal Publishing Platform" rel="generator" id="site-generator">WordPress</a><br />';
 		$blog_footer .= '<!-- If you\'d like to support WordPress, having the "powered by" link somewhere on your blog is the best way; it\'s our only promotion or advertising. -->' . "\n";
-		//$blog_footer .= sprintf(self::$user->lang['WP_RSS_NOTES'], '<a href="' . get_bloginfo('rss2_url') . '">' . self::$user->lang['WP_RSS_ENRIES_LINK'] . '</a>', '<a href="' . get_bloginfo('comments_rss2_url') . '">' . self::$user->lang['WP_RSS_COMMENTS_LINK'] . '</a>');
 
 	//	$blog_footer .= wp_do_action('wp_footer');
 

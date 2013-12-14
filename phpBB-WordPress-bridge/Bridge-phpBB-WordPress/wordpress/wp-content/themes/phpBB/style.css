@@ -1,8 +1,8 @@
 /*
 Theme Name: phpbb (ProSilver)
 Theme URI: 
-Description: Style based off ProSilver <a href="http://www.mssti.com/">leviatan21</a>.
-Version: v0.1.0 
+Description: Style based off ProSilver <a href="http://Danielx64.com/">Danielx64</a>.
+Version: v0.8.2 
 Author: Danielx64
 Author URI: http://danielx64.com/
 License URI: http://www.opensource.org/licenses/gpl-license.php
@@ -12,8 +12,7 @@ License: GPL
 	Based on style:	 proSilver (this is the default phpBB 3 style)
 	Original author: subBlue ( http://www.subBlue.com/ )
 	Modified by:	 leviatan21		
-	
-	Copyright 2011 leviatan21 ( http://www.mssti.com/ )
+	Current author:  Danielx64
     --------------------------------------------------------------
 
 	The CSS, XHTML and design is released under GPL:
@@ -90,21 +89,16 @@ blockquote {
 
 /** Sidebar **/
 #wp-phpbb-bridge-primary h3 {
-/*	border-bottom: 1px solid #EEEEEE;	*/
-/*	margin: 5px 0 0;	*/
 	padding: 0;
 
 }
 #wp-phpbb-bridge-primary ul.menu {
 	border: none;
-/*	border-top: 1px solid #FFFFFF;	*/
-/*	border-top: medium none;	*/
 	list-style: none;
 	text-align: left;
 }
 #wp-phpbb-bridge-primary ul.menu li {
 	border: none;
-/*	border-top: 1px solid #CCCCCC;	*/
 	list-style: none;
 	margin: 0;
 	padding: 5px;
@@ -161,29 +155,6 @@ a#site-generator {
 .postmetadata-icons {
 	list-style: none outside none;
 }
-/*
-.postmetadata-icons li a.wp-comments-icon {
-    background-image: url("images/comments.png");
-    background-repeat: no-repeat;
-    background-position: 0;
-    height: 14px;
-    padding: 5px 0 0 17px;
-}
-.postmetadata-icons li a.wp_icon-feed {
-    background-image: url("images/rss.png");
-    background-repeat: no-repeat;
-    background-position: 0;
-    height: 14px;
-    padding: 5px 0 0 17px;
-}
-*/
-/*
-ul.profile-icons li.wp-feed-icon		{ width: 20px; height: 20px; margin: 0 0px; }
-.wp-feed-icon, .wp-feed-icon a			{ background: url("images/icon_post_feed.gif") top left no-repeat; }
-
-ul.profile-icons li.wp-comment-icon		{ width: 20px; height: 20px;; margin: 0 0px; }
-.wp-comment-icon, .wp-comment-icon a	{ background: url("images/icon_post_respond.png") top left no-repeat; }
-*/
 
 .modal-overlay {
 	position: fixed;

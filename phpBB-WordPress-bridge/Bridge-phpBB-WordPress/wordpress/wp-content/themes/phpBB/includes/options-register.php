@@ -1,9 +1,9 @@
 <?php
 /**
- * propressTheme Options Settings API
+ * Theme Options Settings API
  *
  * This file implements the WordPress Settings API for the 
- * Options for the propressTheme.
+ * Options for the Theme.
  * 
  * @package 	propress* @copyright	Copyright (c) 2011, Chip Bennett
  * @license		http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, v2 (or newer)

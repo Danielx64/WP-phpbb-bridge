@@ -1,8 +1,4 @@
 /*  BRIDGE phpBB & WordPress Style Sheet
-    --------------------------------------------------------------
-	Style name:		proSilver
-	Based on style:	proSilver (this is the default phpBB 3 style)
-
 	Copyright 2011 leviatan21 ( http://www.mssti.com/ )
    --------------------------------------------------------------
 */
@@ -12,42 +8,6 @@
 
 /* Moderator icons
  ------------ */
-
-/* Spam icon */
-ul.profile-icons li.wp-spam-icon												{ width: {IMG_ICON_WP_SPAM_WIDTH}px; height: {IMG_ICON_WP_SPAM_HEIGHT}px; }
-ul.profile-icons li.wp-spam-icon, ul.profile-icons li.wp-spam-icon a			{ background-image: url("{IMG_ICON_WP_SPAM_SRC}"); background-position: 0 0; }
-ul.profile-icons li.wp-spam-icon a:hover										{ background-position: 50% 100%; }
-/* Spam icon fallback */
-ul.profile-icons li.wp-info-icon												{ width: {IMG_ICON_POST_INFO_WIDTH}px; height: {IMG_ICON_POST_INFO_HEIGHT}px; }
-ul.profile-icons li.wp-info-icon, ul.profile-icons li.wp-info-icon a			{ background-image: url("{IMG_ICON_POST_INFO_SRC}"); background-position: 0 0; }
-ul.profile-icons li.wp-info-icon a:hover										{ background-position: 50% 100%; }
-
-/* No Spam icon */
-ul.profile-icons li.wp-nospam-icon												{ width: {IMG_ICON_WP_SPAM_WIDTH}px; height: {IMG_ICON_WP_SPAM_HEIGHT}px; }
-ul.profile-icons li.wp-nospam-icon, ul.profile-icons li.wp-nospam-icon a		{ background-image: url("{IMG_ICON_WP_SPAM_SRC}"); background-position: 50% 100%; }
-ul.profile-icons li.wp-nospam-icon a:hover										{ background-position: 0 0; }
-/* No Spam icon fallback */
-ul.profile-icons li.wp-noinfo-icon												{ width: {IMG_ICON_POST_REPORT_WIDTH}px; height: {IMG_ICON_POST_REPORT_HEIGHT}px; }
-ul.profile-icons li.wp-noinfo-icon, ul.profile-icons li.wp-noinfo-icon a		{ background-image: url("{IMG_ICON_POST_INFO_SRC}"); background-position: 50% 100%; }
-ul.profile-icons li.wp-noinfo-icon a:hover										{ background-position: 0 0; }
-
-/* Approve icon */
-ul.profile-icons li.wp-approve-icon												{ width: {IMG_ICON_WP_APPROVE_WIDTH}px; height: {IMG_ICON_WP_APPROVE_HEIGHT}px; }
-ul.profile-icons li.wp-approve-icon, ul.profile-icons li.wp-approve-icon a		{ background-image: url("{IMG_ICON_WP_APPROVE_SRC}"); background-position: 50% 100%; }
-ul.profile-icons li.wp-approve-icon a:hover										{ background-position: 0 0; }
-/* Approve icon fallback */
-ul.profile-icons li.wp-report-icon												{ width: {IMG_ICON_POST_REPORT_WIDTH}px; height: {IMG_ICON_POST_REPORT_HEIGHT}px; }
-ul.profile-icons li.wp-report-icon, ul.profile-icons li.wp-report-icon a		{ background-image: url("{IMG_ICON_POST_REPORT_SRC}"); background-position: 50% 100%; }
-ul.profile-icons li.wp-report-icon a:hover										{ background-position: 0 0; }
-
-/* Unapprove icon */
-ul.profile-icons li.wp-unapprove-icon											{ width: {IMG_ICON_WP_UNAPPROVE_WIDTH}px; height: {IMG_ICON_WP_UNAPPROVE_HEIGHT}px; }
-ul.profile-icons li.wp-unapprove-icon, ul.profile-icons li.wp-unapprove-icon a	{ background-image: url("{IMG_ICON_WP_UNAPPROVE_SRC}"); background-position: 0 0; }
-ul.profile-icons li.wp-unapprove-icon a:hover									{ background-position: 50% 100%; }
-/* Unapprove icon fallback */
-ul.profile-icons li.wp-noreport-icon											{ width: {IMG_ICON_POST_REPORT_WIDTH}px; height: {IMG_ICON_POST_REPORT_HEIGHT}px; }
-ul.profile-icons li.wp-noreport-icon, ul.profile-icons li.wp-noreport-icon a	{ background-image: url("{IMG_ICON_POST_REPORT_SRC}"); background-position: 0 0; }
-ul.profile-icons li.wp-noreport-icon a:hover									{ background-position: 50% 100%; }
 
 /* Trash icon */
 ul.profile-icons li.wp-trash-icon												{ width: {IMG_ICON_WP_TRASH_WIDTH}px; height: {IMG_ICON_WP_TRASH_WIDTH}px; }

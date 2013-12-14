@@ -1,20 +1,19 @@
 <?php
 /**
- * propressTheme Options
+ * Theme Options
  *
- * This file defines the Options for the propressTheme.
+ * This file defines the Options for the Theme.
  * 
  * Theme Options Functions
  * 
  *  - Define Default Theme Options
  *  - Register/Initialize Theme Options
  *  - Define Admin Settings Page
- *  - Register Contextual Help
  * 
  * @package 	propress* @copyright	Copyright (c) 2011, Chip Bennett
  * @license		http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License, v2 (or newer)
  *
- * @since 		propress1.0
+ * @since 		1.0
  */
 
 /**
@@ -25,10 +24,9 @@
 global $propress_options;
 
 /**
- * propressTheme Settings API Implementation
+ * Theme Settings API Implementation
  *
- * Implement the WordPress Settings API for the 
- * propressTheme Settings.
+ * Implement the WordPress Settings API for the theme Settings.
  * 
  * @link	http://codex.wordpress.org/Settings_API	Codex Reference: Settings API
  * @link	http://ottopress.com/2009/wordpress-settings-api-tutorial/	Otto
@@ -43,7 +41,7 @@ add_action( 'admin_init', 'propress_register_options' );
 /**
  * Setup the Theme Admin Settings Page
  * 
- * Add "propressOptions" link to the "Appearance" menu
+ * Add "options" link to the "Appearance" menu
  * 
  * @uses	propress_get_settings_page_cap()	defined in \functions\wordpress-hooks.php
  */
@@ -73,7 +71,7 @@ function propress_add_theme_page() {
 add_action( 'admin_menu', 'propress_add_theme_page' );
 
 /**
- * propressTheme Settings Page Markup
+ * Theme Settings Page Markup
  * 
  * @uses	propress_get_current_tab()	defined in \functions\custom.php
  * @uses	propress_get_page_tab_markup()	defined in \functions\custom.php
@@ -117,7 +115,7 @@ function propress_admin_options_page() {
 }
 
 /**
- * propressTheme Option Defaults
+ * Theme Option Defaults
  * 
  * Returns an associative array that holds 
  * all of the default values for all Theme 
@@ -149,7 +147,7 @@ function propress_get_option_defaults() {
 }
 
 /**
- * propressTheme Option Parameters
+ * Theme Option Parameters
  * 
  * Array that holds parameters for all options for
  * propress. The 'type' key is used to generate
@@ -312,7 +310,7 @@ function propress_get_option_parameters() {
 }
 
 /**
- * Get propressTheme Options
+ * Get Theme Options
  * 
  * Array that holds all of the defined values
  * for propressTheme options. If the user 
@@ -383,7 +381,7 @@ function propress_get_settings_by_tab() {
 }
  
 /**
- * propressTheme Admin Settings Page Tabs
+ * Theme Admin Settings Page Tabs
  * 
  * Array that holds all of the tabs for the
  * propressTheme Settings Page. Each tab

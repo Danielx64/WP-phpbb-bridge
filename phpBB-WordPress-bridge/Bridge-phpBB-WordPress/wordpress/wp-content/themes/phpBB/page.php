@@ -9,6 +9,10 @@
  * 
  */
 
+/**
+* @ignore
+**/
+
 require_once('includes/wp_phpbb_bridge.php'); 
 
 $postrow = '';//$commentrow = $autor = array();
