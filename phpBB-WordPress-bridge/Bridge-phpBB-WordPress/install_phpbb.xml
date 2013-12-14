@@ -155,6 +155,10 @@ if (!function_exists('validate_username') && $wpbbmode !='login' && $wpbbmode !=
 ]]></action>
 			</edit>
 			<edit>
+				<find><![CDATA[<li class="icon-faq"><a href="{U_FAQ}" title="{L_FAQ_EXPLAIN}">{L_FAQ}</a></li>]]></find>
+				<action type="before-add"><![CDATA[<!-- IF S_SHOW_HOMEPAGE --><li class="icon-members"><a href="{U_HOMEPAGE}" title="{U_HOMEPAGE_TITLE}">{U_HOMEPAGE_TITLE}</a></li><!-- ENDIF -->]]></action>
+			</edit>
+			<edit>
 				<find><![CDATA[			<span class="corners-bottom"><span></span></span></div>
 		</div>]]></find>
 				<action type="before-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
