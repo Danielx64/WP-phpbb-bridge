@@ -895,4 +895,24 @@ function show_phpbb_link($content) {
 }
 add_filter('the_content', 'show_phpbb_link');
 
+
+// Don't nag users who can't switch themes.
+if ( ! is_admin() || ! current_user_can( 'switch_themes' ) )
+	return;
+
+function wphpbb_admin_notice() {
+	if ( isset( $_GET['wphpbb-dismiss'] ) )
+		set_theme_mod( 'wphpbb', true );
+
+	$dismiss = get_theme_mod( 'wphpbb', false );
+	if ( $dismiss )
+		return;
+	?>
+	<div class="updated wphpbb-notice">
+		<p><?php printf( __( 'In order for this bridge to work correctly, you will <a target="_blank" href="%s">need to configure it</a>. <a href="%s">I have already configured it.</a>', 'wp_phpbb3_bridge' ), admin_url('themes.php?page=propress-settings'), add_query_arg( 'wphpbb-dismiss', 1 ) ); ?></p>
+	</div>
+	<?php
+}
+add_action( 'admin_notices', 'wphpbb_admin_notice' );
+
 ?>
