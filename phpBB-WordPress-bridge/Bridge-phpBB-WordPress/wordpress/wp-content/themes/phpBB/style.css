@@ -266,3 +266,10 @@ body#error-page {
 	border: 1px solid #ff0000 !important;
 	background-color : #ff0000 !important;
 }
+
+.sticky {}
+.gallery-caption {}
+.aligncenter{text-align:center;}
+.alignnone {text-align:none;}
+.alignright { float:right;}
+.alignleft { float:left;}
