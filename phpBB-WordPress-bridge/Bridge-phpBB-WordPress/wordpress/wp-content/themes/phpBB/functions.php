@@ -56,7 +56,7 @@ function phpbb_bridge_setup() {
 	// This theme uses post thumbnails
 	add_theme_support( 'post-thumbnails' );
 	add_image_size( 'dd-featured', 384, 256 );
-	add_image_size( 'dd-featured-mini', 72, 48 );
+	add_image_size( 'dd-featured-mini', 96, 64 );
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menu( 'primary', __( 'Navigation Menu', 'wp_phpbb3_bridge' ) );
