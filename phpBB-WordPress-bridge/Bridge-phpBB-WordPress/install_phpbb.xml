@@ -48,29 +48,17 @@
 		<copy>
 			<file from="phpbb3/language/en/mods/*.*" to="language/en/mods/*.*"/>
 			<file from="phpbb3/styles/prosilver/*.*" to="styles/prosilver/*.*"/>
-			<file from="phpbb3/includes/auth/*.*" to="includes/auth/*.*"/>
+			<file from="phpbb3/includes/*.*" to="includes/*.*"/>
 			<file from="phpbb3/umil/*.*" to="umil/*.*"/>
 			<file from="phpbb3/install_phpbb.php" to="install_phpbb.php"/>
 		</copy>
-		<open src="includes/acp/acp_board.php">
-				<edit>
-				<find><![CDATA[$user->add_lang('acp/board');]]></find>
-				<action type="replace-with"><![CDATA[$user->add_lang(array('mods/wp_phpbb_bridge', 'acp/board'));
-]]></action>
-			</edit>
-			<edit>
-				<find><![CDATA[						'site_desc'				=> array('lang' => 'SITE_DESC',				'validate' => 'string',	'type' => 'text:40:255', 'explain' => false),]]></find>
-				<action type="after-add"><![CDATA[						'show_homepage'			=> array('lang' => 'SHOW_HOMEPAGE',			'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
-						'homepage_url'			=> array('lang' => 'HOMEPAGE_URL',			'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),
-						'homepage_title'		=> array('lang' => 'HOMEPAGE_TITLE',		'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),]]></action>
-			</edit>
-		</open>
 		<open src="includes/functions.php">
 			<edit>
 				<find><![CDATA[		'SITE_LOGO_IMG'			=> $user->img('site_logo'),]]></find>
-				<action type="after-add"><![CDATA[		'S_SHOW_HOMEPAGE'		=> ($config['show_homepage']) ? true : false ,
-		'U_HOMEPAGE'			=> $config['homepage_url'],
-		'U_HOMEPAGE_TITLE'		=> $config['homepage_title'],]]></action>
+				<action type="after-add"><![CDATA[		'S_SHOW_HOMEPAGE'		=> ((isset($config['show_homepage'])) ? $config['show_homepage'] : false),
+		'U_HOMEPAGE'			=> ((isset($config['homepage_url'])) ? $config['homepage_url'] : 0),
+		'U_HOMEPAGE_TITLE'		=> ((isset($config['homepage_title'])) ? $config['homepage_title'] : 0),
+]]></action>
 			</edit>
 		</open>
 		<open src="includes/functions_content.php">

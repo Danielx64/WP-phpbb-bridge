@@ -40,9 +40,13 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
+	'WP_PHPBB_BRIDGE_MANAGE'			=> 'phpBB to WordPress Settings',
+	'WP_PHPBB_BRIDGE_MANAGE_EXPLAIN'	=> 'Welcome to phpBB to WordPress Settings Management Section.<br />Here you can determine the basic operation of the Bridge in relation to phpBB.',
+	'WP_PHPBB_BRIDGE_BASIC'				=> 'Basic settings',
+
 	// the page title numbering
 	'WP_PAGE_NUMBER'			=> 'Page %s',
-	'WP_MOD_TITLE'			=> 'phpBB to WordPress',
+	'WP_MOD_TITLE'				=> 'phpBB to WordPress',
 
 	// footer
 	'WP_DEBUG_NOTE'				=> '%d queries. %s seconds.',
