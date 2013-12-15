@@ -314,26 +314,4 @@ function logout_phpbb2wp($config)
 		wp_clear_auth_cookie();
 }
 
-/**
-* This function is used to output any required fields in the authentication
-* admin panel. It also defines any required configuration table fields.
-*/
-function acp_phpbb2wp(&$new)
-{
-	global $user;
-
-	$tpl = '
-	<dl>
-		<dt><label for="phpbb2wp_wppath">' . $user->lang['WPHPBB_INFO'] . ':</label><br /><span>' . $user->lang['WPHPBB_INFO_EXPLAIN'] . '</span></dt>
-		<dd><input type="text" id="phpbb2wp_wppath" size="40" name="config[phpbb2wp_wppath]" value="' . $new['phpbb2wp_wppath'] . '" autocomplete="off" /></dd>
-	</dl>
-	';
-
-	// These are fields required in the config table
-	return array(
-		'tpl'		=> $tpl,
-		'config'	=> array('phpbb2wp_wppath')
-	);
-}
-
 ?>

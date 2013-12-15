@@ -54,6 +54,7 @@ class acp_wp_phpbb_bridge
 						'show_homepage'			=> array('lang' => 'SHOW_HOMEPAGE',			'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
 						'homepage_url'			=> array('lang' => 'HOMEPAGE_URL',			'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),
 						'homepage_title'		=> array('lang' => 'HOMEPAGE_TITLE',		'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),
+						'phpbb2wp_wppath'		=> array('lang' => 'WPHPBB_INFO',		'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),
 
 						'legend2'	=> 'ACP_SUBMIT_CHANGES',
 					)
