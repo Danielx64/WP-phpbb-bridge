@@ -63,7 +63,25 @@ $versions = array(
 			array('theme'),
 		),
 	),
+	'0.8.5'		=> array(
+		
+		'module_add' => array(
+			array('acp', 'ACP_BOARD_CONFIGURATION', array(
+					'module_basename'	=> 'wp_phpbb_bridge',
+					'module_enabled'	=> 1,
+					'module_display'	=> 1,					
+					'module_langname'	=> 'ACP_WP_PHPBB_BRIDGE',
+					'module_mode'		=> 'manage',
+					'module_auth'		=> '',
+				),
+			),
+		),
 
+		'cache_purge'	=> array(
+			array('template'),
+			array('theme'),
+		),
+	),
 );
 
 function ubm_custom_install($action, $version)
