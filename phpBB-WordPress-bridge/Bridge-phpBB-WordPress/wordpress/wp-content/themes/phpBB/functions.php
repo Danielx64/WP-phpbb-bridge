@@ -14,20 +14,10 @@
 * @ignore
 **/
 
-add_action( 'admin_init', 'redirect_non_admin_users' );
-
-/**
- * Redirect non-admin users to home page
- */
-function redirect_non_admin_users() {
-if (phpbb::$config['access_wpadmin_area'] == 'true' ) {
-	$rssarg = phpbb::$config['access_wpadmin_area'];
-	if ( ! current_user_can( $rssarg ) && '/wp-admin/admin-ajax.php' != $_SERVER['PHP_SELF'] ) {
-	$ucppath =  phpbb::$config['wp_phpbb_bridge_board_path'];
-		wp_redirect($ucppath.'ucp.php');
-		exit;
-	}
-}
+function wp_phpbb_logout()
+{
+	$ucpurl =   phpbb::$config['wp_phpbb_bridge_board_path'];
+	return !is_admin() ? $ucpurl.'ucp.php?mode=logout&amp;sid='.phpbb::$user->session_id : '';
 }
 
 // Hide WordPress Admin Bar
@@ -55,17 +45,12 @@ function phpbb_bridge_setup() {
 	
 	load_theme_textdomain( 'wp_phpbb3_bridge', get_template_directory() . '/langs' );
 
+
 }
 add_action( 'after_setup_theme', 'phpbb_bridge_setup' );
-
+/**
 add_filter( 'logout_url', 'wp_phpbb_logout' );
-
-function wp_phpbb_logout()
-{
-	$ucpurl =   phpbb::$config['wp_phpbb_bridge_board_path'];
-	return !is_admin() ? $ucpurl.'ucp.php?mode=logout&amp;sid='.phpbb::$user->session_id : '';
-}
-
+**/
 /**
  * Add a form field with the phpbb user session ID
  *
