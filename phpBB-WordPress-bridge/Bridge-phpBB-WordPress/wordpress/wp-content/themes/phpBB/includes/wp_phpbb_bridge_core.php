@@ -198,11 +198,9 @@ class phpbb
 		self::$user		= &$user;
 		self::$cache	= &$cache;
 
-		// Set the absolute wordpress/phpbb path
-		$propress_options = get_option( 'theme_propress_options' );
-		
-		self::$absolute_phpbb_script_path = generate_board_url(true) . '/' . $propress_options['phpbb_script_path'];
-		self::$absolute_wordpress_script_path = generate_board_url(true) . '/' . $propress_options['wordpress_script_path'];
+		// Set the absolute wordpress/phpbb path		
+		self::$absolute_phpbb_script_path = generate_board_url(true) . '/' .  phpbb::$config['phpbb_script_path'];
+		self::$absolute_wordpress_script_path = generate_board_url(true) . '/' .  phpbb::$config['wordpress_script_path'];
 
 		// enhance phpbb $config data with WP $config data
 		self::wp_get_config();
