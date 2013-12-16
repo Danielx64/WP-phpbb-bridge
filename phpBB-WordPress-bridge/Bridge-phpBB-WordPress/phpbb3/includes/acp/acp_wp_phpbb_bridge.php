@@ -52,36 +52,21 @@ class acp_wp_phpbb_bridge
 					'vars'   => array(
 						'legend1'	=> 'WP_PHPBB_BRIDGE_BASIC',
 						'show_homepage'			=> array('lang' => 'SHOW_HOMEPAGE',			'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
-						'homepage_title'		=> array('lang' => 'HOMEPAGE_TITLE',		'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),
-						'wp_phpbb_bridge_post_forum_id'			=> array('lang' => 'WP_PHPBB_BRIDGE_XPOST',			'validate' => 'int:0', 'type' => false, 'method' => false, 'explain' => true),
-
-						'legend2'	=> 'WP_PHPBB_BRIDGE_REDIR',
-						'ucpredir'			=> array('lang' => 'SHOW_HOMEPAGE',			'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
-						'access_wpadmin_area'	=> array('lang' => 'ACC_ACTIVATION',	'validate' => 'string',	'type' => 'select', 'method' => 'select_wpadmin_access', 'explain' => true),
-
-						'legend3'	=> 'WP_PHPBB_BRIDGE_PATHS',
-						'wp_phpbb_bridge_board_path'			=> array('lang' => 'WP_PHPBB_BRIDGE_FORUM_URL',			'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),
-						'phpbb2wp_wppath'		=> array('lang' => 'WPHPBB_INFO',			'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),
 						'homepage_url'			=> array('lang' => 'HOMEPAGE_URL',			'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),
+						'homepage_title'		=> array('lang' => 'HOMEPAGE_TITLE',		'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),
+						'phpbb2wp_wppath'		=> array('lang' => 'WPHPBB_INFO',		'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),
 
-						'legend4'	=> 'WP_PHPBB_BRIDGE_STYLE',
-						'wp_phpbb_bridge_widgets_column_width'			=> array('lang' => 'WP_PHPBB_BRIDGE_SIDEBAR',		'validate' => 'int:0','type' => 'text:40:255', 'method' => false, 'explain' => true),
-						'wp_phpbb_bridge_comments_avatar_width'			=> array('lang' => 'WP_PHPBB_BRIDGE_AV',			'validate' => 'int:0', 'type' =>'text:40:255', 'method' => false, 'explain' => true),
-
-						'legend5'	=> 'Founders IDs',
-						'wp_phpbb_bridge_forum_founder_user_id'			=> array('lang' => 'WP_PHPBB_BRIDGE_SIDEBAR',		'validate' => 'int:0','type' => 'text:40:255', 'method' => false, 'explain' => true),
-						'wp_phpbb_bridge_blog_founder_user_id'			=> array('lang' => 'WP_PHPBB_BRIDGE_AV',			'validate' => 'int:0', 'type' =>'text:40:255', 'method' => false, 'explain' => true),
-
-						'legend6'	=> 'ACP_SUBMIT_CHANGES',
+						'legend2'	=> 'ACP_SUBMIT_CHANGES',
 					)
 				);
+
+				
 
 			break;
 
 			default:
 				trigger_error('NO_MODE', E_USER_ERROR);
 			break;
-			
 		}
 
 		if (isset($display_vars['lang']))
@@ -192,28 +177,6 @@ class acp_wp_phpbb_bridge
 			unset($display_vars['vars'][$config_key]);
 		}
 	}
-	function select_wpadmin_access($selected_value, $value)
-	{
-		global $user, $config;
-
-		$act_ary = array(
-		  'EDIT_DASHBOARD' => 'edit_dashboard',
-		  'READ_PRIVATES_PAGES' => 'read_private_pages',
-		  'DELETE_PUBLISHED_POSTS' => 'delete_published_posts',
-		  'EDIT_POST' => 'edit_post',
-		  'READ' => 'read',
-		);
-		$act_options = '';
-
-		foreach ($act_ary as $key => $value)
-		{
-			$selected = ($selected_value == $value) ? ' selected="selected"' : '';
-			$act_options .= '<option value="' . $value . '"' . $selected . '>' . $user->lang[$key] . '</option>';
-		}
-
-		return $act_options;
-	}
-
 }
 
 ?>

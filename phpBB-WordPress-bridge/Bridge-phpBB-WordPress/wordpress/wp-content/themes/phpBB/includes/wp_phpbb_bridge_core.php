@@ -361,6 +361,9 @@ class phpbb
 		$propress_options = get_option( 'theme_propress_options' );
 		$wp_phpbb_bridge_forum_founder_user_id	= $propress_options['wp_phpbb_bridge_blog_founder_user_id'];
 		$wp_phpbb_bridge_blog_founder_user_id	= $propress_options['wp_phpbb_bridge_forum_founder_user_id'];
+		$wp_phpbb_bridge_post_forum_id			= $propress_options['wp_phpbb_bridge_post_forum_id'];
+		$wp_phpbb_bridge_widgets_column_width	= $propress_options['wp_phpbb_bridge_widgets_column_width'];
+		$wp_phpbb_bridge_comments_avatar_width	= $propress_options['wp_phpbb_bridge_comments_avatar_width'];
 
 		self::$config = array_merge(self::$config, array(
 			// Disable to call the function leave_newly_registered()
@@ -369,6 +372,12 @@ class phpbb
 			'wp_phpbb_bridge_forum_founder_user_id'	=> (int) $wp_phpbb_bridge_forum_founder_user_id,
 			// The ID of user blog founder
 			'wp_phpbb_bridge_blog_founder_user_id'	=> (int) $wp_phpbb_bridge_blog_founder_user_id,
+			// For the moment the ID of you forum where to post a new entry whenever is published in the Wordpress
+			'wp_phpbb_bridge_post_forum_id'			=> (int) get_option('wp_phpbb_bridge_post_forum_id', $wp_phpbb_bridge_post_forum_id),
+			// The left column width, in pixels
+			'wp_phpbb_bridge_widgets_column_width'	=> (int) get_option('wp_phpbb_bridge_widgets_column_width', $wp_phpbb_bridge_widgets_column_width),
+			// The width size of avatars in comments, in pixels
+			'wp_phpbb_bridge_comments_avatar_width'	=> (int) get_option('wp_phpbb_bridge_comments_avatar_width', $wp_phpbb_bridge_comments_avatar_width),
 		));
 	}
 
