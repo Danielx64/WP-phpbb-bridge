@@ -41,8 +41,19 @@ class bridge
 	$phpbb_root_path =  $propress_options['phpbb_root_path'];
 
 		// bypass our own settings
+		$active	 = $propress_options['wp_phpbb_bridge'];
+		// bypass our own settings
 		$path	 = $phpbb_root_path;
+		if (defined('PHPBB_INAJAX') && PHPBB_INAJAX == true)
+		{
+			$path = '../../../' . $path;
+		}
 
+		// Measn the plugin is not enabbled yet!
+		// or the plugin is not set yet!
+
+		// Check against WP settings
+		$wp_phpbb_bridge_settings = $propress_options;
 
 		// If checks fails, display the proper message
 
