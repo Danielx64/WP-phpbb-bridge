@@ -9,36 +9,25 @@
  * 
  */
 
+		
 /**
 * @ignore
 **/
 
-require( get_template_directory() . '/includes/options.php' );
-require( get_template_directory() . '/includes/custom.php' );
-
-/**
-* @ignore
-**/
-
-$propress_options = get_option( 'theme_propress_options' );
-if ($propress_options['wp_phpbb_bridge'] ) {
-//add_action( 'admin_init', 'redirect_non_admin_users' );
-}
+add_action( 'admin_init', 'redirect_non_admin_users' );
 
 /**
  * Redirect non-admin users to home page
- *
- * This function is attached to the 'admin_init' action hook.
  */
 function redirect_non_admin_users() {
-	$propress_options = get_option( 'theme_propress_options' );
-	$rssarg = $propress_options['awpa'];
+if (phpbb::$config['access_wpadmin_area'] == 'true' ) {
+	$rssarg = phpbb::$config['access_wpadmin_area'];
 	if ( ! current_user_can( $rssarg ) && '/wp-admin/admin-ajax.php' != $_SERVER['PHP_SELF'] ) {
-	$propress_options = get_option( 'theme_propress_options' );
-	$temp =  $propress_options['usesth'];
-		wp_redirect($temp);
+	$ucppath =  phpbb::$config['wp_phpbb_bridge_board_path'];
+		wp_redirect($ucppath.'ucp.php');
 		exit;
 	}
+}
 }
 
 // Hide WordPress Admin Bar
@@ -69,16 +58,13 @@ function phpbb_bridge_setup() {
 }
 add_action( 'after_setup_theme', 'phpbb_bridge_setup' );
 
-// Add session id
 add_filter( 'logout_url', 'wp_phpbb_logout' );
 
 function wp_phpbb_logout()
 {
-	$propress_options = get_option( 'theme_propress_options' );
-	$temp =  $propress_options['usesth'];
-	 return !is_admin() ? $temp.'?mode=logout&amp;sid='.phpbb::$user->session_id : '';
+	$ucpurl =   phpbb::$config['wp_phpbb_bridge_board_path'];
+	return !is_admin() ? $ucpurl.'ucp.php?mode=logout&amp;sid='.phpbb::$user->session_id : '';
 }
-
 
 /**
  * Add a form field with the phpbb user session ID
@@ -407,7 +393,6 @@ class WP_Widget_phpbb_recet_topics extends WP_Widget
  * @param int $priority optional. Used to specify the order in which the functions associated with a particular action are executed (default: 10). Lower numbers correspond with earlier execution, and functions with the same priority are executed in the order in which they were added to the action.
  * @param int $accepted_args optional. The number of arguments the function accept (default 1).
 **/
-$wp_phpbb_posting = (int) get_option('wp_phpbb_bridge_post_forum_id');
 
 add_action('publish_post', 'wp_phpbb_posting', 10, 2);
 
@@ -570,8 +555,7 @@ function wp_phpbb_posting($post_ID, $post)
 function wp_phpbb_post_data($message, $subject, $topic_id, $post_id, $user_row, $post_data, $message_parser)
 {
 	$message = wp_phpbb_html_to_bbcode($message);
-	$propress_options = get_option( 'theme_propress_options' );
-	$forumid =  $propress_options['wp_phpbb_bridge_post_forum_id'];
+	$forumid =  phpbb::$config['wp_phpbb_bridge_post_forum_id'];
 
 	$message_parser->message = $message;
 	$message_parser->parse(true, true, true);
@@ -843,25 +827,5 @@ function show_phpbb_link($content) {
 	return $content;
 }
 add_filter('the_content', 'show_phpbb_link');
-
-
-// Don't nag users who can't switch themes.
-if ( ! is_admin() || ! current_user_can( 'switch_themes' ) )
-	return;
-
-function wphpbb_admin_notice() {
-	if ( isset( $_GET['wphpbb-dismiss'] ) )
-		set_theme_mod( 'wphpbb', true );
-
-	$dismiss = get_theme_mod( 'wphpbb', false );
-	if ( $dismiss )
-		return;
-	?>
-	<div class="updated wphpbb-notice">
-		<p><?php printf( __( 'In order for this bridge to work correctly, you will <a target="_blank" href="%s">need to configure it</a>. <a href="%s">I have already configured it.</a>', 'wp_phpbb3_bridge' ), admin_url('themes.php?page=propress-settings'), add_query_arg( 'wphpbb-dismiss', 1 ) ); ?></p>
-	</div>
-	<?php
-}
-add_action( 'admin_notices', 'wphpbb_admin_notice' );
 
 ?>
