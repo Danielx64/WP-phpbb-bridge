@@ -62,8 +62,6 @@ class acp_wp_phpbb_bridge
 						'legend3'	=> 'WP_PHPBB_BRIDGE_PATHS',
 						'wp_phpbb_bridge_board_path'			=> array('lang' => 'WP_PHPBB_BRIDGE_FORUM_URL',			'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),
 						'phpbb2wp_wppath'		=> array('lang' => 'WPHPBB_INFO',			'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),
-						'wordpress_script_path'		=> array('lang' => 'WPHPBB_INFO',			'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),
-						'phpbb_script_path'		=> array('lang' => 'WPHPBB_INFO',			'validate' => 'text',	'type' => 'text:40:255', 'explain' => true),
 						'homepage_url'			=> array('lang' => 'HOMEPAGE_URL',			'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),
 
 						'legend4'	=> 'WP_PHPBB_BRIDGE_STYLE',
