@@ -163,16 +163,16 @@ function propress_get_option_defaults() {
 function propress_get_option_parameters() {
 
     $options = array(
-		'phpbb_root_path' => array(
-			'name' => 'phpbb_root_path',
-			'title' => __( 'Path to phpBB: (*) ', 'wp_phpbb3_bridge' ),
+		'phpbb_script_path' => array(
+			'name' => 'phpbb_script_path',
+			'title' => __( 'Server root path to phpBB: (*) ', 'wp_phpbb3_bridge' ),
 			'type' => 'text',
 			'sanitize' => 'text',
-			'description' => __( 'The path where phpBB is located relative to the domain name. ', 'wp_phpbb3_bridge' ),
+			'description' => __( 'Relative path from the server root.', 'wp_phpbb3_bridge' ),
 			'section' => 'header',
 			'tab' => 'general',
 			'since' => '1.0',
-			'default' => './forums/'
+			'default' => 'forums/'
 		),
     );
     return apply_filters( 'propress_get_option_parameters', $options );
