@@ -64,8 +64,8 @@ class acp_wp_phpbb_bridge
 						'wp_phpbb_bridge_comments_avatar_width'			=> array('lang' => 'WP_PHPBB_BRIDGE_AV',			'validate' => 'int:0', 'type' =>'text:40:255', 'method' => false, 'explain' => true),
 
 						'legend4'	=> 'Founders IDs',
-						'wp_phpbb_bridge_forum_founder_user_id'			=> array('lang' => 'WP_PHPBB_BRIDGE_SIDEBAR',		'validate' => 'int:0','type' => 'text:40:255', 'method' => false, 'explain' => true),
-						'wp_phpbb_bridge_blog_founder_user_id'			=> array('lang' => 'WP_PHPBB_BRIDGE_AV',			'validate' => 'int:0', 'type' =>'text:40:255', 'method' => false, 'explain' => true),
+						'wp_phpbb_bridge_forum_founder_user_id'			=> array('lang' => 'PHPBBFOUNDER',		'validate' => 'int:0','type' => 'text:40:255', 'method' => false, 'explain' => false),
+						'wp_phpbb_bridge_blog_founder_user_id'			=> array('lang' => 'WPFOUNDER',			'validate' => 'int:0', 'type' =>'text:40:255', 'method' => false, 'explain' => false),
 
 						'legend5'	=> 'ACP_SUBMIT_CHANGES',					)
 				);

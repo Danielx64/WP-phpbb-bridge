@@ -84,7 +84,6 @@ $versions = array(
 						array('wp_phpbb_bridge_comments_avatar_width', '32'),
 						array('wp_phpbb_bridge_forum_founder_user_id', '2'),
 						array('wp_phpbb_bridge_blog_founder_user_id', '1'),
-
 		),
 
 		'cache_purge'	=> array(

@@ -45,7 +45,9 @@ $lang = array_merge($lang, array(
 	'WP_PHPBB_BRIDGE_BASIC'						=> 'Basic settings',
 	'WP_PHPBB_BRIDGE_PATHS'						=> 'Path settings',
 	'WP_PHPBB_BRIDGE_STYLE'						=> 'Style settings',
-	
+	'WP_PHPBB_BRIDGE_WPFOUNDER'						=> 'WordPress founder ID',
+	'WP_PHPBB_BRIDGE_PHPBBFOUNDER'						=> 'phpBB founder ID',
+
 	'HOMEPAGE_URL'								=> 'Homepage url',
 	'HOMEPAGE_URL_EXPLAIN'						=> 'Enter here your homepage’s URL. You can either use something like "../site", if your homepage is at the same domain, or use the absolute path for other domains.. ',
 	'HOMEPAGE_TITLE'							=> 'Homepage title',
