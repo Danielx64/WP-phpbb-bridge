@@ -309,7 +309,7 @@ function logout_phpbb2wp($config)
 		global $config;
 		$path = $config['phpbb2wp_wppath'];
 		/** Loads the WordPress Environment */
-		include ''.$path.'/wp-load.php';
+		include ''.$path.'wp-load.php';
 		wp_logout();
 		wp_clear_auth_cookie();
 }

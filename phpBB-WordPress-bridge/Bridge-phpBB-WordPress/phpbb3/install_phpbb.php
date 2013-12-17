@@ -34,7 +34,7 @@ $versions = array(
 		),
 		
 		'config_add'	=> array(
-						array('phpbb2wp_wppath', 'H:\wampstack-5.5.7-0\apache2\htdocs\wordp\'),
+						array('phpbb2wp_wppath', 'H:\\wampstack-5.5.7-0\\apache2\\htdocs\\forums\\'),
 		),
 
 		'cache_purge'	=> array(
