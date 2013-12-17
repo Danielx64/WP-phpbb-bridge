@@ -34,7 +34,7 @@ $versions = array(
 		),
 		
 		'config_add'	=> array(
-						array('phpbb2wp_wppath', '/../../../'),
+						array('phpbb2wp_wppath', 'H:\wampstack-5.5.7-0\apache2\htdocs\wordp\'),
 		),
 
 		'cache_purge'	=> array(
@@ -75,6 +75,16 @@ $versions = array(
 					'module_auth'		=> '',
 				),
 			),
+		),
+
+		'config_add'	=> array(
+						array('wp_phpbb_bridge_post_forum_id', '2'),
+						array('wp_phpbb_bridge_board_path', 'http://your_own_site.com/forums/'),
+						array('wp_phpbb_bridge_widgets_column_width', '300'),
+						array('wp_phpbb_bridge_comments_avatar_width', '32'),
+						array('wp_phpbb_bridge_forum_founder_user_id', '2'),
+						array('wp_phpbb_bridge_blog_founder_user_id', '1'),
+
 		),
 
 		'cache_purge'	=> array(
