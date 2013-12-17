@@ -40,9 +40,36 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'WP_PHPBB_BRIDGE_MANAGE'			=> 'phpBB to WordPress Settings',
-	'WP_PHPBB_BRIDGE_MANAGE_EXPLAIN'	=> 'Welcome to phpBB to WordPress Settings Management Section.<br />Here you can determine the basic operation of the Bridge in relation to phpBB.',
-	'WP_PHPBB_BRIDGE_BASIC'				=> 'Basic settings',
+	'WP_PHPBB_BRIDGE_MANAGE'					=> 'phpBB to WordPress Settings',
+	'WP_PHPBB_BRIDGE_MANAGE_EXPLAIN'			=> 'Welcome to phpBB to WordPress Settings Management Section.<br />Here you can determine the basic operation of the Bridge in relation to phpBB.',
+	'WP_PHPBB_BRIDGE_BASIC'						=> 'Basic settings',
+	'WP_PHPBB_BRIDGE_REDIR'						=> 'Redirection settings',
+	'WP_PHPBB_BRIDGE_PATHS'						=> 'Path settings',
+	'WP_PHPBB_BRIDGE_STYLE'						=> 'Style settings',
+
+	'EDIT_DASHBOARD'							=> 'Administrators only',
+	'READ_PRIVATES_PAGES'						=> 'Editor and Administrators only',
+	'DELETE_PUBLISHED_POSTS'					=> 'Author, Editor and Administrators only',
+	'EDIT_POST'									=> 'Contributor, Author, Editor and Administrators only',
+	'READ'										=> 'Subscriber, Contributor, Author, Editor and Administrators',
+	
+	'HOMEPAGE_URL'								=> 'Homepage url',
+	'HOMEPAGE_URL_EXPLAIN'						=> 'Enter here your homepage’s URL. You can either use something like "../site", if your homepage is at the same domain, or use the absolute path for other domains.. ',
+	'HOMEPAGE_TITLE'							=> 'Homepage title',
+	'HOMEPAGE_TITLE_EXPLAIN'					=> 'This title will show when you have your mouse over your homepage link. If you don´t want to show a title, just leave this field blank.',
+	'SHOW_HOMEPAGE'								=> 'Show your homepage URL on the header',
+	'SHOW_HOMEPAGE_EXPLAIN'						=> 'If you select "No" your homepage URL will not be shown on the header',
+	'WPHPBB_INFO'								=> 'WordPress Path',
+	'WPHPBB_INFO_EXPLAIN'						=> 'This is the path to your WordPress installation. Put in the full path to your wordpress root folder.',
+	'WP_PHPBB_BRIDGE_FORUM_URL'					=> 'Forum Path',
+	'WP_PHPBB_BRIDGE_FORUM_URL_EXPLAIN'			=> 'Enter here your forumâ€™s URL.',
+	'WP_PHPBB_BRIDGE_SIDEBAR'					=> 'Widgets column width',
+	'WP_PHPBB_BRIDGE_SIDEBAR_EXPLAIN'			=> 'The right column width, in pixels.',
+	'WP_PHPBB_BRIDGE_AV'						=> 'Avatars width',
+	'WP_PHPBB_BRIDGE_AV_EXPLAIN'				=> 'The width size of avatars, in pixels',
+	'WP_PHPBB_BRIDGE_XPOST'						=> 'Post forum ID',
+	'WP_PHPBB_BRIDGE_XPOST_EXPLAIN'				=> 'What forum do you want your crossposted posts to go to?',
+
 
 	// the page title numbering
 	'WP_PAGE_NUMBER'			=> 'Page %s',
@@ -135,14 +162,6 @@ $lang = array_merge($lang, array(
 	'WP_BLOG_POST_PREFIX'				=> 'This is a [b]Blog entry[/b]. To read the original post, please Click » %1$s HERE %2$s',
 	'WP_BLOG_POST_TAIL'					=> '[b]Entry details: [/b]',
 
-	'HOMEPAGE_URL'					=> 'Homepage url',
-	'HOMEPAGE_URL_EXPLAIN'			=> 'Enter here your homepage’s URL. You can either use something like "../site", if your homepage is at the same domain, or use the absolute path for other domains.. ',
-	'HOMEPAGE_TITLE'				=> 'Homepage title',
-	'HOMEPAGE_TITLE_EXPLAIN'		=> 'This title will show when you have your mouse over your homepage link. If you don´t want to show a title, just leave this field blank.',
-	'SHOW_HOMEPAGE'					=> 'Show your homepage URL on the header',
-	'SHOW_HOMEPAGE_EXPLAIN'			=> 'If you select "No" your homepage URL will not be shown on the header',
-	'WPHPBB_INFO'					=> 'WordPress Path',
-	'WPHPBB_INFO_EXPLAIN'			=> 'This is the path to your WordPress installation. Put in the full path to your wordpress root folder.',
 ));
 
 ?>
