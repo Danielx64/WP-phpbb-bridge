@@ -16,30 +16,6 @@
 require( get_template_directory() . '/includes/options.php' );
 require( get_template_directory() . '/includes/custom.php' );
 
-/**
-* @ignore
-**/
-
-$propress_options = get_option( 'theme_propress_options' );
-if ($propress_options['wp_phpbb_bridge'] ) {
-//add_action( 'admin_init', 'redirect_non_admin_users' );
-}
-
-/**
- * Redirect non-admin users to home page
- *
- * This function is attached to the 'admin_init' action hook.
- */
-function redirect_non_admin_users() {
-	$propress_options = get_option( 'theme_propress_options' );
-	$rssarg = $propress_options['awpa'];
-	if ( ! current_user_can( $rssarg ) && '/wp-admin/admin-ajax.php' != $_SERVER['PHP_SELF'] ) {
-	$temp =  phpbb::$config['wp_phpbb_bridge_board_path'].'ucp.php';
-		wp_redirect($temp);
-		exit;
-	}
-}
-
 // Hide WordPress Admin Bar
 add_filter('show_admin_bar', '__return_false');
 
@@ -68,15 +44,15 @@ function phpbb_bridge_setup() {
 }
 add_action( 'after_setup_theme', 'phpbb_bridge_setup' );
 
-// Add session id
-//add_filter( 'logout_url', 'wp_phpbb_logout' );
-
+if (!defined('WP_ADMIN'))
+{
+	add_filter( 'logout_url', 'wp_phpbb_logout' );
+}
 function wp_phpbb_logout()
 {
 	$temp =  phpbb::$config['wp_phpbb_bridge_board_path'];
 	 return !is_admin() ? $temp.'ucp.php?mode=logout&amp;sid='.phpbb::$user->session_id : '';
 }
-
 
 /**
  * Add a form field with the phpbb user session ID
@@ -568,7 +544,9 @@ function wp_phpbb_posting($post_ID, $post)
 function wp_phpbb_post_data($message, $subject, $topic_id, $post_id, $user_row, $post_data, $message_parser)
 {
 	$message = wp_phpbb_html_to_bbcode($message);
-	$forumid =  phpbb::$config['wp_phpbb_bridge_post_forum_id'];
+	$propress_options = get_option( 'theme_propress_options' );
+	$forumid =  $propress_options['wp_phpbb_bridge_post_forum_id'];
+
 	$message_parser->message = $message;
 	$message_parser->parse(true, true, true);
 

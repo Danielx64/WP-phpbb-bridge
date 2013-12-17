@@ -163,6 +163,27 @@ function propress_get_option_defaults() {
 function propress_get_option_parameters() {
 
     $options = array(
+		'wp_phpbb_bridge' => array(
+			'name' => 'wp_phpbb_bridge',
+			'title' => __( 'Enable wp-admin redirect?', 'wp_phpbb3_bridge' ),
+			'type' => 'checkbox',
+			'description' => __( 'Do you want people to be redirected to your forum/s ucp page?', 'wp_phpbb3_bridge' ),
+			'section' => 'header',
+			'tab' => 'general',
+			'since' => '1.0',
+			'default' => false
+		),
+		'phpbb_root_path' => array(
+			'name' => 'phpbb_root_path',
+			'title' => __( 'Path to phpBB: (*) ', 'wp_phpbb3_bridge' ),
+			'type' => 'text',
+			'sanitize' => 'text',
+			'description' => __( 'The path where phpBB is located relative to the domain name. ', 'wp_phpbb3_bridge' ),
+			'section' => 'header',
+			'tab' => 'general',
+			'since' => '1.0',
+			'default' => './forums/'
+		),
 		'phpbb_script_path' => array(
 			'name' => 'phpbb_script_path',
 			'title' => __( 'Server root path to phpBB: (*) ', 'wp_phpbb3_bridge' ),
@@ -173,6 +194,116 @@ function propress_get_option_parameters() {
 			'tab' => 'general',
 			'since' => '1.0',
 			'default' => 'forums/'
+		),
+		'wordpress_script_path' => array(
+			'name' => 'wordpress_script_path',
+			'title' => __( 'Server root path to WordPress: (*)', 'wp_phpbb3_bridge' ),
+			'type' => 'text',
+			'sanitize' => 'text',
+			'description' => __( 'Relative path from the server root.', 'wp_phpbb3_bridge' ),
+			'section' => 'header',
+			'tab' => 'general',
+			'since' => '1.0',
+			'default' => '/'
+		),
+
+		'wp_phpbb_bridge_widgets_column_width' => array(
+			'name' => 'wp_phpbb_bridge_widgets_column_width',
+			'title' => __( 'Widgets column width:', 'wp_phpbb3_bridge' ),
+			'type' => 'text',
+			'sanitize' => 'absint',
+			'description' => __( 'The right column width, in pixels. ', 'wp_phpbb3_bridge' ),
+			'section' => 'header',
+			'tab' => 'general',
+			'since' => '1.0',
+			'default' => '300'
+		),
+		'wp_phpbb_bridge_comments_avatar_width' => array(
+			'name' => 'wp_phpbb_bridge_comments_avatar_width',
+			'title' => __( 'Comments avatars width: ', 'wp_phpbb3_bridge' ),
+			'type' => 'text',
+			'sanitize' => 'absint',
+			'description' => __( 'The width size of avatars in comments, in pixels.', 'wp_phpbb3_bridge' ),
+			'section' => 'header',
+			'tab' => 'general',
+			'since' => '1.0',
+			'default' => '32'
+		),
+		'usesth' => array(
+			'name' => 'usesth',
+			'title' => __( 'Full Path to ucp.php', 'wp_phpbb3_bridge' ),
+			'type' => 'text',
+			'sanitize' => 'url',
+			'description' => __( 'Where is your forum ucp.php file? Don/t forget to put the ucp.php in!', 'wp_phpbb3_bridge' ),
+			'section' => 'header',
+			'tab' => 'general',
+			'since' => '1.0',
+			'default' => 'http://localhost/forums/ucp.php'
+		),
+		'wp_phpbb_bridge_blog_founder_user_id' => array(
+			'name' => 'wp_phpbb_bridge_blog_founder_user_id',
+			'title' => __( 'Wordpress founder ID:', 'wp_phpbb3_bridge' ),
+			'type' => 'text',
+			'sanitize' => 'absint',
+			'description' => __( 'Enter the ID of the founder of this blog', 'wp_phpbb3_bridge' ),
+			'section' => 'header',
+			'tab' => 'general',
+			'since' => '1.0',
+			'default' => '1'
+		),
+		'wp_phpbb_bridge_forum_founder_user_id' => array(
+			'name' => 'wp_phpbb_bridge_forum_founder_user_id',
+			'title' => __( 'Forum founder ID:', 'wp_phpbb3_bridge' ),
+			'type' => 'text',
+			'sanitize' => 'absint',
+			'description' => __( 'Enter the ID of the forum founder', 'wp_phpbb3_bridge' ),
+			'section' => 'header',
+			'tab' => 'general',
+			'since' => '1.0',
+			'default' => '2'
+		),
+		'wp_phpbb_bridge_post_forum_id' => array(
+			'name' => 'wp_phpbb_bridge_post_forum_id',
+			'title' => __( 'Post forum ID:', 'wp_phpbb3_bridge' ),
+			'type' => 'text',
+			'sanitize' => 'absint',
+			'description' => __( 'What forum do you want your crossposted posts to go to?', 'wp_phpbb3_bridge' ),
+			'section' => 'header',
+			'tab' => 'general',
+			'since' => '1.0',
+			'default' => '2'
+		),
+		'awpa' => array(
+			'name' => 'awpa',
+			'title' => __( 'Who can access the wp-admin area?', 'wp_phpbb3_bridge' ),
+			'type' => 'select',
+			'valid_options' => array( 
+				'edit_dashboard' => array(
+					'name' => 'edit_dashboard',
+					'title' => __( 'Administrators only', 'wp_phpbb3_bridge' )
+				),
+				'read_private_pages' => array(
+					'name' => 'read_private_pages',
+					'title' => __( 'Editor and Administrators only' , 'wp_phpbb3_bridge' )
+				),
+				'delete_published_posts' => array(
+					'name' => 'delete_published_posts',
+					'title' => __(  'Author, Editor and Administrators only', 'wp_phpbb3_bridge' )
+				),
+				'edit_posts' => array(
+					'name' => 'edit_posts',
+					'title' =>  __( 'Contributor, Author, Editor and Administrators only', 'wp_phpbb3_bridge' )
+				),
+				'read' => array(
+					'name' => 'read',
+					'title' =>  __( 'Subscriber, Contributor, Author, Editor and Administrators', 'wp_phpbb3_bridge' )
+				)
+			),
+			'description' => __( 'User level', 'wp_phpbb3_bridge' ),
+			'section' => 'header',
+			'tab' => 'general',
+			'since' => '1.0',
+			'default' => 'read'
 		),
     );
     return apply_filters( 'propress_get_option_parameters', $options );

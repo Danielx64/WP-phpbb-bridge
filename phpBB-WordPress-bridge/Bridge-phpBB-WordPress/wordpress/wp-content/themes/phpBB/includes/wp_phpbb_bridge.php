@@ -87,6 +87,7 @@ function wp_phpbb_u_acp()
 	if (isset(phpbb::$template->_tpldata['.'][0]['DEBUG_OUTPUT']))
 	{
 		phpbb::$template->_tpldata['.'][0]['DEBUG_OUTPUT'] = str_replace(' | <a href="' . build_url() . '&amp;explain=1">Explain</a>', '', phpbb::$template->_tpldata['.'][0]['DEBUG_OUTPUT']);
+	//	phpbb::$template->_tpldata['.'][0]['DEBUG_OUTPUT'] = str_replace(build_url(), phpbb::$absolute_phpbb_script_path, phpbb::$template->_tpldata['.'][0]['DEBUG_OUTPUT']);
 	}
 }
 

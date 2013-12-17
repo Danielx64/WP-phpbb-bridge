@@ -43,15 +43,8 @@ $lang = array_merge($lang, array(
 	'WP_PHPBB_BRIDGE_MANAGE'					=> 'phpBB to WordPress Settings',
 	'WP_PHPBB_BRIDGE_MANAGE_EXPLAIN'			=> 'Welcome to phpBB to WordPress Settings Management Section.<br />Here you can determine the basic operation of the Bridge in relation to phpBB.',
 	'WP_PHPBB_BRIDGE_BASIC'						=> 'Basic settings',
-	'WP_PHPBB_BRIDGE_REDIR'						=> 'Redirection settings',
 	'WP_PHPBB_BRIDGE_PATHS'						=> 'Path settings',
 	'WP_PHPBB_BRIDGE_STYLE'						=> 'Style settings',
-
-	'EDIT_DASHBOARD'							=> 'Administrators only',
-	'READ_PRIVATES_PAGES'						=> 'Editor and Administrators only',
-	'DELETE_PUBLISHED_POSTS'					=> 'Author, Editor and Administrators only',
-	'EDIT_POST'									=> 'Contributor, Author, Editor and Administrators only',
-	'READ'										=> 'Subscriber, Contributor, Author, Editor and Administrators',
 	
 	'HOMEPAGE_URL'								=> 'Homepage url',
 	'HOMEPAGE_URL_EXPLAIN'						=> 'Enter here your homepage’s URL. You can either use something like "../site", if your homepage is at the same domain, or use the absolute path for other domains.. ',
