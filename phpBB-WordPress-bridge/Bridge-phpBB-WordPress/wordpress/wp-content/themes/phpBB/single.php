@@ -65,8 +65,8 @@ if (have_posts())
 	}
 
 	$board_url = generate_board_url(false) . '/';		
-	$redirect = request_var('redirect', home_url(add_query_arg(array())));
-	$web_path = (defined('PHPBB_USE_BOARD_URL_PATH') && PHPBB_USE_BOARD_URL_PATH) ? $board_url : PHPBB_ROOT_PATH;
+	$redirect = request_var('redirect', home_url());
+	$web_path = phpbb::$config['wp_phpbb_bridge_board_path'];
 
 	// Assign post specific vars
 	phpbb::$template->assign_vars(array(

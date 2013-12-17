@@ -167,7 +167,7 @@ function propress_get_option_parameters() {
 			'name' => 'phpbb_script_path',
 			'title' => __( 'Server root path to phpBB: (*) ', 'wp_phpbb3_bridge' ),
 			'type' => 'text',
-			'sanitize' => 'text',
+			'sanitize' => '',
 			'description' => __( 'Relative path from the server root.', 'wp_phpbb3_bridge' ),
 			'section' => 'header',
 			'tab' => 'general',

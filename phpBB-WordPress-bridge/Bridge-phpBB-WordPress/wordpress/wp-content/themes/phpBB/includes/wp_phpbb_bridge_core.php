@@ -42,10 +42,7 @@ class bridge
 
 		// bypass our own settings
 		$path	 = $phpbb_root_path;
-		if (defined('PHPBB_INAJAX') && PHPBB_INAJAX == true)
-		{
-			$path = '../../../' . $path;
-		}
+
 
 		// Measn the plugin is not enabbled yet!
 		// or the plugin is not set yet!
@@ -69,8 +66,9 @@ class bridge
 
 		// Make that phpBB itself understands out paths
 		global $phpbb_root_path, $phpEx;
+	$propress_options = get_option( 'theme_propress_options' );
 
-		$phpbb_root_path = PHPBB_ROOT_PATH;
+		$phpbb_root_path = $propress_options['phpbb_script_path'];
 		$phpEx = PHP_EXT;
 	}
 	/**
@@ -87,59 +85,6 @@ class bridge
 		$message = '';
 		$action = '';
 
-		if (!$active)
-		{
-			$error = true;
-			$message .= __('The "[BRIDGE] phpBB to Wordpress" is deactivated', 'wp_phpbb3_bridge');
-		}
-
-		if ($path)
-		{
-			if (defined('WP_ADMIN') && WP_ADMIN == true)
-			{
-				$path =  '../' . $path;
-			}
-
-			if (!@file_exists($path . 'config.php') || (@!is_dir($path) && @is_file($path)))
-			{
-				$error = true;
-				$message .= sprintf(__("Could not find path to your board. Please check your settings and try again.<br /><samp>%s</samp> was specified as the source path.<br /><br />Cannot activate bridge.", 'wp_phpbb3_bridge'), $path);
-			}
-		}
-
-		if ($error)
-		{
-			// must check that the user has the required capability
-			if (current_user_can('manage_options'))
-			{
-				global $wp_phpbb_bridge_config;
-
-				$redir = admin_url('admin.php');
-				$redir = add_query_arg(array('page' => 'wp_phpbb3_bridge', 'wp_phpbb3_bridge' => '1', 'wp_phpbb_root_path' => stripslashes($wp_phpbb_bridge_config['phpbb_root_path'])), $redir);
-
-				$action .= '<a href="' . $redir . '" title="' . esc_attr__('Configure Bridge', 'wp_phpbb3_bridge') . '">' . __('Configure Bridge', 'wp_phpbb3_bridge') . '</a>';
-			}
-			else
-			{
-				$action .= __('Please notify the system administrator or webmaster', 'wp_phpbb3_bridge');
-			}
-		}
-
-		if ($theme != '' && $theme != 'phpBB')
-		{
-			$error = true;
-			$message .= __('The "phpBB" theme is deactivated', 'wp_phpbb3_bridge');
-
-			if (current_user_can('switch_themes'))
-			{
-				$redir = admin_url('themes.php');
-				$action .= '<a href="' . $redir . '" title="' . esc_attr__('Activate theme', 'wp_phpbb3_bridge') . '">' . __('Activate theme', 'wp_phpbb3_bridge') . '</a>';
-			}
-			else
-			{
-				$action .= __('Please notify the system administrator or webmaster', 'wp_phpbb3_bridge');		
-			}
-		}
 
 		return array('error' => $error, 'message' => $message, 'action' => $action);
 	}
@@ -410,8 +355,8 @@ class phpbb
 		global $phpbb_root_path, $phpEx;
 	//	$phpbb_root_path = PHPBB_ROOT_PATH;
 	//	$phpEx = PHP_EXT;
-
-		include(PHPBB_ROOT_PATH . 'includes/' . $file . '.' . PHP_EXT);
+		$propress_options = get_option( 'theme_propress_options' );
+		include($propress_options['phpbb_script_path']. "includes/" . $file . "." . PHP_EXT);
 	}
 
 	/**
@@ -465,7 +410,7 @@ class phpbb
 	{
 		// Determine board url - we may need it later
 		$board_url = generate_board_url(false) . '/';
-		$web_path = (defined('PHPBB_USE_BOARD_URL_PATH') && PHPBB_USE_BOARD_URL_PATH) ? $board_url : PHPBB_ROOT_PATH;
+		$web_path = phpbb::$config['wp_phpbb_bridge_board_path'];
 		$blog_path = get_option('siteurl');
 
 		/**
@@ -514,7 +459,7 @@ class phpbb
 		// Do the phpBB page header stuff first
 		page_header($wp_title, false);
 
-		$redirect = request_var('redirect', home_url(add_query_arg(array())));
+		$redirect = request_var('redirect', home_url());
 
 		self::$template->assign_vars(array(
 			'PHPBB_IN_FORUM'	=> false,
@@ -681,27 +626,27 @@ class phpbb
 		// If this is a yearly archive
 		else if (is_day())
 		{
-			$is_day = sprintf(self::$user->lang['WP_TITLE_ARCHIVE_DAY_EXPLAIN'], get_bloginfo('url'), get_bloginfo('name'), get_the_time(__('l, F jS, Y', 'default')));
+			$is_day = sprintf(self::$user->lang['WP_TITLE_ARCHIVE_DAY_EXPLAIN'], home_url(), get_bloginfo('name'), get_the_time(__('l, F jS, Y', 'default')));
 		}
 		// If this is a monthly archive
 		else if (is_month())
 		{
-			$is_month = sprintf(self::$user->lang['WP_TITLE_ARCHIVE_MONTH_EXPLAIN'], get_bloginfo('url'), get_bloginfo('name'), get_the_time(__('F, Y', 'default')));
+			$is_month = sprintf(self::$user->lang['WP_TITLE_ARCHIVE_MONTH_EXPLAIN'], home_url(), get_bloginfo('name'), get_the_time(__('F, Y', 'default')));
 		}
 		//	If this is a yearly archive
 		else if (is_year())
 		{
-			$is_year = sprintf(self::$user->lang['WP_TITLE_ARCHIVE_YEAR_EXPLAIN'], get_bloginfo('url'), get_bloginfo('name'), get_the_time('Y'));
+			$is_year = sprintf(self::$user->lang['WP_TITLE_ARCHIVE_YEAR_EXPLAIN'], home_url(), get_bloginfo('name'), get_the_time('Y'));
 		}
 		//	If this is a monthly archive
 		else if (is_search())
 		{
-			$is_search = sprintf(self::$user->lang['WP_TITLE_ARCHIVE_SEARCH_EXPLAIN'], get_bloginfo('url'), get_bloginfo('name'), get_search_query());
+			$is_search = sprintf(self::$user->lang['WP_TITLE_ARCHIVE_SEARCH_EXPLAIN'], home_url(), get_bloginfo('name'), get_search_query());
 		}
 		//	If this is a monthly archive
 		else if (isset($_GET['paged']) && !empty($_GET['paged']))
 		{
-			$is_paged = sprintf(self::$user->lang['WP_TITLE_ARCHIVE_EXPLAIN'], get_bloginfo('url'), get_bloginfo('name'));
+			$is_paged = sprintf(self::$user->lang['WP_TITLE_ARCHIVE_EXPLAIN'], home_url(), get_bloginfo('name'));
 		}
 
 		self::$template->assign_vars(array(

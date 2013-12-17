@@ -457,15 +457,15 @@ function wp_phpbb_posting($post_ID, $post)
 
 	if (!function_exists('submit_post'))
 	{
-		include(PHPBB_ROOT_PATH . 'includes/functions_posting.' . PHP_EXT);
+		include($propress_options['phpbb_script_path']. "includes/functions_posting." . PHP_EXT);
 	}
 	if (!class_exists('bitfield'))
 	{
-		include(PHPBB_ROOT_PATH . 'includes/functions_content.' . PHP_EXT);
+		include($propress_options['phpbb_script_path']. "includes/functions_content." . PHP_EXT);
 	}
 	if (!class_exists('parse_message'))
 	{
-		include(PHPBB_ROOT_PATH . 'includes/message_parser.' . PHP_EXT);
+		include($propress_options['phpbb_script_path'] . "includes/message_parser." . PHP_EXT);
 	}
 	$message_parser = new parse_message();
 
@@ -544,8 +544,7 @@ function wp_phpbb_posting($post_ID, $post)
 function wp_phpbb_post_data($message, $subject, $topic_id, $post_id, $user_row, $post_data, $message_parser)
 {
 	$message = wp_phpbb_html_to_bbcode($message);
-	$propress_options = get_option( 'theme_propress_options' );
-	$forumid =  $propress_options['wp_phpbb_bridge_post_forum_id'];
+	$forumid =  phpbb::$config['wp_phpbb_bridge_post_forum_id'];
 
 	$message_parser->message = $message;
 	$message_parser->parse(true, true, true);
@@ -805,7 +804,7 @@ function show_phpbb_link($content) {
 	$result = phpbb::$db->sql_query($sql);
 	$post_data = phpbb::$db->sql_fetchrow($result);
 	$board_url = generate_board_url(false) . '/';
-	$web_path = (defined('PHPBB_USE_BOARD_URL_PATH') && PHPBB_USE_BOARD_URL_PATH) ? $board_url : PHPBB_ROOT_PATH;
+	$web_path = phpbb::$config['wp_phpbb_bridge_board_path'];
 
 	if ($post_data) {
 		$rbutton = '';
