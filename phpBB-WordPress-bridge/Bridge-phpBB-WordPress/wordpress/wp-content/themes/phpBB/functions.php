@@ -287,12 +287,10 @@ class WP_Widget_phpbb_recet_topics extends WP_Widget
 	// Defaults Settings
 	var $defaults = array(
 		'title'				=> 'Recent topics',
-		'forums'			=> '0',
-		'total'				=> 10,
-		'showForum'			=> 0,
-		'showUsername'		=> 0,
-		'showTotalViews'	=> 0,
-		'showTotalPosts'	=> 0,
+		'forums'			=> '2',
+		'total'				=> 5,
+		'showForum'			=> 1,
+		'showUsername'		=> 1,
 	);
 
 	function WP_Widget_phpbb_recet_topics()
@@ -326,22 +324,6 @@ class WP_Widget_phpbb_recet_topics extends WP_Widget
 				<label for="<?php echo $this->get_field_id('total'); ?>"><?php echo _e('Total results:', 'wp_phpbb3_bridge'); ?></label>
 				<input name="<?php echo $this->get_field_name('total'); ?>" type="text" id="<?php echo $this->get_field_id('total'); ?>" value="<?php echo $instance['total']; ?>" />
 			</p>
-			<p>
-				<input class="checkbox" type="checkbox" id="<?php echo $this->get_field_id('showForum'); ?>" name="<?php echo $this->get_field_name('showForum'); ?>" value="1" <?php if ($instance['showForum']) { echo ' checked="checked" '; } ?> />
-				<label for="<?php echo $this->get_field_id('showForum'); ?>"><?php echo _e('Display forum name', 'wp_phpbb3_bridge'); ?></label>
-			</p>
-			<p>
-				<input class="checkbox" type="checkbox" id="<?php echo $this->get_field_id('showUsername'); ?>" name="<?php echo $this->get_field_name('showUsername'); ?>" value="1" <?php if ($instance['showUsername']) { echo ' checked="checked" '; } ?> />
-				<label for="<?php echo $this->get_field_id('showUsername'); ?>"><?php echo _e('Display author name', 'wp_phpbb3_bridge'); ?></label>
-			</p>
-			<p>
-				<input class="checkbox" type="checkbox" id="<?php echo $this->get_field_id('showTotalViews'); ?>" name="<?php echo $this->get_field_name('showTotalViews'); ?>" value="1" <?php if ($instance['showTotalViews']) { echo ' checked="checked" '; } ?> />
-				<label for="<?php echo $this->get_field_id('showTotalViews'); ?>"><?php echo _e('Display total views', 'wp_phpbb3_bridge'); ?></label>
-			</p>
-			<p>
-				<input class="checkbox" type="checkbox" id="<?php echo $this->get_field_id('showTotalPosts'); ?>" name="<?php echo $this->get_field_name('showTotalPosts'); ?>" value="1" <?php if ($instance['showTotalPosts']) { echo ' checked="checked" '; } ?> />
-				<label for="<?php echo $this->get_field_id('showTotalPosts'); ?>"><?php echo _e('Display total replies', 'wp_phpbb3_bridge'); ?></label>
-			</p>
 		</div>
 		<?php
 	}
@@ -350,12 +332,10 @@ class WP_Widget_phpbb_recet_topics extends WP_Widget
 	{
 		$instance = array(
 			'title'				=> strip_tags($new_instance['title']),
-			'forums'			=> (isset($new_instance['forums']) && $new_instance['forums']) ? strip_tags($new_instance['forums']) : '0',
+			'forums'			=> (isset($new_instance['forums']) && $new_instance['forums']) ? strip_tags($new_instance['forums']) : '2',
 			'total'				=> (isset($new_instance['total']) && $new_instance['total']) ? absint($new_instance['total']) : 5,
-			'showForum'			=> (isset($new_instance['showForum']) && $new_instance['showForum']) ? 1 : 0,
-			'showUsername'		=> (isset($new_instance['showUsername']) && $new_instance['showUsername']) ? 1 : 0,
-			'showTotalViews'	=> (isset($new_instance['showTotalViews']) && $new_instance['showTotalViews']) ? 1 : 0,
-			'showTotalPosts'	=> (isset($new_instance['showTotalPosts']) && $new_instance['showTotalPosts']) ? 1 : 0
+			'showForum'			=> (isset($new_instance['showForum']) && $new_instance['showForum']) ? 1 : 1,
+			'showUsername'		=> (isset($new_instance['showUsername']) && $new_instance['showUsername']) ? 1 : 1,
 		);
 
 		return $instance;
