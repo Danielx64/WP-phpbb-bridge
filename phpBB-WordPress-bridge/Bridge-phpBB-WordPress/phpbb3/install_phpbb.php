@@ -42,7 +42,7 @@ $versions = array(
 		),
 		
 		'config_add'	=> array(
-						array('phpbb2wp_wppath', request_var('phpbb2wp_wppath', true)),
+						array('phpbb2wp_wppath', request_var('phpbb2wp_wppath', ''),false),
 		),
 
 		'cache_purge'	=> array(
