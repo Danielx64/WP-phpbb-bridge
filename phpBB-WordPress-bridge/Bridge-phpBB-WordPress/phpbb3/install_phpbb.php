@@ -23,6 +23,14 @@ if (!file_exists($phpbb_root_path . 'umil/umil_auto.' . $phpEx))
 	trigger_error('Please download the latest UMIL (Unified MOD Install Library) from: <a href="http://www.phpbb.com/mods/umil/">phpBB.com/mods/umil</a>', E_USER_ERROR);
 }
 
+/*
+* Options to display to the user (this is purely optional, if you do not need the options you do not have to set up this variable at all)
+* Uses the acp_board style of outputting information, with some extras (such as the 'default' and 'select_user' options)
+*/
+$options = array(
+	'phpbb2wp_wppath'	=> array('lang' => 'WPHPBB_INFO', 'validate' => 'string', 'type' => 'text:40:255', 'explain' => true),
+);
+
 $mod_name = 'WP_MOD_TITLE';
 $version_config_name = 'wpphpbbver';
 
@@ -34,7 +42,7 @@ $versions = array(
 		),
 		
 		'config_add'	=> array(
-						array('phpbb2wp_wppath', 'H:\\wampstack-5.5.7-0\\apache2\\htdocs\\forums\\'),
+						array('phpbb2wp_wppath', request_var('phpbb2wp_wppath', true)),
 		),
 
 		'cache_purge'	=> array(
