@@ -406,6 +406,7 @@ class phpbb
 	/**
 	 * Page header function for phpBB stuff
 	 */
+
 	public static function page_header()
 	{
 		// Determine board url - we may need it later
@@ -437,29 +438,26 @@ class phpbb
 		}
 // Credits to Dion Designs for the hack :)
 		$menu = array(
-			'theme_location'	=> '',
-			'menu'				=> '',
-			'container'			=> '',
-			'container_class'	=> '',
-			'container_id'		=> '',
-			'menu_class'		=> '',
+			'theme_location'	=> 'primary',
+			'container'			=> false,
+			'menu_class'		=> 'linklist leftside wpmenu',
 			'menu_id'			=> '',
-			'echo'				=> false,
-			'fallback_cb'		=> 'wp_page_menu',
-			'before'			=> '&nbsp;&nbsp;',
-			'after'				=> '&nbsp;&nbsp;',
-			'link_before'		=> '',
-			'link_after'		=> '',
-			'items_wrap'		=> '<ul id="wpmenu" class="linklist leftside">%3$s</ul>',
-			'depth'				=> 0,
+			'echo'				=> 0,
+			'fallback_cb'		=> false,
 			'walker'			=> ''
 		);
-		$wpmenu = wp_nav_menu($menu);
+		$header_menu = wp_nav_menu($menu);
+
+		$menu['theme_location'] = 'secondary';
+		$footer_menu = wp_nav_menu($menu);
 
 		// Do the phpBB page header stuff first
 		page_header($wp_title, false);
 
-		$redirect = request_var('redirect', home_url());
+		$redirect = request_var('redirect', home_url(add_query_arg(array())));
+		
+//		$u_login_logout = site_url('wp-login.php', 'login');
+//		$u_login_popup = get_option('siteurl') . '/?action=popup';
 
 		self::$template->assign_vars(array(
 			'PHPBB_IN_FORUM'	=> false,
@@ -469,6 +467,7 @@ class phpbb
 			'SCRIPT_NAME'		=> 'blog ' . self::wp_location(),
 			'IN_HOME'			=> is_home(),
 
+		//	'U_WEB'				=> append_sid($web_path),
 			'U_INDEX'			=> append_sid($web_path),
 			'U_BLOG'			=> append_sid($blog_path),
 
@@ -477,9 +476,13 @@ class phpbb
 			'SITENAME'			=> get_bloginfo('name', 'display'),
 			'SITE_DESCRIPTION'	=> get_bloginfo('description', 'display'),
 			'BLOG_HEADER'		=> self::wp_page_header(),
+			'HEADER_IMAGE'		=> '<img src="' . get_header_image() . '" />',
 			'S_DISPLAY_SEARCH'	=> false,
 			'S_CLOCK'			=> self::clock(),
-			'WP_MENU'			=> $wpmenu,
+
+			'HEADER_MENU'		=> $header_menu,
+			'FOOTER_MENU'		=> $footer_menu,
+
 			'S_REGISTER_ENABLED'=> (self::$config['require_activation'] != USER_ACTIVATION_DISABLE) ? true : false,
 			'U_REGISTER_POPUP'	=> "$web_path/ucp.php?mode=register",
 			'S_LOGIN_REDIRECT'	=> build_hidden_fields(array('redirect' => $redirect)),

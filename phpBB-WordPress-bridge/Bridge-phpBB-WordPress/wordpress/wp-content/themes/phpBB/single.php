@@ -33,6 +33,7 @@ if (have_posts())
 		$post_date_time = get_post_time('U', false, $post_id, false);
 
 		//
+		list($content, $ddcomments) = explode('<|DD|>', wp_do_action('the_content'));
 		$postrow = array(
 			'FEATURED_IMG'		=> '<div style="float:left;margin:0 15px 5px 0">' . get_the_post_thumbnail($post_id, 'dd-featured', array('class' => 'featured_image')) . '</div><br />',
 			'POST_ID'			=> $post_id,
@@ -48,10 +49,11 @@ if (have_posts())
 			'MINI_POST_IMG'		=> phpbb::$user->img('icon_post_target', 'POST'),
 			'U_MINI_POST'		=> apply_filters('the_permalink', get_permalink()) . "#post-$post_id",
 			'POST_SUBJECT'		=> censor_text(get_the_title()),
-			'MESSAGE'			=> censor_text(wp_do_action('the_content')),
+			'MESSAGE'			=> censor_text($content),
 
 			'POST_TAGS'			=> get_the_tag_list(phpbb::$user->lang['WP_TITLE_TAGS'] . ': ', ', ', ''),
 			'POST_CATS'			=> sprintf(phpbb::$user->lang['WP_POSTED_IN'], get_the_category_list(', ')),
+			'DD_COMMENTS'		=> $ddcomments,
 		);
 
 		$topic_title = $postrow['POST_SUBJECT'];

@@ -36,8 +36,9 @@
 
 					<div class="entry content" id="ccomment-{postrow.POST_ID}">{postrow.FEATURED_IMG}{postrow.MESSAGE}</div>
 
-					<!-- IF not postrow.S_COMMENT and ( postrow.POST_TAGS or postrow.POST_CATS or postrow.POST_EDIT or postrow.POST_COMENT or postrow.U_FOLLOW_FEED) -->
+					<!-- IF not postrow.S_COMMENT and ( postrow.POST_TAGS or postrow.POST_CATS or postrow.POST_EDIT or postrow.DD_COMMENTS or postrow.U_FOLLOW_FEED) -->
 					<div class="postmetadata alt notice">
+						<!-- IF postrow.DD_COMMENTS --><div style="float:right">{postrow.DD_COMMENTS}</div><!-- ENDIF -->
 						{L_WP_AUTHOR_TITLE}: <strong>{postrow.POST_AUTHOR_FULL}</strong> &raquo; {postrow.POST_DATE}
 						<!-- IF postrow.POST_CATS --><br />{postrow.POST_CATS}<!-- ENDIF -->
 						<!-- IF postrow.POST_TAGS --><br />{postrow.POST_TAGS}<!-- ENDIF -->

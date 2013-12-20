@@ -300,3 +300,15 @@ a img.aligncenter {
     margin:0;
     padding:0 4px 5px;
 }
+
+.headerbar td img {
+	max-height: 75px;
+}
+ul.linklist.wpmenu > li {
+	margin-right: 20px;
+	line-height: 2em;
+	font-size: 1.4em;
+}
+.wpmenu > li > a {
+	font-weight: bold;
+}
