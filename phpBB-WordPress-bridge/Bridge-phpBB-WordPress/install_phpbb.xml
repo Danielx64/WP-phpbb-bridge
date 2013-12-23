@@ -106,32 +106,29 @@ if (!function_exists('validate_username') && $wpbbmode !='login' && $wpbbmode !=
 		</open>
 		<open src="styles/prosilver/template/overall_footer.html">
 			<edit>
-				<find><![CDATA[	<div class="navbar">
-		<div class="inner"><span class="corners-top"><span></span></span>]]></find>
-				<action type="before-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
+				<find><![CDATA[<div id="page-footer">]]></find>
+				<action type="after-add"><![CDATA[
+<!-- BRIDGE phpBB & WordPress - Start //-->
 	<!-- IF PHPBB_IN_BLOG -->
 	<!-- INCLUDE wordpress/overall_footer.html -->
 	<!-- ELSE -->
-<!-- BRIDGE phpBB & WordPress - End //-->
-
-]]></action>
-				<comment lang="en"><![CDATA[You must do this change to ALL styles you have installed, based off Prosilver. I use "Prosilver" as an example.]]></comment>
+<!-- BRIDGE phpBB & WordPress - End //-->]]></action>
 			</edit>
 			<edit>
-				<find><![CDATA[		<!-- IF U_ACP --><br /><strong><a href="{U_ACP}">{L_ACP}</a></strong><!-- ENDIF -->
-	</div>]]></find>
-				<action type="after-add"><![CDATA[
-<!-- BRIDGE phpBB & WordPress - Start //-->
+				<find><![CDATA[</div>]]></find>
+				<action type="replace-with"/>
+				<action type="after-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
 	<!-- ENDIF -->
 <!-- BRIDGE phpBB & WordPress - End //-->
-]]></action>
+
+</div>]]></action>
 			</edit>
 		</open>
 		<open src="styles/prosilver/template/overall_header.html">
 			<edit>
-				<find><![CDATA[</head>]]></find>
-				<action type="before-add"><![CDATA[
-				<style type="text/css">
+				<find><![CDATA[	<link href="{T_THEME_PATH}/bidi.css" rel="stylesheet" type="text/css" media="screen, projection" />
+<!-- ENDIF -->]]></find>
+				<action type="after-add"><![CDATA[<style type="text/css">
 	.postbody{width:77%}
 	.postprofile{width:23%;border:none!important}
 <!-- IF PROFILE_POSITION eq 'left' -->
@@ -145,15 +142,15 @@ if (!function_exists('validate_username') && $wpbbmode !='login' && $wpbbmode !=
 	.search .postbody{width:70%}
 	.pm .postprofile dt,.pm .postprofile dd{border-color:#ddd}
 </style>
-				<!-- BRIDGE phpBB & WordPress - Start //-->
+
+<!-- BRIDGE phpBB & WordPress - Start //-->
 <!-- IF PHPBB_IN_BLOG -->{BLOG_HEADER}<!-- ENDIF -->
-<!-- BRIDGE phpBB & WordPress - End //-->
-]]></action>
-				<comment lang="en"><![CDATA[You must do this change to ALL styles you have installed, based off Prosilver. I use "Prosilver" as an example.]]></comment>
+<!-- BRIDGE phpBB & WordPress - End //-->]]></action>
 			</edit>
 			<edit>
 				<find><![CDATA[	<div id="page-header">]]></find>
-				<action type="before-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
+				<action type="after-add"><![CDATA[
+<!-- BRIDGE phpBB & WordPress - Start //-->
 	<!-- IF PHPBB_IN_BLOG -->
 		<!-- INCLUDE wordpress/overall_header.html -->
 	<!-- ELSE -->
@@ -165,14 +162,14 @@ if (!function_exists('validate_username') && $wpbbmode !='login' && $wpbbmode !=
 				<action type="before-add"><![CDATA[<!-- IF S_SHOW_HOMEPAGE --><li class="icon-members"><a href="{U_HOMEPAGE}" title="{U_HOMEPAGE_TITLE}">{U_HOMEPAGE_TITLE}</a></li><!-- ENDIF -->]]></action>
 			</edit>
 			<edit>
-				<find><![CDATA[			<span class="corners-bottom"><span></span></span></div>
-		</div>]]></find>
-				<action type="after-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
+				<find><![CDATA[		</div>]]></find>
+				<action type="after-add"><![CDATA[
+<!-- BRIDGE phpBB & WordPress - Start //-->
 	<!-- ENDIF -->
-<!-- BRIDGE phpBB & WordPress - End //-->
-]]></action>
+<!-- BRIDGE phpBB & WordPress - End //-->]]></action>
 			</edit>
 		</open>
+
 		<open src="styles/prosilver/theme/stylesheet.css">
 			<edit>
 				<find><![CDATA[@import url("colours.css");]]></find>
