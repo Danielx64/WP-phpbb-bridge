@@ -407,33 +407,26 @@ function wp_phpbb_posting($post_ID, $post)
 	$subject_prefix = '';
 
 	// We need to know some basic information in all cases before we do anything.
-
 	// We are ading a new entry or we are editting ?
-	$phpbb_post_id = get_post_meta($post_ID, 'phpbb_post_id', true );	//	$phpbb_post_id=array('forum_id' => 2, 'topic_id' => 47, 'post_id' => 74);
-	if (!empty($phpbb_post_id))
+	$forum_id = phpbb::$config['wp_phpbb_bridge_post_forum_id'];
+	$topic_id = $post_id = '';
+
+	$sql = 'SELECT t.*, p.* FROM ' . TOPICS_TABLE . ' t, ' . POSTS_TABLE . ' p
+		WHERE t.topic_wp_xpost = ' . $post_ID . '
+		AND p.topic_id = t.topic_id
+		AND p.post_id = t.topic_first_post_id';
+	$result = phpbb::$db->sql_query($sql);
+	$post_data = phpbb::$db->sql_fetchrow($result);
+	phpbb::$db->sql_freeresult($result);
+	if ($post_data)
 	{
 		$mode = 'edit';
-		$forum_id = $phpbb_post_id['forum_id'];
-		$topic_id = $phpbb_post_id['topic_id'];
-		$post_id = $phpbb_post_id['post_id'];	
-
-		$sql = 'SELECT f.*, t.*, p.*
-			FROM ' . FORUMS_TABLE . ' f, ' . TOPICS_TABLE . ' t, ' . POSTS_TABLE . ' p
-			WHERE p.post_id = ' . (int) $post_id . '
-				AND t.topic_id = p.topic_id
-				AND f.forum_id = t.forum_id';
-		$result = phpbb::$db->sql_query($sql);
-		$post_data = phpbb::$db->sql_fetchrow($result);
-		phpbb::$db->sql_freeresult($result);
-	}
-	else
+		$forum_id = $post_data['forum_id'];
+		$topic_id = $post_data['topic_id'];
+		$post_id = $post_data['post_id'];	
+	} else
 	{
-		$sql = 'SELECT *
-			FROM ' . FORUMS_TABLE . '
-			WHERE forum_id = ' . (int) phpbb::$config['wp_phpbb_bridge_post_forum_id'];
-		$result = phpbb::$db->sql_query($sql);
-		$post_data = phpbb::$db->sql_fetchrow($result);
-		phpbb::$db->sql_freeresult($result);
+		$post_data = array('forum_id' => $forum_id);
 	}
 
 	if (!$post_data)
