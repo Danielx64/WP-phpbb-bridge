@@ -376,32 +376,6 @@ class phpbb
 		return append_sid(self::$absolute_phpbb_url_path . $script . '.' . PHP_EXT, $params, $is_amp, $session_id);
 	}
 
-	/**
-	 * @description: Generate the clock time
-	 * @param: 				$gmepoch = a date;
-	 * @return: (string) 	$time . $midnight = a formated hour HH:MM:SS am/pm
-	 * @version: OK
-	 */
-	public static function clock($gmepoch = '')
-	{
-		$zone_offset = (int) self::$user->timezone + (int) self::$user->dst;
-
-		$date = preg_split('/(H:i|g:i)/', self::$user->lang['default_dateformat']);
-
-		$gmepoch = ($gmepoch) ? $gmepoch : time();
-
-		$time = gmdate('H:i:s', $gmepoch + $zone_offset);
-
-		list($h, $m, $s) = explode(':', $time);
-		$midnight = ((int) $h > 12) ? ' pm' : ' am';
-
-		self::$template->assign_vars(array(
-			'CURRENT_DATE'	=> sprintf(self::$user->lang['CURRENT_TIME'], self::$user->format_date(time() + $zone_offset, $date[0], true)),
-			'CURRENT_TIME'	=> $time . $midnight,
-		));
-
-		return true;
-	}
 
 	/**
 	 * Page header function for phpBB stuff
@@ -455,9 +429,6 @@ class phpbb
 		page_header($wp_title, false);
 
 		$redirect = request_var('redirect', home_url(add_query_arg(array())));
-		
-//		$u_login_logout = site_url('wp-login.php', 'login');
-//		$u_login_popup = get_option('siteurl') . '/?action=popup';
 
 		self::$template->assign_vars(array(
 			'PHPBB_IN_FORUM'	=> false,
@@ -478,7 +449,7 @@ class phpbb
 			'BLOG_HEADER'		=> self::wp_page_header(),
 			'HEADER_IMAGE'		=> '<img src="' . get_header_image() . '" />',
 			'S_DISPLAY_SEARCH'	=> false,
-			'S_CLOCK'			=> self::clock(),
+			'S_ENABLE_FEEDS'	=> false,
 
 			'HEADER_MENU'		=> $header_menu,
 			'FOOTER_MENU'		=> $footer_menu,

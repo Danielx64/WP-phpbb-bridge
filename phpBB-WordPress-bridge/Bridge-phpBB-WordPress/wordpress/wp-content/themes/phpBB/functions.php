@@ -96,9 +96,7 @@ function wp_phpbb_stylesheet()
  * Insert some js files
  */
 function propress_enqueue_js_scripts() {
-	wp_enqueue_script('phpbb-bridge-js', get_template_directory_uri() . '/js/wp_phpbb_bridge_js.js', array('jquery'));
-
-	wp_enqueue_style( 'phpbb-sytle', get_template_directory_uri() . '/style.css');
+	wp_enqueue_style( 'phpbb-style', get_template_directory_uri() . '/style.css');
 
 }
 add_action( 'wp_enqueue_scripts', 'propress_enqueue_js_scripts' );
