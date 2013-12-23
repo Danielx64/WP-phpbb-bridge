@@ -1,7 +1,3 @@
-
-		<h2><a href="{U_TOPIC}" rel="bookmark" title="{TOPIC_SUBJECT}">{TOPIC_SUBJECT}</a></h2>
-
-
 		<!-- BEGIN postrow -->
 		<div class="post<!-- IF postrow.S_FIRST_ROW --> bg3<!-- ELSE --><!-- IF postrow.S_ROW_COUNT is odd --> bg2<!-- ELSE --> bg1<!-- ENDIF --><!-- ENDIF --><!-- IF (postrow.S_POST_UNAPPROVED or postrow.S_POST_REPORTED or postrow.S_POST_TRASHED) --> reported<!-- ENDIF -->" id="<!-- IF postrow.S_COMMENT -->comment-{postrow.POST_ID}<!-- ELSE -->post-{postrow.POST_ID}<!-- ENDIF -->">
 			<div class="inner"><span class="corners-top"><span></span></span>
@@ -23,7 +19,7 @@
 
 					<!-- IF postrow.S_COMMENT -->
 					<!-- ELSE -->
-						<h3 class="first"><a href="{postrow.U_MINI_POST}">{postrow.MINI_POST_IMG}</a>{postrow.POST_SUBJECT}</h3>
+						<h3 class="first"><a href="{postrow.U_MINI_POST}">{postrow.POST_SUBJECT}</a></h3>
 					<!-- ENDIF -->
 
 					<!-- IF postrow.S_POST_UNAPPROVED or postrow.S_POST_REPORTED or postrow.S_POST_TRASHED -->
@@ -36,7 +32,7 @@
 
 					<div class="entry content" id="ccomment-{postrow.POST_ID}">{postrow.FEATURED_IMG}{postrow.MESSAGE}</div>
 
-					<!-- IF not postrow.S_COMMENT and ( postrow.POST_TAGS or postrow.POST_CATS or postrow.POST_EDIT or postrow.DD_COMMENTS or postrow.U_FOLLOW_FEED) -->
+					<!-- IF not postrow.S_COMMENT and ( postrow.POST_TAGS or postrow.POST_CATS or postrow.POST_EDIT or postrow.POST_COMENT or postrow.U_FOLLOW_FEED) -->
 					<div class="postmetadata alt notice">
 						<!-- IF postrow.DD_COMMENTS --><div style="float:right">{postrow.DD_COMMENTS}</div><!-- ENDIF -->
 						{L_WP_AUTHOR_TITLE}: <strong>{postrow.POST_AUTHOR_FULL}</strong> &raquo; {postrow.POST_DATE}
