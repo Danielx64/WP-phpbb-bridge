@@ -108,18 +108,20 @@ if (!function_exists('validate_username') && $wpbbmode !='login' && $wpbbmode !=
 			<edit>
 				<find><![CDATA[	<div class="navbar">
 		<div class="inner"><span class="corners-top"><span></span></span>]]></find>
-				<action type="after-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
-	<!-- IF not PHPBB_IN_BLOG -->
+				<action type="before-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
+	<!-- IF PHPBB_IN_BLOG -->
+	<!-- INCLUDE wordpress/overall_footer.html -->
+	<!-- ELSE -->
 <!-- BRIDGE phpBB & WordPress - End //-->
+
 ]]></action>
 				<comment lang="en"><![CDATA[You must do this change to ALL styles you have installed, based off Prosilver. I use "Prosilver" as an example.]]></comment>
 			</edit>
 			<edit>
-				<find><![CDATA[		<span class="corners-bottom"><span></span></span></div>
+				<find><![CDATA[		<!-- IF U_ACP --><br /><strong><a href="{U_ACP}">{L_ACP}</a></strong><!-- ENDIF -->
 	</div>]]></find>
-				<action type="before-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
-	<!-- ELSE -->
-			<!-- INCLUDE wordpress/overall_footer.html -->
+				<action type="after-add"><![CDATA[
+<!-- BRIDGE phpBB & WordPress - Start //-->
 	<!-- ENDIF -->
 <!-- BRIDGE phpBB & WordPress - End //-->
 ]]></action>
@@ -128,17 +130,33 @@ if (!function_exists('validate_username') && $wpbbmode !='login' && $wpbbmode !=
 		<open src="styles/prosilver/template/overall_header.html">
 			<edit>
 				<find><![CDATA[</head>]]></find>
-				<action type="before-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
+				<action type="before-add"><![CDATA[
+				<style type="text/css">
+	.postbody{width:77%}
+	.postprofile{width:23%;border:none!important}
+<!-- IF PROFILE_POSITION eq 'left' -->
+	.postbody{float:right}
+	.postbody ul.profile-icons{margin-right:45px}
+	.postprofile{float:left}
+	.postprofile dt,.postprofile dd{margin:0 8px 0 0;padding-right:8px;border-right:1px solid #fff;overflow:hidden}
+<!-- ELSE -->
+	.postprofile dt,.postprofile dd{padding-left:8px;border-left:1px solid #fff;overflow:hidden}
+<!-- ENDIF -->
+	.search .postbody{width:70%}
+	.pm .postprofile dt,.pm .postprofile dd{border-color:#ddd}
+</style>
+				<!-- BRIDGE phpBB & WordPress - Start //-->
 <!-- IF PHPBB_IN_BLOG -->{BLOG_HEADER}<!-- ENDIF -->
 <!-- BRIDGE phpBB & WordPress - End //-->
 ]]></action>
 				<comment lang="en"><![CDATA[You must do this change to ALL styles you have installed, based off Prosilver. I use "Prosilver" as an example.]]></comment>
 			</edit>
 			<edit>
-				<find><![CDATA[		<div class="navbar">
-			<div class="inner"><span class="corners-top"><span></span></span>]]></find>
-				<action type="after-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
-		<!-- IF not PHPBB_IN_BLOG -->
+				<find><![CDATA[	<div id="page-header">]]></find>
+				<action type="before-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
+	<!-- IF PHPBB_IN_BLOG -->
+		<!-- INCLUDE wordpress/overall_header.html -->
+	<!-- ELSE -->
 <!-- BRIDGE phpBB & WordPress - End //-->
 ]]></action>
 			</edit>
@@ -149,10 +167,8 @@ if (!function_exists('validate_username') && $wpbbmode !='login' && $wpbbmode !=
 			<edit>
 				<find><![CDATA[			<span class="corners-bottom"><span></span></span></div>
 		</div>]]></find>
-				<action type="before-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
-		<!-- ELSE -->
-			<!-- INCLUDE wordpress/overall_header.html -->
-		<!-- ENDIF -->
+				<action type="after-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
+	<!-- ENDIF -->
 <!-- BRIDGE phpBB & WordPress - End //-->
 ]]></action>
 			</edit>
