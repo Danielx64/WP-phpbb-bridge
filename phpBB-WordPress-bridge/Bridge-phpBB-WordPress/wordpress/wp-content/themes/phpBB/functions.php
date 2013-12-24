@@ -262,8 +262,6 @@ function wp_phpbb_widgets_init()
 		)
 	);
 
-	unregister_widget('WP_Nav_Menu_Widget');
-
 	register_widget('WP_Widget_phpbb_recet_topics');
 }
 
@@ -293,8 +291,6 @@ class WP_Widget_phpbb_recet_topics extends WP_Widget
 		'title'				=> 'Recent topics',
 		'forums'			=> '2',
 		'total'				=> 5,
-		'showForum'			=> 1,
-		'showUsername'		=> 1,
 	);
 
 	function WP_Widget_phpbb_recet_topics()
@@ -338,8 +334,6 @@ class WP_Widget_phpbb_recet_topics extends WP_Widget
 			'title'				=> strip_tags($new_instance['title']),
 			'forums'			=> (isset($new_instance['forums']) && $new_instance['forums']) ? strip_tags($new_instance['forums']) : '2',
 			'total'				=> (isset($new_instance['total']) && $new_instance['total']) ? absint($new_instance['total']) : 5,
-			'showForum'			=> (isset($new_instance['showForum']) && $new_instance['showForum']) ? 1 : 1,
-			'showUsername'		=> (isset($new_instance['showUsername']) && $new_instance['showUsername']) ? 1 : 1,
 		);
 
 		return $instance;
@@ -347,13 +341,7 @@ class WP_Widget_phpbb_recet_topics extends WP_Widget
 
 	function widget($args, $instance)
 	{
-		// Only run this widget on index page
-		if (is_home() || is_front_page())
-		{
-		//	echo $before_widget . $before_title . $title . $after_title;
 			phpbb::phpbb_recet_topics($instance, $this->defaults);
-		//	echo $after_widget;
-		}
 	}
 }
 

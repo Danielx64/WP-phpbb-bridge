@@ -655,11 +655,6 @@ class phpbb
 	 */
 	public static function phpbb_recet_topics($instance, $defaults)
 	{
-		// Only run this widget on index page
-		if (!is_home() || !is_front_page())
-		{
-			return false;
-		}
 
 		$instance = wp_parse_args($instance, $defaults);
 
@@ -737,14 +732,10 @@ class phpbb
 				'TOPIC_TITLE' 	=> $topic_data['topic_title'],
 				'U_VIEW_TOPIC'	=> self::append_sid("viewtopic", array('f' => $topic_data['forum_id'], 't' => $topic_data['topic_id'])),
 
-				'FORUM_NAME' 	=> ($instance['showForum']) ? $topic_data['forum_name'] : '',
+				'FORUM_NAME' 	=> $topic_data['forum_name'],
 				'U_VIEW_FORUM'	=> self::append_sid("viewforum", array('f' => $topic_data['forum_id'])),
 
-			//	'TOPIC_FOLDER_IMG_SRC'	=> self::$user->img($folder_img, $folder_alt, false, '', 'src'),
-				'REPLIES'		=> ($instance['showTotalPosts']) ? $topic_data['topic_replies'] : '',
-				'VIEWS'			=> ($instance['showTotalViews']) ? $topic_data['topic_views'] : '',
-
-				'TOPIC_AUTHOR_FULL'		=> ($instance['showTotalPosts']) ? get_username_string('full', $topic_data['topic_poster'], $topic_data['topic_first_poster_name'], $topic_data['topic_first_poster_colour']) : '',
+				'TOPIC_AUTHOR_FULL'		=> get_username_string('full', $topic_data['topic_poster'], $topic_data['topic_first_poster_name'], $topic_data['topic_first_poster_colour']),
 				'FIRST_POST_TIME'		=> self::$user->format_date($topic_data['topic_time']),
 
 				'U_LAST_POST'			=> self::append_sid("viewtopic", array('f' => $topic_data['forum_id'], 't' => $topic_data['topic_id'], 'p'=> $topic_data['topic_last_post_id'] . '#p' . $topic_data['topic_last_post_id'])),
@@ -758,7 +749,9 @@ class phpbb
 			'S_RECENT_TOPICS'	=> sizeof($topic_list),
 			'LAST_POST_IMG'		=> self::$user->img('icon_topic_latest', 'VIEW_LATEST_POST'),
 		));
-
+		// A major-league hack, but it's Wordpress. That's what you do. :)
+		echo '<|DD_RECENT_TOPICS|>';
+		
 		// Make sure we set up the sidebar style
 		if (!did_action('wp_phpbb_stylesheet'))
 		{

@@ -37,8 +37,11 @@ if (is_active_sidebar('wp_phpbb-widget-area'))
 			add_action('wp_head', 'wp_phpbb_stylesheet');
 		}
 
+		list($sb_top, $sb_bottom) = explode('<|DD_RECENT_TOPICS|>', $dynamic_sidebar, 2);
 		phpbb::$template->assign_vars(array(
-			'DYNAMIC_SIDEBAR'	=> $dynamic_sidebar,
+			'DYNAMIC_SIDEBAR'	=> true,
+			'SIDEBAR_TOP'		=> $sb_top,
+			'SIDEBAR_BOTTOM'	=> $sb_bottom,
 		));
 	}
 }

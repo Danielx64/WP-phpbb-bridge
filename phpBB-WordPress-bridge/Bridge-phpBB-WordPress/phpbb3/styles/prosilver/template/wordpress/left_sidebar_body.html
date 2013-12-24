@@ -1,5 +1,7 @@
-<!-- IF POST_AUTHOR and DYNAMIC_SIDEBAR -->
-	<div class="panel bg3">
+<!-- IF DYNAMIC_SIDEBAR -->
+
+<!-- IF POST_AUTHOR -->
+	<div class="panel bg2">
 		<div class="inner"><span class="corners-top"><span></span></span>
 			<h3>{L_WP_AUTHOR_TITLE}</h3>
 			<!-- INCLUDE wordpress/author_body.html -->
@@ -7,27 +9,23 @@
 	</div>
 <!-- ENDIF -->
 
-<!-- IF DYNAMIC_SIDEBAR -->{DYNAMIC_SIDEBAR}<!-- ENDIF -->
+	{SIDEBAR_TOP}
 
 <!-- IF S_RECENT_TOPICS -->
-	<div class="panel bg3">
-		<div class="inner"><span class="corners-top"><span></span></span>
+<div class="panel bg3">
+	<div class="inner"><span class="corners-top"><span></span></span>
 			<h3>{L_RECENT_TOPICS}</h3>
-			<ul class="topiclist topics">
-
+			<ul class="menu">
 			<!-- BEGIN recettopicsrow -->
-				<li class="row<!-- IF recettopicsrow.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
-					<dl class="icon" style="padding: 2px 5px;">
-						<dt style="padding: 0; width:100%;" title="{recettopicsrow.TOPIC_FOLDER_IMG_ALT}">
-							<a href="{recettopicsrow.U_LAST_POST}"><b>{recettopicsrow.TOPIC_TITLE}</b></a><br />
-							{L_POST_BY_AUTHOR} {recettopicsrow.TOPIC_AUTHOR_FULL}<!-- IF recettopicsrow.REPLIES --> <em>({recettopicsrow.REPLIES} {L_REPLIES})</em><!-- ENDIF --><br />
-							<!-- IF recettopicsrow.FORUM_NAME -->{L_FORUM}: <a href="{recettopicsrow.U_VIEW_FORUM}">{recettopicsrow.FORUM_NAME}</a><!-- ENDIF -->
-						</dt>
-					</dl>
+				<li class="recentcomments">
+							<a href="{recettopicsrow.U_LAST_POST}"><b>{recettopicsrow.TOPIC_TITLE}</b></a> {L_POST_BY_AUTHOR} {recettopicsrow.TOPIC_AUTHOR_FULL} in <a href="{recettopicsrow.U_VIEW_FORUM}">{recettopicsrow.FORUM_NAME}</a>
 				</li>
 			<!-- END recettopicsrow -->
-
 			</ul>
 		<span class="corners-bottom"><span></span></span></div>
 	</div>
+
+	{SIDEBAR_BOTTOM}
+<!-- ENDIF -->
+
 <!-- ENDIF -->
