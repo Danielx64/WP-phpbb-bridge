@@ -23,10 +23,6 @@ if (!file_exists($phpbb_root_path . 'umil/umil_auto.' . $phpEx))
 	trigger_error('Please download the latest UMIL (Unified MOD Install Library) from: <a href="http://www.phpbb.com/mods/umil/">phpBB.com/mods/umil</a>', E_USER_ERROR);
 }
 
-/*
-* Options to display to the user (this is purely optional, if you do not need the options you do not have to set up this variable at all)
-* Uses the acp_board style of outputting information, with some extras (such as the 'default' and 'select_user' options)
-*/
 $options = array(
 	'phpbb2wp_wppath'	=> array('lang' => 'WPHPBB_INFO', 'validate' => 'string', 'type' => 'text:40:255', 'explain' => true),
 );
@@ -101,7 +97,13 @@ $versions = array(
 	),
 	'0.8.6'		=> array(
 		'custom'	=> 'ubm_custom_install',
-
+		'cache_purge'	=> array(
+			array('template'),
+			array('theme'),
+		),
+	),
+	'0.8.7'		=> array(
+		'custom'	=> 'ubm_custom_install',
 		'cache_purge'	=> array(
 			array('template'),
 			array('theme'),
@@ -112,7 +114,14 @@ $versions = array(
 function ubm_custom_install($action, $version)
 {
 	global $db, $user, $umil, $phpbb_root_path, $phpEx;
-
+	if ($action == 'uninstall')
+	{
+	$umil->config_update(array(
+		array('auth_method', 'db'),
+		));
+	}
+	if ($action == 'install')
+	{
 	switch ($version)
 	{
 		case '0.8.1' :
@@ -123,6 +132,12 @@ function ubm_custom_install($action, $version)
 				$db->sql_query('ALTER TABLE ' . TOPICS_TABLE . ' ADD INDEX xpost (topic_wp_xpost)');
 				$umil->umil_end();
 		break;
+		case '0.8.7' :
+			$umil->config_update(array(
+			array('auth_method', 'phpbb2wp'),
+			));
+		break;
+	}
 	}
 }
 
