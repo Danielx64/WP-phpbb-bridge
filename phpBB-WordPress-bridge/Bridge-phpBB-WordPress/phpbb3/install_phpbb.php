@@ -136,6 +136,7 @@ function ubm_custom_install($action, $version)
 			$umil->config_update(array(
 			array('auth_method', 'phpbb2wp'),
 			));
+			$umil->umil_end();
 		break;
 	}
 	}
