@@ -144,7 +144,7 @@ class phpbb
 		// Set the absolute wordpress/phpbb path
 		$propress_options = get_option( 'theme_propress_options' );
 		self::$absolute_phpbb_script_path = $propress_options['phpbb_script_path'];
-		self::$absolute_wordpress_script_path = phpbb::$config['wordpress_script_path'];
+//		self::$absolute_wordpress_script_path = phpbb::$config['wordpress_script_path'];
 		self::$absolute_phpbb_url_path = phpbb::$config['wp_phpbb_bridge_board_path'];
 
 		// enhance phpbb $config data with WP $config data
@@ -211,11 +211,13 @@ class phpbb
 		$wp_user_id = self::wp_phpbb_get_userid();
 
 	//	if ($wp_user_id != 0)
-		if ($wp_user_id <= 0 && is_user_logged_in())
+	//	if ($wp_user_id <= 0 && is_user_logged_in())
 	//	if ($wp_user_id <= 0 && self::wp_phpbb_user_logged())
+		if (!phpbb::$user->data['is_registered'])
 		{
-			wp_logout();
-			wp_redirect('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
+		wp_logout();
+		wp_clear_auth_cookie();
+		//	wp_redirect('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 		}
 		else if ($wp_user_id > 0 && $wp_user_id != $wp_user->ID)
 		{
@@ -841,7 +843,7 @@ class phpbb
 
 			// IT'S A HACK! for images like avatar and rank
 			global $phpbb_root_path;
-			$phpbb_root_path = self::$absolute_phpbb_script_path;
+			$phpbb_root_path = self::$absolute_phpbb_url_path;
 
 			$user_cache[$wp_poster_id] = array(
 				'author_full'		=> ($poster_id != ANONYMOUS) ? get_username_string('full', $poster_id, $row['username'], $row['user_colour']) : get_username_string('full', $poster_id, $wp_poster_data->user_nicename, $row['user_colour']),

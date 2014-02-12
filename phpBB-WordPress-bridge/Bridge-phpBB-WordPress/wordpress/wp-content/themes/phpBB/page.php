@@ -48,7 +48,11 @@ if (have_posts())
 
 		$topic_title = $postrow['POST_SUBJECT'];
 		$topic_link = $postrow['U_MINI_POST'];
-
+        phpbb::$template->assign_block_vars('navlinks', array(
+            'FORUM_NAME'    => $topic_title,
+            'U_VIEW_FORUM'  => $topic_link,
+			)
+        );
 		// Dump vars into template
 		phpbb::$template->assign_block_vars('postrow', $postrow);
 	}

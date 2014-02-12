@@ -11,8 +11,8 @@
 		This Birdge makes possible to integrate your phpBB into your Wordpress Blog, sharing the Board style and users
 		Users Can login at the Blog using the phpBB account, 
 			If the phpBB users do not exist in WP it will be automatically created as a "Subscriber"]]></description>
-		<author-notes lang="en"><![CDATA[Please keep in mind that this version is still in development, so not everything may be in place or working.
-* Works on phpBB version 3.0.12 and WordPress version 3.7.1
+		<author-notes lang="en"><![CDATA[
+* Works on phpBB version 3.0.12 and WordPress version 3.7.1 to 3.8.1
 * Before adding this MOD to your forum, you should back up all files related to this MOD.
 * This BRIDGE modify the database.]]></author-notes>
 		<github><![CDATA[https://github.com/danielx64/WP-phpbb-bridge/]]></github>
@@ -34,15 +34,12 @@
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>0.8.3</mod-version>
+		<mod-version>1.0.2</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>300</time>
 			<target-version>3.0.12</target-version>
 		</installation>
-		<link-group>
-			<link type="template" href="contrib/subsilver2.xml" lang="en">Edits for subsilver2</link>
-		</link-group>
 	</header>
 	<action-group>
 		<copy>
@@ -107,21 +104,18 @@ if (!function_exists('validate_username') && $wpbbmode !='login' && $wpbbmode !=
 		<open src="styles/prosilver/template/overall_footer.html">
 			<edit>
 				<find><![CDATA[<div id="page-footer">]]></find>
-				<action type="after-add"><![CDATA[
-<!-- BRIDGE phpBB & WordPress - Start //-->
+				<action type="before-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
 	<!-- IF PHPBB_IN_BLOG -->
 	<!-- INCLUDE wordpress/overall_footer.html -->
 	<!-- ELSE -->
 <!-- BRIDGE phpBB & WordPress - End //-->]]></action>
 			</edit>
 			<edit>
-				<find><![CDATA[</div>]]></find>
-				<action type="replace-with"/>
+				<find><![CDATA[		<span class="corners-bottom"><span></span></span></div>
+	</div>]]></find>
 				<action type="after-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
 	<!-- ENDIF -->
-<!-- BRIDGE phpBB & WordPress - End //-->
-
-</div>]]></action>
+<!-- BRIDGE phpBB & WordPress - End //-->]]></action>
 			</edit>
 		</open>
 		<open src="styles/prosilver/template/overall_header.html">
@@ -149,8 +143,7 @@ if (!function_exists('validate_username') && $wpbbmode !='login' && $wpbbmode !=
 			</edit>
 			<edit>
 				<find><![CDATA[	<div id="page-header">]]></find>
-				<action type="after-add"><![CDATA[
-<!-- BRIDGE phpBB & WordPress - Start //-->
+				<action type="after-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
 	<!-- IF PHPBB_IN_BLOG -->
 		<!-- INCLUDE wordpress/overall_header.html -->
 	<!-- ELSE -->
@@ -163,13 +156,11 @@ if (!function_exists('validate_username') && $wpbbmode !='login' && $wpbbmode !=
 			</edit>
 			<edit>
 				<find><![CDATA[		</div>]]></find>
-				<action type="after-add"><![CDATA[
-<!-- BRIDGE phpBB & WordPress - Start //-->
+				<action type="after-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
 	<!-- ENDIF -->
 <!-- BRIDGE phpBB & WordPress - End //-->]]></action>
 			</edit>
 		</open>
-
 		<open src="styles/prosilver/theme/stylesheet.css">
 			<edit>
 				<find><![CDATA[@import url("colours.css");]]></find>

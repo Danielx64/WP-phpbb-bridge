@@ -15,6 +15,7 @@
 
 require( get_template_directory() . '/includes/options.php' );
 require( get_template_directory() . '/includes/custom.php' );
+require( get_template_directory() . '/includes/updater.php' );
 
 // Hide WordPress Admin Bar
 add_filter('show_admin_bar', '__return_false');

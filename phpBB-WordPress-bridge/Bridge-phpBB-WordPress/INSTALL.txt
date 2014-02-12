@@ -1,35 +1,23 @@
 Installing this bridge.
 
-Please note that you MUST follow all instruction in order to avoid any issues. Please note that this is still in BETA and shouldn’t be used on a live forum. 
-While there nothing to stop you from using it on a live forum, you do so at your own risk.
+Please note that you MUST follow all instruction in order to avoid any issues.
 
-Step 1 - Download and install the phpBB mod
-After download and uploading the zip file via automod, click on the install button next to [BRIDGE] phpBB to WordPress.
+Download and install the phpBB mod
+After download and uploading the zip file via automod, click on the install button next to [BRIDGE] phpBB to WordPress. Automod will ask you to run the installer, run it.
 
-Step 2 - Configure the authentication.
+During the installation, you will be asked some questions. The option "WordPress Path" means enter the full filesystem path to your wordpress installation. 
+An example would be /home/username/public_html/
 
-Go to General -> Client communication -> Authentication. From the “Select an authentication method:”drop down box, select phpbb2wp and click on “Submit”
+After the installer have finished it job, you are ready to install the WordPress theme. Inside the wordpress folder in the zip file that you have downloaded, you will find a zip file. 
+Copy that file onto your desktop as you are about to upload it via WordPress's theme system.
 
-Step 3 - Install the wordpress theme
+Log into your WordPress dashboard and click on Appearance -> Themes. Now click on “install themes” and select “upload”. 
+Now click on browse and locate the zip file that you have save onto your desktop.
 
-Inside the wordpress folder in the package that you downloaded, you will find a zip file. Copy that file onto your desktop as you are about to upload it.
-
-Log into your wp-admin and click on Appearance -> Themes. Now click on “install themes” and select “upload”. Now click on browse and locate the zip file that you have save onto your desktop.
 After locating the file, click on “install now” After it have been uploaded click on “Activate”
 
-Step 4 - Configure the theme.
+Click on “[BRIDGE] phpBB to WordPress” The only thing that you need to set is the full path to your phpBB forum. Like before, this is the filesystem path. 
+An example would be /home/username/public_html/forums/.
 
-Click on “[BRIDGE] phpBB to WordPress” Most of the settings are pretty easy to understand. If you are getting errors about common.php not being found,
-please check the paths as that is the most likely issue. If you still need help, feel free to ask.
-
-How to reset the theme settings
-
-You may run into a case where you need to reset the phpbb theme settings and you are unable to to so from wp-admin as you are getting a white screen.
-
-In order to reset the settings you will need to log into something like phpmyadmin or what ever database management system that your webhost has installed.
-
-After you logged into your database management system, you will need to first select the database that has your wp_options table. 
-
-After that you will need to look for a row that has theme_propress_options in it. Once you done that, you can just click on the delete button and click on yes or ok.
-
-Now the settings should be back to the default settings.
+Time to check your blog's homepage. If you are getting errors about common.php not being found, please check the path as that is the most likely issue. 
+If you still need help, feel free to ask.

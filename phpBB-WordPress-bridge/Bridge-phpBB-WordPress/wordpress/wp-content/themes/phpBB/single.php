@@ -33,7 +33,7 @@ if (have_posts())
 		$post_date_time = get_post_time('U', false, $post_id, false);
 
 		//
-		list($content, $ddcomments) = explode('<|DD|>', wp_do_action('the_content'));
+		list($content) = explode('<|DD|>', wp_do_action('the_content'));
 		$postrow = array(
 			'FEATURED_IMG'		=> '<div style="float:left;margin:0 15px 5px 0">' . get_the_post_thumbnail($post_id, 'dd-featured', array('class' => 'featured_image')) . '</div><br />',
 			'POST_ID'			=> $post_id,
@@ -53,7 +53,6 @@ if (have_posts())
 
 			'POST_TAGS'			=> get_the_tag_list(phpbb::$user->lang['WP_TITLE_TAGS'] . ': ', ', ', ''),
 			'POST_CATS'			=> sprintf(phpbb::$user->lang['WP_POSTED_IN'], get_the_category_list(', ')),
-			'DD_COMMENTS'		=> $ddcomments,
 		);
 
 		$topic_title = $postrow['POST_SUBJECT'];
@@ -61,7 +60,16 @@ if (have_posts())
 
 		$autor = phpbb::phpbb_the_autor_full($post->post_author, false, true);
 		$postrow = array_merge($postrow, $autor);
-
+        phpbb::$template->assign_block_vars('navlinks', array(
+            'FORUM_NAME'    => get_the_category_list(', '),
+//            'U_VIEW_FORUM'  => $topic_link,
+			)
+        );
+        phpbb::$template->assign_block_vars('navlinks', array(
+            'FORUM_NAME'    => $topic_title,
+            'U_VIEW_FORUM'  => $topic_link,
+			)
+        );
 		// Dump vars into template
 		phpbb::$template->assign_block_vars('postrow', $postrow);
 	}

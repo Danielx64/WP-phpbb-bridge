@@ -45,19 +45,24 @@ $lang = array_merge($lang, array(
 	'WP_PHPBB_BRIDGE_BASIC'						=> 'Basic settings',
 	'WP_PHPBB_BRIDGE_PATHS'						=> 'Path settings',
 	'WP_PHPBB_BRIDGE_STYLE'						=> 'Style settings',
-	'WP_PHPBB_BRIDGE_WPFOUNDER'						=> 'WordPress founder ID',
-	'WP_PHPBB_BRIDGE_PHPBBFOUNDER'						=> 'phpBB founder ID',
+	'WP_PHPBB_BRIDGE_WPFOUNDER'					=> 'WordPress founder ID',
+	'WP_PHPBB_BRIDGE_PHPBBFOUNDER'				=> 'phpBB founder ID',
 
 	'HOMEPAGE_URL'								=> 'Homepage url',
 	'HOMEPAGE_URL_EXPLAIN'						=> 'Enter here your homepage’s URL. You can either use something like "../site", if your homepage is at the same domain, or use the absolute path for other domains.. ',
+	
+	
+	'CROSSPOSTCONTENT'							=> 'Crosspost post content?',
+	'CROSSPOSTCONTENT_EXPLAIN'					=> 'Do you want to crosspost the post content? For phpBB.com style select no',
+
 	'HOMEPAGE_TITLE'							=> 'Homepage title',
 	'HOMEPAGE_TITLE_EXPLAIN'					=> 'This title will show when you have your mouse over your homepage link. If you don´t want to show a title, just leave this field blank.',
 	'SHOW_HOMEPAGE'								=> 'Show your homepage URL on the header',
 	'SHOW_HOMEPAGE_EXPLAIN'						=> 'If you select "No" your homepage URL will not be shown on the header',
 	'WPHPBB_INFO'								=> 'WordPress Path',
-	'WPHPBB_INFO_EXPLAIN'						=> 'This is the path to your WordPress installation. Put in the full path to your wordpress root folder.',
+	'WPHPBB_INFO_EXPLAIN'						=> 'This is the path to your WordPress installation. Put in the full path to your wordpress root folder. An example would be /home/danielx/public_html/',
 	'WP_PHPBB_BRIDGE_FORUM_URL'					=> 'Forum Path',
-	'WP_PHPBB_BRIDGE_FORUM_URL_EXPLAIN'			=> 'Enter here your forumâ€™s URL.',
+	'WP_PHPBB_BRIDGE_FORUM_URL_EXPLAIN'			=> 'Enter here your forum’s URL. An example would be http://localhost/forums/',
 	'WP_PHPBB_BRIDGE_SIDEBAR'					=> 'Widgets column width',
 	'WP_PHPBB_BRIDGE_SIDEBAR_EXPLAIN'			=> 'The right column width, in pixels.',
 	'WP_PHPBB_BRIDGE_AV'						=> 'Avatars width',

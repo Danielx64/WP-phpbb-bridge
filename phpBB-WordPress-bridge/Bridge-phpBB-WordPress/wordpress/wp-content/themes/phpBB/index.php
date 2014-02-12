@@ -32,7 +32,7 @@ if (have_posts())
 		$post_date_time = get_post_time('U', false, $post_id, false);
 
 		//
-		list($content, $ddcomments) = explode('<|DD|>', wp_do_action('the_content', phpbb::$user->lang['WP_READ_MORE']));
+		list($content) = explode('<|DD|>', wp_do_action('the_content', phpbb::$user->lang['WP_READ_MORE']));
 		$topicrow = array(
 			'FEATURED_IMG'		=> '<div style="float:left;margin:0 15px 5px 0">' . get_the_post_thumbnail($post_id, 'dd-featured-mini', array('class' => 'featured_image')) . '</div>',
 			'POST_ID'			=> $post_id,
@@ -49,7 +49,6 @@ if (have_posts())
 
 			'POST_TAGS'			=> get_the_tag_list(phpbb::$user->lang['WP_TITLE_TAGS'] . ': ', ', ', '<br />'),
 			'POST_CATS'			=> sprintf(phpbb::$user->lang['WP_POSTED_IN'] , get_the_category_list(', ')),
-			'DD_COMMENTS'		=> $ddcomments,
 		);
 
 		$autor = phpbb::phpbb_the_autor_full($post->post_author, false);

@@ -52,9 +52,10 @@ class acp_wp_phpbb_bridge
 					'vars'   => array(
 						'legend1'	=> 'WP_PHPBB_BRIDGE_BASIC',
 						'show_homepage'			=> array('lang' => 'SHOW_HOMEPAGE',			'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
+						'crosspostcontent'		=> array('lang' => 'CROSSPOSTCONTENT',		'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
 						'homepage_url'			=> array('lang' => 'HOMEPAGE_URL',			'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),
 						'homepage_title'		=> array('lang' => 'HOMEPAGE_TITLE',		'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),
-						'wp_phpbb_bridge_post_forum_id'			=> array('lang' => 'WP_PHPBB_BRIDGE_XPOST',			'validate' => 'int:0', 'type' => false, 'method' => false, 'explain' => true),
+						'wp_phpbb_bridge_post_forum_id'			=> array('lang' => 'WP_PHPBB_BRIDGE_XPOST',			'validate' => 'int:0', 'type' => 'text:40:255', 'method' => false, 'explain' => true),
 
 						'legend2'	=> 'WP_PHPBB_BRIDGE_PATHS',
 						'wp_phpbb_bridge_board_path'			=> array('lang' => 'WP_PHPBB_BRIDGE_FORUM_URL',			'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),
@@ -64,8 +65,8 @@ class acp_wp_phpbb_bridge
 						'wp_phpbb_bridge_comments_avatar_width'			=> array('lang' => 'WP_PHPBB_BRIDGE_AV',			'validate' => 'int:0', 'type' =>'text:40:255', 'method' => false, 'explain' => true),
 
 						'legend4'	=> 'Founders IDs',
-						'wp_phpbb_bridge_forum_founder_user_id'			=> array('lang' => 'PHPBBFOUNDER',		'validate' => 'int:0','type' => 'text:40:255', 'method' => false, 'explain' => false),
-						'wp_phpbb_bridge_blog_founder_user_id'			=> array('lang' => 'WPFOUNDER',			'validate' => 'int:0', 'type' =>'text:40:255', 'method' => false, 'explain' => false),
+						'wp_phpbb_bridge_forum_founder_user_id'			=> array('lang' => 'WP_PHPBB_BRIDGE_PHPBBFOUNDER',		'validate' => 'int:0','type' => 'text:40:255', 'method' => false, 'explain' => false),
+						'wp_phpbb_bridge_blog_founder_user_id'			=> array('lang' => 'WP_PHPBB_BRIDGE_WPFOUNDER',			'validate' => 'int:0', 'type' =>'text:40:255', 'method' => false, 'explain' => false),
 
 						'legend5'	=> 'ACP_SUBMIT_CHANGES',					)
 				);
