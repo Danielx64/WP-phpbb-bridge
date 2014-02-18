@@ -116,6 +116,9 @@ $versions = array(
 		),
 	),
 	'1.0.2'		=> array(
+			'config_add'	=> array(
+						array('crosspostcontent', '0'),
+		),
 		'cache_purge'	=> array(
 			array('template'),
 			array('theme'),
