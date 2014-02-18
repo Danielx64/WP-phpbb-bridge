@@ -53,6 +53,7 @@ if (have_posts())
             'U_VIEW_FORUM'  => $topic_link,
 			)
         );
+
 		// Dump vars into template
 		phpbb::$template->assign_block_vars('postrow', $postrow);
 	}

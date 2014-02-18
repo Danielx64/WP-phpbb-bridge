@@ -212,11 +212,9 @@ class phpbb
 
 	//	if ($wp_user_id != 0)
 	//	if ($wp_user_id <= 0 && is_user_logged_in())
-	//	if ($wp_user_id <= 0 && self::wp_phpbb_user_logged())
 		if (!phpbb::$user->data['is_registered'])
 		{
-		wp_logout();
-		wp_clear_auth_cookie();
+			wp_logout();
 		//	wp_redirect('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']);
 		}
 		else if ($wp_user_id > 0 && $wp_user_id != $wp_user->ID)
@@ -408,7 +406,7 @@ class phpbb
 		}
 
 		// Add a page number if necessary:
-		if ($paged || $page) //if ($paged >= 2 || $page >= 2)
+		if ($paged >= 2 || $page >= 2)
 		{
 			$wp_title .= ' | ' . sprintf(self::$user->lang['WP_PAGE_NUMBER'], max($paged, $page));
 		}
