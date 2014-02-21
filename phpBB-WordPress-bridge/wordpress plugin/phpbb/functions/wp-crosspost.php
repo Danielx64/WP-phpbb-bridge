@@ -4,7 +4,15 @@
  * @version 1.6
  */
 
-add_action('publish_post', 'wp_phpbb_posting', 10, 2);
+ 
+/**
+ * Hooks a function on to a specific action.
+ *
+ * @param string $tag The name of the action to which the $function_to_add is hooked.
+ * @param callback $function_to_add The name of the function you wish to be called.
+ * @param int $priority optional. Used to specify the order in which the functions associated with a particular action are executed (default: 10). Lower numbers correspond with earlier execution, and functions with the same priority are executed in the order in which they were added to the action.
+ * @param int $accepted_args optional. The number of arguments the function accept (default 1).
+**/
 
 /**
  * Called whenever a new entry is published in the Wordpress.
@@ -25,7 +33,7 @@ function wp_phpbb_posting($post_ID, $post)
 	{
 		global $wp_phpbb_bridge_config, $phpbb_root_path, $phpEx;
 		global $auth, $config, $db, $template, $user, $cache;
-		require( get_template_directory() . '/includes/wp_phpbb_bridge.php' );
+		include_once dirname( __FILE__ ) . '/wp_phpbb_bridge.php';
 	}
 
 	if (!phpbb::$config['wp_phpbb_bridge_post_forum_id'])
@@ -85,7 +93,8 @@ function wp_phpbb_posting($post_ID, $post)
 
 	// Get the post link
 	$entry_link = get_permalink($post_ID);
-
+	if (phpbb::$config['crosspostcontent'])
+	{	
 	// Get the post text
 	$message = $post->post_content;
 
@@ -97,7 +106,7 @@ function wp_phpbb_posting($post_ID, $post)
 		$main = preg_replace('/^[\s]*(.*)[\s]*$/', '\\1', $main);
 		$message = $main . "\n\n" . '[url=' . $entry_link . ']' . phpbb::$user->lang['WP_READ_MORE'] . '[/url]';
 	}
-
+	}
 	// Get the post subject
 	$subject = $post->post_title;
 
@@ -106,6 +115,8 @@ function wp_phpbb_posting($post_ID, $post)
 	{
 		$message_prefix .= sprintf(phpbb::$user->lang['WP_BLOG_POST_PREFIX'], '[url=' . $entry_link . ']', '[/url]');
 	}
+	if (phpbb::$config['crosspostcontent'])
+	{	
 
 	// Add a Post tail for the blog (if we have a language string filled)
 	if (phpbb::$user->lang['WP_BLOG_POST_TAIL'] != '')
@@ -118,7 +129,7 @@ function wp_phpbb_posting($post_ID, $post)
 			$message_tail .= phpbb::$user->lang['WP_BLOG_POST_TAIL'] . (($entry_tags) ? $entry_tags : '') . (($entry_tags && $entry_cats) ? " | " : '') . (($entry_cats) ? $entry_cats : '') . "\n";
 		}
 	}
-
+}
 	$message = (($message_prefix) ? $message_prefix . "\n\n" : '') . $message . (($message_tail) ? "\n\n" . $message_tail : '');
 
 	// Sanitize the post text
@@ -360,4 +371,4 @@ function wp_phpbb_html_to_bbcode(&$string)
 
 	return $string;
 }
-?>
+ ?>

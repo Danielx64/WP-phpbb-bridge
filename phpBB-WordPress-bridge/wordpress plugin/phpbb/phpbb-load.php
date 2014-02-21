@@ -18,8 +18,17 @@ if ( !function_exists( 'add_action' ) ) {
 	exit;
 }
 
-include_once dirname( __FILE__ ) . '/functions/wp-clean.php';
-include_once dirname( __FILE__ ) . '/functions/wp-profile.php';
+include_once dirname( __FILE__ ) . '/functions/wp-crosspost.php';
+include_once dirname( __FILE__ ) . '/functions/options.php';
+include_once dirname( __FILE__ ) . '/functions/custom.php';
+require( ABSPATH . WPINC . '/pluggable.php' );
 
+	if (!defined('IN_WP_PHPBB_BRIDGE'))
+	{
+		global $wp_phpbb_bridge_config, $phpbb_root_path, $phpEx;
+		global $auth, $config, $db, $template, $user, $cache;
+		include_once dirname( __FILE__ ) . '/functions/wp_phpbb_bridge.php';
+	}
+add_action('publish_post', 'wp_phpbb_posting', 10, 2);
 
 ?>
