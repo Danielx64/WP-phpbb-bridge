@@ -31,4 +31,11 @@ require( ABSPATH . WPINC . '/pluggable.php' );
 	}
 add_action('publish_post', 'wp_phpbb_posting', 10, 2);
 
+
+add_filter( 'logout_url', 'wp_phpbb_logout' );
+function wp_phpbb_logout()
+{
+	$temp =  phpbb::$config['wp_phpbb_bridge_board_path'];
+	 return $temp.'ucp.php?mode=logout&amp;sid='.phpbb::$user->session_id;
+}
 ?>
