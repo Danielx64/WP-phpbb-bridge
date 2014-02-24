@@ -44,8 +44,9 @@ function wp_phpbb_logout()
 add_filter( 'login_url', 'wp_phpbb_login' );
 function wp_phpbb_login()
 {
+	$redirect = request_var('redirect', home_url(add_query_arg(array())));
 	$temp =  phpbb::$config['wp_phpbb_bridge_board_path'];
-	 return $temp.'ucp.php?mode=login';
+	 return $temp.'ucp.php?mode=login&amp;redirect='.$redirect;
 }
 
 // Thank-you Dion Designs :)
