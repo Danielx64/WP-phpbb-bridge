@@ -51,14 +51,12 @@ function phpbb_bridge_setup() {
 }
 add_action( 'after_setup_theme', 'phpbb_bridge_setup' );
 
-if (!defined('WP_ADMIN'))
-{
-	add_filter( 'logout_url', 'wp_phpbb_logout' );
-}
+add_filter( 'logout_url', 'wp_phpbb_logout' );
+
 function wp_phpbb_logout()
 {
 	$temp =  phpbb::$config['wp_phpbb_bridge_board_path'];
-	 return !is_admin() ? $temp.'ucp.php?mode=logout&amp;sid='.phpbb::$user->session_id : '';
+	 return $temp.'ucp.php?mode=logout&amp;sid='.phpbb::$user->session_id;
 }
 
 /**
@@ -811,4 +809,13 @@ function wphpbb_admin_notice() {
 }
 add_action( 'admin_notices', 'wphpbb_admin_notice' );
 
+if (!defined('IN_WP_PHPBB_BRIDGE'))
+{
+if (!defined('WP_DONTLOAD'))
+{
+	global $wp_phpbb_bridge_config, $phpbb_root_path, $phpEx;
+	global $auth, $config, $db, $template, $user, $cache;
+	include(TEMPLATEPATH . '/includes/wp_phpbb_bridge.php');
+}
+}
 ?>
