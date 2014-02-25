@@ -54,15 +54,21 @@ add_action( 'after_setup_theme', 'phpbb_bridge_setup' );
 if (!defined('WP_ADMIN'))
 {
 	add_filter( 'logout_url', 'wp_phpbb_logout' );
+	add_filter( 'login_url', 'wp_phpbb_login' );
 }
 
 function wp_phpbb_logout()
 {
 	$temp =  phpbb::$config['wp_phpbb_bridge_board_path'];
 	return !is_admin() ? $temp.'ucp.php?mode=logout&amp;sid='.phpbb::$user->session_id : '';
-	return $temp.'ucp.php?mode=logout&amp;sid='.phpbb::$user->session_id;
 }
 
+function wp_phpbb_login()
+{
+	$redirect = request_var('redirect', home_url(add_query_arg(array())));
+	$temp =  phpbb::$config['wp_phpbb_bridge_board_path'];
+	 return $temp.'ucp.php?mode=login&amp;redirect='.$redirect;
+}
 /**
  * Add a form field with the phpbb user session ID
  *
