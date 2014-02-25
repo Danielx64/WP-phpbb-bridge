@@ -51,12 +51,16 @@ function phpbb_bridge_setup() {
 }
 add_action( 'after_setup_theme', 'phpbb_bridge_setup' );
 
-add_filter( 'logout_url', 'wp_phpbb_logout' );
+if (!defined('WP_ADMIN'))
+{
+	add_filter( 'logout_url', 'wp_phpbb_logout' );
+}
 
 function wp_phpbb_logout()
 {
 	$temp =  phpbb::$config['wp_phpbb_bridge_board_path'];
-	 return $temp.'ucp.php?mode=logout&amp;sid='.phpbb::$user->session_id;
+	return !is_admin() ? $temp.'ucp.php?mode=logout&amp;sid='.phpbb::$user->session_id : '';
+	return $temp.'ucp.php?mode=logout&amp;sid='.phpbb::$user->session_id;
 }
 
 /**
@@ -99,119 +103,6 @@ function propress_enqueue_js_scripts() {
 
 }
 add_action( 'wp_enqueue_scripts', 'propress_enqueue_js_scripts' );
-
-/**
- * Pagination routine, generates page number sequence
- * 
- * Based off : phpbb3.0.8
- * File : phpbb/includes/functions.php
- */
-function wp_generate_pagination($base_url, $num_items, $per_page, $on_page)
-{
-	$seperator = '<span class="page-sep">' . phpbb::$user->lang['COMMA_SEPARATOR'] . '</span>';
-	$total_pages = ceil($num_items / $per_page);
-
-	if ($total_pages == 1 || !$num_items)
-	{
-		return false;
-	}
-
-	global $wp_rewrite;
-	global $paged;
-
-	$paged = $on_page;
-	$page_delim = 'cpage=';
-	$url_delim = (strpos($base_url, '?') === false) ? '?' : ((strpos($base_url, '?') === strlen($base_url) - 1) ? '' : '&amp;');
-	$url_delim2 = '';
-
-	if ($wp_rewrite->using_permalinks())
-	{
-		$page_delim = 'comment-page-';
-		$url_delim = '';
-		$url_delim2 = '/#comments';
-	}
-
-	$page_string = ($on_page == 1) ? '<strong>1</strong>' : '<a href="' . $base_url . '">1</a>';
-	$max_pages = min(ceil($num_items / $total_pages), 4);
-
-	if ($total_pages > 5)
-	{
-		$start_cnt = min(max(1, $on_page - $max_pages), $total_pages - 5);
-		$end_cnt = max(min($total_pages, $on_page + $max_pages), 6);
-
-		$page_string .= ($start_cnt > 1) ? ' ... ' : $seperator;
-
-		for ($i = $start_cnt + 1; $i < $end_cnt; $i++)
-		{
-			$page_string .= ($i == $on_page) ? '<strong>' . $i . '</strong>' : '<a href="' . $base_url . "{$url_delim}{$page_delim}" . $i . $url_delim2 . '">' . $i . '</a>';
-			if ($i < $end_cnt - 1)
-			{
-				$page_string .= $seperator;
-			}
-		}
-
-		$page_string .= ($end_cnt < $total_pages) ? ' ... ' : $seperator;
-	}
-	else
-	{
-		$page_string .= $seperator;
-
-		for ($i = 2; $i < $total_pages; $i++)
-		{
-			$page_string .= ($i == $on_page) ? '<strong>' . $i . '</strong>' : '<a href="' . $base_url . "{$url_delim}{$page_delim}" . $i . $url_delim2 . '">' . $i . '</a>';
-			if ($i < $total_pages)
-			{
-				$page_string .= $seperator;
-			}
-		}
-	}
-
-	$page_string .= ($on_page == $total_pages) ? '<strong>' . $total_pages . '</strong>' : '<a href="' . $base_url . "{$url_delim}{$page_delim}" . $total_pages . '">' . $total_pages . '</a>';
-
-	return $page_string;
-}
-
-/**
- * Generate topic pagination
- * 
- * Based off : phpbb3.0.8
- * File : phpbb/includes/functions_display.php
- */
-function wp_topic_generate_pagination($url, $replies, $per_page)
-{
-	$url_delim = (strpos($url, '?') === false) ? '?' : ((strpos($url, '?') === strlen($url) - 1) ? '' : '&amp;');
-
-	if (($replies + 1) > $per_page)
-	{
-		$total_pages = ceil(($replies + 1) / $per_page);
-		$pagination = '';
-
-		$times = 1;
-		for ($j = 0; $j < $replies + 1; $j += $per_page)
-		{
-			$pagination .= '<a href="' . $url . ($j == 0 ? '' : "{$url_delim}cpage=" . $times) . '">' . $times . '</a>';
-			if ($times == 1 && $total_pages > 5)
-			{
-				$pagination .= ' ... ';
-
-				// Display the last three pages
-				$times = $total_pages - 3;
-				$j += ($total_pages - 4) * $per_page;
-			}
-			else if ($times < $total_pages)
-			{
-				$pagination .= '<span class="page-sep">' . phpbb::$user->lang['COMMA_SEPARATOR'] . '</span>';
-			}
-			$times++;
-		}
-	}
-	else
-	{
-		$pagination = '';
-	}
-
-	return $pagination;
-}
 
 /**
  * Capture the output of a function, which simply echo's a string. 
@@ -809,13 +700,4 @@ function wphpbb_admin_notice() {
 }
 add_action( 'admin_notices', 'wphpbb_admin_notice' );
 
-if (!defined('IN_WP_PHPBB_BRIDGE'))
-{
-if (!defined('WP_DONTLOAD'))
-{
-	global $wp_phpbb_bridge_config, $phpbb_root_path, $phpEx;
-	global $auth, $config, $db, $template, $user, $cache;
-	include(TEMPLATEPATH . '/includes/wp_phpbb_bridge.php');
-}
-}
 ?>
