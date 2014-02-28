@@ -42,34 +42,6 @@ function login_phpbb2wp($username, $password, $ip = '', $browser = '', $forwarde
 	
 	global $db, $config;
 /*
-function check_wp_account($username, $password)
-{
-	global $db, $config, $user;
-	 $username = strtolower($username);
-        $sql = 'SELECT user_id, username, user_email
-                FROM ' . USERS_TABLE . "
-                WHERE username_clean = '" . $db->sql_escape(utf8_clean_string($username)) . "'";
-        $result = $db->sql_query($sql);
-        $phpBB_user = $db->sql_fetchrow($result);
-
-		$path = $config['phpbb2wp_wppath'];
-		// Loads the WordPress Environment 
-		include ''.$path.'/wp-load.php';
-	if(!username_exists($username)) 
-	{
-	$args = array(
-				'user_pass'=>$password,
-				'user_login'=>$username,
-				'user_nicename'=>$username,
-				'user_email'=>$phpBB_user['user_email'],
-				'display_name'=>$username,
-				'role'=>"subscriber"
-				);
-		@define('WP_IMPORTING', true);
-		$importwp = wp_insert_user($args);
-		update_user_meta($importwp, 'phpbb_userid', $phpBB_user['user_id']);
-	}
- };
 
 */	// do not allow empty password
 	if (!$password)
@@ -284,7 +256,6 @@ function check_wp_account($username, $password)
 			'status'		=> LOGIN_SUCCESS,
 			'error_msg'		=> false,
 			'user_row'		=> $row,
-			//check_wp_account($username, $password)
 		);
 	}
 
@@ -311,7 +282,7 @@ function logout_phpbb2wp($config)
 	/** Loads the WordPress Environment */
 	define('WP_DONTLOAD', true);
 	define('WP_USE_THEMES', false);
-	include ''.$path.'wp-load.php';
+	include '' . $path . 'wp-load.php';
 	wp_logout();
 	wp_clear_auth_cookie();
 }

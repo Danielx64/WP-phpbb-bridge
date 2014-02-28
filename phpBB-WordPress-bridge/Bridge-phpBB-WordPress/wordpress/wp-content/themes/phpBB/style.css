@@ -1,5 +1,5 @@
 /*
-Theme Name: phpB to WordPress
+Theme Name: phpBB to WordPress
 Description: Style based off ProSilver.
 Version: v1.0.1 
 Author: Danielx64
@@ -20,131 +20,165 @@ License: GPL
 
 /** Main layout 2 columns **/
 #page-body {
-	clear: both;
-	overflow: hidden;
+    clear: both;
+    overflow: hidden;
 }
+
 #wp-phpbb-bridge-container {
-	float: left;
-	margin: 1em -0 1em 0;
-	padding: 0;
-	width: 100%;
+    float: left;
+    margin: 1em -0 1em 0;
+    padding: 0;
+    width: 100%;
 }
+
 #content {
 }
+
 #wp-phpbb-bridge-primary {
-	float: right;
-	margin: 1em 0 1em 0;
-	overflow: hidden;
+    float: right;
+    margin: 1em 0 1em 0;
+    overflow: hidden;
 }
+
 #wp-phpbb-bridge-container h2 {
-	margin: 0 0 0.2em 0;
+    margin: 0 0 0.2em 0;
 }
+
 div.rules {
-	margin-top: 0;
+    margin-top: 0;
 }
+
 /** Topics & Posts **/
 .postbodyfull {
-	width: 100%;
+    width: 100%;
 }
+
 .postbody h3.first img {
-	vertical-align: middle;
-	margin-right: 5px;
+    vertical-align: middle;
+    margin-right: 5px;
 }
+
 .postbody .content {
-	font-size: 1.3em;
-	border-top: 1px solid #CCCCCC;
+    font-size: 1.3em;
+    border-top: 1px solid #CCCCCC;
 }
+
 .postbody .content p {
-	font-size: 1.1em;
+    font-size: 1.1em;
 }
+
 .notice {
-	margin-top: 0;
+    margin-top: 0;
 }
+
 p.author {
-	margin: 0 0 0.6em 0;
-	line-height: 2em;
-	border-bottom: 1px solid #EEEEEE;
+    margin: 0 0 0.6em 0;
+    line-height: 2em;
+    border-bottom: 1px solid #EEEEEE;
 }
+
 p.author .avatar {
     background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #EEEEEE;
     float: left;
     padding: 2px;
 }
+
 a.more-link {
-	text-decoration: none;
-	padding-top: 0.5em;
+    text-decoration: none;
+    padding-top: 0.5em;
 }
+
 .postmetadata {
-	margin: 1em 0;
-	padding: 0.5em;
-	background-color: #F8F8F8;
-	border: 1px solid #DDDDDD;
+    margin: 1em 0;
+    padding: 0.5em;
+    background-color: #F8F8F8;
+    border: 1px solid #DDDDDD;
 }
+
 blockquote {
-  background-image: none;
+    background-image: none;
 }
 
 /** Sidebar **/
 #wp-phpbb-bridge-primary h3 {
-	padding: 0;
+    padding: 0;
 
 }
+
 #wp-phpbb-bridge-primary ul.menu {
-	border: none;
-	list-style: none;
-	text-align: left;
+    border: none;
+    list-style: none;
+    text-align: left;
 }
+
 #wp-phpbb-bridge-primary ul.menu li {
-	border: none;
-	list-style: none;
-	margin: 0;
-	padding: 5px;
+    border: none;
+    list-style: none;
+    margin: 0;
+    padding: 5px;
 }
+
 #wp-phpbb-bridge-primary li.cat-item ul.children {
-	padding-left: 10px;
+    padding-left: 10px;
 }
 
 /** Search form **/
 #searchform {
-	margin: 1em 0;
+    margin: 1em 0;
 }
+
 #searchform #s {
-	border: 1px solid #B0B0B0;
-	font-size: 1.1em;
-	padding: 2px 2px 2px 17px;	
+    border: 1px solid #B0B0B0;
+    font-size: 1.1em;
+    padding: 2px 2px 2px 17px;
 }
 
 /** Footer **/
 a#site-generator {
-	background: url("images/wordpress.png") center left no-repeat;
-	display: inline-block;
-	line-height: 16px;
-	padding-left: 20px;
+    background: url("images/wordpress.png") center left no-repeat;
+    display: inline-block;
+    line-height: 16px;
+    padding-left: 20px;
 }
 
 .postmetadata-icons {
-	list-style: none outside none;
+    list-style: none outside none;
 }
 
 body#error-page {
-	width: 80% !important;
+    width: 80% !important;
 }
 
 .input-error {
-	border: 1px solid #ff0000 !important;
-	background-color : #ff0000 !important;
+    border: 1px solid #ff0000 !important;
+    background-color: #ff0000 !important;
 }
 
-.sticky {}
-.gallery-caption {}
-.aligncenter{text-align:center;}
-.alignnone {text-align:none;}
-.alignright { float:right;}
-.alignleft { float:left;}
+.sticky {
+}
+
+.gallery-caption {
+}
+
+.aligncenter {
+    text-align: center;
+}
+
+.alignnone {
+    text-align: none;
+}
+
+.alignright {
+    float: right;
+}
+
+.alignleft {
+    float: left;
+}
 
 a img.alignright {
-    float:right;
+    float: right;
     margin: 5px 0 20px 20px;
 }
 
@@ -153,7 +187,7 @@ a img.alignnone {
 }
 
 a img.alignleft {
-    float:left;
+    float: left;
     margin: 5px 20px 20px 0;
 }
 
@@ -186,27 +220,29 @@ a img.aligncenter {
 .wp-caption img {
     border: 0 none;
     height: auto;
-    margin:0;
+    margin: 0;
     max-width: 98.5%;
-    padding:0;
+    padding: 0;
     width: auto;
 }
 
 .wp-caption p.wp-caption-text {
-    font-size:11px;
-    line-height:17px;
-    margin:0;
-    padding:0 4px 5px;
+    font-size: 11px;
+    line-height: 17px;
+    margin: 0;
+    padding: 0 4px 5px;
 }
 
 .headerbar td img {
-	max-height: 75px;
+    max-height: 75px;
 }
+
 ul.linklist.wpmenu > li {
-	margin-right: 20px;
-	line-height: 2em;
-	font-size: 1.4em;
+    margin-right: 20px;
+    line-height: 2em;
+    font-size: 1.4em;
 }
+
 .wpmenu > li > a {
-	font-weight: bold;
+    font-weight: bold;
 }

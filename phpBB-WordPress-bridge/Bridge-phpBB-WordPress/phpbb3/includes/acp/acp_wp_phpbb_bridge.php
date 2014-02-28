@@ -70,9 +70,6 @@ class acp_wp_phpbb_bridge
 
 						'legend5'	=> 'ACP_SUBMIT_CHANGES',					)
 				);
-
-				
-
 			break;
 
 			default:

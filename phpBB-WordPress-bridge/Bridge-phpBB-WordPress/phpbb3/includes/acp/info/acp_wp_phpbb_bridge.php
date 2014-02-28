@@ -21,7 +21,7 @@ class acp_wp_phpbb_bridge_info
 			'title'		=> 'ACP_WP_PHPBB_BRIDGE',
 			'version'	=> '0.0.9',
 			'modes'		=> array(
-				'manage'		=> array('title' => 'ACP_WP_PHPBB_BRIDGE', 'auth' => 'acl_a_board', 'cat' => array('ACP_GENERAL_TASKS')),
+			'manage'		=> array('title' => 'ACP_WP_PHPBB_BRIDGE', 'auth' => 'acl_a_board', 'cat' => array('ACP_GENERAL_TASKS')),
 			),
 		);
 	}

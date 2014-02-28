@@ -13,9 +13,12 @@
 * @ignore
 **/
 
+//Load up external files
 require( get_template_directory() . '/includes/options.php' );
 require( get_template_directory() . '/includes/custom.php' );
 require( get_template_directory() . '/includes/updater.php' );
+require( get_template_directory() . '/includes/add-links.php' );
+require( get_template_directory() . '/includes/wp-profile.php' );
 
 // Hide WordPress Admin Bar
 add_filter('show_admin_bar', '__return_false');
@@ -31,31 +34,42 @@ remove_action('wp_head', 'start_post_rel_link', 10, 0);
 remove_action('wp_head', 'parent_post_rel_link', 10, 0);
 remove_action('wp_head', 'adjacent_posts_rel_link', 10, 0);
 
-function phpbb_bridge_setup() {
+add_action( 'admin_notices', 'wphpbb_admin_notice' );
+add_action( 'personal_options_update', 'wp_phpbb_save_extra_profile_fields' );
+add_action( 'edit_user_profile_update', 'wp_phpbb_save_extra_profile_fields' );
+add_action( 'after_setup_theme', 'phpbb_bridge_setup' );
+add_action( 'widgets_init', 'wp_phpbb_widgets_init');
+add_action( 'show_user_profile', 'wp_phpbb_add_extra_profile_fields', 10 );
+add_action( 'edit_user_profile', 'wp_phpbb_add_extra_profile_fields', 10 );
+add_action( 'publish_post', 'wp_phpbb_posting', 10, 2);
+add_action( 'wp_enqueue_scripts', 'propress_enqueue_js_scripts' );
+
+if (!defined('WP_ADMIN')) {
+	add_filter('logout_url', 'wp_phpbb_logout');
+	add_filter('login_url', 'wp_phpbb_login');
+}
+add_filter('the_content', 'show_phpbb_link');
+add_filter('widget_title', 'wp_phpbb_widget_title');
+add_filter('pre_set_site_transient_update_themes', 'check_for_update');
+add_filter('themes_api', 'my_theme_api_call', 10, 3);
+
+function phpbb_bridge_setup()
+{
 	// This theme supports a custom header image
-	add_theme_support( 'custom-header' );
+	add_theme_support('custom-header');
 
 	// This theme supports post thumbnails
-	add_theme_support( 'post-thumbnails' );
-	add_image_size( 'dd-featured', 384, 256 );
-	add_image_size( 'dd-featured-mini', 96, 64 );
+	add_theme_support('post-thumbnails');
+	add_image_size('dd-featured', 384, 256);
+	add_image_size('dd-featured-mini', 96, 64);
 
 	// This theme uses wp_nav_menu() in two locations.
-	register_nav_menus( array(
-		'primary'   => __( 'Header Menu', 'wp_phpbb3_bridge' ),
-		'secondary' => __( 'Footer Menu', 'wp_phpbb3_bridge' ),
-	) );
-	
-	load_theme_textdomain( 'wp_phpbb3_bridge', get_template_directory() . '/langs' );
-
+	register_nav_menus(array(
+		'primary' => __('Header Menu', 'wp_phpbb3_bridge'),
+		'secondary' => __('Footer Menu', 'wp_phpbb3_bridge'),
+	));
 }
-add_action( 'after_setup_theme', 'phpbb_bridge_setup' );
 
-if (!defined('WP_ADMIN'))
-{
-	add_filter( 'logout_url', 'wp_phpbb_logout' );
-	add_filter( 'login_url', 'wp_phpbb_login' );
-}
 
 function wp_phpbb_logout()
 {
@@ -69,16 +83,6 @@ function wp_phpbb_login()
 	$temp =  phpbb::$config['wp_phpbb_bridge_board_path'];
 	 return $temp.'ucp.php?mode=login&amp;redirect='.$redirect;
 }
-/**
- * Add a form field with the phpbb user session ID
- *
- */
-function phpbb_login_form()
-{
-	global $phpbb_session_id;
-	echo '<input type="hidden" name="sid" value="' . $phpbb_session_id . '" />';
-}
-
 
 /**
  * Insert some js files and or Extra layout 2 columns
@@ -104,11 +108,11 @@ function wp_phpbb_stylesheet()
 /**
  * Insert some js files
  */
-function propress_enqueue_js_scripts() {
-	wp_enqueue_style( 'phpbb-style', get_template_directory_uri() . '/style.css');
+function propress_enqueue_js_scripts()
+{
+	wp_enqueue_style('phpbb-style', get_template_directory_uri() . '/style.css');
 
 }
-add_action( 'wp_enqueue_scripts', 'propress_enqueue_js_scripts' );
 
 /**
  * Capture the output of a function, which simply echo's a string. 
@@ -122,10 +126,10 @@ add_action( 'wp_enqueue_scripts', 'propress_enqueue_js_scripts' );
 function wp_do_action($tag)
 {
 	// Retrieve arguments list
-    $_args = func_get_args();
+	$_args = func_get_args();
 
-    // Delete the first argument which is the class name
-    $_className = array_shift($_args);
+	// Delete the first argument which is the class name
+	$_className = array_shift($_args);
 
 	ob_start();
 
@@ -138,8 +142,7 @@ function wp_do_action($tag)
 	return $echo;
 }
 
-// Register sidebars by running wp_phpbb_widgets_init() on the widgets_init hook.
-add_action('widgets_init', 'wp_phpbb_widgets_init');
+
 /**
  * Register widgetized area, and available widdgets for the bridge.
  */
@@ -161,8 +164,6 @@ function wp_phpbb_widgets_init()
 	register_widget('WP_Widget_phpbb_recet_topics');
 }
 
-// Add a filter for the widget title by running wp_phpbb_widget_title() on the widget_title hook
-add_filter('widget_title', 'wp_phpbb_widget_title');
 /**
  * If the widget have no title, just add a "nonbreacking space" instead
  *
@@ -240,18 +241,6 @@ class WP_Widget_phpbb_recet_topics extends WP_Widget
 			phpbb::phpbb_recet_topics($instance, $this->defaults);
 	}
 }
-
-/**
- * Hooks a function on to a specific action.
- *
- * @param string $tag The name of the action to which the $function_to_add is hooked.
- * @param callback $function_to_add The name of the function you wish to be called.
- * @param int $priority optional. Used to specify the order in which the functions associated with a particular action are executed (default: 10). Lower numbers correspond with earlier execution, and functions with the same priority are executed in the order in which they were added to the action.
- * @param int $accepted_args optional. The number of arguments the function accept (default 1).
-**/
-$wp_phpbb_posting = (int) get_option('wp_phpbb_bridge_post_forum_id');
-
-add_action('publish_post', 'wp_phpbb_posting', 10, 2);
 
 /**
  * Called whenever a new entry is published in the Wordpress.
@@ -611,82 +600,6 @@ function wp_phpbb_html_to_bbcode(&$string)
 	return $string;
 }
 
-add_action( 'show_user_profile', 'wp_phpbb_add_extra_profile_fields', 10 );
-add_action( 'edit_user_profile', 'wp_phpbb_add_extra_profile_fields', 10 );
-function wp_phpbb_add_extra_profile_fields($user)
-{
-	if (!current_user_can('edit_user', $user->ID))
-	{
-		return false;
-	}
-
-	$phpbb_user_id = (isset($user->phpbb_userid) && $user->phpbb_userid) ? $user->phpbb_userid : 0;
-	?>
-	<table class="form-table">
-		<tr>
-			<th><label for="phpbb_userid"><?php _e('phpBB user ID', 'wp_phpbb3_bridge'); ?></label></th>
-			<td><input type="text" name="phpbb_userid" id="phpbb_userid" value="<?php echo $phpbb_user_id ?>" class="regular-text" /><br />
-				<span class="description"><?php _e("If you would like to change the phpBB user ID type a new one. This action will connect this user with one at your phpBB board.", 'wp_phpbb3_bridge'); ?></span></td>
-		</tr>
-	</table>
-	<?php
-}
-
-add_action( 'personal_options_update', 'wp_phpbb_save_extra_profile_fields' );
-add_action( 'edit_user_profile_update', 'wp_phpbb_save_extra_profile_fields' );
-function wp_phpbb_save_extra_profile_fields($user_id)
-{
-	if (!current_user_can('edit_user', $user_id))
-	{
-		return false;
-	}
-
-	$phpbb_user_id = (isset($_POST['phpbb_userid']) && $_POST['phpbb_userid'] != 0) ? $_POST['phpbb_userid'] : 0;
-	if ($phpbb_user_id == 0)
-	{
-		delete_user_meta($user_id, 'phpbb_userid');
-	}
-	else
-	{
-		update_user_meta($user_id, 'phpbb_userid', $phpbb_user_id);
-	}
-}
-
-// Thank-you Dion Designs :)
-function show_phpbb_link($content) {
-	if (!defined('IN_WP_PHPBB_BRIDGE'))
-	{
-		global $wp_phpbb_bridge_config, $phpbb_root_path, $phpEx;
-		global $auth, $config, $db, $template, $user, $cache;
-		include(TEMPLATEPATH . '/includes/wp_phpbb_bridge.php');
-	}
-	$postID = get_the_ID();
-	if(empty($postID)) {
-		return $content;
-	}
-	$sql = 'SELECT topic_id, forum_id, topic_replies FROM ' . TOPICS_TABLE . ' WHERE topic_wp_xpost = ' . $postID;
-	$result = phpbb::$db->sql_query($sql);
-	$post_data = phpbb::$db->sql_fetchrow($result);
-	$board_url = generate_board_url(false) . '/';
-	$web_path = (defined('PHPBB_USE_BOARD_URL_PATH') && PHPBB_USE_BOARD_URL_PATH) ? $board_url : PHPBB_ROOT_PATH;
-	$replies = $post_data['topic_replies'];
-
-	if ($post_data) {
-		$rsuffix = $rtext = $rbutton = '';
-		if ($replies) {
-			if ($replies != 1) {
-				$rsuffix = 's';
-			}
-			$rbutton = '&nbsp;&nbsp;&nbsp;&nbsp;<a class="button1" href="' . $web_path . 'viewtopic.php?f='. $post_data['forum_id'] . '&amp;t=' . $post_data['topic_id'] . '">View the Discussion</a>';
-			$rtext =  '<|DD|>' . $replies . ' Comment' . $rsuffix;
-		}
-		$content .= '<div class="xpost-link">' . '<a class="button1" href="' . $web_path . 'posting.php?mode=reply&amp;f=' . $post_data['forum_id'] . '&amp;t=' . $post_data['topic_id'] . '">Comment On this Article</a>' . $rbutton . '</div>' . $rtext;
-	}
-	return $content;
-}
-add_filter('the_content', 'show_phpbb_link');
-
-
 // Don't nag users who can't switch themes.
 if ( ! is_admin() || ! current_user_can( 'switch_themes' ) )
 	return;
@@ -704,6 +617,5 @@ function wphpbb_admin_notice() {
 	</div>
 	<?php
 }
-add_action( 'admin_notices', 'wphpbb_admin_notice' );
 
 ?>

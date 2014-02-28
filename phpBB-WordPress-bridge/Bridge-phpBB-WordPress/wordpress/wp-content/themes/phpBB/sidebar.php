@@ -13,17 +13,14 @@
  * @ignore
  */
 
-if (!defined('IN_WP_PHPBB_BRIDGE'))
-{
+if (!defined('IN_WP_PHPBB_BRIDGE')) {
 	exit;
 }
 
-if (is_active_sidebar('wp_phpbb-widget-area'))
-{
+if (is_active_sidebar('wp_phpbb-widget-area')) {
 	$dynamic_sidebar = wp_do_action('dynamic_sidebar', 'wp_phpbb-widget-area');
 
-	if ($dynamic_sidebar)
-	{
+	if ($dynamic_sidebar) {
 		// Styling the menu
 		$dynamic_sidebar = str_replace(array('<ul>', "<ul class='xoxo blogroll'>", '<ul id="recentcomments">'), '<ul class="menu">', $dynamic_sidebar);
 		// Styling the search block
@@ -31,17 +28,16 @@ if (is_active_sidebar('wp_phpbb-widget-area'))
 		$dynamic_sidebar = str_replace('id="s" ', 'id="s" class="inputbox search" ', $dynamic_sidebar);
 
 		// Make sure we set up the sidebar style
-		if (!did_action('wp_phpbb_stylesheet'))
-		{
+		if (!did_action('wp_phpbb_stylesheet')) {
 			// Extra layout 2 columns
 			add_action('wp_head', 'wp_phpbb_stylesheet');
 		}
 
 		list($sb_top, $sb_bottom) = explode('<|DD_RECENT_TOPICS|>', $dynamic_sidebar, 2);
 		phpbb::$template->assign_vars(array(
-			'DYNAMIC_SIDEBAR'	=> true,
-			'SIDEBAR_TOP'		=> $sb_top,
-			'SIDEBAR_BOTTOM'	=> $sb_bottom,
+			'DYNAMIC_SIDEBAR' => true,
+			'SIDEBAR_TOP' => $sb_top,
+			'SIDEBAR_BOTTOM' => $sb_bottom,
 		));
 	}
 }

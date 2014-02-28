@@ -70,7 +70,6 @@ $lang = array_merge($lang, array(
 	'WP_PHPBB_BRIDGE_XPOST'						=> 'Post forum ID',
 	'WP_PHPBB_BRIDGE_XPOST_EXPLAIN'				=> 'What forum do you want your crossposted posts to go to?',
 
-
 	// the page title numbering
 	'WP_PAGE_NUMBER'			=> 'Page %s',
 	'WP_MOD_TITLE'				=> 'phpBB to WordPress',
@@ -161,7 +160,6 @@ $lang = array_merge($lang, array(
 	'WP_BLOG_SUBJECT_PREFIX'			=> '[BLOG]: ',
 	'WP_BLOG_POST_PREFIX'				=> 'This is a [b]Blog entry[/b]. To read the original post, please Click » %1$s HERE %2$s',
 	'WP_BLOG_POST_TAIL'					=> '[b]Entry details: [/b]',
-
 ));
 
 ?>
