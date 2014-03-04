@@ -111,7 +111,7 @@ function wp_phpbb_stylesheet()
 function propress_enqueue_js_scripts()
 {
 	wp_enqueue_style('phpbb-style', get_template_directory_uri() . '/style.css');
-
+    wp_enqueue_script( 'phpbb-script', get_template_directory_uri() . '/js/jquery.validate.js', array( 'jquery' ));
 }
 
 /**
