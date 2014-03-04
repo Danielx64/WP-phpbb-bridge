@@ -159,6 +159,7 @@ if (have_posts()) {
 	$board_url = generate_board_url(false) . '/';
 	$redirect = request_var('redirect', home_url());
 	$web_path = phpbb::$config['wp_phpbb_bridge_board_path'];
+	$redirectpost = request_var('redirect', home_url(add_query_arg(array())));
 
 	// Assign post specific vars
 	phpbb::$template->assign_vars(array(
@@ -169,7 +170,7 @@ if (have_posts()) {
 		// Reply
 		'S_IS_LOCKED'			=> ($post->comment_status == 'open') ? false : true,
 		'S_DISPLAY_REPLY_INFO'	=> ($post->comment_status == 'open' && (phpbb::$auth->acl_get('f_reply', phpbb::$config['wp_phpbb_bridge_permissions_forum_id']) || phpbb::$user->data['user_id'] == ANONYMOUS)) ? true : false,
-		'S_DISPLAY_NOTE'		=> (get_option('comment_registration') && phpbb::$user->data['user_id'] == ANONYMOUS) ? sprintf(phpbb::$user->lang['WP_LOGIN_NEED'], get_option('siteurl') . '/?action=login') : '',
+		'S_DISPLAY_NOTE'		=> (get_option('comment_registration') && phpbb::$user->data['user_id'] == ANONYMOUS) ? sprintf(phpbb::$user->lang['WP_LOGIN_NEED'], $web_path.'ucp.php?mode=login&amp;redirect='.$redirectpost) : '',
 
 		// Icons
 		'REPLY_IMG'				=> ($post->comment_status == 'open') ? phpbb::$user->img('button_topic_reply', 'REPLY_TO_TOPIC') : phpbb::$user->img('button_topic_locked', 'TOPIC_LOCKED'),
