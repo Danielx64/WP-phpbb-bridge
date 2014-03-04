@@ -101,10 +101,11 @@ if (have_posts()) {
 		$comment_author_email = strtolower(request_var('email', phpbb::$user->data['user_email']));
 		$comment_author_url   = strtolower(request_var('url', phpbb::$user->data['user_website']));
 		$comment_content      = utf8_normalize_nfc(request_var('comment', '', true));
+		$temp =  phpbb::$config['wp_phpbb_bridge_board_path'];
 
 		// Assign posting specific vars
 		phpbb::$template->assign_vars(array(
-			'S_LOGGED_AS'			=> sprintf(phpbb::$user->lang['WP_LOGGED_AS_OUT'], phpbb::$user->data['username'], get_option('siteurl') . '/?action=logout'),
+			'S_LOGGED_AS'			=> sprintf(phpbb::$user->lang['WP_LOGGED_AS_OUT'], phpbb::$user->data['username'], $temp.'ucp.php?mode=logout&amp;sid='.phpbb::$user->session_id ),
 			'U_ACTION'				=> get_option('siteurl') . '/wp-comments-post.php',
 			'S_REPLYTO'				=> wp_nonce_field('replyto-comment', '_ajax_nonce-replyto-comment', false, false),
 			'S_UNFILTEREDHTML'		=> (current_user_can('unfiltered_html')) ? wp_nonce_field('unfiltered-html-comment_' . $post_id, '_wp_unfiltered_html_comment', false, false) : '',
