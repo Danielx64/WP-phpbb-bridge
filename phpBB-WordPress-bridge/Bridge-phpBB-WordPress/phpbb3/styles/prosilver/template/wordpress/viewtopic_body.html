@@ -18,8 +18,13 @@
 				<!-- ENDIF -->
 
 					<!-- IF postrow.S_COMMENT -->
+					<p class="author">
+						<!-- IF postrow.POSTER_AVATAR -->{postrow.POSTER_AVATAR}<br /><!-- ENDIF -->
+						<!-- IF S_IS_BOT -->{postrow.MINI_POST_IMG}<!-- ELSE --><a href="{postrow.U_MINI_POST}">{postrow.MINI_POST_IMG}</a><!-- ENDIF -->
+						{L_POST_BY_AUTHOR} <strong>{postrow.POST_AUTHOR_FULL}</strong> &raquo; {postrow.POST_DATE}
+					</p>
 					<!-- ELSE -->
-						<h3 class="first"><a href="{postrow.U_MINI_POST}">{postrow.POST_SUBJECT}</a></h3>
+						<h3 class="first"><a href="{postrow.U_MINI_POST}">{postrow.MINI_POST_IMG}</a>{postrow.POST_SUBJECT}</h3>
 					<!-- ENDIF -->
 
 					<!-- IF postrow.S_POST_UNAPPROVED or postrow.S_POST_REPORTED or postrow.S_POST_TRASHED -->
@@ -39,7 +44,6 @@
 						<!-- IF postrow.POST_CATS --><br />{postrow.POST_CATS}<!-- ENDIF -->
 						<!-- IF postrow.POST_TAGS --><br />{postrow.POST_TAGS}<!-- ENDIF -->
 						<!-- IF postrow.XPOST_EDIT --><!-- IF postrow.POST_CATS --> | <!-- ELSE --><br /><!-- ENDIF --> <a class="post-edit-link" href="{postrow.U_POST_EDIT}" title="{L_EDIT_POST}">{L_EDIT_POST}</a><!-- ENDIF -->
-						<!-- IF postrow.U_FOLLOW_FEED --><br />{postrow.U_FOLLOW_FEED}<!-- ENDIF -->
 						<!-- IF postrow.U_YES_COMMENT_YES_PING --><br />{postrow.U_YES_COMMENT_YES_PING}<!-- ENDIF -->
 						<!-- IF postrow.U_NO_COMMENT_YES_PING --><br />{postrow.U_NO_COMMENT_YES_PING}<!-- ENDIF -->
 						<!-- IF postrow.U_YES_COMMENT_NO_PING --><br />{postrow.U_YES_COMMENT_NO_PING}<!-- ENDIF -->
@@ -56,12 +60,33 @@
 			<span class="corners-bottom"><span></span></span></div>
 		</div>
 
+		<!-- IF postrow.S_FIRST_ROW and POST_REPLIES --><br /><h4 id="comments">{POST_REPLIES}</h4><!-- ENDIF -->
+		<hr class="divider" />
+
 		<!-- END postrow -->
 
-		<!-- IF PREVIOUS_PAGE or NEXT_PAGE -->
 		<hr />
-		<div style="text-align: center;"><!-- IF PREVIOUS_PAGE -->{PREVIOUS_PAGE}<!-- ENDIF --><strong>{TOTAL_POSTS}</strong> &bull; {PAGE_NUMBER}<!-- IF NEXT_PAGE -->{NEXT_PAGE}<!-- ENDIF --></div>
+		<div class="topic-actions">
+		<!-- IF not S_IS_BOT and S_DISPLAY_REPLY_INFO -->
+			<div class="buttons">
+				<!-- IF S_IS_LOCKED -->
+					<div class="locked-icon"><a href="#" title="{L_TOPIC_LOCKED}"><span></span>{L_TOPIC_LOCKED_SHORT}{L_POST_REPLY}</a></div>
+				<!-- ELSE -->
+					<div class="reply-icon"><a id="reply-button" title="{L_POST_REPLY}"><span></span>{L_POST_REPLY}</a></div>
+				<!-- ENDIF -->
+			</div>
 		<!-- ENDIF -->
 
+		<!-- IF PAGINATION or TOTAL_POSTS -->
+			<div class="pagination">
+				{TOTAL_POSTS}
+				<!-- IF PAGE_NUMBER --><!-- IF PAGINATION --> &bull; {PAGE_NUMBER} &bull; <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF --><!-- ENDIF -->
+			</div>
+		<!-- ENDIF -->
+		</div>
 
-
+	<!-- IF not S_IS_BOT and not S_IS_LOCKED -->
+		<div id="respond">
+			<!-- INCLUDE wordpress/posting_body.html -->
+		</div>
+	<!-- ENDIF -->
