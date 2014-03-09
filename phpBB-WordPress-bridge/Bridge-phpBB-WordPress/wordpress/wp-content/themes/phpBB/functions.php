@@ -275,6 +275,11 @@ function wp_phpbb_posting($post_ID, $post)
 		return false;
 	}
 
+    if (!phpbb::$config['wp_phpbb_bridge_enablecrosspost'])
+    {
+        return false;
+    }
+
 	// Define some initial variables
 	$mode = 'post';
 	$forum_id = $topic_id = $post_id = 0;

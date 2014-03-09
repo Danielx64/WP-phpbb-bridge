@@ -53,6 +53,7 @@ class acp_wp_phpbb_bridge
 						'legend1'	=> 'WP_PHPBB_BRIDGE_BASIC',
 						'show_homepage'			=> array('lang' => 'SHOW_HOMEPAGE',			'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
 						'crosspostcontent'		=> array('lang' => 'CROSSPOSTCONTENT',		'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
+						'wp_phpbb_bridge_enablecrosspost'		=> array('lang' => 'ENABLECROSSPOST',		'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
 						'homepage_url'			=> array('lang' => 'HOMEPAGE_URL',			'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),
 						'homepage_title'		=> array('lang' => 'HOMEPAGE_TITLE',		'validate' => 'string',	'type' => 'text:40:255', 'explain' => true),
 						'wp_phpbb_bridge_post_forum_id'			=> array('lang' => 'WP_PHPBB_BRIDGE_XPOST',			'validate' => 'int:0', 'type' => 'text:40:255', 'method' => false, 'explain' => true),
