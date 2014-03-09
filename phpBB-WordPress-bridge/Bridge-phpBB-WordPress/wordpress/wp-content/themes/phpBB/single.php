@@ -169,7 +169,6 @@ if (have_posts()) {
 
 		// Reply
 		'S_IS_LOCKED'			=> ($post->comment_status == 'open') ? false : true,
-		'S_DISPLAY_REPLY_INFO'	=> ($post->comment_status == 'open' && (phpbb::$auth->acl_get('f_reply', phpbb::$config['wp_phpbb_bridge_permissions_forum_id']) || phpbb::$user->data['user_id'] == ANONYMOUS)) ? true : false,
 		'S_DISPLAY_NOTE'		=> (get_option('comment_registration') && phpbb::$user->data['user_id'] == ANONYMOUS) ? sprintf(phpbb::$user->lang['WP_LOGIN_NEED'], $web_path.'ucp.php?mode=login&amp;redirect='.$redirectpost) : '',
 
 		// Icons
