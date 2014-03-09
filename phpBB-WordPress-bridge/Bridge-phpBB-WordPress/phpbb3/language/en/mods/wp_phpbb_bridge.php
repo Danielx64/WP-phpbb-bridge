@@ -70,6 +70,7 @@ $lang = array_merge($lang, array(
 	'WP_PHPBB_BRIDGE_XPOST'						=> 'Post forum ID',
 	'WP_PHPBB_BRIDGE_XPOST_EXPLAIN'				=> 'What forum do you want your crossposted posts to go to?',
 
+
 	// the page title numbering
 	'WP_PAGE_NUMBER'			=> 'Page %s',
 	'WP_MOD_TITLE'				=> 'phpBB to WordPress',
@@ -160,6 +161,37 @@ $lang = array_merge($lang, array(
 	'WP_BLOG_SUBJECT_PREFIX'			=> '[BLOG]: ',
 	'WP_BLOG_POST_PREFIX'				=> 'This is a [b]Blog entry[/b]. To read the original post, please Click » %1$s HERE %2$s',
 	'WP_BLOG_POST_TAIL'					=> '[b]Entry details: [/b]',
+
+	
+	'WP_YES_COMMENT_YES_PING'	=> 'You can <a href="%1$s#respond">leave a response</a>, or <a href="%2$s" rel="trackback">trackback</a> from your own site.',
+	'WP_NO_COMMENT_YES_PING'	=> 'Responses are currently closed, but you can <a href="%s" rel="trackback">trackback</a> from your own site.',
+	'WP_YES_COMMENT_NO_PING'	=> 'You can skip to the end and leave a response. Pinging is currently not allowed.',
+	'WP_NO_COMMENT_NO_PING'		=> 'Both comments and pings are currently closed.',
+	'WP_NO_COMMENTS'			=> 'No Comments',
+	'WP_ONE_COMMENT'			=> '1 Comment',
+	'WP_COMMENTS'				=> '%s Comments',
+	'WP_COMMENTS_ON'			=> 'Comment on %s',
+	'WP_COMMENTS_OFF'			=> 'Comments Off',
+	'WP_COMMENTS_PASSWORED'		=> 'Enter your password to view comments.',
+	'WP_COMMENTS_TO'			=> ' to “%s” ',
+	'WP_PAGINATION_PREVIOUS'	=> 'Older Comments',
+	'WP_PAGINATION_NEXT'		=> 'Newer Comments',
+	// Comment form
+	'WP_LOGIN_NEED'						=> 'You must be <a href="%s">logged in</a> to post a comment.',
+	'WP_LOGGED_IN'						=> 'Logged in as',
+	'WP_LOGGED_AS_OUT'					=> '%1$s. <a href="%2$s" title="Log out of this account">Log out?</a>',
+	'WP_REQUIRED_FIELDS'				=> 'Required fields are marked as :',
+	'WP_USERNAME_REQUIRED_NOTE'			=> '* Please, fill the field "Username" with your name or nickname.',
+	'WP_EMAIL_REQUIRED_NOTE'			=> '* Please, fill the field "E-mail address" with a valid email.',
+	'WP_EMAIL_REQUIRED_MINLENGTH'		=> '* The field "E-mail address" must contain at least 10 characters.',
+	'WP_WEBSITE_REQUIRED_NOTE'			=> '* Please, fill the field "Website" with a valid url.',
+	'WP_WEBSITE_REQUIRED_MINLENGTH'		=> '* The field "Website" must contain at least 10 characters.',
+	'WP_MESSAGE_REQUIRED_NOTE'			=> '* Please, fill the field "Message body" with a valid comment.',
+	'WP_MESSAGE_REQUIRED_MINLENGTH'		=> '* The field "Message body" must contain at least 20 characters.',
+
+	'WP_EMAIL_NOTE'						=> 'Your email address will not be published.',
+	'WP_ALLOWED_TAGS'					=> 'You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: %s',
+
 ));
 
 ?>
