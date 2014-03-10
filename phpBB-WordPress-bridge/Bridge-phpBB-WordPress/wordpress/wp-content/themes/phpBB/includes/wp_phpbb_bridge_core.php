@@ -458,7 +458,7 @@ class phpbb
 			'S_REGISTER_ENABLED'=> (self::$config['require_activation'] != USER_ACTIVATION_DISABLE) ? true : false,
 			'U_REGISTER_POPUP'	=> "$web_path/ucp.php?mode=register",
 			'S_LOGIN_REDIRECT'	=> build_hidden_fields(array('redirect' => $redirect)),
-			'U_LOGIN_LOGOUT_POPUP'	=> (!self::wp_phpbb_user_logged()) ? "$web_path/ucp.php?mode=login&amp;redirect=" . $redirect  : "$web_path/ucp.php?mode=logout&amp;sid=" . phpbb::$user->session_id . "&amp;redirect=" . $redirect ,
+			'U_LOGIN_LOGOUT'	=> (!self::wp_phpbb_user_logged()) ? "$web_path/ucp.php?mode=login&amp;redirect=" . $redirect  : "$web_path/ucp.php?mode=logout&amp;sid=" . phpbb::$user->session_id . "&amp;redirect=" . $redirect ,
 
 			'U_WP_ACP'			=> (self::$user->data['user_type'] == USER_FOUNDER || current_user_can('Contributor')) ? admin_url() : '',
 			'U_POST_NEW_TOPIC'	=> (self::$user->data['user_type'] == USER_FOUNDER || current_user_can('Contributor')) ? admin_url('post-new.php') : '',
