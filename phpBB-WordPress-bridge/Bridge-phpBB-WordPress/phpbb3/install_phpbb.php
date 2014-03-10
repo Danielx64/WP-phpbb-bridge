@@ -137,11 +137,11 @@ function ubm_custom_install($action, $version)
 	if ($action == 'install') {
 		switch ($version) {
 			case '0.8.1' :
-				$db->sql_query('ALTER TABLE ' . TOPICS_TABLE . 'CHANGE topic_wp_xpost topic_wp_xpost VARCHAR( 10 ) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL');
+				$db->sql_query('ALTER TABLE ' . TOPICS_TABLE . ' CHANGE topic_wp_xpost topic_wp_xpost VARCHAR( 10 ) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL ');
 				$umil->umil_end();
 				break;
 			case '0.8.6' :
-				$db->sql_query('ALTER TABLE ' . TOPICS_TABLE . ' ADD INDEX xpost (topic_wp_xpost)');
+				$db->sql_query('ALTER TABLE ' . TOPICS_TABLE . ' ADD INDEX xpost (topic_wp_xpost) ');
 				$umil->umil_end();
 				break;
 			case '0.8.7' :
