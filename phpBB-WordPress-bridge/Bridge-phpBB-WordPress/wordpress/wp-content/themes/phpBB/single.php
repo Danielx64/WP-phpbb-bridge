@@ -51,7 +51,6 @@ if (have_posts()) {
 
 			'POST_TAGS' => get_the_tag_list(phpbb::$user->lang['WP_TITLE_TAGS'] . ': ', ', ', ''),
 			'POST_CATS' => sprintf(phpbb::$user->lang['WP_POSTED_IN'], get_the_category_list(', ')),
-			'U_FOLLOW_FEED'		=> sprintf(phpbb::$user->lang['WP_FOLLOW_FEED'], get_post_comments_feed_link($post_id)),
 			// Both Comments and Pings are open
 			'U_YES_COMMENT_YES_PING'	=> (('open' == $post->comment_status) && ('open' == $post->ping_status)) ? sprintf(phpbb::$user->lang['WP_YES_COMMENT_YES_PING'], get_permalink(), get_trackback_url()) : '',
 			// Only Pings are Open
@@ -101,7 +100,7 @@ if (have_posts()) {
 		$comment_author_email = strtolower(request_var('email', phpbb::$user->data['user_email']));
 		$comment_author_url   = strtolower(request_var('url', phpbb::$user->data['user_website']));
 		$comment_content      = utf8_normalize_nfc(request_var('comment', '', true));
-		$temp =  phpbb::$config['wp_phpbb_bridge_board_path'];
+        $temp =  phpbb::$config['wp_phpbb_bridge_board_path'];
 
 		// Assign posting specific vars
 		phpbb::$template->assign_vars(array(
@@ -159,7 +158,7 @@ if (have_posts()) {
 	$board_url = generate_board_url(false) . '/';
 	$redirect = request_var('redirect', home_url());
 	$web_path = phpbb::$config['wp_phpbb_bridge_board_path'];
-	$redirectpost = request_var('redirect', home_url(add_query_arg(array())));
+    $redirectpost = request_var('redirect', home_url(add_query_arg(array())));
 
 	// Assign post specific vars
 	phpbb::$template->assign_vars(array(
@@ -169,6 +168,7 @@ if (have_posts()) {
 
 		// Reply
 		'S_IS_LOCKED'			=> ($post->comment_status == 'open') ? false : true,
+		//'S_DISPLAY_REPLY_INFO'	=> ($post->comment_status == 'open' && (phpbb::$auth->acl_get('f_reply', phpbb::$config['wp_phpbb_bridge_permissions_forum_id']) || phpbb::$user->data['user_id'] == ANONYMOUS)) ? true : false,
 		'S_DISPLAY_NOTE'		=> (get_option('comment_registration') && phpbb::$user->data['user_id'] == ANONYMOUS) ? sprintf(phpbb::$user->lang['WP_LOGIN_NEED'], $web_path.'ucp.php?mode=login&amp;redirect='.$redirectpost) : '',
 
 		// Icons
@@ -250,7 +250,7 @@ function wp_phpbb_update_comment_count($comment_count)
 	{
 		global $wpdb;
 		//	$new = (int) $wpdb->get_var( $wpdb->prepare("SELECT COUNT(*) FROM $wpdb->comments WHERE comment_post_ID = %d AND comment_approved = '1'", $post_id) );
-		$comment_count = (int) $wpdb->get_var( $wpdb->prepare("SELECT COUNT(*) FROM $wpdb->comments WHERE comment_post_ID = %d AND user_id  <> '1' AND comment_approved = '1' ", $post_id) );
+		$comment_count = (int) $wpdb->get_var( $wpdb->prepare("SELECT COUNT(*) FROM $wpdb->comments WHERE comment_post_ID = %d  AND comment_approved = '1' ", $post_id) );
 	}
 
 	return $comment_count;

@@ -246,3 +246,31 @@ ul.linklist.wpmenu > li {
 .wpmenu > li > a {
     font-weight: bold;
 }
+
+#commentform fieldset.fields1 dt {
+    width: 20em;
+}
+#commentform fieldset.fields1 dd {
+    margin-left: 20em;
+}
+#commentform .required {
+    color: #ff4b33;
+    font-weight: bold;
+}
+#commentform label {
+    font-weight: bold;
+}
+#commentform #message-box {
+    width: 99.5%;
+}
+#commentform textarea.message-box {
+    width: 99.5%;
+}
+#commentform .form-allowed-tags {
+    color: #888;
+    font-size: 12px;
+    line-height: 18px;
+}
+#commentform .form-allowed-tags code {
+    font-size: 11px;
+}

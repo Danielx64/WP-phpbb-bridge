@@ -100,7 +100,7 @@ function wp_phpbb_comment_loop($comment, $args)
 		'S_POST_UNAPPROVED'	=> ($status == 'unapproved') ? true : false,
 		'S_POST_REPORTED'	=> ($status == 'spam') ? true : false,
 		'S_POST_TRASHED'	=> ($status == 'trash') ? true : false,
-		'MESSAGE'			=> censor_text(wp_do_action('comment_text', $comment_id)),
+		'MESSAGE'			=> wp_do_action('comment_text', $comment_id),
 	);
 
 	$autor = phpbb::phpbb_the_autor_full($comment->user_id, false, true);

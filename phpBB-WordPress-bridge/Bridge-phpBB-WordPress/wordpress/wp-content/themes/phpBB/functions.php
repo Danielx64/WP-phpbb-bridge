@@ -13,6 +13,7 @@
 * @ignore
 **/
 
+
 //Load up external files
 require( get_template_directory() . '/includes/options.php' );
 require( get_template_directory() . '/includes/custom.php' );
@@ -49,6 +50,7 @@ if (!defined('WP_ADMIN')) {
 	add_filter('login_url', 'wp_phpbb_login');
 	add_filter('register_url', 'wp_phpbb_register');
 }
+
 add_filter('the_content', 'show_phpbb_link');
 add_filter('widget_title', 'wp_phpbb_widget_title');
 add_filter('pre_set_site_transient_update_themes', 'check_for_update');
@@ -82,7 +84,7 @@ function wp_phpbb_login()
 {
 	$redirect = request_var('redirect', home_url(add_query_arg(array())));
 	$temp =  phpbb::$config['wp_phpbb_bridge_board_path'];
-	 return $temp.'ucp.php?mode=login&amp;redirect='.$redirect;
+	return $temp.'ucp.php?mode=login&amp;redirect='.$redirect;
 }
 
 function wp_phpbb_register()
@@ -117,7 +119,7 @@ function wp_phpbb_stylesheet()
 function propress_enqueue_js_scripts()
 {
 	wp_enqueue_style('phpbb-style', get_template_directory_uri() . '/style.css');
-  //  wp_enqueue_script( 'phpbb-script', get_template_directory_uri() . '/js/jquery.validate.js', array( 'jquery' ));
+    wp_enqueue_script( 'phpbb-script', get_template_directory_uri() . '/js/jquery.validate.js', array( 'jquery' ));
 }
 
 /**
@@ -279,7 +281,6 @@ function wp_phpbb_posting($post_ID, $post)
     {
         return false;
     }
-
 	// Define some initial variables
 	$mode = 'post';
 	$forum_id = $topic_id = $post_id = 0;
