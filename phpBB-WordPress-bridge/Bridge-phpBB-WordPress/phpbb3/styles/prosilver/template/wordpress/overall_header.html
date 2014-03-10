@@ -11,17 +11,3 @@
 	</table>
 	<span class="corners-bottom"><span></span></span></div>
 </div>
-
-<div class="navbar">
-	<div class="inner"><span class="corners-top"><span></span></span>
-		<ul class="linklist navlinks">
-				<li class="icon-home"><a href="{U_HOMEPAGE}" accesskey="h">{U_HOMEPAGE_TITLE}</a> <!-- BEGIN navlinks --> <strong>&#8249;</strong> <a href="{navlinks.U_VIEW_FORUM}">{navlinks.FORUM_NAME}</a><!-- END navlinks --></li>
-		<!-- IF not S_IS_BOT -->
-			<!-- IF U_WP_ACP --><li class="icon-register rightside"><a href="{U_WP_ACP}">{L_WP_ADMIN_PANEL}</a></li><!-- ENDIF -->
-			<li class="icon-logout rightside"><a href="{U_LOGIN_LOGOUT_POPUP}">{L_LOGIN_LOGOUT}</a></li>
-			<!-- IF not S_USER_LOGGED_IN and S_REGISTER_ENABLED and not (S_SHOW_COPPA or S_REGISTRATION) --><li class="icon-register rightside"><a href="{U_REGISTER_POPUP}">{L_REGISTER}</a></li><!-- ENDIF --> 
-		<!-- ENDIF -->
-		</ul>
-	<!-- IF HEADER_MENU -->{HEADER_MENU}<!-- ENDIF -->
-	<span class="corners-bottom"><span></span></span></div>
-</div>
