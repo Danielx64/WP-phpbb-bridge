@@ -387,6 +387,7 @@ class phpbb
 		$board_url = generate_board_url(false) . '/';
 		$web_path = phpbb::$config['wp_phpbb_bridge_board_path'];
 		$blog_path = get_option('siteurl');
+			$phpbb_root_path = self::$absolute_phpbb_url_path;
 
 		/**
 		 * Print the <title> tag based on what is being viewed.
@@ -884,7 +885,7 @@ class phpbb
 			get_user_rank($row['user_rank'], $row['user_posts'], $user_cache[$wp_poster_id]['rank_title'], $user_cache[$wp_poster_id]['rank_image'], $user_cache[$wp_poster_id]['rank_image_src']);
 
 			// Undo HACK! for images like avatar and rank
-			$phpbb_root_path = PHPBB_ROOT_PATH;
+			$phpbb_root_path = phpbb::$config['wp_phpbb_bridge_board_path'];
 
 			if ((!empty($row['user_allow_viewemail']) && self::$auth->acl_get('u_sendemail')) || self::$auth->acl_get('a_email'))
 			{
