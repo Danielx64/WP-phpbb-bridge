@@ -16,7 +16,7 @@ function show_phpbb_link($content)
 	$result = phpbb::$db->sql_query($sql);
 	$post_data = phpbb::$db->sql_fetchrow($result);
 	$board_url = generate_board_url(false) . '/';
-	$web_path = (defined('PHPBB_USE_BOARD_URL_PATH') && PHPBB_USE_BOARD_URL_PATH) ? $board_url : PHPBB_ROOT_PATH;
+	$web_path = phpbb::$config['wp_phpbb_bridge_board_path'];
 	$replies = $post_data['topic_replies'];
 
 	if ($post_data) {
