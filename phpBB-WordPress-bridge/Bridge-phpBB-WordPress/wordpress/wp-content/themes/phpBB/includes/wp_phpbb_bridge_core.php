@@ -471,6 +471,15 @@ class phpbb
 
 			'WPT_STYLESHEETPATH'=> get_stylesheet_directory(),
 			'A_BASE_URL'		=> esc_url( get_home_url( null, '/wp-content/themes/phpBB')),
+			'U_PRIVATEMSGS'			=> append_sid("{$web_path}ucp.php", 'i=pm&amp;folder=inbox'),
+			'U_RETURN_INBOX'		=> append_sid("{$web_path}ucp.php", 'i=pm&amp;folder=inbox'),
+			'U_POPUP_PM'			=> append_sid("{$web_path}ucp.php", 'i=pm&amp;mode=popup'),
+			'UA_POPUP_PM'			=> addslashes(append_sid("{$web_path}ucp.php", 'i=pm&amp;mode=popup')),
+			'U_MEMBERLIST'			=> append_sid("{$web_path}memberlist.php"),
+			'U_REGISTER'			=> append_sid("{$web_path}ucp.php", 'mode=register'),
+			'U_PROFILE'				=> append_sid("{$web_path}ucp.php"),
+			'U_MODCP'				=> append_sid("{$web_path}mcp.php", false, true,  $redirect ),
+			'U_FAQ'					=> append_sid("{$web_path}faq.php"),
 
 			'T_THEME_PATH'		=> "{$web_path}styles/" . self::$user->theme['theme_path'] . '/theme',
 			'T_STYLESHEET_LINK'	=> (!self::$user->theme['theme_storedb']) ? "{$web_path}styles/" . self::$user->theme['theme_path'] . '/theme/stylesheet.css' : append_sid("{$web_path}style." . PHP_EXT, 'id=' . self::$user->theme['style_id'] . '&amp;lang=' . self::$user->data['user_lang']),
@@ -885,7 +894,7 @@ class phpbb
 			get_user_rank($row['user_rank'], $row['user_posts'], $user_cache[$wp_poster_id]['rank_title'], $user_cache[$wp_poster_id]['rank_image'], $user_cache[$wp_poster_id]['rank_image_src']);
 
 			// Undo HACK! for images like avatar and rank
-			$phpbb_root_path = phpbb::$config['wp_phpbb_bridge_board_path'];
+			$phpbb_root_path = PHPBB_ROOT_PATH;
 
 			if ((!empty($row['user_allow_viewemail']) && self::$auth->acl_get('u_sendemail')) || self::$auth->acl_get('a_email'))
 			{
