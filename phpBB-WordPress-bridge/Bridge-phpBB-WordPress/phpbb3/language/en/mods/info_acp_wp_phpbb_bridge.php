@@ -40,8 +40,8 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'ACP_WP_PHPBB_BRIDGE'			=> 'phpBB to WordPress Settings',
-	'LOG_WP_PHPBB_BRIDGE_SETTINGS'	=> 'Altered <strong>phpBB to WordPress Settings</strong> settings',
+	'ACP_WP_PHPBB_BRIDGE'			=> 'phpBB to WP connector Settings',
+	'LOG_WP_PHPBB_BRIDGE_SETTINGS'	=> 'Altered <strong>phpBB to WP connector Settings</strong> settings',
 ));
 
 ?>
