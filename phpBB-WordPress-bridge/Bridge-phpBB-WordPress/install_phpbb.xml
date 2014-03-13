@@ -6,7 +6,7 @@
 	<header>
 		<meta name="generator" content="MODX file generated with PP MODX Creator 1.2.6 by tumba25 (offline version)"/>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[[BRIDGE] phpBB to WordPress]]></title>
+		<title lang="en"><![CDATA[phpBB to WP connector]]></title>
 		<description lang="en"><![CDATA[WordPress - phpBB Integration Mod
 		This Birdge makes possible to integrate your phpBB into your Wordpress Blog, sharing the Board style and users
 		Users Can login at the Blog using the phpBB account, 
