@@ -4,7 +4,7 @@
 * @version 1.6
 */
 /*
-Plugin Name: Wordpress to PHPBB
+Plugin Name: phpBB to WP connector (plugin version)
 Plugin URI: http://wordpress.org/plugins/hello-dolly/
 Description: WordPress - phpBB Integration Mod This Birdge makes possible to integrate your phpBB into your Wordpress Blog, sharing users. If the phpBB users do not exist in WP it will be automatically created as a "Subscriber" Want to have wordpress match your forum style? Get the theme instead.
 Author: Matt Mullenweg
