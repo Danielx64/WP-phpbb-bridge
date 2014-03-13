@@ -58,7 +58,7 @@ if (have_posts()) {
 
 	$board_url = generate_board_url(false) . '/';
 	$redirect = request_var('redirect', home_url());
-	$web_path = phpbb::$config['wp_phpbb_bridge_board_path'];
+	//$web_path = phpbb::$config['wp_phpbb_bridge_board_path'];
 
 	// Assign post specific vars
 	phpbb::$template->assign_vars(array(

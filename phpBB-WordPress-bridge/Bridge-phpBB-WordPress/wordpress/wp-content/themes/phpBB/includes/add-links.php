@@ -12,11 +12,13 @@ function show_phpbb_link($content)
 	if (empty($postID)) {
 		return $content;
 	}
+	
 	$sql = 'SELECT topic_id, forum_id, topic_replies FROM ' . TOPICS_TABLE . ' WHERE topic_wp_xpost = ' . $postID;
 	$result = phpbb::$db->sql_query($sql);
 	$post_data = phpbb::$db->sql_fetchrow($result);
+	$propress_options = get_option( 'theme_propress_options' );
+	$phpbb_root_path =  phpbb::$config['wp_phpbb_bridge_board_path'];
 	$board_url = generate_board_url(false) . '/';
-	$web_path = phpbb::$config['wp_phpbb_bridge_board_path'];
 	$replies = $post_data['topic_replies'];
 
 	if ($post_data) {
@@ -25,10 +27,10 @@ function show_phpbb_link($content)
 			if ($replies != 1) {
 				$rsuffix = 's';
 			}
-			$rbutton = '&nbsp;&nbsp;&nbsp;&nbsp;<a class="button1" href="' . $web_path . 'viewtopic.php?f=' . $post_data['forum_id'] . '&amp;t=' . $post_data['topic_id'] . '">View the Discussion</a>';
+			$rbutton = '&nbsp;&nbsp;&nbsp;&nbsp;<a class="button1" href="' . $phpbb_root_path . 'viewtopic.php?f=' . $post_data['forum_id'] . '&amp;t=' . $post_data['topic_id'] . '">View the Discussion</a>';
 			$rtext = '<|DD|>' . $replies . ' Comment' . $rsuffix;
 		}
-		$content .= '<div class="xpost-link">' . '<a class="button1" href="' . $web_path . 'posting.php?mode=reply&amp;f=' . $post_data['forum_id'] . '&amp;t=' . $post_data['topic_id'] . '">Comment On this Article</a>' . $rbutton . '</div>' . $rtext;
+		$content .= '<div class="xpost-link">' . '<a class="button1" href="' . $phpbb_root_path . 'posting.php?mode=reply&amp;f=' . $post_data['forum_id'] . '&amp;t=' . $post_data['topic_id'] . '">Comment On this Article</a>' . $rbutton . '</div>' . $rtext;
 	}
 	return $content;
 }

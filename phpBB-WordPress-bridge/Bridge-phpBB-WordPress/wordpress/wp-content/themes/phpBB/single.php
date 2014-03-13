@@ -104,7 +104,7 @@ if (have_posts()) {
 
 		// Assign posting specific vars
 		phpbb::$template->assign_vars(array(
-			'S_LOGGED_AS'			=> sprintf(phpbb::$user->lang['WP_LOGGED_AS_OUT'], phpbb::$user->data['username'], $temp.'ucp.php?mode=logout&amp;sid='.phpbb::$user->session_id ),
+			'S_LOGGED_AS'			=> sprintf(phpbb::$user->lang['WP_LOGGED_AS_OUT'], phpbb::$user->data['username'], $phpbb_root_path.'ucp.php?mode=logout&amp;sid='.phpbb::$user->session_id ),
 			'U_ACTION'				=> get_option('siteurl') . '/wp-comments-post.php',
 			'S_REPLYTO'				=> wp_nonce_field('replyto-comment', '_ajax_nonce-replyto-comment', false, false),
 			'S_UNFILTEREDHTML'		=> (current_user_can('unfiltered_html')) ? wp_nonce_field('unfiltered-html-comment_' . $post_id, '_wp_unfiltered_html_comment', false, false) : '',
@@ -157,7 +157,7 @@ if (have_posts()) {
 
 	$board_url = generate_board_url(false) . '/';
 	$redirect = request_var('redirect', home_url());
-	$web_path = phpbb::$config['wp_phpbb_bridge_board_path'];
+	//$web_path = phpbb::$config['wp_phpbb_bridge_board_path'];
     $redirectpost = request_var('redirect', home_url(add_query_arg(array())));
 
 	// Assign post specific vars
@@ -169,7 +169,7 @@ if (have_posts()) {
 		// Reply
 		'S_IS_LOCKED'			=> ($post->comment_status == 'open') ? false : true,
 		//'S_DISPLAY_REPLY_INFO'	=> ($post->comment_status == 'open' && (phpbb::$auth->acl_get('f_reply', phpbb::$config['wp_phpbb_bridge_permissions_forum_id']) || phpbb::$user->data['user_id'] == ANONYMOUS)) ? true : false,
-		'S_DISPLAY_NOTE'		=> (get_option('comment_registration') && phpbb::$user->data['user_id'] == ANONYMOUS) ? sprintf(phpbb::$user->lang['WP_LOGIN_NEED'], $web_path.'ucp.php?mode=login&amp;redirect='.$redirectpost) : '',
+		'S_DISPLAY_NOTE'		=> (get_option('comment_registration') && phpbb::$user->data['user_id'] == ANONYMOUS) ? sprintf(phpbb::$user->lang['WP_LOGIN_NEED'], $phpbb_root_path.'ucp.php?mode=login&amp;redirect='.$redirectpost) : '',
 
 		// Icons
 		'REPLY_IMG'				=> ($post->comment_status == 'open') ? phpbb::$user->img('button_topic_reply', 'REPLY_TO_TOPIC') : phpbb::$user->img('button_topic_locked', 'TOPIC_LOCKED'),

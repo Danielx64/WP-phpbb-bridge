@@ -385,9 +385,9 @@ class phpbb
 	{
 		// Determine board url - we may need it later
 		$board_url = generate_board_url(false) . '/';
-		$web_path = phpbb::$config['wp_phpbb_bridge_board_path'];
+		//$web_path = phpbb::$config['wp_phpbb_bridge_board_path'];
 		$blog_path = get_option('siteurl');
-			$phpbb_root_path = self::$absolute_phpbb_url_path;
+		$phpbb_root_path = self::$absolute_phpbb_url_path;
 
 		/**
 		 * Print the <title> tag based on what is being viewed.
@@ -439,8 +439,7 @@ class phpbb
 			'SCRIPT_NAME'		=> 'blog ' . self::wp_location(),
 			'IN_HOME'			=> is_home(),
 
-		//	'U_WEB'				=> append_sid($web_path),
-			'U_INDEX'			=> append_sid($web_path),
+			'U_INDEX'			=> append_sid($phpbb_root_path),
 			'U_BLOG'			=> append_sid($blog_path),
 
 			'PAGE_TITLE'		=> $wp_title,
@@ -456,9 +455,9 @@ class phpbb
 			'FOOTER_MENU'		=> $footer_menu,
 
 			'S_REGISTER_ENABLED'=> (self::$config['require_activation'] != USER_ACTIVATION_DISABLE) ? true : false,
-			'U_REGISTER_POPUP'	=> "$web_path/ucp.php?mode=register",
+			'U_REGISTER_POPUP'	=> "$phpbb_root_path/ucp.php?mode=register",
 			'S_LOGIN_REDIRECT'	=> build_hidden_fields(array('redirect' => $redirect)),
-			'U_LOGIN_LOGOUT'	=> (!self::wp_phpbb_user_logged()) ? "$web_path/ucp.php?mode=login&amp;redirect=" . $redirect  : "$web_path/ucp.php?mode=logout&amp;sid=" . phpbb::$user->session_id . "&amp;redirect=" . $redirect ,
+			'U_LOGIN_LOGOUT'	=> (!self::wp_phpbb_user_logged()) ? "$phpbb_root_path/ucp.php?mode=login&amp;redirect=" . $redirect  : "$phpbb_root_path/ucp.php?mode=logout&amp;sid=" . phpbb::$user->session_id . "&amp;redirect=" . $redirect ,
 
 			'U_WP_ACP'			=> (self::$user->data['user_type'] == USER_FOUNDER || current_user_can('Contributor')) ? admin_url() : '',
 			'U_POST_NEW_TOPIC'	=> (self::$user->data['user_type'] == USER_FOUNDER || current_user_can('Contributor')) ? admin_url('post-new.php') : '',
@@ -472,8 +471,8 @@ class phpbb
 			'WPT_STYLESHEETPATH'=> get_stylesheet_directory(),
 			'A_BASE_URL'		=> esc_url( get_home_url( null, '/wp-content/themes/phpBB')),
 
-			'T_THEME_PATH'		=> "{$web_path}styles/" . self::$user->theme['theme_path'] . '/theme',
-			'T_STYLESHEET_LINK'	=> (!self::$user->theme['theme_storedb']) ? "{$web_path}styles/" . self::$user->theme['theme_path'] . '/theme/stylesheet.css' : append_sid("{$web_path}style." . PHP_EXT, 'id=' . self::$user->theme['style_id'] . '&amp;lang=' . self::$user->data['user_lang']),
+			'T_THEME_PATH'		=> "{$phpbb_root_path}styles/" . self::$user->theme['theme_path'] . '/theme',
+			'T_STYLESHEET_LINK'	=> (!self::$user->theme['theme_storedb']) ? "{$phpbb_root_path}styles/" . self::$user->theme['theme_path'] . '/theme/stylesheet.css' : append_sid("{$phpbb_root_path}style." . PHP_EXT, 'id=' . self::$user->theme['style_id'] . '&amp;lang=' . self::$user->data['user_lang']),
 		));
 
 		if (is_404() || is_category() || is_day() || is_month() || is_year() || is_search() || is_paged())
