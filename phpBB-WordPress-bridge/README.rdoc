@@ -1,4 +1,4 @@
-= BRIDGE phpBB to WordPress bridge 
+= phpBB to WP connector
 * Release Version none
 * Developer Version [BETA] 0.7.0
 
