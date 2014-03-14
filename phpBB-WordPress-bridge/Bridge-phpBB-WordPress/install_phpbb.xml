@@ -1,3 +1,11 @@
+<br />
+<b>Warning</b>:  main(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone 'UTC' for now, but please set date.timezone to select your timezone. in <b>D:\wamp\danielx64\modx_creator\create_modx.php</b> on line <b>387</b><br />
+<br />
+<b>Notice</b>:  Undefined variable: key in <b>D:\wamp\danielx64\modx_creator\create_modx.php</b> on line <b>387</b><br />
+<br />
+<b>Warning</b>:  main(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected the timezone 'UTC' for now, but please set date.timezone to select your timezone. in <b>D:\wamp\danielx64\modx_creator\create_modx.php</b> on line <b>394</b><br />
+<br />
+<b>Notice</b>:  Undefined offset: 3 in <b>D:\wamp\danielx64\modx_creator\create_modx.php</b> on line <b>394</b><br />
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
 <!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
@@ -11,8 +19,7 @@
 		This Birdge makes possible to integrate your phpBB into your Wordpress Blog, sharing the Board style and users
 		Users Can login at the Blog using the phpBB account, 
 			If the phpBB users do not exist in WP it will be automatically created as a "Subscriber"]]></description>
-		<author-notes lang="en"><![CDATA[
-* Works on phpBB version 3.0.12 and WordPress version 3.7.1 to 3.8.1
+		<author-notes lang="en"><![CDATA[* Works on phpBB version 3.0.12 and WordPress version 3.7.1 to 3.8.1
 * Before adding this MOD to your forum, you should back up all files related to this MOD.
 * This BRIDGE modify the database.]]></author-notes>
 		<github><![CDATA[https://github.com/danielx64/WP-phpbb-bridge/]]></github>
@@ -34,7 +41,7 @@
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>1.1.0</mod-version>
+		<mod-version>1.2.0</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>300</time>
@@ -51,11 +58,20 @@
 		</copy>
 		<open src="includes/functions.php">
 			<edit>
+				<find><![CDATA[	// The following assigns all _common_ variables that may be used at any point in a template.
+]]></find>
+				<action type="before-add"><![CDATA[	$phpbb_root_path = $config['wp_phpbb_bridge_board_path'];]]></action>
+			</edit>
+			<edit>
 				<find><![CDATA[		'SITE_LOGO_IMG'			=> $user->img('site_logo'),]]></find>
 				<action type="after-add"><![CDATA[		'S_SHOW_HOMEPAGE'		=> ((isset($config['show_homepage'])) ? $config['show_homepage'] : false),
 		'U_HOMEPAGE'			=> ((isset($config['homepage_url'])) ? $config['homepage_url'] : 0),
 		'U_HOMEPAGE_TITLE'		=> ((isset($config['homepage_title'])) ? $config['homepage_title'] : 0),
 ]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[	// application/xhtml+xml not used because of IE]]></find>
+				<action type="before-add"><![CDATA[	$phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './';]]></action>
 			</edit>
 		</open>
 		<open src="includes/functions_content.php">
