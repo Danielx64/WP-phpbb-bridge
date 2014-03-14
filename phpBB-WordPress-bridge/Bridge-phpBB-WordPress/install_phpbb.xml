@@ -63,7 +63,13 @@
 			</edit>
 			<edit>
 				<find><![CDATA[	// application/xhtml+xml not used because of IE]]></find>
-				<action type="before-add"><![CDATA[	$phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './';]]></action>
+				<action type="before-add"><![CDATA[	if (defined('ADMIN_START')) {
+	$phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : '../';
+	} 
+	else 
+	{
+	$phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './';
+	}]]></action>
 			</edit>
 		</open>
 		<open src="includes/functions_content.php">
