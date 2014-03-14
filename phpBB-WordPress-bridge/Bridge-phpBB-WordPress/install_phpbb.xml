@@ -78,7 +78,7 @@
 function make_clickable($text, $server_url = false, $class = 'postlink')]]></find>
 				<action type="before-add"><![CDATA[// BRIDGE phpBB & WordPress - Start
 $wpbbmode = request_var('mode','');
-if (!function_exists('make_clickable') && $wpbbmode !='login' && $wpbbmode !='logout' && defined('IN_ADMIN'))
+if (!function_exists('make_clickable') && $wpbbmode !='login' && $wpbbmode !='logout' && defined('ADMIN_START'))
 {
 // BRIDGE phpBB & WordPress - End
 ]]></action>
