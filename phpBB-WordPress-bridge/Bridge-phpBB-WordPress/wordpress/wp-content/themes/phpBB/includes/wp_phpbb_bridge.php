@@ -53,14 +53,14 @@ require(WP_PHPBB_BRIDGE_ROOT . 'includes/wp_phpbb_bridge_core.' . PHP_EXT);
 
 // Initialise settings
 bridge::set_config();
-$propress_options = get_option( 'theme_propress_options' );
+$propress_options = get_option( 'wpu-settings' );
 
 // Include common phpBB files and functions.
-if (!file_exists($propress_options['phpbb_script_path']. 'common.' . PHP_EXT))
+if (!file_exists($propress_options['phpbb_path']. 'common.' . PHP_EXT))
 {
 	die('<p>No "phpBB" common found. Check the "' . PHPBB_ROOT_PATH . 'common.' . PHP_EXT . '" file.</p>');
 }
-require($propress_options['phpbb_script_path'] . 'common.' . PHP_EXT);
+require($propress_options['phpbb_path'] . 'common.' . PHP_EXT);
 
 if (!defined('PHPBB_USE_BOARD_URL_PATH'))
 {

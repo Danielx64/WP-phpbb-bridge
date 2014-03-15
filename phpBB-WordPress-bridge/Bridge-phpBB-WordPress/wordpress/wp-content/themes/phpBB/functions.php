@@ -15,8 +15,9 @@
 
 
 //Load up external files
+require( get_template_directory() . '/settings/wp-united.php' );
 require( get_template_directory() . '/includes/options.php' );
-require( get_template_directory() . '/includes/custom.php' );
+//require( get_template_directory() . '/includes/custom.php' );
 require( get_template_directory() . '/includes/updater.php' );
 require( get_template_directory() . '/includes/add-links.php' );
 require( get_template_directory() . '/includes/wp-profile.php' );
@@ -120,6 +121,9 @@ function propress_enqueue_js_scripts()
 {
 	wp_enqueue_style('phpbb-style', get_template_directory_uri() . '/style.css');
     wp_enqueue_script( 'phpbb-script', get_template_directory_uri() . '/js/jquery.validate.js', array( 'jquery' ));
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
 }
 
 /**
@@ -319,15 +323,15 @@ function wp_phpbb_posting($post_ID, $post)
 
 	if (!function_exists('submit_post'))
 	{
-		include($propress_options['phpbb_script_path']. "includes/functions_posting." . PHP_EXT);
+		include($propress_options['phpbb_path']. "includes/functions_posting." . PHP_EXT);
 	}
 	if (!class_exists('bitfield'))
 	{
-		include($propress_options['phpbb_script_path']. "includes/functions_content." . PHP_EXT);
+		include($propress_options['phpbb_path']. "includes/functions_content." . PHP_EXT);
 	}
 	if (!class_exists('parse_message'))
 	{
-		include($propress_options['phpbb_script_path'] . "includes/message_parser." . PHP_EXT);
+		include($propress_options['phpbb_path'] . "includes/message_parser." . PHP_EXT);
 	}
 	$message_parser = new parse_message();
 

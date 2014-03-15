@@ -1,0 +1,314 @@
+<?php
+
+/** 
+* @package WP-United
+* @version $Id: 0.9.2.5  2013/03/26 John Wells (Jhong) Exp $
+* @copyright (c) 2006-2013 wp-united.com
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License  
+* @author John Wells
+*
+* This is the main WP-United WordPress Plugin file.
+* 
+* At the top all the filters and hooks can be found, and they are dynamically loaded according to what is needed.
+* All of the resultant hooks and filter destinations are within this class.
+* This class extends the WP_United_Plugin_Base class, which contains the methods that make sense in both phpBB and WordPress.
+* 
+*/
+
+if ( !defined('ABSPATH') && !defined('IN_PHPBB') ) exit;
+
+class WP_United_Plugin extends WP_United_Plugin_Main_Base {
+
+	protected
+		// Actions and filters. These are loaded as needed depending on which WP-United portions are active.
+		// Format: array( event | function in this class(in an array if optional arguments are needed) | loading circumstances)
+		$actions = array(
+			// required actions on all pages
+			array('plugins_loaded', 					'init_plugin',								'all'),  // this should be 'init', but we want to play with current_user, which comes earlier
+			//array('shutdown', 						array('buffer_end_flush_all', 100),			'all'),
+			array('wp_head', 							'add_scripts',								'enabled'),
+
+			// required admin ajax actions
+			array('wp_ajax_wpu_filetree', 				'filetree',									'all'),
+			array('wp_ajax_wpu_disable', 				'ajax_auto_disable',						'all'),
+			array('wp_ajax_wpu_disableman', 			'ajax_manual_disable',						'all'),
+			array('wp_ajax_wpu_settings_transmit', 		'ajax_settings_transmit',					'all'),
+
+			// template integration actions
+			array('wp_head', 							'add_head_marker',							'template-int'),
+
+		),
+
+		$filters = array(
+
+		);
+		
+		private
+			$doneInit 		= false,
+			$extras 		= false,
+			$xPoster		= false;
+	
+	
+	/**
+	* All base init is done by the parent class.
+	*/
+	public function __construct() {
+
+		parent::__construct();
+		
+	}
+	
+	/**
+	 * Initialises the plugin from WordPress.
+	 * This is not in the constructor, as this class can be instantiated from either phpBB or WordPress.
+	 * @return void
+	 */
+	public function wp_init() {
+	
+		// (re)load our settings
+		$this->load_settings();
+
+		// add new actions and filters
+		$this->add_actions();
+		$this->add_filters();
+		unset($this->actions, $this->filters);
+
+	}
+	
+	/**
+	 * The main invocation logic -- if enabled, load phpBB too!
+	 * Called on plugins_loaded hook, so we can get phpBB ready in advance of user integration when set_current_user is called.
+	 * @return void
+	 */
+	public function init_plugin() { 
+		global $phpbbForum;
+
+		if($this->has_inited()) {
+			return false;
+		}
+		$this->doneInit = true;
+		
+		$shouldRun = true;
+		
+		// this has to go prior to phpBB load so that connection can be disabled in the event of an error on activation.
+		$this->process_adminpanel_actions();
+
+		$propress_options = get_option( 'wpu-settings' );
+		if(!$propress_options['phpbb_path'] || !WP_United_Plugin::can_connect_to_phpbb()) {
+			$this->set_last_run('disconnected');
+			$shouldRun = false;
+		}
+
+
+		if($this->get_last_run() == 'connected') {
+			$shouldRun = false;
+		}
+		
+		if($shouldRun) {
+			$this->set_last_run('connected');
+		}
+		
+		$versionCheck = $this->check_mod_version();
+		if($versionCheck['result'] != 'OK') {
+			$this->disable();
+			$shouldRun = false;
+		}
+		
+		if($this->is_enabled() && $shouldRun) { 
+		
+			//$this->load_phpbb();
+			
+			//Run any upgrade actions once the phpBB environment has been loaded
+			//$this->upgrade();
+			
+			$this->set_last_run('working');
+
+		}
+		
+		$this->process_frontend_actions();
+
+		return true; 
+			
+	}
+
+	public function can_connect_to_phpbb() {
+		global $wpUnited;
+		$propress_options = get_option( 'wpu-settings' );
+		$rootPath = $propress_options['phpbb_path'];
+
+		if(!$rootPath) {
+			return false;
+		}
+
+		static $canConnect = false;
+		static $triedToConnect = false;
+
+		if($triedToConnect) {
+			return $canConnect;
+		}
+
+		$canConnect = @file_exists($rootPath);
+		$triedToConnect = true;
+
+
+		return $canConnect;
+
+	}
+	/**
+	 * 
+	 * Admin AJAX actions
+	 *
+	*/
+	public function filetree() {
+		if(check_ajax_referer( 'wp-united-filetree')) {
+			wpu_filetree();
+		}
+		die();
+	}
+	public function ajax_auto_disable() {
+		if(check_ajax_referer( 'wp-united-disable')) {
+			$this->disable_connection('server-error'); 
+			die('OK');
+		}
+		
+	}
+	public function ajax_manual_disable() {
+		if(check_ajax_referer( 'wp-united-disable')) {
+			$this->disable_connection('manual');
+			die('OK');
+		}
+		
+	}
+	public function ajax_settings_transmit() {
+		if(check_ajax_referer( 'wp-united-transmit')) {
+			wpu_process_settings();
+			$this->transmit_settings();
+			die('OK');
+		}
+		die();
+	}	
+
+	/**
+	 * Transmit settings to phpBB
+	 * This could either be an update settings or enable rquest, or a disable request.
+	 * @param bool $enable true to enable WP-United in phpBB config
+	 * @return void
+	 */
+	public function transmit_settings($enable = true) {
+		global $phpbbForum;
+		
+		//if WPU was disabled, we need to initialise phpBB first
+		// phpbbForum is already inited, however -- we just need to load
+		if (!defined('IN_PHPBB')) {
+			
+			$this->set_last_run('connected');
+			
+		//	$this->load_phpbb();
+		}
+	
+		// store data before transmitting
+		if($enable) {
+			$this->enable();
+		} else {
+			$this->disable();
+		}
+		
+		$dataToStore = $this->settings;
+	}
+
+	/**
+	 * Returns true if WP-United has already initialised
+	 * @return bool true if already inited
+	 */
+	public function has_inited() {
+		return $this->doneInit;
+	}
+	
+	/**
+	 * A way of storing how the last run of phpBB went -- only used during connecting and enabling phpBB
+	 * States transition through disconnected -> connected -> working
+	 * @param string $status disconnected|connected|working
+	 */
+	private function set_last_run($status) {
+		if($this->get_last_run() != $status) { 
+			// transitions cannot go from 'working' to 'connected' if wp-united is enabled OK.
+			if( ($this->lastRun == 'working') && ($status == 'connected') && $this->is_enabled() ) {
+				return;
+			} 
+			$this->lastRun = $status;
+			update_option('wpu-last-run', $status);
+		}
+	}
+	
+	/**
+	 * Updates the stored WP-United settings
+	 * The Wp-United class decorates itself with the stored phpBB or WordPress settings class, invoked as appropriate. 
+	 * WP settings take priority
+	 * @param array an array of all settings keys
+	 * @return void
+	 */
+	public function update_settings($data) {
+		$this->settings->update_settings($data);
+	}
+
+	
+	/**
+	 * Adds a link to the setup/status page on the WordPress plugins menu
+	 * @param array $links provided by WordPress action hook
+	 * @param string $file provided by WordPress action hook
+	 * @return array inbound links returned to WordPress with new link added
+	 */
+	public function add_plugin_menu_link($links, $file) {
+
+		if ($file == 'wp-united/wp-united.php') {
+			$links[] = '<a href="admin.php?page=wp-united-setup">' . __('Setup / Status', 'wp-united') . '</a>';
+		}
+		return $links;
+	}
+	
+
+	/**
+	 * Process inbound actions and set up the settings panels
+	 * Runs only in admin
+	 * @return void
+	 */
+	private function process_adminpanel_actions() {
+
+		if(is_admin()) {
+
+			// the settings page has detected an error and asked to abort
+			if( isset($_POST['wpudisable']) && check_ajax_referer( 'wp-united-disable') ) {
+				$this->ajax_auto_disable();
+			}	
+
+			// the user wants to manually disable
+			if( isset($_POST['wpudisableman']) && check_ajax_referer( 'wp-united-disable') ) {
+				$this->ajax_manual_disable();
+			}
+						
+			if($this->is_working() && is_object($this->extras)) {
+				$this->extras->admin_load_actions();
+			}
+			
+		}
+	}
+	
+	/**
+	 * Process any inbound AJAX requests or perform any actions that should only happen outside admin
+	 * @return void
+	 */
+	private function process_frontend_actions() {
+		
+		if(is_admin()) {
+			return;
+		}
+
+		if($this->is_working() && is_object($this->extras)) {
+			$this->extras->page_load_actions();
+		}
+
+	
+	}
+}
+
+// That's all. Easy, right?
