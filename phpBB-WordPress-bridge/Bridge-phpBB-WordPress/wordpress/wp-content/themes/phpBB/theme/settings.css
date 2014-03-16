@@ -379,10 +379,6 @@ input.ui-button { padding: .4em 1em; }
 /* workarounds */
 button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra padding in Firefox */
 
-
-
-
-
 /* Dialog
 ----------------------------------*/
 .ui-dialog { position: absolute; padding: .2em; width: 300px; overflow: hidden; }
@@ -396,68 +392,6 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 .ui-dialog .ui-dialog-buttonpane button { float: right; margin: .5em .4em .5em 0; cursor: pointer; padding: .2em .6em .3em .6em; line-height: 1.4em; width:auto; overflow:visible; }
 .ui-dialog .ui-resizable-se { width: 14px; height: 14px; right: 3px; bottom: 3px; }
 .ui-draggable .ui-dialog-titlebar { cursor: move; }
-/* Slider
-----------------------------------*/
-.ui-slider { position: relative; text-align: left; }
-.ui-slider .ui-slider-handle { position: absolute; z-index: 2; width: 1.2em; height: 1.2em; cursor: default; }
-.ui-slider .ui-slider-range { position: absolute; z-index: 1; font-size: .7em; display: block; border: 0; background-position: 0 0; }
-
-.ui-slider-horizontal { height: .8em; }
-.ui-slider-horizontal .ui-slider-handle { top: -.3em; margin-left: -.6em; }
-.ui-slider-horizontal .ui-slider-range { top: 0; height: 100%; }
-.ui-slider-horizontal .ui-slider-range-min { left: 0; }
-.ui-slider-horizontal .ui-slider-range-max { right: 0; }
-
-.ui-slider-vertical { width: .8em; height: 100px; }
-.ui-slider-vertical .ui-slider-handle { left: -.3em; margin-left: 0; margin-bottom: -.6em; }
-.ui-slider-vertical .ui-slider-range { left: 0; width: 100%; }
-.ui-slider-vertical .ui-slider-range-min { bottom: 0; }
-.ui-slider-vertical .ui-slider-range-max { top: 0; }/* Tabs
-----------------------------------*/
-.ui-tabs { position: relative; padding: .2em; zoom: 1; } /* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
-.ui-tabs .ui-tabs-nav { margin: 0; padding: .2em .2em 0; }
-.ui-tabs .ui-tabs-nav li { list-style: none; float: left; position: relative; top: 1px; margin: 0 .2em 1px 0; border-bottom: 0 !important; padding: 0; white-space: nowrap; }
-.ui-tabs .ui-tabs-nav li a { float: left; padding: .5em 1em; text-decoration: none; }
-.ui-tabs .ui-tabs-nav li.ui-tabs-selected { margin-bottom: 0; padding-bottom: 1px; }
-.ui-tabs .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs .ui-tabs-nav li.ui-state-disabled a, .ui-tabs .ui-tabs-nav li.ui-state-processing a { cursor: text; }
-.ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a { cursor: pointer; } /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
-.ui-tabs .ui-tabs-panel { display: block; border-width: 0; padding: 1em 1.4em; background: none; }
-.ui-tabs .ui-tabs-hide { display: none !important; }
-/* Datepicker
-----------------------------------*/
-.ui-datepicker { width: 17em; padding: .2em .2em 0; }
-.ui-datepicker .ui-datepicker-header { position:relative; padding:.2em 0; }
-.ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next { position:absolute; top: 2px; width: 1.8em; height: 1.8em; }
-.ui-datepicker .ui-datepicker-prev-hover, .ui-datepicker .ui-datepicker-next-hover { top: 1px; }
-.ui-datepicker .ui-datepicker-prev { left:2px; }
-.ui-datepicker .ui-datepicker-next { right:2px; }
-.ui-datepicker .ui-datepicker-prev-hover { left:1px; }
-.ui-datepicker .ui-datepicker-next-hover { right:1px; }
-.ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span { display: block; position: absolute; left: 50%; margin-left: -8px; top: 50%; margin-top: -8px;  }
-.ui-datepicker .ui-datepicker-title { margin: 0 2.3em; line-height: 1.8em; text-align: center; }
-.ui-datepicker .ui-datepicker-title select { font-size:1em; margin:1px 0; }
-.ui-datepicker select.ui-datepicker-month-year {width: 100%;}
-.ui-datepicker select.ui-datepicker-month, 
-.ui-datepicker select.ui-datepicker-year { width: 49%;}
-.ui-datepicker table {width: 100%; font-size: .9em; border-collapse: collapse; margin:0 0 .4em; }
-.ui-datepicker th { padding: .7em .3em; text-align: center; font-weight: bold; border: 0;  }
-.ui-datepicker td { border: 0; padding: 1px; }
-.ui-datepicker td span, .ui-datepicker td a { display: block; padding: .2em; text-align: right; text-decoration: none; }
-.ui-datepicker .ui-datepicker-buttonpane { background-image: none; margin: .7em 0 0 0; padding:0 .2em; border-left: 0; border-right: 0; border-bottom: 0; }
-.ui-datepicker .ui-datepicker-buttonpane button { float: right; margin: .5em .2em .4em; cursor: pointer; padding: .2em .6em .3em .6em; width:auto; overflow:visible; }
-.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current { float:left; }
-
-/* with multiple calendars */
-.ui-datepicker.ui-datepicker-multi { width:auto; }
-.ui-datepicker-multi .ui-datepicker-group { float:left; }
-.ui-datepicker-multi .ui-datepicker-group table { width:95%; margin:0 auto .4em; }
-.ui-datepicker-multi-2 .ui-datepicker-group { width:50%; }
-.ui-datepicker-multi-3 .ui-datepicker-group { width:33.3%; }
-.ui-datepicker-multi-4 .ui-datepicker-group { width:25%; }
-.ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header { border-left-width:0; }
-.ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header { border-left-width:0; }
-.ui-datepicker-multi .ui-datepicker-buttonpane { clear:left; }
-.ui-datepicker-row-break { clear:both; width:100%; }
 
 /* RTL support */
 .ui-datepicker-rtl { direction: rtl; }
@@ -472,17 +406,6 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 .ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header { border-right-width:0; border-left-width:1px; }
 .ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header { border-right-width:0; border-left-width:1px; }
 
-/* IE6 IFRAME FIX (taken from datepicker 1.5.3 */
-.ui-datepicker-cover {
-    display: none; /*sorry for IE5*/
-    display/**/: block; /*sorry for IE5*/
-    position: absolute; /*must have*/
-    z-index: -1; /*must have*/
-    filter: mask(); /*must have*/
-    top: -4px; /*must have*/
-    left: -4px; /*must have*/
-    width: 200px; /*must have*/
-    height: 200px; /*must have*/
 }/* Progressbar
 ----------------------------------*/
 .ui-progressbar { height:2em; text-align: left; }
@@ -752,42 +675,6 @@ div.subsettings div.subsettings div.subsettings {
 	text-decoration: underline !important;
 }
 
-#wpumappanel {
-	margin: 0;
-	display: none;
-	background-color: #eeeeee;
-	max-width: 400px;
-	overflow: hidden;
-	margin-left: 3px;
-}
-
-#wpumapcontainer {
-	width: 100%;
-	height: 600px;
-	border: 1px solid #cccccc;
-	margin-top: 6px;
-	
-}
-
-#wpumapscreen {
-	margin: 3px 0 0 0;
-	padding: 0;
-	height: 600px !important;
-	overflow-y: auto;
-}
-
-#wpumappanel h3 {
-	font-size: 12px;
-	white-space: nowrap;
-	overflow: hidden;
-	margin: 0 0 6px 3px;
-}
-
-#wpumappanel h3 span.ui-icon {
-	float: left;
-	cursor: pointer;
-	cursor: hand;
-}
 
 #wpupanelactionlist LI {
 	list-style: disc !important;
@@ -805,125 +692,6 @@ div.subsettings div.subsettings div.subsettings {
 	margin: 0 0 0 2px;
 	border: 1px solid #dddddd;
 	background: #cccccc;
-}
-
-.wpumaptoolbar label {
-	font-size: 11px;
-	font-weight: normal;
-	margin-left: 8px;
-}
-
-#wpumaptable {
-	width: 100%;
-	border: 0;
-	border-collapse: collapse
-}
-
-.wpumaprow {
-	border-bottom: 1px solid #cccccc;
-	margin: 0;
-	padding: 0;
-	clear: both;
-}
-
-
-.wpuwpuser, .wpuphpbbuser, .wpumapsugg {
-	width: 250px;
-	border: 1px solid #cccccc;
-	padding: 3px;
-	margin: 8px 0 8px 8px;
-	float: left;
-	clear: left;
-	background-color: #ffffff;
-}
-
-.wpuwpuser div, .wpuphpbbuser div {
-	width: 188px;
-}
-
-.wpuintuser, .wpumapsugg {
-	float: right;
-	clear: none;
-	margin: 0 8px 0 0;
-}
-
-.wpuintto {
-	font-weight: normal;
-	margin: 0 0 1px 0;
-	font-size: 10px;
-	font-style: italic;
-}
-
-.wpumapsugg input {
-	height: 11px;
-	font-size: 10px;
-	width: 188px;
-}
-
-.wpualt {
-	background-color: #eeeeee;
-}
-
-.wpuwpuser .wpuwplogin a, .wpuwpuser .wpuwplogin, .wpuphpbbuser .wpuphpbblogin a, .wpuphpbbuser .wpuphpbblogin {
-	font-weight: bold;
-	margin: 0 0 3px 0;
-	text-decoration: none;
-	color: #21759b
-}
-
-.wpumapsugg .wpudetails {
-	height: 65px !important;
-	overflow-y: auto;
-	width: 100%;
-	border: 1px solid #cccccc;
-}
-
-.wpuwpuser .wpudetails p, .wpuphpbbuser .wpudetails p, .wpumapsugg .wpudetails p {
-	font-weight: normal;
-	margin: 0;
-	font-size: 10px;
-}
-
-.wpudetails {
-	float: left;
-}
-
-.wpuwpuser .avatar, .wpuphpbbuser div.avatar {
-	float: left;
-	border: 1px solid #cccccc;
-	margin: 0 3px 6px 0;
-	width: 50px !important;
-	overflow: hidden;
-}
-
-.wpuwpuser .avatarblock, .wpuphpbbuser .avatarblock {
-	float: left;
-	margin: 0 3px 0 0;
-	width: 53px !important;
-}
-
-.wpuwpuser .avatarblock .ui-button , .wpuphpbbuser .avatarblock .ui-button, .wpumapsugg .wpudetails .ui-button  {
-	height: 14px;
-	width: 14px;
-	
-}
-
-.wpuwpuser div.avatar img, .wpuphpbbuser div.avatar img {
-	width: 50px;
-	border: 0;
-}
-
-.wpuwpuser .wpuempty, .wpuphpbbuser .wpuempty {
-	width: 50px;
-	height: 50px;
-	border: 1px solid #cccccc;
-	background-color: #dedede;
-	
-}
-
-.wpuwpuser br , .wpuphpbbuser br{
-	clear: both;
-	height: 0px;
 }
 
 .wpuintegok, .wpuintegnot  {
@@ -969,71 +737,6 @@ div.subsettings div.subsettings div.subsettings {
 .wpuusrtyped {
 	width: auto;
 	float: left;
-}
-
-#wpumapsearchbox {
-	width: auto;
-}
-
-#wpumapsrcharea {
-	width: auto;
-	white-space: nowrap;
-	clear: none;
-}
-
-.wpuavatartyped {
-	float: left;
-	margin-right: 
-}
-
-.wpuavatartyped img {
-	width: 20px !important;
-	height: auto !important;
-	height: 20px;
-	max-height: 20px;
-}
-
-.wpumappaginate {
-	font-weight: normal;
-	font-size: 11px;
-	margin-top: 3px;
-	text-align: right;
-}
-
-
-.wpumappaginate p {
-	margin: 0 0 2px 0;
-	font-size: 10px;
-}
-
-.wpumappaginate a, .wpumappaginate strong {
-	font-weight: normal;
-	line-height: 11px;
-	display: inline;
-	border: 1px solid #ffffff;
-	text-decoration: none;
-	font-size: 11px;
-	color: #ffffff;
-	background-color: #9a9a9a;
-	padding: 0 2px;
-	margin: 0 2px;
-}
-
-.wpumappaginate strong {
-	font-weight: bold;
-	color: #bcbcbc;
-}
-
-.wpumappaginate .page-sep {
-	display: none;
-}
-
-#wpumappaginate2 {
-	height: 26px;
-}
-
-.wpumapcount {
-	color: #333333;
 }
 
 #wpuoffscreen {
@@ -1128,19 +831,5 @@ div.subsettings div.subsettings div.subsettings {
 	border: 0 dotted #cccccc; 
 	border-bottom-width: 1px; 
 	width: auto;
-}
-#supportmethods {
-	width: 100%;
-	clear: both;
-}
-
-#supportmethods fieldset {
-	width: 45%;
-	float: left;
-	max-width: 300px;
-	margin-right: 10px;
-	border: 1px solid #cccccc;
-	padding: 6px;
-	min-height: 200px;
 }
 

@@ -48,10 +48,10 @@ function wpu_setup_menu() {
 	?>
 	<div class="wrap" id="wp-united-setup">
 		<?php screen_icon('options-general'); ?>
-		<h2> <?php _e('phpBB to WP connector Setup / Status', 'wp-united'); ?> </h2>
-		<p><?php _e('phpBB to WP connector needs to connect to phpBB in order to work. On this screen you can set up or disable the connection.', 'wp-united') ?></p>
+		<h2> <?php _e('phpBB to WP connector Setup', 'wp-united'); ?> </h2>
+		<p><?php _e('phpBB to WP connector needs to know the location of phpBB in order to work. On this screen you can select or change the location of phpBB.', 'wp-united') ?></p>
 
-		<div id="wputransmit"><p><strong><?php _e('Communicating with phpBB...', 'wp-united'); ?></strong><br /><?php _e('Please Wait...'); ?></p><img src="<?php echo $wpUnited->get_plugin_url() ?>images/settings/wpuldg.gif" /></div>
+		<div id="wputransmit"><p><strong><?php _e('Communicating with phpBB...', 'wp-united'); ?></strong><br /><?php _e('Please Wait...'); ?></p><img src="<?php echo  get_template_directory_uri() ?>/images/settings/wpuldg.gif" /></div>
 
 		<?php
 
@@ -70,31 +70,16 @@ function wpu_setup_menu() {
 
 
 		if(!$wpUnited->is_enabled() && ($wpUnited->get_last_run() == 'working')) {
-			$statusText = __('Disabled', 'wp-united');
-			$statusColour = "error";
-			$statusDesc = __('WP-United is disabled. Select your forum location below and then click &quot;Connect&quot;', 'wp-united');
 			$buttonDisplay = 'display: block;';
-			$needPreview = false;
 		} else {
 			switch($wpUnited->get_last_run()) {
 				case 'connected':
-					$statusText = __('OK', 'wp-united');
-					$statusColour = "updated allok";
-					$statusDesc =  __('phpBB to WP connector is connected and working.', 'wp-united');
 					$buttonDisplay = 'display: none;';
 					break;
 				default:
-					$statusText = __('Not Connected', 'wp-united');
-					$statusColour = "error";
-					$statusDesc = __('phpBB to WP connector is not connected yet. Select your forum location below and then click &quot;Connect&quot;', 'wp-united') . '<br /><br />' . __('You can\'t change any other settings until WP-United is connected.', 'wp-united');
 					$buttonDisplay = (!$wpUnited->is_enabled()) ? 'display: block;' : 'display: none;';
-					$needPreview = false;
 			}
 		}
-
-		wpu_panel_warnings();
-
-
 
 		?>
 		<h3><?php _e('phpBB Location', 'wp-united') ?></h3>
@@ -186,7 +171,7 @@ function wpu_settings_menu() {
 	if(isset($_GET['page'])) {
 		if(in_array($_GET['page'], array('wp-united-settings', 'wp-united-setup', 'wpu-user-mapper'))) {
 
-			wp_enqueue_script('filetree', get_template_directory_uri() . '/js/filetree.js', array('jquery'), false, false);
+			wp_enqueue_script('filetree', get_template_directory_uri() . '/js/filetree-source.js', array('jquery'), false, false);
 			;
 
 			wp_enqueue_script(
@@ -215,15 +200,6 @@ function wpu_settings_menu() {
 		}
 	}
 }
-
-
-
-
-
-function wpu_panel_warnings() {
-	global $wpUnited, $phpbbForum, $wpuAdminIsOrphaned;
-}
-
 
 /**
  * Process settings
