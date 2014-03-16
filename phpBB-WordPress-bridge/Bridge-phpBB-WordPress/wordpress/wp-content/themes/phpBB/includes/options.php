@@ -94,15 +94,6 @@ function wpu_setup_menu() {
 
 		wpu_panel_warnings();
 
-		echo "<div id=\"wpustatus\" class=\"$statusColour\"><p><strong>" . sprintf(__('Current Status: %s', 'wp-united'), $statusText) . '</strong>';
-		if($wpUnited->get_last_run() == 'working' && $wpUnited->is_enabled()) {
-			echo '<button style="float: right;margin-bottom: 6px;" class="button-secondary" onclick="return wpu_manual_disable(\'wp-united-setup\');">' . __('Disable', 'wp-united') . '</button>';
-		}
-		echo "<br /><br />$statusDesc";
-		if(!empty($msg)) {
-			echo '<br /><br /><strong>' . __('The server returned the following information:', 'wp-united') . "</strong><br />$msg";
-		}
-		echo '</p></div>';
 
 
 		?>
