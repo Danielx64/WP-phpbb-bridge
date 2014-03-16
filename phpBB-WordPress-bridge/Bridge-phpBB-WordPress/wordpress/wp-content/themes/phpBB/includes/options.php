@@ -191,7 +191,7 @@ function wpu_settings_menu() {
 
 			wp_enqueue_script(
 				'wpu-settings',
-				get_template_directory_uri() . '/js/settings.js',
+				get_template_directory_uri() . '/js/settings-source.js',
 				array(
 					'filetree',
 					'jquery-ui-widget',
