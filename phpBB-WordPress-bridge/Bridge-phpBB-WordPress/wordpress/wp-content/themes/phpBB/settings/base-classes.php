@@ -178,20 +178,20 @@ abstract class WP_United_Plugin_Base {
 		return $this->settings->pluginUrl;
 	}
 		
-	
-	
-	public function is_enabled() { 
-		
-		if (defined('WPU_DISABLE') && WPU_DISABLE) { 
+
+
+	public function is_enabled() {
+
+		if (defined('WPU_DISABLE') && WPU_DISABLE) {
 			return false;
 		}
 
 		if($this->is_wordpress_loaded()) {
-			$this->settings->enabled = get_option('wpu-enabled'); 
+			$this->settings->enabled = get_option('wpu-enabled');
 		}
 		return $this->settings->enabled;
 	}
-	
+
 	public function is_working() {
 		// if ABSPATH is not defined, we must be loaded from phpBB
 		if(!defined('ABSPATH')) {
@@ -354,15 +354,6 @@ abstract class WP_United_Plugin_Main_Base extends WP_United_Plugin_Base {
 		);
 		return $checked;
 
-	}
-
-	
-	public function set_ran_patched_wordpress() {
-		$this->connectedToWp = true;
-	}
-	
-	public function ran_patched_wordpress() {
-		return $this->connectedToWp;
 	}
 
 	/**

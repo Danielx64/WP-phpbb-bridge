@@ -21,7 +21,7 @@ if( !class_exists( 'WP_United_Plugin' ) ) {
 	require_once(get_template_directory() . '/settings/base-classes.php');
 	require_once(get_template_directory() . '/settings/plugin-main.php');
 	global $wpUnited;
-	$wpUnited = new WP_United_Plugin();	
+	$wpUnited = new WP_United_Plugin();
 }
 $wpUnited->wp_init();
 

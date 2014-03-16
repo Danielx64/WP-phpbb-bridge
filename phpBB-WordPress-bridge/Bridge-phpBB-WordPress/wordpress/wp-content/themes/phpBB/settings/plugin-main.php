@@ -7,12 +7,6 @@
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License  
 * @author John Wells
 *
-* This is the main WP-United WordPress Plugin file.
-* 
-* At the top all the filters and hooks can be found, and they are dynamically loaded according to what is needed.
-* All of the resultant hooks and filter destinations are within this class.
-* This class extends the WP_United_Plugin_Base class, which contains the methods that make sense in both phpBB and WordPress.
-* 
 */
 
 if ( !defined('ABSPATH') && !defined('IN_PHPBB') ) exit;
@@ -25,7 +19,6 @@ class WP_United_Plugin extends WP_United_Plugin_Main_Base {
 		$actions = array(
 			// required actions on all pages
 			array('plugins_loaded', 					'init_plugin',								'all'),  // this should be 'init', but we want to play with current_user, which comes earlier
-			//array('shutdown', 						array('buffer_end_flush_all', 100),			'all'),
 			array('wp_head', 							'add_scripts',								'enabled'),
 
 			// required admin ajax actions
@@ -33,9 +26,6 @@ class WP_United_Plugin extends WP_United_Plugin_Main_Base {
 			array('wp_ajax_wpu_disable', 				'ajax_auto_disable',						'all'),
 			array('wp_ajax_wpu_disableman', 			'ajax_manual_disable',						'all'),
 			array('wp_ajax_wpu_settings_transmit', 		'ajax_settings_transmit',					'all'),
-
-			// template integration actions
-			array('wp_head', 							'add_head_marker',							'template-int'),
 
 		),
 
@@ -115,12 +105,7 @@ class WP_United_Plugin extends WP_United_Plugin_Main_Base {
 		}
 		
 		if($this->is_enabled() && $shouldRun) { 
-		
-			//$this->load_phpbb();
-			
-			//Run any upgrade actions once the phpBB environment has been loaded
-			//$this->upgrade();
-			
+
 			$this->set_last_run('working');
 
 		}
@@ -167,17 +152,17 @@ class WP_United_Plugin extends WP_United_Plugin_Main_Base {
 	}
 	public function ajax_auto_disable() {
 		if(check_ajax_referer( 'wp-united-disable')) {
-			$this->disable_connection('server-error'); 
+			$this->disable_connection('server-error');
 			die('OK');
 		}
-		
+
 	}
 	public function ajax_manual_disable() {
 		if(check_ajax_referer( 'wp-united-disable')) {
 			$this->disable_connection('manual');
 			die('OK');
 		}
-		
+
 	}
 	public function ajax_settings_transmit() {
 		if(check_ajax_referer( 'wp-united-transmit')) {
@@ -251,22 +236,6 @@ class WP_United_Plugin extends WP_United_Plugin_Main_Base {
 		$this->settings->update_settings($data);
 	}
 
-	
-	/**
-	 * Adds a link to the setup/status page on the WordPress plugins menu
-	 * @param array $links provided by WordPress action hook
-	 * @param string $file provided by WordPress action hook
-	 * @return array inbound links returned to WordPress with new link added
-	 */
-	public function add_plugin_menu_link($links, $file) {
-
-		if ($file == 'wp-united/wp-united.php') {
-			$links[] = '<a href="admin.php?page=wp-united-setup">' . __('Setup / Status', 'wp-united') . '</a>';
-		}
-		return $links;
-	}
-	
-
 	/**
 	 * Process inbound actions and set up the settings panels
 	 * Runs only in admin
@@ -311,4 +280,3 @@ class WP_United_Plugin extends WP_United_Plugin_Main_Base {
 	}
 }
 
-// That's all. Easy, right?
