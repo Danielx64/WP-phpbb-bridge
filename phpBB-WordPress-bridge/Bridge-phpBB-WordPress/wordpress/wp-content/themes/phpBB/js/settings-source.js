@@ -302,7 +302,7 @@ function wpu_transmit(type, formID, urlToRefresh) {
 		if(response.length >= 2) responseMsg = response.substr(0, 2);
 		if(responseMsg == 'OK') {
 			// the settings were applied
-			window.location = 'admin.php?page=' + type + '&msg=success' + '&tab=' + window.location.hash.replace('#', '');
+			window.location = 'themes.php?page=' + type + '&msg=success';
 			return;
 		}
 		wpu_process_error(response);
@@ -358,16 +358,16 @@ function wpu_process_error(transmitMessage) {
 		// prevent recursive ajax error:
 		$wpu(document).ajaxError(function() {
 			// TODO: if server 500 error or disable, try direct delete method
-			send_back_msg('admin.php?page=wp-united-setup&msg=fail', transmitMessage);
+			send_back_msg('themes.php?page=wp-united-setup&msg=fail', transmitMessage);
 		}); 
 		$wpu.post(ajaxurl, disable, function(response) {
 			// the connection has been disabled, redirect
-			send_back_msg('admin.php?page=wp-united-setup&msg=fail', transmitMessage);
+			send_back_msg('themes.php?page=wp-united-setup&msg=fail', transmitMessage);
 		});
 	} else {
 		// we caught the error, redirect to setup page
 		transmitMessage = transmitMessage.replace(/\[ERROR\]/g, '');
-		send_back_msg('admin.php?page=wp-united-setup&msg=fail', transmitMessage);
+		send_back_msg('themes.php?page=wp-united-setup&msg=fail', transmitMessage);
 	}
 }
 
@@ -410,7 +410,7 @@ function wpu_manual_disable(type) {
 	var disable = 'wpudisableman=1&action=wpu_disableman&_ajax_nonce=' + disableNonce;
 	$wpu.post(ajaxurl, disable, function(response) {
 		// the connection has been disabled, redirect
-		window.location = 'admin.php?page='+type;
+		window.location = 'themes.php?page='+type;
 	});
 	
 	return false;
