@@ -31,17 +31,17 @@ class WP_United_Settings {
 		$wpDocRoot = '',
 		$enabled = false,
 		$settings = array();
-	
+
 	/**
 	 * Not used. Use ::create() to receive an instantiated object from this factory
 	 */
 	public function __construct() {
-		
+
 	}
 
 	/**
 	 * Get an instantiated object from the factory
-	 * Tries to load the settings object from WordPress. If WordPress is not available, falls back to the stored 
+	 * Tries to load the settings object from WordPress. If WordPress is not available, falls back to the stored
 	 * phpBB settings object
 	 * @return WP_United_Settings settings object
 	 */
@@ -52,21 +52,21 @@ class WP_United_Settings {
 		}
 		return $s;
 	}
-	
+
 	/**
 	 * Tries to initialise from WordPress options.
 	 * @return bool true on success
 	 */
 	private function load_from_wp() {
-		
-		if(function_exists('get_option')) { 
+
+		if(function_exists('get_option')) {
 			$savedSettings = (array)get_option('wpu-settings');
 			$defaults = $this->get_defaults();
 			$this->settings = array_merge($defaults, (array)$savedSettings);
-			
-			$this->wpPath = ABSPATH;
+
+		//	$this->wpPath = ABSPATH;
 			$this->pluginPath = plugin_dir_path(__FILE__);
-			$this->pluginUrl = plugins_url('wp-united') . '/';
+		//	$this->pluginUrl = plugins_url('wp-united') . '/';
 			$this->wpHomeUrl = home_url('/');
 			$this->wpBaseUrl = site_url('/');
 			$this->wpDocRoot = wpu_get_doc_root();
@@ -74,7 +74,7 @@ class WP_United_Settings {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Tries to initialise by restoring a serialised object from phpBB config.
 	 * Returns default settings if nothing can be loaded.
@@ -82,7 +82,7 @@ class WP_United_Settings {
 	 */
 	private function load_from_phpbb() {
 		global $config;
-		
+
 		$wpuString = '';
 		$key = 1;
 		while(isset( $config["wpu_settings_{$key}"])) {
@@ -92,13 +92,13 @@ class WP_United_Settings {
 
 		// convert config value into something just like me :-)
 		if(!empty($wpuString)) {
-			$wpuString =  gzuncompress(base64_decode($wpuString));	
-			$settingsObj = unserialize($wpuString); 
+			$wpuString =  gzuncompress(base64_decode($wpuString));
+			$settingsObj = unserialize($wpuString);
 			if(is_object($settingsObj)) {
-				return $settingsObj; 
+				return $settingsObj;
 			}
 		}
-		
+
 		// failed on all accounts. Initialise ourselves with defaults
 		$this->settings = $this->get_defaults();
 		return $this;
@@ -112,8 +112,8 @@ class WP_United_Settings {
 	 */
 	public function update_settings($data) {
 
-		if(function_exists('update_option')) { 
-			$data = array_merge($this->settings, (array)$data); 
+		if(function_exists('update_option')) {
+			$data = array_merge($this->settings, (array)$data);
 			update_option('wpu-settings', $data);
 			$this->settings = $data;
 		}
@@ -141,27 +141,23 @@ abstract class WP_United_Plugin_Base {
 		
 		
 	public function __construct($initWithSettingsObj = false) {
-		
+
 		if(!$initWithSettingsObj) {
 			$this->load_settings();
 		} else {
 			$this->settings = $initWithSettingsObj;
 		}
-	
+
 	}
-	
+
 	protected function load_settings() {
 		$this->settings = WP_United_Settings::Create();
 	}
-	
+
 	public function get_plugin_path() {
 		return $this->settings->pluginPath;
 	}
-	
-	public function get_wp_path() {
-		return $this->settings->wpPath;
-	}
-	
+
 	public function get_wp_doc_root() {
 		return $this->settings->wpDocRoot;
 	}
@@ -169,16 +165,10 @@ abstract class WP_United_Plugin_Base {
 	public function get_wp_home_url() {
 		return $this->settings->wpHomeUrl;
 	}
-	
+
 	public function get_wp_base_url() {
 		return $this->settings->wpBaseUrl;
 	}
-	
-	public function get_plugin_url() {
-		return $this->settings->pluginUrl;
-	}
-		
-
 
 	public function is_enabled() {
 
@@ -356,28 +346,7 @@ abstract class WP_United_Plugin_Main_Base extends WP_United_Plugin_Base {
 
 	}
 
-	/**
-	 * Determine if we need to load WordPress, and compile a list of actions that will need to take place once we do
-	 */
-	protected function assess_required_wp_actions() {
-		global $phpEx, $user;
-		
-		if(defined('WPU_PHPBB_IS_EMBEDDED')) { // phpBB embedded in WP admin page
-			return 0;
-		}
-		
-		$numActions = sizeof($this->integActions);
-		if($numActions > 0) { 
-			return $numActions;
-		}
-		
-		
-		if(!$this->is_wordpress_loaded()) {
-		// if wordpress is loaded, we're only interested if this is a forward integration
-		} else {}
-		
-		return sizeof($this->integActions);
-	}
+
 	
 	public function get_num_actions() {
 		return $this->assess_required_wp_actions();
