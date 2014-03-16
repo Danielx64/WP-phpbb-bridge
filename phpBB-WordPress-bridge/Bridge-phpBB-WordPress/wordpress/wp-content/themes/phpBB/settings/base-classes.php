@@ -346,34 +346,6 @@ abstract class WP_United_Plugin_Main_Base extends WP_United_Plugin_Base {
 
 	}
 
-
-	
-	public function get_num_actions() {
-		return $this->assess_required_wp_actions();
-	}
-	
-	public function should_run_wordpress() {
-		$init = $this->assess_required_wp_actions();
-		return (defined('ABSPATH')) ? false : $init;
-	}
-	
-
-	public function actions_for_another() {
-		return $this->integActionsFor;
-	}
-	
-	
-	public function should_do_action($actionName) {
-		if(!sizeof($this->integActions)) {
-			return false;
-		}
-		if(in_array($actionName, $this->integActions)) {
-			return true;
-		}
-		return false;
-	}
-	
-
 	protected function ajax_result($errMsg, $msgType = 'message') {
 		if($msgType == 'error') {
 			$errMsg = '[ERROR]' . $errMsg;

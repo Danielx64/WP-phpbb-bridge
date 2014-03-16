@@ -4,11 +4,6 @@
  *
  */
 
-/**
- * Globalize the variable that holds the Theme Options
- * 
- * @global	array	$propress_options	holds Theme options
- */
 global $propress_options;
 
 /**
@@ -51,7 +46,7 @@ function wpu_setup_menu() {
 		<h2> <?php _e('phpBB to WP connector Setup', 'wp-united'); ?> </h2>
 		<p><?php _e('phpBB to WP connector needs to know the location of phpBB in order to work. On this screen you can select or change the location of phpBB.', 'wp-united') ?></p>
 
-		<div id="wputransmit"><p><strong><?php _e('Communicating with phpBB...', 'wp-united'); ?></strong><br /><?php _e('Please Wait...'); ?></p><img src="<?php echo  get_template_directory_uri() ?>/images/settings/wpuldg.gif" /></div>
+		<div id="wputransmit"><p><strong><?php _e('Checking and saving your setting...', 'wp-united'); ?></strong><br /><?php _e('Please Wait...'); ?></p><img src="<?php echo  get_template_directory_uri() ?>/images/settings/wpuldg.gif" /></div>
 
 		<?php
 
@@ -86,7 +81,7 @@ function wpu_setup_menu() {
 		<form name="wpu-setup" id="wpusetup" method="post" onsubmit="return wpu_transmit('wp-united-setup', this.id);">
 			<?php wp_nonce_field('wp-united-setup');  ?>
 
-			<p><?php _e('phpBB to WP connector needs to know where phpBB is installed on your server.', 'wp-united'); ?> <span id="txtselpath"><?php _e("Find and select your phpBB's config.php below.", 'wp-united'); ?></span><span id="txtchangepath" style="display: none;"><?php _e('Click &quot;Change Location&quot; to change the stored location.', 'wp-united'); ?></span></p>
+			<p><?php _e('phpBB to WP connector needs to know where phpBB is located on your server.', 'wp-united'); ?> <span id="txtselpath"><?php _e("Find and select your phpBB's config.php below.", 'wp-united'); ?></span><span id="txtchangepath" style="display: none;"><?php _e('Click &quot;Change Location&quot; to change the stored location.', 'wp-united'); ?></span></p>
 
 			<?php
 
@@ -169,7 +164,7 @@ function wpu_settings_menu() {
 	wp_enqueue_style('wpuSettingsStyles', get_template_directory_uri() . '/theme/settings.css');
 
 	if(isset($_GET['page'])) {
-		if(in_array($_GET['page'], array('wp-united-settings', 'wp-united-setup', 'wpu-user-mapper'))) {
+		if(in_array($_GET['page'], array('wp-united-setup'))) {
 
 			wp_enqueue_script('filetree', get_template_directory_uri() . '/js/filetree-source.js', array('jquery'), false, false);
 			;
@@ -194,7 +189,7 @@ function wpu_settings_menu() {
 			);
 
 		}
-		if(in_array($_GET['page'], array('wp-united-settings', 'wp-united-setup'))) {
+		if(in_array($_GET['page'], array('wp-united-setup'))) {
 
 			wp_enqueue_style('wpuSettingsStyles', get_template_directory_uri() . 'theme/settings.css');
 		}
@@ -238,8 +233,6 @@ function wpu_process_settings() {
 	}
 
 	$wpUnited->update_settings($data);
-
-
 	$wpUnited->update_settings($data);
 }
 
