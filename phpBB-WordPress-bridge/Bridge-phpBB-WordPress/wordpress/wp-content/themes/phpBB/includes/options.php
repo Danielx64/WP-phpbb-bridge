@@ -237,18 +237,6 @@ function wpu_process_settings() {
 }
 
 
-function wpu_panel_error($type, $text) {
-
-	echo '<div id="message" class="error"><p>' . $text . '</p></div>';
-	if($type=='settings') {
-		wpu_settings_page();
-	} else {
-		wpu_show_setup_menu();
-	}
-
-}
-
-
 function wpu_filetree() {
 	if(stristr($_POST['filetree'], '..')) {
 		die();
@@ -309,5 +297,3 @@ function wpu_hardened_script_init() {
 	</script>
 <?php
 }
-
-

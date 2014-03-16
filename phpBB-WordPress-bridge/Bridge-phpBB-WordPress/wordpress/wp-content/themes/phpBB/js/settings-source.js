@@ -124,25 +124,7 @@ function wpuSwitchEntryType() {
 	return false;
 }
 
-/**
- * Initialises the settings page
- */
-function setupSettingsPage() {
-	$wpu('#wputabs').tabs({
-		select: function(event, ui) {                   
-			window.location.hash = ui.tab.hash;
-		}
-    });
-	$wpu('#phpbbpathchange').button();	
-	$wpu('#wputpladvancedstgs').button();	
-	$wpu('.wpuwhatis').button();	
-	
-	var selTab = $wpu.QueryString['tab']; 
-	if(selTab != undefined) {
-		 $wpu('#wputabs').tabs('select', '#' + selTab); 
-	}
 
-}
 
 /**
  * Sets the form fields up when a valid phpBB path is chosen in the filetree
@@ -157,81 +139,6 @@ function setPath(type) {
 	}
 	$wpu("#phpbbpathshow").html(phpbbPath).css('color', 'green');
 	$wpu("#wpupathfield").val(phpbbPath);
-}
-
-/**
- * Sets up the buttons for the help / what is this menu
- */
-function setupHelpButtons() {
-	$wpu('.wpuwhatis').click(function() {
-		$wpu('#wpu-desc').text($wpu(this).attr('title'));
-		$wpu("#wpu-dialog").dialog({
-			modal: true,
-			title: 'WP-United Help',
-			buttons: {
-				Close: function() {
-					$wpu(this).dialog('close');
-				}
-			}
-		});
-		return false;
-	});	
-}
-
-/**
- * Sets the settings form dynamic elements to their initial states
- */
-function settingsFormSetup() {
-	if($wpu('#wpuxpost').is(':checked')) {
-		$wpu('#wpusettingsxpostxtra').show();
-		if($wpu('#wpuxpostcomments').is(':checked')) {
-			$wpu('#wpusettingsxpostcomments').show();
-		}
-	}
-	if($wpu('#wpuloginint').is(':checked')) $wpu('#wpusettingsxpost').show();
-	if($wpu('#wputplint').is(':checked')) {
-		$wpu('#wpusettingstpl').show();
-		if($wpu('#wputplrev').is(':checked')) {
-			$wpu('#wputemplate-w-in-p-opts').hide();
-		} else {
-			$wpu('#wputemplate-p-in-w-opts').hide();
-		}
-	}
-	
-	$wpu('input[name=rad_tpl]').change(function() {
-		$wpu('#wputemplate-p-in-w-opts').toggle();
-		$wpu('#wputemplate-w-in-p-opts').toggle();
-	});
-
-	$wpu('#wpuloginint').change(function() {
-		$wpu('#wpusettingsxpost').toggle("slide", "slow");
-	});
-	$wpu('#wpuxpost').change(function() {
-		$wpu('#wpusettingsxpostxtra').toggle("slide", "slow");
-	});
-	$wpu('#wpuxpostcomments').change(function() {
-		$wpu('#wpusettingsxpostcomments').toggle("slide", "slow");
-	});
-	
-	setCSSMLevel(cssmVal);
-	
-	$wpu('#wputplint').change(function() { 
-			$wpu('#wpusettingstpl').toggle("slide", "slow");
-			var slVal = ($wpu(this).val()) ? 2 : 0;						
-			setCSSMLevel(slVal);
-			$wpu("#wpucssmlvl").slider("value", slVal);
-	});	
-
-	$wpu("#wpucssmlvl").slider({
-		value: cssmVal,
-		min: 0,
-		max: 2,
-		step: 1,
-		change: function(event, ui) {
-			setCSSMLevel(ui.value);
-		}
-	});	
-	
 }
 
 
@@ -378,43 +285,6 @@ function send_back_msg(uri, msg) {
 	$wpu('<div id="escapetext"> </div>').appendTo('body');
 
 	$wpu('<form action="' + uri + '" method="post"><input type="hidden" name="msgerr" value="' + Base64.encode($wpu('#escapetext').text(msg).html()) + '"></input></form>').appendTo('body').submit();
-}
-
-/**
- * Sanitizes returned html so we can send it back as a request var
- */
-function makeMsgSafe(msg) {
-	msg = Base64.encode(msg)
-	msg = msg.replace(/\+/ig, '%2B');
-	msg = msg.replace(/\=/ig, '%3D');
-	msg = msg.replace(/\//ig, '%2F');
-	return escape(msg);
-}
-
-/**
- * The user wants to disable WP-United
- */
-function wpu_manual_disable(type) {
-	$wpu("#wputransmit").dialog({
-		modal: true,
-		title: connectingText,
-		width: 360,
-		height: 160,
-		draggable: false,
-		disabled: true,
-		closeOnEscape: false,
-		resizable: false,
-		show: 'puff'
-	});
-	$wpu('.ui-dialog-titlebar').hide();
-	var disable = 'wpudisableman=1&action=wpu_disableman&_ajax_nonce=' + disableNonce;
-	$wpu.post(ajaxurl, disable, function(response) {
-		// the connection has been disabled, redirect
-		window.location = 'themes.php?page='+type;
-	});
-	
-	return false;
-	
 }
 
 
