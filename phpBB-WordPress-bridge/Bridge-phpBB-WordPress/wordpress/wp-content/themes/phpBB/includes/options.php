@@ -46,7 +46,7 @@ function wpu_setup_menu() {
 		<h2> <?php _e('phpBB to WP connector Setup', 'wp-united'); ?> </h2>
 		<p><?php _e('phpBB to WP connector needs to know the location of phpBB in order to work. On this screen you can select or change the location of phpBB.', 'wp-united') ?></p>
 
-		<div id="wputransmit"><p><strong><?php _e('Checking and saving your setting...', 'wp-united'); ?></strong><br /><?php _e('Please Wait...'); ?></p><img src="<?php echo  get_template_directory_uri() ?>/images/settings/wpuldg.gif" /></div>
+		<div id="wputransmit"><p><strong><?php _e('Checking and saving your setting.', 'wp-united'); ?></strong><br /><?php _e('Please Wait...'); ?></p><img src="<?php echo  get_template_directory_uri() ?>/images/settings/wpuldg.gif" /></div>
 
 		<?php
 
@@ -82,7 +82,7 @@ function wpu_setup_menu() {
 			<?php wp_nonce_field('wp-united-setup');  ?>
 
 			<p><?php _e('phpBB to WP connector needs to know where phpBB is located on your server.', 'wp-united'); ?> <span id="txtselpath"><?php _e("Find and select your phpBB's config.php below.", 'wp-united'); ?></span><span id="txtchangepath" style="display: none;"><?php _e('Click &quot;Change Location&quot; to change the stored location.', 'wp-united'); ?></span></p>
-
+<?php PTW_Check(); ?>
 			<?php
 
 			$docRoot = wpu_get_doc_root();
@@ -174,12 +174,8 @@ function wpu_settings_menu() {
 				get_template_directory_uri() . '/js/settings-source.js',
 				array(
 					'filetree',
-					'jquery-ui-widget',
-					'jquery-ui-tabs',
 					'jquery-ui-button',
-					'jquery-ui-slider',
 					'jquery-ui-dialog',
-					'jquery-ui-autocomplete',
 					'jquery-effects-core',
 					'jquery-effects-slide',
 					'jquery-effects-highlight'
@@ -296,4 +292,14 @@ function wpu_hardened_script_init() {
 		// ]]>
 	</script>
 <?php
+}
+
+// Checking and putting out errors as needed
+
+function PTW_Check() {
+	$propress_options = get_option( 'wpu-settings' );
+if (!isset($propress_options['phpbb_path'])  ) {echo('You need to configure this before this bridge will work');}
+	elseif (@file_exists($propress_options['phpbb_path'].  'config.php')) {echo('This bridge can find your phpBB config.php and you should be right to go');}
+
+
 }
