@@ -9,8 +9,6 @@
 *
 */
 
-if ( !defined('ABSPATH') && !defined('IN_PHPBB') ) exit;
-
 class WP_United_Plugin extends WP_United_Plugin_Main_Base {
 
 	protected
@@ -23,22 +21,15 @@ class WP_United_Plugin extends WP_United_Plugin_Main_Base {
 
 			// required admin ajax actions
 			array('wp_ajax_wpu_filetree', 				'filetree',									'all'),
-			array('wp_ajax_wpu_disable', 				'ajax_auto_disable',						'all'),
-			array('wp_ajax_wpu_disableman', 			'ajax_manual_disable',						'all'),
+
 			array('wp_ajax_wpu_settings_transmit', 		'ajax_settings_transmit',					'all'),
 
-		),
-
-		$filters = array(
-
 		);
+
 		
 		private
-			$doneInit 		= false,
-			$extras 		= false,
-			$xPoster		= false;
-	
-	
+			$doneInit 		= false;
+
 	/**
 	* All base init is done by the parent class.
 	*/
@@ -60,8 +51,8 @@ class WP_United_Plugin extends WP_United_Plugin_Main_Base {
 
 		// add new actions and filters
 		$this->add_actions();
-		$this->add_filters();
-		unset($this->actions, $this->filters);
+
+		unset($this->actions);
 
 	}
 	
@@ -79,9 +70,6 @@ class WP_United_Plugin extends WP_United_Plugin_Main_Base {
 		$this->doneInit = true;
 		
 		$shouldRun = true;
-		
-		// this has to go prior to phpBB load so that connection can be disabled in the event of an error on activation.
-		$this->process_adminpanel_actions();
 
 		$propress_options = get_option( 'wpu-settings' );
 		if(!$propress_options['phpbb_path'] || !WP_United_Plugin::can_connect_to_phpbb()) {
@@ -109,8 +97,6 @@ class WP_United_Plugin extends WP_United_Plugin_Main_Base {
 			$this->set_last_run('working');
 
 		}
-		
-		$this->process_frontend_actions();
 
 		return true; 
 			
@@ -150,20 +136,7 @@ class WP_United_Plugin extends WP_United_Plugin_Main_Base {
 		}
 		die();
 	}
-	public function ajax_auto_disable() {
-		if(check_ajax_referer( 'wp-united-disable')) {
-			$this->disable_connection('server-error');
-			die('OK');
-		}
 
-	}
-	public function ajax_manual_disable() {
-		if(check_ajax_referer( 'wp-united-disable')) {
-			$this->disable_connection('manual');
-			die('OK');
-		}
-
-	}
 	public function ajax_settings_transmit() {
 		if(check_ajax_referer( 'wp-united-transmit')) {
 			wpu_process_settings();
@@ -187,8 +160,7 @@ class WP_United_Plugin extends WP_United_Plugin_Main_Base {
 		if (!defined('IN_PHPBB')) {
 			
 			$this->set_last_run('connected');
-			
-		//	$this->load_phpbb();
+
 		}
 	
 		// store data before transmitting
@@ -235,48 +207,4 @@ class WP_United_Plugin extends WP_United_Plugin_Main_Base {
 	public function update_settings($data) {
 		$this->settings->update_settings($data);
 	}
-
-	/**
-	 * Process inbound actions and set up the settings panels
-	 * Runs only in admin
-	 * @return void
-	 */
-	private function process_adminpanel_actions() {
-
-		if(is_admin()) {
-
-			// the settings page has detected an error and asked to abort
-			if( isset($_POST['wpudisable']) && check_ajax_referer( 'wp-united-disable') ) {
-				$this->ajax_auto_disable();
-			}	
-
-			// the user wants to manually disable
-			if( isset($_POST['wpudisableman']) && check_ajax_referer( 'wp-united-disable') ) {
-				$this->ajax_manual_disable();
-			}
-						
-			if($this->is_working() && is_object($this->extras)) {
-				$this->extras->admin_load_actions();
-			}
-			
-		}
-	}
-	
-	/**
-	 * Process any inbound AJAX requests or perform any actions that should only happen outside admin
-	 * @return void
-	 */
-	private function process_frontend_actions() {
-		
-		if(is_admin()) {
-			return;
-		}
-
-		if($this->is_working() && is_object($this->extras)) {
-			$this->extras->page_load_actions();
-		}
-
-	
-	}
 }
-
