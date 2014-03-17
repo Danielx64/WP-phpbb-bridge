@@ -299,7 +299,10 @@ function wpu_hardened_script_init() {
 function PTW_Check() {
 	$propress_options = get_option( 'wpu-settings' );
 if (!isset($propress_options['phpbb_path'])  ) {echo('You need to configure this before this bridge will work');}
-	elseif (@file_exists($propress_options['phpbb_path'].  'config.php')) {echo('This bridge can find your phpBB config.php and you should be right to go');}
+	elseif (@file_exists($propress_options['phpbb_path'].'config.php') && @file_exists($propress_options['phpbb_path'].'/includes/acp/info/acp_wp_phpbb_bridge.php')) {echo('This bridge can find your phpBB config.php and the edits have been done on your phpBB forum so you should be right to go');}
+elseif (!@file_exists($propress_options['phpbb_path'].'config.php')) {echo('It looks like that you have set the file path incorrectly, you will need to fix this up before this will work');}
+elseif (@file_exists($propress_options['phpbb_path'].'config.php') && !@file_exists($propress_options['phpbb_path'].'/includes/acp/info/acp_wp_phpbb_bridge.php')) {echo('This bridge can find your phpBB config.php but you will need to use automod to install the edits required for phpBB');}
+
 
 
 }
