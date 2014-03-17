@@ -216,19 +216,9 @@ function wpu_process_settings() {
 	$wpuPhpbbPath = (string)$_POST['wpu-path'];
 	$wpuPhpbbPath = str_replace('http:', '', $wpuPhpbbPath);
 	$wpuPhpbbPath = add_trailing_slash($wpuPhpbbPath);
-	if(!@file_exists($wpUnited->get_plugin_path()))  {
-		die('[ERROR] ' . __("ERROR:The path you selected for phpBB's config.php is not valid", 'wp-united'));
-		return;
-	}
-	if(!@file_exists($wpuPhpbbPath . 'config.php'))  {
-		die('[ERROR] ' . __("ERROR: phpBB's config.php could not be found at the location you chose", 'wp-united'));
-		return;
-	}
 	if($type=='setup') {
 		$data['phpbb_path'] = $wpuPhpbbPath;
 	}
-
-	$wpUnited->update_settings($data);
 	$wpUnited->update_settings($data);
 }
 
@@ -302,7 +292,4 @@ if (!isset($propress_options['phpbb_path'])  ) {echo('You need to configure this
 	elseif (@file_exists($propress_options['phpbb_path'].'config.php') && @file_exists($propress_options['phpbb_path'].'/includes/acp/info/acp_wp_phpbb_bridge.php')) {echo('This bridge can find your phpBB config.php and the edits have been done on your phpBB forum so you should be right to go');}
 elseif (!@file_exists($propress_options['phpbb_path'].'config.php')) {echo('It looks like that you have set the file path incorrectly, you will need to fix this up before this will work');}
 elseif (@file_exists($propress_options['phpbb_path'].'config.php') && !@file_exists($propress_options['phpbb_path'].'/includes/acp/info/acp_wp_phpbb_bridge.php')) {echo('This bridge can find your phpBB config.php but you will need to use automod to install the edits required for phpBB');}
-
-
-
 }
