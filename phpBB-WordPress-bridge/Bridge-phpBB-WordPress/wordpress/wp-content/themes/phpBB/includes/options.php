@@ -50,19 +50,7 @@ function wpu_setup_menu() {
 
 		<?php
 
-		$needPreview = false;
-		$msg = '';
-		if(isset($_GET['msg'])) {
-			if($_GET['msg'] == 'fail') {
-				$msg = html_entity_decode(base64_decode(stripslashes_deep((string)$_POST['msgerr'])));
-			} else {
-				// $msg is succcess, do preview reloads to init Template Voodoo:
-				$needPreview = true;
-			}
-		}
-
 		$buttonDisplay = 'display: block;';
-
 
 		if(!$wpUnited->is_enabled() && ($wpUnited->get_last_run() == 'working')) {
 			$buttonDisplay = 'display: block;';

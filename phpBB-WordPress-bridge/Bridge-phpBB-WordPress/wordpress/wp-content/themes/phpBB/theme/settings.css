@@ -429,14 +429,14 @@ UL.jqueryFileTree LI {
 	white-space: nowrap;
 }
 
-UL.jqueryFileTree A {
+UL.jqueryFileTree a {
 	color: #333;
 	text-decoration: none;
 	display: block;
 	padding: 0px 2px;
 }
 
-UL.jqueryFileTree A:hover {
+UL.jqueryFileTree a:hover {
 	background-color: #dedede;
 	color: #cd0a0a;
 }
@@ -619,6 +619,7 @@ div.subsettings div.subsettings div.subsettings {
 	height: 200px; 
 	border: 1px solid #cccccc;  
 	overflow-y: auto;
+    background-color: #ffffff;
 }
 
 #panellogo {
