@@ -20,9 +20,14 @@ if (!function_exists('add_action')) {
 
 include_once dirname( __FILE__ ) . '/functions/wp-crosspost.php';
 include_once dirname( __FILE__ ) . '/functions/options.php';
-include_once dirname( __FILE__ ) . '/functions/custom.php';
 include_once dirname( __FILE__ ) . '/functions/wp-profile.php';
-
+if( !class_exists( 'WP_United_Plugin' ) ) {
+	require_once(dirname( __FILE__ ) . '/functions/base-classes.php');
+	require_once(dirname( __FILE__ ) . '/functions/plugin-main.php');
+	global $wpUnited;
+	$wpUnited = new WP_United_Plugin();
+}
+$wpUnited->wp_init();
 require( ABSPATH . WPINC . '/pluggable.php' );
 global $pagenow;
 if (!defined('WP_DONTLOAD')) {
