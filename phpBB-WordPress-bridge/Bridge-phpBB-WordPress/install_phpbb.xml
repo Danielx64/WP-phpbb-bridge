@@ -157,7 +157,7 @@ if (!function_exists('validate_username') && $wpbbmode !='login' && $wpbbmode !=
 			</edit>
 			<edit>
 				<find><![CDATA[	<div id="page-header">]]></find>
-				<action type="after-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
+				<action type="before-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
 	<!-- IF PHPBB_IN_BLOG -->
 		<!-- INCLUDE wordpress/overall_header.html -->
 	<!-- ELSE -->
@@ -167,17 +167,17 @@ if (!function_exists('validate_username') && $wpbbmode !='login' && $wpbbmode !=
 			<edit>
 				<find><![CDATA[			<span class="corners-bottom"><span></span></span></div>
 		</div>]]></find>
-				<action type="before-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
+				<action type="after-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
 	<!-- ENDIF -->
 <!-- BRIDGE phpBB & WordPress - End //-->]]></action>
 			</edit>
 			<edit>
-				<find><![CDATA[<li class="icon-faq"><a href="{U_FAQ}" title="{L_FAQ_EXPLAIN}">{L_FAQ}</a></li>]]></find>
-				<action type="before-add"><![CDATA[<!-- IF S_SHOW_HOMEPAGE --><li class="icon-members"><a href="{U_HOMEPAGE}" title="{U_HOMEPAGE_TITLE}">{U_HOMEPAGE_TITLE}</a></li><!-- ENDIF -->]]></action>
+				<find><![CDATA[<li class="icon-home"><a href="{U_INDEX}" accesskey="h">{L_INDEX}</a> <!-- BEGIN navlinks --> <strong>&#8249;</strong> <a href="{navlinks.U_VIEW_FORUM}">{navlinks.FORUM_NAME}</a><!-- END navlinks --></li>]]></find>
+				<action type="replace-with"><![CDATA[<li class="icon-home"><!-- IF PHPBB_IN_BLOG --> <a href="{U_HOMEPAGE}" title="{U_HOMEPAGE_TITLE}">{U_HOMEPAGE_TITLE}</a> <!-- ELSE --><a href="{U_HOMEPAGE}" title="{U_HOMEPAGE_TITLE}">{U_HOMEPAGE_TITLE}</a> <strong>&#8249;</strong> <a href="{U_INDEX}" accesskey="h">{L_INDEX}</a><!-- ENDIF --> <!-- BEGIN navlinks --> <strong>&#8249;</strong> <a href="{navlinks.U_VIEW_FORUM}">{navlinks.FORUM_NAME}</a><!-- END navlinks --></li>]]></action>
 			</edit>
 			<edit>
-				<find><![CDATA[<a href="{U_INDEX}" accesskey="h">{L_INDEX}</a>]]></find>
-				<action type="after-add"><![CDATA[<!-- IF PHPBB_IN_BLOG --> <a href="{U_HOMEPAGE}" title="{U_HOMEPAGE_TITLE}">{U_HOMEPAGE_TITLE}</a> <strong>&#8249;</strong>  <a href="{U_INDEX}" accesskey="h">{L_INDEX}</a><!-- ELSE --> <a href="{U_INDEX}" accesskey="h">{L_INDEX}</a> <!-- ENDIF -->]]></action>
+				<find><![CDATA[<li class="icon-faq"><a href="{U_FAQ}" title="{L_FAQ_EXPLAIN}">{L_FAQ}</a></li>]]></find>
+				<action type="before-add"><![CDATA[<!-- IF S_SHOW_HOMEPAGE --><li class="icon-members"><a href="{U_HOMEPAGE}" title="{U_HOMEPAGE_TITLE}">{U_HOMEPAGE_TITLE}</a></li><!-- ENDIF -->]]></action>
 			</edit>
 		</open>
 		<open src="styles/prosilver/theme/stylesheet.css">
