@@ -17,7 +17,6 @@ class WP_United_Plugin extends WP_United_Plugin_Main_Base {
 		$actions = array(
 			// required actions on all pages
 			array('plugins_loaded', 					'init_plugin',								'all'),  // this should be 'init', but we want to play with current_user, which comes earlier
-			array('wp_head', 							'add_scripts',								'enabled'),
 
 			// required admin ajax actions
 			array('wp_ajax_wpu_filetree', 				'filetree',									'all'),
