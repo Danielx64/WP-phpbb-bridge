@@ -157,7 +157,7 @@ if (!function_exists('validate_username') && $wpbbmode !='login' && $wpbbmode !=
 			</edit>
 			<edit>
 				<find><![CDATA[	<div id="page-header">]]></find>
-				<action type="before-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
+				<action type="after-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
 	<!-- IF PHPBB_IN_BLOG -->
 		<!-- INCLUDE wordpress/overall_header.html -->
 	<!-- ELSE -->
