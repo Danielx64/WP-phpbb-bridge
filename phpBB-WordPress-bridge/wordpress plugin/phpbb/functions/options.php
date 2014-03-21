@@ -46,7 +46,7 @@ function wpu_setup_menu() {
 		<h2> <?php _e('phpBB to WP connector Setup', 'wp-united'); ?> </h2>
 		<p><?php _e('phpBB to WP connector needs to know the location of phpBB in order to work. On this screen you can select or change the location of phpBB.', 'wp-united') ?></p>
 
-		<div id="wputransmit"><p><strong><?php _e('Checking and saving your setting.', 'wp-united'); ?></strong><br /><?php _e('Please Wait...'); ?></p><img src="<?php echo  get_template_directory_uri() ?>/images/settings/wpuldg.gif" /></div>
+		<div id="wputransmit"><p><strong><?php _e('Checking and saving your setting.', 'wp-united'); ?></strong><br /><?php _e('Please Wait...'); ?></p><img src="<?php echo  $wpUnited->get_plugin_url()  ?>/images/settings/wpuldg.gif" /></div>
 
 		<?php
 
@@ -161,17 +161,17 @@ function wpu_settings_menu() {
 	}
 
 
-	wp_enqueue_style('wpuSettingsStyles', get_template_directory_uri() . '/theme/settings.css');
+	wp_enqueue_style('wpuSettingsStyles', $wpUnited->get_plugin_url(). '/theme/settings.css');
 
 	if(isset($_GET['page'])) {
 		if(in_array($_GET['page'], array('wp-united-setup'))) {
 
-			wp_enqueue_script('filetree', get_template_directory_uri() . '/js/filetree-source.js', array('jquery'), false, false);
+			wp_enqueue_script('filetree', $wpUnited->get_plugin_url() . '/js/filetree-source.js', array('jquery'), false, false);
 			;
 
 			wp_enqueue_script(
 				'wpu-settings',
-				get_template_directory_uri() . '/js/settings-source.js',
+				$wpUnited->get_plugin_url()  . '/js/settings-source.js',
 				array(
 					'filetree',
 					'jquery-ui-button',
@@ -187,7 +187,7 @@ function wpu_settings_menu() {
 		}
 		if(in_array($_GET['page'], array('wp-united-setup'))) {
 
-			wp_enqueue_style('wpuSettingsStyles', get_template_directory_uri() . 'theme/settings.css');
+			wp_enqueue_style('wpuSettingsStyles', $wpUnited->get_plugin_url() . 'theme/settings.css');
 		}
 	}
 }

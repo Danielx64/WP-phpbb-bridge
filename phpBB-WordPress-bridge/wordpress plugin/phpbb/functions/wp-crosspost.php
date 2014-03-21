@@ -79,15 +79,15 @@ function wp_phpbb_posting($post_ID, $post)
 
 	if (!function_exists('submit_post'))
 	{
-		include($propress_options['phpbb_script_path']. "includes/functions_posting." . PHP_EXT);
+		include($propress_options['phpbb_path']. "includes/functions_posting." . PHP_EXT);
 	}
 	if (!class_exists('bitfield'))
 	{
-		include($propress_options['phpbb_script_path']. "includes/functions_content." . PHP_EXT);
+		include($propress_options['phpbb_path']. "includes/functions_content." . PHP_EXT);
 	}
 	if (!class_exists('parse_message'))
 	{
-		include($propress_options['phpbb_script_path'] . "includes/message_parser." . PHP_EXT);
+		include($propress_options['phpbb_path'] . "includes/message_parser." . PHP_EXT);
 	}
 	$message_parser = new parse_message();
 

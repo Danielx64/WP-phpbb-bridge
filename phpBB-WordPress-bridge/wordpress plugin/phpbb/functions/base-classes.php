@@ -66,7 +66,7 @@ class WP_United_Settings {
 
 		//	$this->wpPath = ABSPATH;
 			$this->pluginPath = plugin_dir_path(__FILE__);
-		//	$this->pluginUrl = plugins_url('wp-united') . '/';
+			$this->pluginUrl = plugins_url('phpbb') . '/';
 			$this->wpHomeUrl = home_url('/');
 			$this->wpBaseUrl = site_url('/');
 			$this->wpDocRoot = wpu_get_doc_root();
@@ -168,6 +168,10 @@ abstract class WP_United_Plugin_Base {
 
 	public function get_wp_base_url() {
 		return $this->settings->wpBaseUrl;
+	}
+
+	public function get_plugin_url() {
+		return $this->settings->pluginUrl;
 	}
 
 	public function is_enabled() {
