@@ -52,7 +52,7 @@
 			<edit>
 				<find><![CDATA[	// The following assigns all _common_ variables that may be used at any point in a template.
 ]]></find>
-				<action type="before-add"><![CDATA[if (defined('PHPBB_IN_BLOG')) {	
+				<action type="before-add"><![CDATA[if (defined('IN_WP_PHPBB_BRIDGE')) {	
 $phpbb_root_path = $config['wp_phpbb_bridge_board_path'];
 }]]></action>
 			</edit>
@@ -65,7 +65,7 @@ $phpbb_root_path = $config['wp_phpbb_bridge_board_path'];
 			</edit>
 			<edit>
 				<find><![CDATA[	// application/xhtml+xml not used because of IE]]></find>
-				<action type="before-add"><![CDATA[	if (defined('PHPBB_IN_BLOG')) {
+				<action type="before-add"><![CDATA[	if (defined('IN_WP_PHPBB_BRIDGE')) {
 	$phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './';
 	}]]></action>
 			</edit>
