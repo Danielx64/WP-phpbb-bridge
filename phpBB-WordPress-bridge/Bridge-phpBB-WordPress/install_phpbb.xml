@@ -33,7 +33,7 @@
 				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>1.2.0</mod-version>
+		<mod-version>1.5.0</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>300</time>
@@ -165,14 +165,19 @@ if (!function_exists('validate_username') && $wpbbmode !='login' && $wpbbmode !=
 ]]></action>
 			</edit>
 			<edit>
+				<find><![CDATA[			<span class="corners-bottom"><span></span></span></div>
+		</div>]]></find>
+				<action type="before-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
+	<!-- ENDIF -->
+<!-- BRIDGE phpBB & WordPress - End //-->]]></action>
+			</edit>
+			<edit>
 				<find><![CDATA[<li class="icon-faq"><a href="{U_FAQ}" title="{L_FAQ_EXPLAIN}">{L_FAQ}</a></li>]]></find>
 				<action type="before-add"><![CDATA[<!-- IF S_SHOW_HOMEPAGE --><li class="icon-members"><a href="{U_HOMEPAGE}" title="{U_HOMEPAGE_TITLE}">{U_HOMEPAGE_TITLE}</a></li><!-- ENDIF -->]]></action>
 			</edit>
 			<edit>
-				<find><![CDATA[		</div>]]></find>
-				<action type="after-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
-	<!-- ENDIF -->
-<!-- BRIDGE phpBB & WordPress - End //-->]]></action>
+				<find><![CDATA[<a href="{U_INDEX}" accesskey="h">{L_INDEX}</a>]]></find>
+				<action type="after-add"><![CDATA[<!-- IF PHPBB_IN_BLOG --> <a href="{U_HOMEPAGE}" title="{U_HOMEPAGE_TITLE}">{U_HOMEPAGE_TITLE}</a> <strong>&#8249;</strong>  <a href="{U_INDEX}" accesskey="h">{L_INDEX}</a><!-- ELSE --> <a href="{U_INDEX}" accesskey="h">{L_INDEX}</a> <!-- ENDIF -->]]></action>
 			</edit>
 		</open>
 		<open src="styles/prosilver/theme/stylesheet.css">
