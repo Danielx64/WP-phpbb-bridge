@@ -74,7 +74,7 @@ function wpu_setup_menu() {
 			<?php
 
 			$docRoot = wpu_get_doc_root();
-			$propress_options = get_option( 'wpu-settings' );
+			$propress_options = get_option( 'phpbbtowp' );
 			$phpbbPath = $propress_options['phpbb_path'];
 
 			if($phpbbPath) {
@@ -111,7 +111,7 @@ function wpu_setup_menu() {
 		var disableNonce = '<?php echo wp_create_nonce ('wp-united-disable'); ?>';
 		var blankPageMsg = '<?php wpu_js_translate(__('Blank page received: check your error log.', 'wp-united')); ?>';
 		var phpbbPath = '<?php
-		 $propress_options = get_option( 'wpu-settings' );
+		 $propress_options = get_option( 'phpbbtowp' );
 		 echo ($propress_options['phpbb_path']) ? $propress_options['phpbb_path'] : ''; ?>';
 		var fileTreeLdgText = '<?php wpu_js_translate(__('Loading...', 'wp-united')); ?>';
 		var connectingText = '<?php wpu_js_translate(__('Connecting...', 'wp-united')); ?>';
@@ -122,7 +122,7 @@ function wpu_setup_menu() {
 		function wpu_hardened_init_tail() {
 			createFileTree();
 			<?php
-			 $propress_options = get_option( 'wpu-settings' );
+			 $propress_options = get_option( 'phpbbtowp' );
 			 if($propress_options['phpbb_path']) { ?>
 			setPath('setup');
 			<?php } ?>
@@ -275,7 +275,7 @@ function wpu_hardened_script_init() {
 // Checking and putting out errors as needed
 
 function PTW_Check() {
-	$propress_options = get_option( 'wpu-settings' );
+	$propress_options = get_option( 'phpbbtowp' );
 if (!isset($propress_options['phpbb_path'])  ) {echo('You need to configure this before this bridge will work');}
 	elseif (@file_exists($propress_options['phpbb_path'].'config.php') && @file_exists($propress_options['phpbb_path'].'/includes/acp/info/acp_wp_phpbb_bridge.php')) {echo('This bridge can find your phpBB config.php and the edits have been done on your phpBB forum so you should be right to go');}
 elseif (!@file_exists($propress_options['phpbb_path'].'config.php')) {echo('It looks like that you have set the file path incorrectly, you will need to fix this up before this will work');}

@@ -53,7 +53,7 @@ require(WP_PHPBB_BRIDGE_ROOT . 'includes/wp_phpbb_bridge_core.' . PHP_EXT);
 
 // Initialise settings
 bridge::set_config();
-$propress_options = get_option( 'wpu-settings' );
+$propress_options = get_option( 'phpbbtowp' );
 
 // Include common phpBB files and functions.
 if (!file_exists($propress_options['phpbb_path']. 'common.' . PHP_EXT))

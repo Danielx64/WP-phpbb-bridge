@@ -37,7 +37,7 @@ class bridge
 		global $wp_phpbb_bridge_config;
 
 		// Some default options
-	$propress_options = get_option( 'wpu-settings' );
+	$propress_options = get_option( 'phpbbtowp' );
 	$phpbb_root_path =  $propress_options['phpbb_path'];
 
 		// bypass our own settings
@@ -66,7 +66,7 @@ class bridge
 
 		// Make that phpBB itself understands out paths
 		global $phpbb_root_path, $phpEx;
-	$propress_options = get_option( 'wpu-settings' );
+	$propress_options = get_option( 'phpbbtowp' );
 
 		$phpbb_root_path = $propress_options['phpbb_path'];
 		$phpEx = PHP_EXT;
@@ -142,7 +142,7 @@ class phpbb
 		self::$cache	= &$cache;
 
 		// Set the absolute wordpress/phpbb path
-		$propress_options = get_option( 'wpu-settings' );
+		$propress_options = get_option( 'phpbbtowp' );
 		self::$absolute_phpbb_script_path = $propress_options['phpbb_path'];
 //		self::$absolute_wordpress_script_path = phpbb::$config['wordpress_script_path'];
 		self::$absolute_phpbb_url_path = phpbb::$config['wp_phpbb_bridge_board_path'];
@@ -355,7 +355,7 @@ class phpbb
 		global $phpbb_root_path, $phpEx;
 	//	$phpbb_root_path = PHPBB_ROOT_PATH;
 	//	$phpEx = PHP_EXT;
-		$propress_options = get_option( 'wpu-settings' );
+		$propress_options = get_option( 'phpbbtowp' );
 		include($propress_options['phpbb_path']. "includes/" . $file . "." . PHP_EXT);
 	}
 
@@ -884,7 +884,7 @@ class phpbb
 			get_user_rank($row['user_rank'], $row['user_posts'], $user_cache[$wp_poster_id]['rank_title'], $user_cache[$wp_poster_id]['rank_image'], $user_cache[$wp_poster_id]['rank_image_src']);
 
 			// Undo HACK! for images like avatar and rank
-			$propress_options = get_option( 'wpu-settings' );
+			$propress_options = get_option( 'phpbbtowp' );
 			$phpbb_root_path =  $propress_options['phpbb_path'];
 
 			if ((!empty($row['user_allow_viewemail']) && self::$auth->acl_get('u_sendemail')) || self::$auth->acl_get('a_email'))

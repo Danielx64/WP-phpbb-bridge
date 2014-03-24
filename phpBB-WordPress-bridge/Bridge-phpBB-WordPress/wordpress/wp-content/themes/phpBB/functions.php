@@ -633,5 +633,4 @@ function wphpbb_admin_notice() {
 	</div>
 	<?php
 }
-
 ?>
