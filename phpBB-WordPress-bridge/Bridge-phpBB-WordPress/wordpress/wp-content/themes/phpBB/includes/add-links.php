@@ -4,8 +4,7 @@
 function show_phpbb_link($content)
 {
 	if (!defined('IN_WP_PHPBB_BRIDGE')) {
-		global $wp_phpbb_bridge_config, $phpbb_root_path, $phpEx;
-		global $auth, $config, $db, $template, $user, $cache;
+		global  $phpbb_root_path;
 		include(TEMPLATEPATH . '/includes/wp_phpbb_bridge.php');
 	}
 	$postID = get_the_ID();
@@ -16,9 +15,7 @@ function show_phpbb_link($content)
 	$sql = 'SELECT topic_id, forum_id, topic_replies FROM ' . TOPICS_TABLE . ' WHERE topic_wp_xpost = ' . $postID;
 	$result = phpbb::$db->sql_query($sql);
 	$post_data = phpbb::$db->sql_fetchrow($result);
-	$propress_options = get_option( 'theme_propress_options' );
 	$phpbb_root_path =  phpbb::$config['wp_phpbb_bridge_board_path'];
-	$board_url = generate_board_url(false) . '/';
 	$replies = $post_data['topic_replies'];
 
 	if ($post_data) {
