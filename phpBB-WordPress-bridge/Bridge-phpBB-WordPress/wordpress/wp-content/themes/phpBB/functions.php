@@ -621,16 +621,17 @@ if ( ! is_admin() || ! current_user_can( 'switch_themes' ) )
 	return;
 
 function wphpbb_admin_notice() {
-	if ( isset( $_GET['wphpbb-dismiss'] ) )
-		set_theme_mod( 'wphpbb', true );
+	if ( isset( $_GET['phpbbtowp-dismiss'] ) )
+		set_theme_mod( 'phpbbtowp', true );
 
-	$dismiss = get_theme_mod( 'wphpbb', false );
+	$dismiss = get_theme_mod( 'phpbbtowp', false );
 	if ( $dismiss )
 		return;
 	?>
 	<div class="updated wphpbb-notice">
-		<p><?php printf( __( 'In order for this bridge to work correctly, you will <a target="_blank" href="%s">need to configure it</a>. <a href="%s">I have already configured it.</a>', 'wp_phpbb3_bridge' ), admin_url('themes.php?page=propress-settings'), add_query_arg( 'wphpbb-dismiss', 1 ) ); ?></p>
+		<p><?php printf( __( 'In order for this bridge to work correctly, you will <a target="_blank" href="%s">need to configure it</a>. <a href="%s">I have already configured it.</a>', 'wp_phpbb3_bridge' ), admin_url('themes.php?page=wp-united-setup'), add_query_arg( 'phpbbtowp-dismiss', 1 ) ); ?></p>
 	</div>
 	<?php
 }
+
 ?>
