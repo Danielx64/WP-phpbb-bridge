@@ -634,4 +634,21 @@ function wphpbb_admin_notice() {
 	<?php
 }
 
+// Code taken from BridgeDD by Dion Designs.
+add_action('personal_options', 'no_options_start');
+add_action('show_user_profile', 'no_options_end');
+add_action('edit_user_profile', 'no_options_end');
+
+// inhibit display of user options in dashboard, let user/admin know what's going on
+function no_options_start() {
+	echo '</table><style type="text/css">#bdd_junk tr, #bdd_junk h3{display:none}#bdd_junk #bdd_role{display:table-row}#bdd_junk table{margin:0}</style><div class="update-nag" style="margin-top:10px"><h3>' . __('Please set all other User options in phpBB.', 'bridgedd') . '</h3></div>';
+	ob_start();
+}
+
+function no_options_end() {
+	$stuff = ob_get_clean();
+	$stuff = str_replace(array("\n","\t",'<tr><th><label for="role">'), array('','','<tr id="bdd_role"><th><label for="role">'), $stuff);
+	echo '<div id="bdd_junk">' . $stuff . '</div>';
+}
+
 ?>
