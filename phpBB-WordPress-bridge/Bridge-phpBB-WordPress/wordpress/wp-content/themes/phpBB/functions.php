@@ -50,9 +50,10 @@ if (!defined('WP_ADMIN')) {
 	add_filter('logout_url', 'wp_phpbb_logout');
 	add_filter('login_url', 'wp_phpbb_login');
 	add_filter('register_url', 'wp_phpbb_register');
+	add_filter('the_content', 'show_phpbb_link');
+	add_filter('the_excerpt', 'show_phpbb_link');
 }
 
-add_filter('the_content', 'show_phpbb_link');
 add_filter('widget_title', 'wp_phpbb_widget_title');
 add_filter('pre_set_site_transient_update_themes', 'check_for_update');
 add_filter('themes_api', 'my_theme_api_call', 10, 3);
