@@ -50,10 +50,6 @@ $lang = array_merge($lang, array(
 
 	'HOMEPAGE_URL'								=> 'Homepage url',
 	'HOMEPAGE_URL_EXPLAIN'						=> 'Enter here your homepage’s URL. You can either use something like "../site", if your homepage is at the same domain, or use the absolute path for other domains.. ',
-	
-	
-	'CROSSPOSTCONTENT'							=> 'Crosspost post content?',
-	'CROSSPOSTCONTENT_EXPLAIN'					=> 'Do you want to crosspost the post content? For phpBB.com style select no',
 
 	'ENABLECROSSPOST'							=> 'Enable cross posting?',
 	'ENABLECROSSPOST_EXPLAIN'					=> 'Do you want to cross post your blog post to your forum and use phpBB as the comment system?',
@@ -78,9 +74,6 @@ $lang = array_merge($lang, array(
 	// the page title numbering
 	'WP_PAGE_NUMBER'			=> 'Page %s',
 	'WP_MOD_TITLE'				=> 'phpBB to WordPress',
-
-	// footer
-	'WP_DEBUG_NOTE'				=> '%d queries. %s seconds.',
 
 	// Navbar
 	'WP_TITLE_BLOG'				=> 'Blog',
@@ -163,10 +156,8 @@ $lang = array_merge($lang, array(
 
 	// pbpbb posting 
 	'WP_BLOG_SUBJECT_PREFIX'			=> '[BLOG]: ',
-	'WP_BLOG_POST_PREFIX'				=> 'This is a [b]Blog entry[/b]. To read the original post, please Click » %1$s HERE %2$s',
-	'WP_BLOG_POST_TAIL'					=> '[b]Entry details: [/b]',
 
-	
+	// Comment form
 	'WP_YES_COMMENT_YES_PING'	=> 'You can <a href="%1$s#respond">leave a response</a>, or <a href="%2$s" rel="trackback">trackback</a> from your own site.',
 	'WP_NO_COMMENT_YES_PING'	=> 'Responses are currently closed, but you can <a href="%s" rel="trackback">trackback</a> from your own site.',
 	'WP_YES_COMMENT_NO_PING'	=> 'You can skip to the end and leave a response. Pinging is currently not allowed.',
@@ -180,7 +171,6 @@ $lang = array_merge($lang, array(
 	'WP_COMMENTS_TO'			=> ' to “%s” ',
 	'WP_PAGINATION_PREVIOUS'	=> 'Older Comments',
 	'WP_PAGINATION_NEXT'		=> 'Newer Comments',
-	// Comment form
 	'WP_LOGIN_NEED'						=> 'You must be <a href="%s">logged in</a> to post a comment.',
 	'WP_LOGGED_IN'						=> 'Logged in as',
 	'WP_LOGGED_AS_OUT'					=> '%1$s. <a href="%2$s" title="Log out of this account">Log out?</a>',
@@ -192,7 +182,6 @@ $lang = array_merge($lang, array(
 	'WP_WEBSITE_REQUIRED_MINLENGTH'		=> '* The field "Website" must contain at least 10 characters.',
 	'WP_MESSAGE_REQUIRED_NOTE'			=> '* Please, fill the field "Message body" with a valid comment.',
 	'WP_MESSAGE_REQUIRED_MINLENGTH'		=> '* The field "Message body" must contain at least 20 characters.',
-
 	'WP_EMAIL_NOTE'						=> 'Your email address will not be published.',
 	'WP_ALLOWED_TAGS'					=> 'You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: %s',
 
