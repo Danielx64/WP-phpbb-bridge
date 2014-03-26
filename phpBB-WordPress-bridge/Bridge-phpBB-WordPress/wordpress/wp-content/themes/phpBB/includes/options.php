@@ -43,10 +43,10 @@ function wpu_setup_menu() {
 	?>
 	<div class="wrap" id="wp-united-setup">
 		<?php screen_icon('options-general'); ?>
-		<h2> <?php _e('phpBB to WP connector Setup', 'wp-united'); ?> </h2>
-		<p><?php _e('phpBB to WP connector needs to know the location of phpBB in order to work. On this screen you can select or change the location of phpBB.', 'wp-united') ?></p>
+		<h2> <?php _e('phpBB to WP connector Setup', 'phpbbwpconnect'); ?> </h2>
+		<p><?php _e('phpBB to WP connector needs to know the location of phpBB in order to work. On this screen you can select or change the location of phpBB.', 'phpbbwpconnect') ?></p>
 
-		<div id="wputransmit"><p><strong><?php _e('Checking and saving your setting.', 'wp-united'); ?></strong><br /><?php _e('Please Wait...'); ?></p><img src="<?php echo  get_template_directory_uri() ?>/images/settings/wpuldg.gif" /></div>
+		<div id="wputransmit"><p><strong><?php _e('Checking and saving your setting.', 'phpbbwpconnect'); ?></strong><br /><?php _e('Please Wait...'); ?></p><img src="<?php echo  get_template_directory_uri() ?>/images/settings/wpuldg.gif" /></div>
 
 		<?php
 
@@ -65,11 +65,11 @@ function wpu_setup_menu() {
 		}
 
 		?>
-		<h3><?php _e('phpBB Location', 'wp-united') ?></h3>
+		<h3><?php _e('phpBB Location', 'phpbbwpconnect') ?></h3>
 		<form name="wpu-setup" id="wpusetup" method="post" onsubmit="return wpu_transmit('wp-united-setup', this.id);">
 			<?php wp_nonce_field('wp-united-setup');  ?>
 
-			<p><?php _e('phpBB to WP connector needs to know where phpBB is located on your server.', 'wp-united'); ?> <span id="txtselpath"><?php _e("Find and select your phpBB's config.php below.", 'wp-united'); ?></span><span id="txtchangepath" style="display: none;"><?php _e('Click &quot;Change Location&quot; to change the stored location.', 'wp-united'); ?></span></p>
+			<p><?php _e('phpBB to WP connector needs to know where phpBB is located on your server.', 'phpbbwpconnect'); ?> <span id="txtselpath"><?php _e("Find and select your phpBB's config.php below.", 'phpbbwpconnect'); ?></span><span id="txtchangepath" style="display: none;"><?php _e('Click &quot;Change Location&quot; to change the stored location.', 'phpbbwpconnect'); ?></span></p>
 <?php PTW_Check(); ?>
 			<?php
 
@@ -89,13 +89,13 @@ function wpu_setup_menu() {
 			<div id="phpbbpathgroup">
 				<div id="phpbbpath" style="display: none;">&nbsp;</div>
 				<p id="wpubackupgroup" style="display: none;"><strong><input id="phpbbdocroot" name="phpbbdocroot" value="<?php echo $docRoot; ?>"></input><input type="text" id="wpubackupentry" name="wpubackupentry" value="<?php echo $showBackupPath; ?>"></span></input>/config.php</strong></p>
-				<small><a href="#" onclick="return wpuSwitchEntryType();" id="wpuentrytype"><?php _e('I want to type the path manually', 'wp-united'); ?></a></small>
+				<small><a href="#" onclick="return wpuSwitchEntryType();" id="wpuentrytype"><?php _e('I want to type the path manually', 'phpbbwpconnect'); ?></a></small>
 			</div>
-			<p><?php _e('Path selected: ', 'wp-united'); ?><strong id="phpbbpathshow" style="color: red;"><?php _e('Not selected', 'wp-united'); ?></strong> <a id="phpbbpathchooser" href="#" onclick="return wpuChangePath();" style="display: none;"><?php _e('Change Location &raquo;', 'wp-united'); ?></a><a id="wpucancelchange" style="display: none;" href="#" onclick="return wpuCancelChange();"><?php _e('Cancel Change', 'wp-united'); ?></a></p>
+			<p><?php _e('Path selected: ', 'phpbbwpconnect'); ?><strong id="phpbbpathshow" style="color: red;"><?php _e('Not selected', 'phpbbwpconnect'); ?></strong> <a id="phpbbpathchooser" href="#" onclick="return wpuChangePath();" style="display: none;"><?php _e('Change Location &raquo;', 'phpbbwpconnect'); ?></a><a id="wpucancelchange" style="display: none;" href="#" onclick="return wpuCancelChange();"><?php _e('Cancel Change', 'phpbbwpconnect'); ?></a></p>
 			<input id="wpupathfield" type="hidden" name="wpu-path" value="notset"></input>
 
 			<p class="submit">
-				<input type="submit" style="<?php echo $buttonDisplay; ?>"; class="button-primary" value="<?php  _e('Connect', 'wp-united') ?>" name="wpusetup-submit" id="wpusetup-submit" />
+				<input type="submit" style="<?php echo $buttonDisplay; ?>"; class="button-primary" value="<?php  _e('Connect', 'phpbbwpconnect') ?>" name="wpusetup-submit" id="wpusetup-submit" />
 			</p>
 		</form>
 	</div>
@@ -109,14 +109,14 @@ function wpu_setup_menu() {
 		var filetreeNonce = '<?php echo wp_create_nonce ('wp-united-filetree'); ?>';
 		var transmitNonce = '<?php echo wp_create_nonce ('wp-united-transmit'); ?>';
 		var disableNonce = '<?php echo wp_create_nonce ('wp-united-disable'); ?>';
-		var blankPageMsg = '<?php wpu_js_translate(__('Blank page received: check your error log.', 'wp-united')); ?>';
+		var blankPageMsg = '<?php wpu_js_translate(__('Blank page received: check your error log.', 'phpbbwpconnect')); ?>';
 		var phpbbPath = '<?php
 		 $propress_options = get_option( 'phpbbtowp' );
 		 echo ($propress_options['phpbb_path']) ? $propress_options['phpbb_path'] : ''; ?>';
-		var fileTreeLdgText = '<?php wpu_js_translate(__('Loading...', 'wp-united')); ?>';
-		var connectingText = '<?php wpu_js_translate(__('Connecting...', 'wp-united')); ?>';
-		var manualText = '<?php wpu_js_translate(__('I want to type the path manually', 'wp-united')); ?>';
-		var autoText = '<?php wpu_js_translate(__('Show me the file chooser', 'wp-united')); ?>';
+		var fileTreeLdgText = '<?php wpu_js_translate(__('Loading...', 'phpbbwpconnect')); ?>';
+		var connectingText = '<?php wpu_js_translate(__('Connecting...', 'phpbbwpconnect')); ?>';
+		var manualText = '<?php wpu_js_translate(__('I want to type the path manually', 'phpbbwpconnect')); ?>';
+		var autoText = '<?php wpu_js_translate(__('Show me the file chooser', 'phpbbwpconnect')); ?>';
 
 
 		function wpu_hardened_init_tail() {
@@ -199,7 +199,7 @@ function wpu_process_settings() {
 	 * First process path to phpBB
 	 */
 	if(!isset($_POST['wpu-path'])) {
-		die('[ERROR] ' . __("ERROR: You must specify a valid path for phpBB's config.php", 'wp-united'));
+		die('[ERROR] ' . __("ERROR: You must specify a valid path for phpBB's config.php", 'phpbbwpconnect'));
 	}
 	$wpuPhpbbPath = (string)$_POST['wpu-path'];
 	$wpuPhpbbPath = str_replace('http:', '', $wpuPhpbbPath);

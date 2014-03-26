@@ -26,9 +26,9 @@ function wp_phpbb_add_extra_profile_fields($user)
 	?>
 	<table class="form-table">
 		<tr>
-			<th><label for="phpbb_userid"><?php _e('phpBB user ID', 'wp_phpbb3_bridge'); ?></label></th>
+			<th><label for="phpbb_userid"><?php _e('phpBB user ID', 'phpbbwpconnect'); ?></label></th>
 			<td><input type="text" name="phpbb_userid" id="phpbb_userid" value="<?php echo $phpbb_user_id ?>" class="regular-text" /><br />
-				<span class="description"><?php _e("If you would like to change the phpBB user ID type a new one. This action will connect this user with one at your phpBB board.", 'wp_phpbb3_bridge'); ?></span></td>
+				<span class="description"><?php _e("If you would like to change the phpBB user ID type a new one. This action will connect this user with one at your phpBB board.", 'phpbbwpconnect'); ?></span></td>
 		</tr>
 	</table>
 <?php

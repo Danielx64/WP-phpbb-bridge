@@ -70,8 +70,8 @@ function phpbb_bridge_setup()
 
 	// This theme uses wp_nav_menu() in two locations.
 	register_nav_menus(array(
-		'primary' => __('Header Menu', 'wp_phpbb3_bridge'),
-		'secondary' => __('Footer Menu', 'wp_phpbb3_bridge'),
+		'primary' => __('Header Menu', 'phpbbwpconnect'),
+		'secondary' => __('Footer Menu', 'phpbbwpconnect'),
 	));
 }
 
@@ -165,8 +165,8 @@ function wp_phpbb_widgets_init()
 	register_sidebar(
 		array(
 			'id'			=> 'wp_phpbb-widget-area',
-			'name'			=> __('Primary Widget Area', 'wp_phpbb3_bridge'),
-			'description'	=> __('The primary widget area.', 'wp_phpbb3_bridge'),
+			'name'			=> __('Primary Widget Area', 'phpbbwpconnect'),
+			'description'	=> __('The primary widget area.', 'phpbbwpconnect'),
 			'before_widget'	=> "\n" . '<div class="panel bg3">' . "\r\t" . '<div class="inner"><span class="corners-top"><span></span></span>' . "\n\t\t",
 			'after_widget'	=> "\n\t" . '<span class="corners-bottom"><span></span></span></div>' . "\r" . '</div>' . "\n",
 			'before_title'	=> '<h3>',
@@ -208,11 +208,11 @@ class WP_Widget_phpbb_recet_topics extends WP_Widget
 		// Widget settings.
 		$widget_ops = array(
 			'classname' => 'wp_phpbb_recet_topics',
-			'description' => __('Allows you to display a list of recent topics within a specific forum id\'s.', 'wp_phpbb3_bridge'),
+			'description' => __('Allows you to display a list of recent topics within a specific forum id\'s.', 'phpbbwpconnect'),
 		);
 
 		// Create the widget
-		$this->WP_Widget('phpbb3-topics-widget', __('phpBB3 Topics Widget', 'wp_phpbb3_bridge'), $widget_ops);
+		$this->WP_Widget('phpbb3-topics-widget', __('phpBB3 Topics Widget', 'phpbbwpconnect'), $widget_ops);
 	}
 
 	function form($instance)
@@ -222,16 +222,16 @@ class WP_Widget_phpbb_recet_topics extends WP_Widget
 		?>
 		<div class="widget-content">
 			<p>
-				<label for="<?php echo $this->get_field_id('title'); ?>"><?php echo _e('Title:', 'wp_phpbb3_bridge'); ?></label>
+				<label for="<?php echo $this->get_field_id('title'); ?>"><?php echo _e('Title:', 'phpbbwpconnect'); ?></label>
 				<input id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($instance['title']); ?>" />
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id('forums'); ?>"><?php echo _e('Forums:', 'wp_phpbb3_bridge'); ?></label>
+				<label for="<?php echo $this->get_field_id('forums'); ?>"><?php echo _e('Forums:', 'phpbbwpconnect'); ?></label>
 				<input name="<?php echo $this->get_field_name('forums'); ?>" type="text" id="<?php echo $this->get_field_id('forums'); ?>" value="<?php echo esc_attr($instance['forums']); ?>" />
-				<small><?php _e('Enter the id of the forum you like to get topics from. You can get topics from more than one forums by seperating the forums id with commas. ex: 3,5,6,12', 'wp_phpbb3_bridge'); ?></small>
+				<small><?php _e('Enter the id of the forum you like to get topics from. You can get topics from more than one forums by seperating the forums id with commas. ex: 3,5,6,12', 'phpbbwpconnect'); ?></small>
 			</p>
 			<p>
-				<label for="<?php echo $this->get_field_id('total'); ?>"><?php echo _e('Total results:', 'wp_phpbb3_bridge'); ?></label>
+				<label for="<?php echo $this->get_field_id('total'); ?>"><?php echo _e('Total results:', 'phpbbwpconnect'); ?></label>
 				<input name="<?php echo $this->get_field_name('total'); ?>" type="text" id="<?php echo $this->get_field_id('total'); ?>" value="<?php echo $instance['total']; ?>" />
 			</p>
 		</div>
@@ -630,7 +630,7 @@ function wphpbb_admin_notice() {
 		return;
 	?>
 	<div class="updated wphpbb-notice">
-		<p><?php printf( __( 'In order for this bridge to work correctly, you will <a target="_blank" href="%s">need to configure it</a>. <a href="%s">I have already configured it.</a>', 'wp_phpbb3_bridge' ), admin_url('themes.php?page=wp-united-setup'), add_query_arg( 'phpbbtowp-dismiss', 1 ) ); ?></p>
+		<p><?php printf( __( 'In order for this bridge to work correctly, you will <a target="_blank" href="%s">need to configure it</a>. <a href="%s">I have already configured it.</a>', 'phpbbwpconnect' ), admin_url('themes.php?page=wp-united-setup'), add_query_arg( 'phpbbtowp-dismiss', 1 ) ); ?></p>
 	</div>
 	<?php
 }
