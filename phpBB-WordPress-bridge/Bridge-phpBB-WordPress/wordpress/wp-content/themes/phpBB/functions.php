@@ -356,28 +356,6 @@ function wp_phpbb_posting($post_ID, $post)
 	// Get the post subject
 	$subject = $post->post_title;
 
-	// Add a Post prefix for the blog (if we have a language string filled)
-	if (phpbb::$user->lang['WP_BLOG_POST_PREFIX'] != '')
-	{
-		$message_prefix .= sprintf(phpbb::$user->lang['WP_BLOG_POST_PREFIX'], '[url=' . $entry_link . ']', '[/url]');
-	}
-	if (phpbb::$config['crosspostcontent'])
-	{	
-
-	// Add a Post tail for the blog (if we have a language string filled)
-	if (phpbb::$user->lang['WP_BLOG_POST_TAIL'] != '')
-	{
-		$entry_tags = get_the_tag_list(phpbb::$user->lang['WP_TITLE_TAGS'] . ': ', ', ', "\n\n");
-		$entry_cats = sprintf(phpbb::$user->lang['WP_POSTED_IN'] , get_the_category_list(', '));
-
-		if ($entry_tags || $entry_cats)
-		{
-			$message_tail .= phpbb::$user->lang['WP_BLOG_POST_TAIL'] . (($entry_tags) ? $entry_tags : '') . (($entry_tags && $entry_cats) ? " | " : '') . (($entry_cats) ? $entry_cats : '') . "\n";
-		}
-	}
-}
-	$message = (($message_prefix) ? $message_prefix . "\n\n" : '') . $message . (($message_tail) ? "\n\n" . $message_tail : '');
-
 	// Sanitize the post text
 	$message = utf8_normalize_nfc(request_var('message', $message, true));
 	// Sanitize the post subject
