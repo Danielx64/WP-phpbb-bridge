@@ -338,11 +338,12 @@ function wp_phpbb_posting($post_ID, $post)
 
 	// Get the post link
 	$entry_link = get_permalink($post_ID);
-	if (phpbb::$config['crosspostcontent'])
-	{	
-	// Get the post text
-	$message = $post->post_content;
-
+	if (!empty($post->post_excerpt)) {
+		$message = __('Please use this topic to discuss', 'phpbbwpconnect') . ' <a href="' . $entry_link . '">' . $post->post_title . '</a>' . "\n\n" . '<blockquote>' . apply_filters('the_excerpt', $post->post_excerpt) . '</blockquote>';
+	}
+	else {
+		$message = __('Please use this topic to discuss', 'phpbbwpconnect') . ' <a href="' . $entry_link . '">' . $post->post_title . '</a>';
+	}
 	// if have "read more", cut it!
 	if (preg_match('/<!--more(.*?)?-->/', $message, $matches))
 	{
@@ -351,7 +352,7 @@ function wp_phpbb_posting($post_ID, $post)
 		$main = preg_replace('/^[\s]*(.*)[\s]*$/', '\\1', $main);
 		$message = $main . "\n\n" . '[url=' . $entry_link . ']' . phpbb::$user->lang['WP_READ_MORE'] . '[/url]';
 	}
-	}
+
 	// Get the post subject
 	$subject = $post->post_title;
 
