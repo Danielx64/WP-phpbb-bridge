@@ -1,14 +1,9 @@
 <?php
 
 /** 
-* @package WP-United
-* @version $Id: 0.9.1.5  2012/12/28 John Wells (Jhong) Exp $
-* @copyright (c) 2006-2013 wp-united.com
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License  
-* @author John Wells
-*
-* Settings and base WP-United class. 
-*/
+	Much of this was taken from wp-united and is only used to create the option page.
+	While it is not ideal, that's all I got for now.
+ */
 
 /**
  */
