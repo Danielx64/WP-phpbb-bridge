@@ -31,7 +31,6 @@ $wpUnited->wp_init();
 require( ABSPATH . WPINC . '/pluggable.php' );
 global $pagenow;
 if (!defined('WP_DONTLOAD')) {
-
 	if ($pagenow != 'themes.php') {
 		if ($pagenow != 'plugins.php') {
 			include_once dirname(__FILE__) . '/functions/wp_phpbb_bridge.php';
@@ -43,7 +42,6 @@ if (!defined('WP_DONTLOAD')) {
 }
 	
 add_action('publish_post', 'wp_phpbb_posting', 10, 2);
-
 
 function wp_phpbb_logout()
 {
