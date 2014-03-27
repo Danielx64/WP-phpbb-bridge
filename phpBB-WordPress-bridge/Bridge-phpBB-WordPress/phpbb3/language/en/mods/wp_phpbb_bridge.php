@@ -40,8 +40,8 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'WP_PHPBB_BRIDGE_MANAGE'					=> 'phpBB to WordPress Settings',
-	'WP_PHPBB_BRIDGE_MANAGE_EXPLAIN'			=> 'Welcome to phpBB to WordPress Settings Management Section.<br />Here you can determine the basic operation of the Bridge in relation to phpBB.',
+	'WP_PHPBB_BRIDGE_MANAGE'					=> 'phpBB to WP connector Settings',
+	'WP_PHPBB_BRIDGE_MANAGE_EXPLAIN'			=> 'Welcome to phpBB to WP connector Settings Management Section.<br />Here you can determine the basic operation of the Bridge in relation to phpBB.',
 	'WP_PHPBB_BRIDGE_BASIC'						=> 'Basic settings',
 	'WP_PHPBB_BRIDGE_PATHS'						=> 'Path settings',
 	'WP_PHPBB_BRIDGE_STYLE'						=> 'Style settings',
@@ -180,7 +180,6 @@ $lang = array_merge($lang, array(
 	'WP_MESSAGE_REQUIRED_MINLENGTH'		=> '* The field "Message body" must contain at least 20 characters.',
 	'WP_EMAIL_NOTE'						=> 'Your email address will not be published.',
 	'WP_ALLOWED_TAGS'					=> 'You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: %s',
-
 ));
 
 ?>
