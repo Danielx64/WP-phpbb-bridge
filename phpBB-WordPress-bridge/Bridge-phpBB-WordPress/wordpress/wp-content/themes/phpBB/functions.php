@@ -282,10 +282,11 @@ function wp_phpbb_posting($post_ID, $post)
 		return false;
 	}
 
-    if (!phpbb::$config['wp_phpbb_bridge_enablecrosspost'])
+	if ($_POST['crosspost_enable'] == 'n')
     {
         return false;
     }
+
 	// Define some initial variables
 	$mode = 'post';
 	$forum_id = $topic_id = $post_id = 0;
@@ -631,4 +632,13 @@ function no_options_end() {
 	echo '<div id="bdd_junk">' . $stuff . '</div>';
 }
 
+add_action('edit_form_top', 'bridgedd_xpost_message', 10, 1);
+// let users know to set excerpts if they want an excerpt to be cross-posted
+function bridgedd_xpost_message($post) {
+			$xpost = '<div style="margin-bottom:5px">' . __('If you would like to cross-post an excerpt, please create an excerpt.', 'phpbbwpconnect')  . __('Click the Screen Options tab above to display the Excerpt box.', 'phpbbwpconnect') .'
+				</div>'.'<br />' . __('Do you want this post to be cross posted to your forum?', 'phpbbwpconnect') . ':<span style="padding:0 10px"></span><strong>
+				<input type="radio" name="crosspost_enable" value = "y" checked="checked" />' . __('Yes', 'phpbbwpconnect') . '<span style="padding:0 5px"></span>
+				<input type="radio" name="crosspost_enable" value = "n" />' . __('No', 'phpbbwpconnect') . '</strong>';
+		echo '<div class="update-nag">' . $xpost . '</div>';
+}
 ?>
