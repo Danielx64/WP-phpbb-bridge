@@ -23,7 +23,7 @@ function wp_phpbb_posting($post_ID, $post)
 	{
 		global $wp_phpbb_bridge_config, $phpbb_root_path, $phpEx;
 		global $auth, $config, $db, $template, $user, $cache;
-		require( get_template_directory() . '/includes/wp_phpbb_bridge.php' );
+		include_once dirname( __FILE__ ) . '/wp_phpbb_bridge.php';
 	}
 
 	if (!phpbb::$config['wp_phpbb_bridge_post_forum_id'])
