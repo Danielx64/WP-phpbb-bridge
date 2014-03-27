@@ -115,11 +115,7 @@ $versions = array(
 			array('theme'),
 		),
 	),
-	'1.1.0' => array(
-		'config_add' => array(
-			array('crosspostcontent', '0'),
-			array('wp_phpbb_bridge_enablecrosspost', '0'),
-		),
+	'1.5.0' => array(
 		'cache_purge' => array(
 			array('template'),
 			array('theme'),

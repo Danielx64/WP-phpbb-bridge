@@ -51,10 +51,6 @@ $lang = array_merge($lang, array(
 	'HOMEPAGE_URL'								=> 'Homepage url',
 	'HOMEPAGE_URL_EXPLAIN'						=> 'Enter here your homepage’s URL. You can either use something like "../site", if your homepage is at the same domain, or use the absolute path for other domains.. ',
 
-	'ENABLECROSSPOST'							=> 'Enable cross posting?',
-	'ENABLECROSSPOST_EXPLAIN'					=> 'Do you want to cross post your blog post to your forum and use phpBB as the comment system?',
-
-
 	'HOMEPAGE_TITLE'							=> 'Homepage title',
 	'HOMEPAGE_TITLE_EXPLAIN'					=> 'This title will show when you have your mouse over your homepage link. If you don´t want to show a title, just leave this field blank.',
 	'SHOW_HOMEPAGE'								=> 'Show your homepage URL on the header',
