@@ -635,10 +635,14 @@ function no_options_end() {
 add_action('edit_form_top', 'crosspost_message', 10, 1);
 // let users know to set excerpts if they want an excerpt to be cross-posted
 function crosspost_message($post) {
-		$xpost = '<div style="margin-bottom:5px">' . __('If you would like to cross-post an excerpt, please create an excerpt.', 'phpbbwpconnect')  . __('Click the Screen Options tab above to display the Excerpt box.', 'phpbbwpconnect') .'
-				</div>'.'<br />' . __('Do you want this post to be cross posted to your forum?', 'phpbbwpconnect') . ':<span style="padding:0 10px"></span><strong>
-				<input type="radio" name="crosspost_enable" value = "y" checked="checked" />' . __('Yes', 'phpbbwpconnect') . '<span style="padding:0 5px"></span>
-				<input type="radio" name="crosspost_enable" value = "n" />' . __('No', 'phpbbwpconnect') . '</strong>';
-		echo '<div class="update-nag">' . $xpost . '</div>';
+		echo '<div id="postbox-container-1" class="update-nag">
+<div><div id="postWPUstatusdiv" style"background:white;"><h3><span>Cross-post to Forums?</span></h3>
+<div class="inside"><div><div>'
+	. __('If you would like to cross-post an excerpt, please create an excerpt. ', 'phpbbwpconnect')
+	. __('Click the Screen Options tab above to display the Excerpt box.', 'phpbbwpconnect') .'
+	</div><br>'
+	. __('Do you want this post to be cross posted to your forum?', 'phpbbwpconnect') . ':<strong>
+	<input name="crosspost_enable" value="y" checked="checked" type="radio">' . __('Yes', 'phpbbwpconnect') . '
+	<input name="crosspost_enable" value="n" type="radio">' . __('No', 'phpbbwpconnect') . '</strong></div></div></div></div></div>';
 }
 ?>
