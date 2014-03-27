@@ -4,16 +4,6 @@
  * @version 1.6
  */
 
- 
-/**
- * Hooks a function on to a specific action.
- *
- * @param string $tag The name of the action to which the $function_to_add is hooked.
- * @param callback $function_to_add The name of the function you wish to be called.
- * @param int $priority optional. Used to specify the order in which the functions associated with a particular action are executed (default: 10). Lower numbers correspond with earlier execution, and functions with the same priority are executed in the order in which they were added to the action.
- * @param int $accepted_args optional. The number of arguments the function accept (default 1).
-**/
-
 /**
  * Called whenever a new entry is published in the Wordpress.
  *
@@ -33,13 +23,18 @@ function wp_phpbb_posting($post_ID, $post)
 	{
 		global $wp_phpbb_bridge_config, $phpbb_root_path, $phpEx;
 		global $auth, $config, $db, $template, $user, $cache;
-		include_once dirname( __FILE__ ) . '/wp_phpbb_bridge.php';
+		require( get_template_directory() . '/includes/wp_phpbb_bridge.php' );
 	}
 
 	if (!phpbb::$config['wp_phpbb_bridge_post_forum_id'])
 	{
 		return false;
 	}
+
+	if ($_POST['crosspost_enable'] == 'n')
+    {
+        return false;
+    }
 
 	// Define some initial variables
 	$mode = 'post';
@@ -93,11 +88,12 @@ function wp_phpbb_posting($post_ID, $post)
 
 	// Get the post link
 	$entry_link = get_permalink($post_ID);
-	if (phpbb::$config['crosspostcontent'])
-	{	
-	// Get the post text
-	$message = $post->post_content;
-
+	if (!empty($post->post_excerpt)) {
+		$message = __('Please use this topic to discuss', 'phpbbwpconnect') . ' <a href="' . $entry_link . '">' . $post->post_title . '</a>' . "\n\n" . '<blockquote>' . apply_filters('the_excerpt', $post->post_excerpt) . '</blockquote>';
+	}
+	else {
+		$message = __('Please use this topic to discuss', 'phpbbwpconnect') . ' <a href="' . $entry_link . '">' . $post->post_title . '</a>';
+	}
 	// if have "read more", cut it!
 	if (preg_match('/<!--more(.*?)?-->/', $message, $matches))
 	{
@@ -106,31 +102,9 @@ function wp_phpbb_posting($post_ID, $post)
 		$main = preg_replace('/^[\s]*(.*)[\s]*$/', '\\1', $main);
 		$message = $main . "\n\n" . '[url=' . $entry_link . ']' . phpbb::$user->lang['WP_READ_MORE'] . '[/url]';
 	}
-	}
+
 	// Get the post subject
 	$subject = $post->post_title;
-
-	// Add a Post prefix for the blog (if we have a language string filled)
-	if (phpbb::$user->lang['WP_BLOG_POST_PREFIX'] != '')
-	{
-		$message_prefix .= sprintf(phpbb::$user->lang['WP_BLOG_POST_PREFIX'], '[url=' . $entry_link . ']', '[/url]');
-	}
-	if (phpbb::$config['crosspostcontent'])
-	{	
-
-	// Add a Post tail for the blog (if we have a language string filled)
-	if (phpbb::$user->lang['WP_BLOG_POST_TAIL'] != '')
-	{
-		$entry_tags = get_the_tag_list(phpbb::$user->lang['WP_TITLE_TAGS'] . ': ', ', ', "\n\n");
-		$entry_cats = sprintf(phpbb::$user->lang['WP_POSTED_IN'] , get_the_category_list(', '));
-
-		if ($entry_tags || $entry_cats)
-		{
-			$message_tail .= phpbb::$user->lang['WP_BLOG_POST_TAIL'] . (($entry_tags) ? $entry_tags : '') . (($entry_tags && $entry_cats) ? " | " : '') . (($entry_cats) ? $entry_cats : '') . "\n";
-		}
-	}
-}
-	$message = (($message_prefix) ? $message_prefix . "\n\n" : '') . $message . (($message_tail) ? "\n\n" . $message_tail : '');
 
 	// Sanitize the post text
 	$message = utf8_normalize_nfc(request_var('message', $message, true));
@@ -370,5 +344,19 @@ function wp_phpbb_html_to_bbcode(&$string)
 //	$string = preg_replace('#(?:[\x00-\x1F\x7F]+|(?:\xC2[\x80-\x9F])+)#', '', $string);
 
 	return $string;
+}
+
+add_action('edit_form_top', 'crosspost_message', 10, 1);
+// let users know to set excerpts if they want an excerpt to be cross-posted
+function crosspost_message($post) {
+		echo '<div id="postbox-container-1" class="update-nag">
+<div><div id="postWPUstatusdiv" style"background:white;"><h3><span>Cross-post to Forums?</span></h3>
+<div class="inside"><div><div>'
+	. __('If you would like to cross-post an excerpt, please create an excerpt. ', 'phpbbwpconnect')
+	. __('Click the Screen Options tab above to display the Excerpt box.', 'phpbbwpconnect') .'
+	</div><br>'
+	. __('Do you want this post to be cross posted to your forum?', 'phpbbwpconnect') . ':<strong>
+	<input name="crosspost_enable" value="y" checked="checked" type="radio">' . __('Yes', 'phpbbwpconnect') . '
+	<input name="crosspost_enable" value="n" type="radio">' . __('No', 'phpbbwpconnect') . '</strong></div></div></div></div></div>';
 }
  ?>
