@@ -2,12 +2,25 @@ Installing this bridge.
 
 Please note that you MUST follow all instruction in order to avoid any issues.
 
+BEFORE YOU BEGIN
+------------------------
+
+1. Make sure you have already installed phpBB and WordPress, and have verified that they are working OK. 
+I recommend the latest versions - at this time of writing, that means phpBB3 3.0.12 & WordPress 3.8.1.
+
+2. Check that your phpBB and wordpress settings are correct -- please pay attention to your phpBB "script path" and cookie settings in your phpBB ACP "Server Settings" and ensure they are correct.
+
+3. If these are not new installations, back up your phpBB & WordPress files and databases!
+
+INSTALLING
+------------------------
 Download and install the phpBB mod
-After download and uploading the zip file via automod, click on the install button next to [BRIDGE] phpBB to WordPress. Automod will ask you to run the installer, run it.
+After download and uploading the zip file via automod, click on the install button next to phpBB to WP connector. Automod will ask you to run the installer, run it.
 
 During the installation, you will be asked some questions. The option "WordPress Path" means enter the full filesystem path to your wordpress installation. 
 An example would be /home/username/public_html/
 
+After that you will need to go to
 After the installer have finished it job, you are ready to install the WordPress theme. Inside the wordpress folder in the zip file that you have downloaded, you will find a zip file. 
 Copy that file onto your desktop as you are about to upload it via WordPress's theme system.
 
@@ -16,8 +29,9 @@ Now click on browse and locate the zip file that you have save onto your desktop
 
 After locating the file, click on “install now” After it have been uploaded click on “Activate”
 
-Click on “[BRIDGE] phpBB to WordPress” The only thing that you need to set is the full path to your phpBB forum. Like before, this is the filesystem path. 
-An example would be /home/username/public_html/forums/.
+Click on “phpBB to WP connector” The only thing that you need to do is select the location of your forum's config.php (make sure you click on config.php!) file using the provided browser and click on connect.
+
+That's it! You should now be up and running. There are several settings that you configure. You will find those in your forum's ACP under Board configuration -> "phpBB to WP connector settings"
 
 Time to check your blog's homepage. If you are getting errors about common.php not being found, please check the path as that is the most likely issue. 
 If you still need help, feel free to ask.
