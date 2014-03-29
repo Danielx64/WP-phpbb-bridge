@@ -116,6 +116,9 @@ $versions = array(
 		),
 	),
 	'1.5.0' => array(
+		'config_remove' => array(
+			array('wp_phpbb_bridge_board_path'),
+		),
 		'cache_purge' => array(
 			array('template'),
 			array('theme'),

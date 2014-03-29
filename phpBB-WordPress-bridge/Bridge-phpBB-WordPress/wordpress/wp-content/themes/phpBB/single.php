@@ -100,7 +100,7 @@ if (have_posts()) {
 		$comment_author_email = strtolower(request_var('email', phpbb::$user->data['user_email']));
 		$comment_author_url   = strtolower(request_var('url', phpbb::$user->data['user_website']));
 		$comment_content      = utf8_normalize_nfc(request_var('comment', '', true));
-        $temp =  phpbb::$config['wp_phpbb_bridge_board_path'];
+        $temp = generate_board_url() . '/';
 
 		// Assign posting specific vars
 		phpbb::$template->assign_vars(array(

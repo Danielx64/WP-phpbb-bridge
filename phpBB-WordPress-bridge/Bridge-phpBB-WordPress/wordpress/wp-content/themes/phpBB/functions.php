@@ -75,23 +75,22 @@ function phpbb_bridge_setup()
 	));
 }
 
-
 function wp_phpbb_logout()
 {
-	$temp =  phpbb::$config['wp_phpbb_bridge_board_path'];
+	$temp =  generate_board_url() . '/';
 	return !is_admin() ? $temp.'ucp.php?mode=logout&amp;sid='.phpbb::$user->session_id : '';
 }
 
 function wp_phpbb_login()
 {
 	$redirect = request_var('redirect', home_url(add_query_arg(array())));
-	$temp =  phpbb::$config['wp_phpbb_bridge_board_path'];
+	$temp =  generate_board_url() . '/';
 	return $temp.'ucp.php?mode=login&amp;redirect='.$redirect;
 }
 
 function wp_phpbb_register()
 {
-	$temp = phpbb::$config['wp_phpbb_bridge_board_path'];
+	$temp = generate_board_url() . '/';
 	return $temp . 'ucp.php?mode=register';
 }
 /**
@@ -273,7 +272,7 @@ function wp_phpbb_posting($post_ID, $post)
 	if (!defined('IN_WP_PHPBB_BRIDGE'))
 	{
 		global $wp_phpbb_bridge_config, $phpbb_root_path, $phpEx;
-		global $auth, $config, $db, $template, $user, $cache;
+		global $auth, $config, $db, $template, $user, $cache, $wpdb;
 		require( get_template_directory() . '/includes/wp_phpbb_bridge.php' );
 	}
 
@@ -339,12 +338,15 @@ function wp_phpbb_posting($post_ID, $post)
 
 	// Get the post link
 	$entry_link = get_permalink($post_ID);
+
+	// Get the post text
 	if (!empty($post->post_excerpt)) {
 		$message = __('Please use this topic to discuss', 'phpbbwpconnect') . ' <a href="' . $entry_link . '">' . $post->post_title . '</a>' . "\n\n" . '<blockquote>' . apply_filters('the_excerpt', $post->post_excerpt) . '</blockquote>';
 	}
 	else {
 		$message = __('Please use this topic to discuss', 'phpbbwpconnect') . ' <a href="' . $entry_link . '">' . $post->post_title . '</a>';
 	}
+
 	// if have "read more", cut it!
 	if (preg_match('/<!--more(.*?)?-->/', $message, $matches))
 	{
@@ -371,7 +373,7 @@ function wp_phpbb_posting($post_ID, $post)
 	$subject = $subject_prefix . $subject;
 
 	// Setup the settings we need to send to submit_post
-	global $data;
+	global $data, $hack, $wpdb ;
 	$data = wp_phpbb_post_data($message, $subject, $topic_id, $post_id, phpbb::$user->data, $post_data, $message_parser);
 
 	submit_post($mode, $subject, phpbb::$user->data['username'], POST_NORMAL, $poll, $data, true);
@@ -632,6 +634,7 @@ function no_options_end() {
 	echo '<div id="bdd_junk">' . $stuff . '</div>';
 }
 
+
 add_action('edit_form_top', 'crosspost_message', 10, 1);
 // let users know to set excerpts if they want an excerpt to be cross-posted
 function crosspost_message($post) {
@@ -645,4 +648,5 @@ function crosspost_message($post) {
 	<input name="crosspost_enable" value="y" checked="checked" type="radio">' . __('Yes', 'phpbbwpconnect') . '
 	<input name="crosspost_enable" value="n" type="radio">' . __('No', 'phpbbwpconnect') . '</strong></div></div></div></div></div>';
 }
+
 ?>

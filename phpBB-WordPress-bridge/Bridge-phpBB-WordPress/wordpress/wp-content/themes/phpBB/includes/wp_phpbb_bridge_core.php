@@ -145,7 +145,7 @@ class phpbb
 		$propress_options = get_option( 'phpbbtowp' );
 		self::$absolute_phpbb_script_path = $propress_options['phpbb_path'];
 //		self::$absolute_wordpress_script_path = phpbb::$config['wordpress_script_path'];
-		self::$absolute_phpbb_url_path = phpbb::$config['wp_phpbb_bridge_board_path'];
+		self::$absolute_phpbb_url_path = generate_board_url() . '/';
 
 		// enhance phpbb $config data with WP $config data
 		self::wp_get_config();

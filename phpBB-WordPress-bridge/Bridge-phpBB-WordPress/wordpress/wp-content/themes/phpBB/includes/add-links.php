@@ -15,7 +15,7 @@ function show_phpbb_link($content)
 	$sql = 'SELECT topic_id, forum_id, topic_replies FROM ' . TOPICS_TABLE . ' WHERE topic_wp_xpost = ' . $postID;
 	$result = phpbb::$db->sql_query($sql);
 	$post_data = phpbb::$db->sql_fetchrow($result);
-	$phpbb_root_path =  phpbb::$config['wp_phpbb_bridge_board_path'];
+	$phpbb_root_path =  generate_board_url() . '/';
 	$replies = $post_data['topic_replies'];
 
 	if ($post_data) {
