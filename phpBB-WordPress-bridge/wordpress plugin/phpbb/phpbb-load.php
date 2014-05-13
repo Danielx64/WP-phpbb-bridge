@@ -31,6 +31,7 @@ $wpUnited->wp_init();
 require( ABSPATH . WPINC . '/pluggable.php' );
 global $pagenow;
 if (!defined('WP_DONTLOAD')) {
+
 	if ($pagenow != 'themes.php') {
 		if ($pagenow != 'plugins.php') {
 			include_once dirname(__FILE__) . '/functions/wp_phpbb_bridge.php';
@@ -43,22 +44,23 @@ if (!defined('WP_DONTLOAD')) {
 	
 add_action('publish_post', 'wp_phpbb_posting', 10, 2);
 
+
 function wp_phpbb_logout()
 {
-	$temp = phpbb::$config['wp_phpbb_bridge_board_path'];
+	$temp = generate_board_url() . '/';
 	return $temp . 'ucp.php?mode=logout&amp;sid=' . phpbb::$user->session_id;
 }
 
 function wp_phpbb_register()
 {
-	$temp = phpbb::$config['wp_phpbb_bridge_board_path'];
+	$temp = generate_board_url() . '/';
 	return $temp . 'ucp.php?mode=register';
 }
 
 function wp_phpbb_login()
 {
 	$redirect = request_var('redirect', home_url(add_query_arg(array())));
-	$temp = phpbb::$config['wp_phpbb_bridge_board_path'];
+	$temp = generate_board_url() . '/';
 	return $temp . 'ucp.php?mode=login&amp;redirect=' . $redirect;
 }
 
