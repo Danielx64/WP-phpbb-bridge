@@ -19,6 +19,7 @@ if (!function_exists('add_action')) {
 }
 
 include_once dirname( __FILE__ ) . '/functions/wp-crosspost.php';
+add_action( 'publish_post', 'wp_phpbb_posting', 10, 2);
 include_once dirname( __FILE__ ) . '/functions/options.php';
 include_once dirname( __FILE__ ) . '/functions/wp-profile.php';
 if( !class_exists( 'WP_United_Plugin' ) ) {
@@ -31,18 +32,15 @@ $wpUnited->wp_init();
 require( ABSPATH . WPINC . '/pluggable.php' );
 global $pagenow;
 if (!defined('WP_DONTLOAD')) {
-
-	if ($pagenow != 'themes.php') {
-		if ($pagenow != 'plugins.php') {
+	if (!preg_match('/\/wp-admin\/(themes.php|plugins.php)/', $_SERVER['REQUEST_URI'])) {
 			include_once dirname(__FILE__) . '/functions/wp_phpbb_bridge.php';
 			add_filter('login_url', 'wp_phpbb_login');
 			add_filter('logout_url', 'wp_phpbb_logout');
 			add_filter('register_url', 'wp_phpbb_register');
-		}
 	}
 }
-	
-add_action('publish_post', 'wp_phpbb_posting', 10, 2);
+
+
 
 
 function wp_phpbb_logout()
@@ -70,7 +68,7 @@ function show_phpbb_link($content)
 	if (!defined('IN_WP_PHPBB_BRIDGE')) {
 		global $wp_phpbb_bridge_config, $phpbb_root_path, $phpEx;
 		global $auth, $config, $db, $template, $user, $cache;
-		include(TEMPLATEPATH . '/includes/wp_phpbb_bridge.php');
+		include( dirname( __FILE__ ) . '/functions/wp_phpbb_bridge.php');
 	}
 	$postID = get_the_ID();
 	if (empty($postID)) {
