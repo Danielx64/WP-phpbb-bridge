@@ -1,15 +1,19 @@
 <?php
-/**
-* @package Wordparess
-* @version 1.6
-*/
+/** 
+* @package phpBB to WP connector
+* @version $Id: 1.5.0
+* @copyright (c) 2013-2014 danielx64.com
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License  
+* @author Danielx64
+ * 
+ */
 /*
 Plugin Name: phpBB to WP connector (plugin version)
 Plugin URI: http://wordpress.org/plugins/hello-dolly/
 Description: WordPress - phpBB Integration Mod This Birdge makes possible to integrate your phpBB into your Wordpress Blog, sharing users. If the phpBB users do not exist in WP it will be automatically created as a "Subscriber" Want to have wordpress match your forum style? Get the theme instead.
-Author: Matt Mullenweg
-Version: 1.6
-Author URI: http://ma.tt/
+Author: Danielx64
+Version: 1.5
+Author URI: http://danielx64.com/
 */
 
 // Make sure we don't expose any info if called directly
@@ -39,9 +43,6 @@ if (!defined('WP_DONTLOAD')) {
 			add_filter('register_url', 'wp_phpbb_register');
 	}
 }
-
-
-
 
 function wp_phpbb_logout()
 {
@@ -95,7 +96,6 @@ function show_phpbb_link($content)
 	return $content;
 }
 add_filter('the_content', 'show_phpbb_link');
-
 
 // Don't nag users who can't switch themes.
 if ( ! is_admin() || ! current_user_can( 'switch_themes' ) )
