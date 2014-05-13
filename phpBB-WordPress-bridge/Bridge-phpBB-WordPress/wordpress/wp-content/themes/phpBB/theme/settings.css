@@ -311,7 +311,7 @@
 .ui-accordion .ui-accordion-content { padding: 1em 2.2em; border-top: 0; margin-top: -2px; position: relative; top: 1px; margin-bottom: 2px; overflow: auto; display: none; zoom: 1; }
 .ui-accordion .ui-accordion-content-active { display: block; }/* Autocomplete
 ----------------------------------*/
-.ui-autocomplete { position: absolute; cursor: default; }	
+.ui-autocomplete { position: absolute; cursor: default; }
 .ui-autocomplete-loading { background: white url('../images/settings/ui-anim_basic_16x16.gif') right center no-repeat; }
 
 /* workarounds */
@@ -354,8 +354,8 @@
 .ui-button { display: inline-block; position: relative; padding: 0; margin-right: .1em; text-decoration: none !important; cursor: pointer; text-align: center; zoom: 1; overflow: visible; } /* the overflow property removes extra width in IE */
 .ui-button-icon-only { width: 2.2em; } /* to make room for the icon, a width needs to be set here */
 button.ui-button-icon-only { width: 2.4em; } /* button elements seem to need a little more width */
-.ui-button-icons-only { width: 3.4em; } 
-button.ui-button-icons-only { width: 3.7em; } 
+.ui-button-icons-only { width: 3.4em; }
+button.ui-button-icons-only { width: 3.7em; }
 
 /*button text element */
 .ui-button .ui-button-text { display: block; line-height: 1.4;  }
@@ -383,7 +383,7 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 ----------------------------------*/
 .ui-dialog { position: absolute; padding: .2em; width: 300px; overflow: hidden; }
 .ui-dialog .ui-dialog-titlebar { padding: .5em 1em .3em; position: relative;  }
-.ui-dialog .ui-dialog-title { float: left; margin: .1em 16px .2em 0; } 
+.ui-dialog .ui-dialog-title { float: left; margin: .1em 16px .2em 0; }
 .ui-dialog .ui-dialog-titlebar-close { position: absolute; right: .3em; top: 50%; width: 19px; margin: -10px 0 0 0; padding: 1px; height: 18px; }
 .ui-dialog .ui-dialog-titlebar-close span { display: block; margin: 1px; }
 .ui-dialog .ui-dialog-titlebar-close:hover, .ui-dialog .ui-dialog-titlebar-close:focus { padding: 0; }
@@ -524,7 +524,7 @@ UL.jqueryFileTree a:hover {
 #cboxLoadingOverlay, #cboxLoadingGraphic{position:absolute; top:0; left:0; width:100%;}
 #cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow{cursor:pointer;}
 
-/* 
+/*
     Example user style
     The following rules are ordered and tabbed in a way that represents the
     order/nesting of the generated HTML, so that the structure easier to understand.
@@ -554,12 +554,12 @@ UL.jqueryFileTree a:hover {
         #cboxClose.hover{background-position:-25px -25px;}
 
 /*
-    The following fixes png-transparency for IE6.  
+    The following fixes png-transparency for IE6.
     It is also necessary for png-transparency in IE7 & IE8 to avoid 'black halos' with the fade transition
-    
+
     Since this method does not support CSS background-positioning, it is incompatible with CSS sprites.
     Colorbox preloads navigation hover classes to account for this.
-    
+
     !! Important Note: AlphaImageLoader src paths are relative to the HTML document,
     while regular CSS background images are relative to the CSS document.
 */
@@ -594,7 +594,7 @@ div.subsettings div.subsettings div.subsettings {
 	background-color: #ffffff;
 	border: 1px solid #cccccc;
 	padding: 3px;
-	
+
 }
 
 #wputransmit, #wpu-reload {
@@ -616,8 +616,8 @@ div.subsettings div.subsettings div.subsettings {
 }
 
 #phpbbpath {
-	height: 200px; 
-	border: 1px solid #cccccc;  
+	height: 200px;
+	border: 1px solid #cccccc;
 	overflow-y: auto;
     background-color: #ffffff;
 }
@@ -756,7 +756,7 @@ div.subsettings div.subsettings div.subsettings {
 	display: block;
 	padding-left: 18px;
 	font-weight: bold;
-	display: none;	
+	display: none;
 	background: transparent url('../images/settings/ui-anim_basic_16x16.gif') 0 0 no-repeat;
 }
 
@@ -780,7 +780,7 @@ div.subsettings div.subsettings div.subsettings {
 	text-align: center;
 	vertical-align: middle;
 	font-weight: normal;
-	
+
 }
 
 .wpuplumbgroupl {
@@ -828,8 +828,8 @@ div.subsettings div.subsettings div.subsettings {
 
 #phpbbdocroot {
 	font-size: 11px;
-	color: #aaaaaa; 
-	border: 0 dotted #cccccc; 
-	border-bottom-width: 1px; 
+	color: #aaaaaa;
+	border: 0 dotted #cccccc;
+	border-bottom-width: 1px;
 	width: auto;
 }
