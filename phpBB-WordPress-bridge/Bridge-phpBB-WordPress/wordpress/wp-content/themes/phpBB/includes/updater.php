@@ -1,5 +1,13 @@
 <?php
-
+/**
+ * @package phpBB to WP connector
+* @version $Id: 1.5.0
+* @copyright (c) 2013-2014 danielx64.com
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License  
+* @author Danielx64
+ *
+ */
+ 
 /******************Change this*******************/
 $api_url = 'http://danielx64.com/api/';
 /************************************************/

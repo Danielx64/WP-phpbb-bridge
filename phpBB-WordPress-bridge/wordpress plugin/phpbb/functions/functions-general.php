@@ -1,13 +1,13 @@
 <?php 
 /** 
-*
-* @package WP-United
-* @version $Id: 0.9.1.5  2012/12/28 John Wells (Jhong) Exp $
-* @copyright (c) 2006-2013 wp-united.com
+* @package phpBB to WP connector
+* @version $Id: 1.5.0
+* @copyright (c) 2013-2014 danielx64.com
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License  
-* @author John Wells
-*
-* Generic WP-United functions that don't have anywhere better to go (yet).
+* @author Danielx64
+* 
+* @based off WP-United
+* @orginal author John Wells wp-united.com
 */
 
 /**

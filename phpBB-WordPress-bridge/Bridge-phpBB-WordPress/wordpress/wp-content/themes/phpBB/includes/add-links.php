@@ -1,4 +1,12 @@
 <?php
+/** 
+* @package phpBB to WP connector
+* @version $Id: 1.5.0
+* @copyright (c) 2013-2014 danielx64.com
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License  
+* @author Danielx64
+*
+*/
 
 // Thank-you Dion Designs :)
 function show_phpbb_link($content)

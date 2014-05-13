@@ -1,4 +1,12 @@
 <?php
+/** 
+* @package phpBB to WP connector
+* @version $Id: 1.5.0
+* @copyright (c) 2013-2014 danielx64.com
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License  
+* @author Danielx64
+*
+*/
 
 add_action( 'show_user_profile', 'wp_phpbb_add_extra_profile_fields', 10 );
 add_action( 'edit_user_profile', 'wp_phpbb_add_extra_profile_fields', 10 );

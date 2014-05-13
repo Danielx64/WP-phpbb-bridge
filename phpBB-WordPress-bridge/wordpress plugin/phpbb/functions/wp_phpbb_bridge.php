@@ -1,11 +1,12 @@
 <?php
-/**
- * 
- * @package: phpBB 3.0.9 :: BRIDGE phpBB & WordPress -> WordPress root/wp-content/themes/phpBB/includes
- * @version: $Id: wp_phpbb_bridge.php, v0.0.9 2011/10/01 11:10:01 leviatan21 Exp $
- * @copyright: leviatan21 < info@mssti.com > (Gabriel) http://www.mssti.com/phpbb3/
- * @license: http://opensource.org/licenses/gpl-license.php GNU Public License 
- * @author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
+/** 
+* @package phpBB to WP connector
+* @version $Id: 1.5.0
+* @copyright (c) 2013-2014 danielx64.com
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License  
+* @author Danielx64
+ * @based off: phpBB 3.0.9 :: BRIDGE phpBB & WordPress -> WordPress root/wp-content/themes/phpBB/includes
+ * @orginal author: leviatan21 - http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=345763
  * 
  */
 

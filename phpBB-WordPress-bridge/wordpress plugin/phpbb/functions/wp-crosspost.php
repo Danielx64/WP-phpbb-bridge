@@ -1,18 +1,12 @@
 <?php
-/**
- * @package Wordparess
- * @version 1.6
- */
-
- 
-/**
- * Hooks a function on to a specific action.
- *
- * @param string $tag The name of the action to which the $function_to_add is hooked.
- * @param callback $function_to_add The name of the function you wish to be called.
- * @param int $priority optional. Used to specify the order in which the functions associated with a particular action are executed (default: 10). Lower numbers correspond with earlier execution, and functions with the same priority are executed in the order in which they were added to the action.
- * @param int $accepted_args optional. The number of arguments the function accept (default 1).
-**/
+/** 
+* @package phpBB to WP connector
+* @version $Id: 1.5.0
+* @copyright (c) 2013-2014 danielx64.com
+* @license http://opensource.org/licenses/gpl-license.php GNU Public License  
+* @author Danielx64
+*
+*/
 
 /**
  * Called whenever a new entry is published in the Wordpress.

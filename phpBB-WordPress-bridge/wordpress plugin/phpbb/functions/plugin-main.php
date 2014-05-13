@@ -1,12 +1,16 @@
 <?php
 
 /** 
-* @package WP-United
-* @version $Id: 0.9.2.5  2013/03/26 John Wells (Jhong) Exp $
-* @copyright (c) 2006-2013 wp-united.com
+* @package phpBB to WP connector
+* @version $Id: 1.5.0
+* @copyright (c) 2013-2014 danielx64.com
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License  
-* @author John Wells
+* @author Danielx64
+* 
+* @based off WP-United
+* @orginal author John Wells wp-united.com
 *
+* Settings and base WP-United class. 
 */
 
 class WP_United_Plugin extends WP_United_Plugin_Main_Base {
