@@ -1,13 +1,15 @@
-<div class="headerbar">
-	<div class="inner"><span class="corners-top"><span></span></span>
-	<table cellapacing="0">
-		<td style="padding:0 10px;height:75px;text-align:center;vertical-align:middle">
-			<a href="{U_BLOG}">{HEADER_IMAGE}</a>
-		</td>
-		<td style="padding:0 5px;font-size:1.2em;vertical-align:middle">
-			<h1 style="margin:0">{SITENAME}</h1>
-			<div style="margin-bottom:5px">{SITE_DESCRIPTION}</div>
-		</td>
-	</table>
-	<span class="corners-bottom"><span></span></span></div>
-</div>
+		<div class="headerbar">
+			<div class="inner"><span class="corners-top"><span></span></span>
+			<div id="site-description">
+				<a href="{U_BLOG}" id="logo">{HEADER_IMAGE}</a>
+				<h1>{SITENAME}</h1>
+				<p>{SITE_DESCRIPTION}</p>
+				<p class="skiplink"><a href="#start_here">{L_SKIP}</a></p>
+			</div>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+<!-- IF HEADER_MENU --><br /><div class="navbar">
+			<div class="inner"><span class="corners-top"><span></span></span>
+{HEADER_MENU}
+			<span class="corners-bottom"><span></span></span></div>
+		</div><br /><!-- ENDIF -->
