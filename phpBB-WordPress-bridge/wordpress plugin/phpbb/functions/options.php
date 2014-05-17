@@ -90,7 +90,7 @@ function wpu_setup_menu() {
 			<?php
 
 			$docRoot = wpu_get_doc_root();
-			$propress_options = get_option( 'wpu-settings' );
+			$propress_options = get_option( 'phpbbtowp' );
 			$phpbbPath = $propress_options['phpbb_path'];
 
 			if($phpbbPath) {
