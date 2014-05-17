@@ -35,14 +35,13 @@ if( !class_exists( 'WP_United_Plugin' ) ) {
 $wpUnited->wp_init();
 require( ABSPATH . WPINC . '/pluggable.php' );
 global $pagenow;
-if (!defined('WP_DONTLOAD')) {
 	if (!preg_match('/\/wp-admin\/(themes.php|plugins.php)/', $_SERVER['REQUEST_URI'])) {
 			include_once dirname(__FILE__) . '/functions/wp_phpbb_bridge.php';
 			add_filter('login_url', 'wp_phpbb_login');
 			add_filter('logout_url', 'wp_phpbb_logout');
 			add_filter('register_url', 'wp_phpbb_register');
 	}
-}
+
 
 function wp_phpbb_logout()
 {
