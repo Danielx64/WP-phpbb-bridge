@@ -62,7 +62,7 @@ class WP_United_Settings {
 	private function load_from_wp() {
 
 		if(function_exists('get_option')) {
-			$savedSettings = (array)get_option('wpu-settings');
+			$savedSettings = (array)get_option('phpbbtowp');
 			$defaults = $this->get_defaults();
 			$this->settings = array_merge($defaults, (array)$savedSettings);
 
@@ -116,7 +116,7 @@ class WP_United_Settings {
 
 		if(function_exists('update_option')) {
 			$data = array_merge($this->settings, (array)$data);
-			update_option('wpu-settings', $data);
+			update_option('phpbbtowp', $data);
 			$this->settings = $data;
 		}
 	}
@@ -333,7 +333,7 @@ abstract class WP_United_Plugin_Main_Base extends WP_United_Plugin_Base {
 		}
 
 		global $wpuAutoPackage, $wpuReleasePackage;
-		$propress_options = get_option( 'wpu-settings' );
+		$propress_options = get_option( 'phpbbtowp' );
 		$pLoc = $propress_options['phpbb_path'];
 
 		if(empty($pLoc)) {

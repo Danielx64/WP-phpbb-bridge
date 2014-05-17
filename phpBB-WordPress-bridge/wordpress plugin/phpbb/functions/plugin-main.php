@@ -75,7 +75,7 @@ class WP_United_Plugin extends WP_United_Plugin_Main_Base {
 		
 		$shouldRun = true;
 
-		$propress_options = get_option( 'wpu-settings' );
+		$propress_options = get_option( 'phpbbtowp' );
 		if(!$propress_options['phpbb_path'] || !WP_United_Plugin::can_connect_to_phpbb()) {
 			$this->set_last_run('disconnected');
 			$shouldRun = false;
@@ -108,7 +108,7 @@ class WP_United_Plugin extends WP_United_Plugin_Main_Base {
 
 	public function can_connect_to_phpbb() {
 		global $wpUnited;
-		$propress_options = get_option( 'wpu-settings' );
+		$propress_options = get_option( 'phpbbtowp' );
 		$rootPath = $propress_options['phpbb_path'];
 
 		if(!$rootPath) {

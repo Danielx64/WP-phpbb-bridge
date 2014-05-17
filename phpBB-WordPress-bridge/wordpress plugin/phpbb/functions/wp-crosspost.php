@@ -75,7 +75,7 @@ function wp_phpbb_posting($post_ID, $post)
     {
         return false;
     }
-    $propress_options = get_option( 'wpu-settings' );
+    $propress_options = get_option( 'phpbbtowp' );
     define('PHPBB_INCLUDED', true);
     if (!function_exists('submit_post'))
     {
