@@ -1,0 +1,12 @@
+<!-- IF FOOTER_MENU or PREVIOUS_ENTRIE or NEXT_ENTRIE -->
+<div class="navbar">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	<!-- IF FOOTER_MENU -->{FOOTER_MENU}<!-- ENDIF -->
+	<!-- IF PREVIOUS_ENTRIE or NEXT_ENTRIE -->
+		<ul class="linklist rightside">
+			<li>{PREVIOUS_ENTRIE}<!-- IF PREVIOUS_ENTRIE and NEXT_ENTRIE --> | <!-- ENDIF -->{NEXT_ENTRIE}</li>
+		</ul>
+	<!-- ENDIF -->
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- ENDIF -->
