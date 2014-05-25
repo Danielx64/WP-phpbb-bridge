@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://www.phpbb.com/mods/xml/modx-1.2.6.xsd">
+	<header>
+		<meta name="generator" content="MODX file generated with PP MODX Creator 1.2.6 by tumba25 (offline version)"/>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[phpBB to WP connector: myInvision style edits]]></title>
+		<description lang="en"><![CDATA[WordPress - phpBB Integration Mod
+		This Birdge makes possible to integrate your phpBB into your Wordpress Blog, sharing the Board style and users
+		Users Can login at the Blog using the phpBB account, 
+			If the phpBB users do not exist in WP it will be automatically created as a "Subscriber"]]></description>
+		<author-notes lang="en"><![CDATA[* Works on phpBB version 3.0.12 and WordPress version 3.7.1 to 3.8.1
+* Before adding this MOD to your forum, you should back up all files related to this MOD.
+* This BRIDGE modify the database.]]></author-notes>
+		<github><![CDATA[https://github.com/danielx64/WP-phpbb-bridge/]]></github>
+		<author-group>
+			<author>
+				<realname><![CDATA[Gabriel]]></realname>
+				<username><![CDATA[leviatan21]]></username>
+				<homepage><![CDATA[http://www.mssti.com/phpbb3/]]></homepage>
+				<email><![CDATA[info@mssti.com]]></email>
+				<contributions-group>
+					<contributions status="past" from="2011-06-01" to="Unknown" position="Developer"/>
+				</contributions-group>
+			</author>
+			<author>
+				<realname><![CDATA[Daniel]]></realname>
+				<username><![CDATA[Danielx64]]></username>
+				<contributions-group>
+					<contributions status="current" position="Developer"/>
+				</contributions-group>
+			</author>
+		</author-group>
+		<mod-version>1.5.0</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>300</time>
+			<target-version>3.0.12</target-version>
+		</installation>
+	</header>
+	<action-group>
+		<copy>
+			<file from="contrib/styles/myInvision/*.*" to="styles/myInvision/*.*"/>
+		</copy>
+		<open src="styles/myInvision/template/overall_footer.html">
+			<edit>
+				<find><![CDATA[<div id="page-footer">]]></find>
+				<action type="after-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
+	<!-- IF PHPBB_IN_BLOG -->
+	<!-- INCLUDE wordpress/overall_footer.html -->
+	<!-- ELSE -->
+<!-- BRIDGE phpBB & WordPress - End //-->]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[		</ul>	
+	</div>]]></find>
+				<action type="after-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
+	<!-- ENDIF -->
+<!-- BRIDGE phpBB & WordPress - End //-->]]></action>
+			</edit>
+		</open>
+		<open src="styles/myInvision/template/overall_header.html">
+			<edit>
+				<find><![CDATA[	<link href="{T_THEME_PATH}/bidi.css" rel="stylesheet" type="text/css" media="screen, projection" />
+<!-- ENDIF -->]]></find>
+				<action type="after-add"><![CDATA[<style type="text/css">
+	.postbody{width:77%}
+	.postprofile{width:23%;border:none!important}
+<!-- IF PROFILE_POSITION eq 'left' -->
+	.postbody{float:right}
+	.postbody ul.profile-icons{margin-right:45px}
+	.postprofile{float:left}
+	.postprofile dt,.postprofile dd{margin:0 8px 0 0;padding-right:8px;border-right:1px solid #fff;overflow:hidden}
+<!-- ELSE -->
+	.postprofile dt,.postprofile dd{padding-left:8px;border-left:1px solid #fff;overflow:hidden}
+<!-- ENDIF -->
+	.search .postbody{width:70%}
+	.pm .postprofile dt,.pm .postprofile dd{border-color:#ddd}
+</style>
+
+<!-- BRIDGE phpBB & WordPress - Start //-->
+<!-- IF PHPBB_IN_BLOG -->{BLOG_HEADER}<!-- ENDIF -->
+<!-- BRIDGE phpBB & WordPress - End //-->]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[<div class="above"></div>]]></find>
+				<action type="after-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
+	<!-- IF PHPBB_IN_BLOG -->
+		<!-- INCLUDE wordpress/overall_header.html -->
+	<!-- ELSE -->
+<!-- BRIDGE phpBB & WordPress - End //-->
+]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[<div id="wrap">
+	<div class="navbar clearit">]]></find>
+				<action type="before-add"><![CDATA[<!-- BRIDGE phpBB & WordPress - Start //-->
+	<!-- ENDIF -->
+<!-- BRIDGE phpBB & WordPress - End //-->]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[<li><a href="{U_INDEX}" accesskey="h"><img src="{T_THEME_PATH}/images/globe.png" class="nicon" alt="{L_INDEX}" />{L_INDEX}</a></li>]]></find>
+				<action type="before-add"><![CDATA[		<!-- IF S_SHOW_HOMEPAGE --><li><a href="{U_HOMEPAGE}" accesskey="h"><img src="{T_THEME_PATH}/images/globe.png" class="nicon" alt"{U_HOMEPAGE_TITLE}" />{U_HOMEPAGE_TITLE}</a></li><!-- ENDIF -->]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[<li><a href="{U_FAQ}"><img src="{T_THEME_PATH}/images/faq.png" class="nicon" alt="{L_FAQ}" />{L_FAQ}</a></li>]]></find>
+				<action type="after-add"><![CDATA[<!-- IF HEADER_MENU -->{HEADER_MENU}<!-- ENDIF -->]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[				<li class="icon-home"><a href="{U_INDEX}" accesskey="h">{L_INDEX}</a> <!-- BEGIN navlinks --> <strong>&#8249;</strong> <a href="{navlinks.U_VIEW_FORUM}">{navlinks.FORUM_NAME}</a><!-- END navlinks --></li>]]></find>
+				<action type="replace-with"><![CDATA[<li class="icon-home"><!-- IF PHPBB_IN_BLOG --> <a href="{U_HOMEPAGE}" title="{U_HOMEPAGE_TITLE}">{U_HOMEPAGE_TITLE}</a><!-- BEGIN navlinks --><strong>‹</strong> <a href="{navlinks.U_VIEW_FORUM}">{navlinks.FORUM_NAME}</a><!-- END navlinks --><!-- ELSE --><a href="{U_HOMEPAGE}" title="{U_HOMEPAGE_TITLE}">{U_HOMEPAGE_TITLE}</a> <strong>‹</strong> <a href="{U_INDEX}">{L_INDEX}</a><!-- ENDIF --></li>]]></action>
+			</edit>
+		</open>
+		<open src="styles/myInvision/theme/stylesheet.css">
+			<edit>
+				<find><![CDATA[@import url("myinvision.css");]]></find>
+				<action type="before-add"><![CDATA[/* BRIDGE phpBB & WordPress - Start */
+@import url("wp_phpbb_bridge.css");
+/* BRIDGE phpBB & WordPress - End */
+]]></action>
+			</edit>
+		</open>
+		<diy-instructions lang="en"><![CDATA[Refresh theme and template]]></diy-instructions>
+	</action-group>
+</mod>

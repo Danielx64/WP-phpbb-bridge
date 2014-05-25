@@ -1,0 +1,31 @@
+<!-- IF DYNAMIC_SIDEBAR -->
+
+<!-- IF POST_AUTHOR -->
+	<div class="panel bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+			<h3>{L_WP_AUTHOR_TITLE}</h3>
+			<!-- INCLUDE wordpress/author_body.html -->
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+<!-- ENDIF -->
+
+	{SIDEBAR_TOP}
+
+<!-- IF S_RECENT_TOPICS -->
+<div class="panel bg3">
+	<div class="inner"><span class="corners-top"><span></span></span>
+			<h3>{L_RECENT_TOPICS}</h3>
+			<ul class="menu">
+			<!-- BEGIN recettopicsrow -->
+				<li class="recentcomments">
+							<a href="{recettopicsrow.U_LAST_POST}"><b>{recettopicsrow.TOPIC_TITLE}</b></a> {L_POST_BY_AUTHOR} {recettopicsrow.TOPIC_AUTHOR_FULL} in <a href="{recettopicsrow.U_VIEW_FORUM}">{recettopicsrow.FORUM_NAME}</a>
+				</li>
+			<!-- END recettopicsrow -->
+			</ul>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+	{SIDEBAR_BOTTOM}
+<!-- ENDIF -->
+
+<!-- ENDIF -->
