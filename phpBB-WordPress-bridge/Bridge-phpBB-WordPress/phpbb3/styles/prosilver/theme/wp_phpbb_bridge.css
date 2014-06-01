@@ -30,23 +30,3 @@ ul.profile-icons li.wp-undelete-icon a:hover									{ background-position: 0 0;
 .postbody ul.profile-icons li {
 	margin: 0 1px;
 }
-
-/* New Post button at the navbar */
-.section-blog .navbar .topic-actions {
-	margin: 5px 0 0 0;
-	float: right;
-}
-.section-blog .navbar .buttons,
-.section-blog .navbar .buttons div {
-	margin: 0 0 0 0;
-	float: right;
-}
-.section-blog .navbar li.rightside {
-  	text-align: left;
-	font-weight: normal;
-}
-
-/* New Post button ( fallback to post-icon ) */
-.blogpostnew-icon span						{ background: transparent none 0 0 no-repeat; }
-.buttons div.blogpostnew-icon				{ width: {IMG_BUTTON_BLOGPOST_NEW_WIDTH}px; height: {IMG_BUTTON_BLOGPOST_NEW_HEIGHT}px; }
-.blogpostnew-icon span						{ background-image: url("{IMG_BUTTON_BLOGPOST_NEW_SRC}"); }
