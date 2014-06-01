@@ -448,7 +448,7 @@ class phpbb
 			'SITENAME'			=> get_bloginfo('name', 'display'),
 			'SITE_DESCRIPTION'	=> get_bloginfo('description', 'display'),
 			'BLOG_HEADER'		=> self::wp_page_header(),
-			'HEADER_IMAGE'		=> '<img src="' . get_header_image() . '" />',
+			'SITE_LOGO_IMG'		=> '<img src="' . get_header_image() . '" />',
 			'S_DISPLAY_SEARCH'	=> false,
 			'S_ENABLE_FEEDS'	=> false,
 
@@ -461,10 +461,10 @@ class phpbb
 			'U_LOGIN_LOGOUT'	=> (!self::wp_phpbb_user_logged()) ? "$phpbb_root_path/ucp.php?mode=login&amp;redirect=" . $redirect  : "$phpbb_root_path/ucp.php?mode=logout&amp;sid=" . phpbb::$user->session_id . "&amp;redirect=" . $redirect ,
 
 			'U_WP_ACP'			=> (self::$user->data['user_type'] == USER_FOUNDER || current_user_can('Contributor')) ? admin_url() : '',
-			'U_POST_NEW_TOPIC'	=> (self::$user->data['user_type'] == USER_FOUNDER || current_user_can('Contributor')) ? admin_url('post-new.php') : '',
+		//	'U_POST_NEW_TOPIC'	=> (self::$user->data['user_type'] == USER_FOUNDER || current_user_can('Contributor')) ? admin_url('post-new.php') : '',
 
-			'BLOG_POST_IMG'		=> self::wp_imageset('button_blogpost_new', 'WP_POST_TOPIC', 'BLOG_POST_IMG_CLASS'),
-			'POST_IMG'			=> self::$user->img('button_topic_new', 'POST_NEW_TOPIC'),
+		//	'BLOG_POST_IMG'		=> self::wp_imageset('button_blogpost_new', 'WP_POST_TOPIC', 'BLOG_POST_IMG_CLASS'),
+		//	'POST_IMG'			=> self::$user->img('button_topic_new', 'POST_NEW_TOPIC'),
 			'DYNAMIC_SIDEBAR_W'	=> (int) self::$config['wp_phpbb_bridge_widgets_column_width'],
 
 			'WPT_TEMPLATE_PATH'	=> get_template_directory_uri(),
