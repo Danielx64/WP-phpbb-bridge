@@ -48,6 +48,28 @@
 			<file from="phpbb3/umil/*.*" to="umil/*.*"/>
 			<file from="phpbb3/install_phpbb.php" to="install_phpbb.php"/>
 		</copy>
+		<open src="includes/acp/acp_styles.php">
+			<edit>
+				<find><![CDATA[		// Execute overall actions]]></find>
+				<action type="before-add"><![CDATA[// BRIDGE : phpBB & WordPress - Start
+		$this->imageset_keys['buttons'] = array_merge($this->imageset_keys['buttons'], array(
+			'button_blogpost_new', 'icon_wp_approve', 'icon_wp_unapprove', 'icon_wp_spam', 'icon_wp_nospam', 'icon_wp_trash', 'icon_wp_untrash',
+		));
+// BRIDGE : phpBB & WordPress - End
+]]></action>
+			</edit>
+		</open>
+		<open src="includes/acp/acp_language.php">
+			<edit>
+				<find><![CDATA[				$sql_ary = array();]]></find>
+				<action type="before-add"><![CDATA[// BRIDGE : phpBB & WordPress - Start
+				$valid_localized = array_merge($valid_localized, array(
+					'button_blogpost_new', 'icon_wp_approve', 'icon_wp_unapprove', 'icon_wp_spam', 'icon_wp_nospam', 'icon_wp_trash', 'icon_wp_untrash',
+				));
+// BRIDGE : phpBB & WordPress - End
+]]></action>
+			</edit>
+		</open>
 		<open src="includes/functions.php">
 			<edit>
 				<find><![CDATA[	// The following assigns all _common_ variables that may be used at any point in a template.
@@ -186,6 +208,23 @@ if (!function_exists('validate_username') && $wpbbmode !='login' && $wpbbmode !=
 /* BRIDGE phpBB & WordPress - End */
 ]]></action>
 				<comment lang="en"><![CDATA[You must do this change to ALL themes you have installed, based off Prosilver. I use "Prosilver" as an example.]]></comment>
+			</edit>
+		</open>
+				<open src="styles/prosilver/imageset/imageset.cfg">
+			<edit>
+				<find><![CDATA[# Images]]></find>
+				<action type="after-add"><![CDATA[
+# BRIDGE phpBB & WordPress - Start
+img_icon_wp_approve = wordpress/icon_wp_approve.gif*20*20
+img_icon_wp_unapprove = wordpress/icon_wp_unapprove.gif*20*20
+img_icon_wp_spam = wordpress/icon_wp_spam.gif*20*20
+img_icon_wp_nospam = wordpress/icon_wp_spam.gif*20*20
+img_icon_wp_trash = wordpress/icon_wp_trash.gif*20*20
+img_icon_wp_untrash = wordpress/icon_wp_trash.gif*20*20
+# BRIDGE phpBB & WordPress - End
+]]></action>
+				<comment lang="en"><![CDATA[You will have to make this change to ALL themes you have installed, based off Prosilver. I use "Prosilver" as an example.
+				You can add it at the bottom of the imageset.cfg file]]></comment>
 			</edit>
 		</open>
 		<php-installer><![CDATA[install_phpbb.php]]></php-installer>
