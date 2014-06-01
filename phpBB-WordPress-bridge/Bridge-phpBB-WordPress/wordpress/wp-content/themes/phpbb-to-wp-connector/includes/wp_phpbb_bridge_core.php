@@ -783,6 +783,7 @@ class phpbb
 		{
 			$wp_poster_data = get_userdata($wp_poster_id);
 
+
 			// In WP the anonymous user is ID 0, we change that to the phpbb anonymous user ID
 			if ($wp_poster_id == 0 || !$wp_poster_data)
 			{
@@ -791,6 +792,7 @@ class phpbb
 				$wp_poster_data->user_nicename = get_comment_author_link();
 				$wp_poster_data->phpbb_userid = ANONYMOUS;
 			}
+
 
 			$poster_id = (int) $wp_poster_data->phpbb_userid;
 
