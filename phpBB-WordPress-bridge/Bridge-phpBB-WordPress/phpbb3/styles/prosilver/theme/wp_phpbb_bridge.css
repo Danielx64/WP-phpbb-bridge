@@ -9,31 +9,31 @@
 /* Moderator icons
  ------------ */
 /* Spam icon */
-ul.profile-icons li.wp-spam-icon												{ width: {IMG_ICON_WP_SPAM_WIDTH}px; height: {IMG_ICON_WP_SPAM_HEIGHT}px; }
-ul.profile-icons li.wp-spam-icon, ul.profile-icons li.wp-spam-icon a			{ background-image: url("{IMG_ICON_WP_SPAM_SRC}"); background-position: 0 0; }
+ul.profile-icons li.wp-spam-icon												{ width: 20px; height: 20px; }
+ul.profile-icons li.wp-spam-icon, ul.profile-icons li.wp-spam-icon a			{ background-image: url("{T_THEME_PATH}/images/wordpress/icon_wp_spam.gif"); background-position: 0 0; }
 ul.profile-icons li.wp-spam-icon a:hover										{ background-position: 50% 100%; }
 
 /* No Spam icon */
-ul.profile-icons li.wp-nospam-icon												{ width: {IMG_ICON_WP_SPAM_WIDTH}px; height: {IMG_ICON_WP_SPAM_HEIGHT}px; }
-ul.profile-icons li.wp-nospam-icon, ul.profile-icons li.wp-nospam-icon a		{ background-image: url("{IMG_ICON_WP_SPAM_SRC}"); background-position: 50% 100%; }
+ul.profile-icons li.wp-nospam-icon												{ width: 20px; height: 20px; }
+ul.profile-icons li.wp-nospam-icon, ul.profile-icons li.wp-nospam-icon a		{ background-image: url("{T_THEME_PATH}/images/wordpress/icon_wp_spam.gif"); background-position: 50% 100%; }
 ul.profile-icons li.wp-nospam-icon a:hover										{ background-position: 0 0; }
 
 /* Approve icon */
-ul.profile-icons li.wp-approve-icon												{ width: {IMG_ICON_WP_APPROVE_WIDTH}px; height: {IMG_ICON_WP_APPROVE_HEIGHT}px; }
-ul.profile-icons li.wp-approve-icon, ul.profile-icons li.wp-approve-icon a		{ background-image: url("{IMG_ICON_WP_APPROVE_SRC}"); background-position: 50% 100%; }
+ul.profile-icons li.wp-approve-icon												{ width: 20px; height: 20px; }
+ul.profile-icons li.wp-approve-icon, ul.profile-icons li.wp-approve-icon a		{ background-image: url("{T_THEME_PATH}/images/wordpress/icon_wp_approve.gif"); background-position: 50% 100%; }
 ul.profile-icons li.wp-approve-icon a:hover										{ background-position: 0 0; }
 
 /* Unapprove icon */
-ul.profile-icons li.wp-unapprove-icon											{ width: {IMG_ICON_WP_UNAPPROVE_WIDTH}px; height: {IMG_ICON_WP_UNAPPROVE_HEIGHT}px; }
-ul.profile-icons li.wp-unapprove-icon, ul.profile-icons li.wp-unapprove-icon a	{ background-image: url("{IMG_ICON_WP_UNAPPROVE_SRC}"); background-position: 0 0; }
+ul.profile-icons li.wp-unapprove-icon											{ width: 20px; height: 20px; }
+ul.profile-icons li.wp-unapprove-icon, ul.profile-icons li.wp-unapprove-icon a	{ background-image: url("{T_THEME_PATH}/images/wordpress/icon_wp_unapprove.gif"); background-position: 0 0; }
 ul.profile-icons li.wp-unapprove-icon a:hover									{ background-position: 50% 100%; }
 
 /* Trash icon */
-ul.profile-icons li.wp-trash-icon												{ width: {IMG_ICON_WP_TRASH_WIDTH}px; height: {IMG_ICON_WP_TRASH_WIDTH}px; }
-ul.profile-icons li.wp-trash-icon, ul.profile-icons li.wp-trash-icon a			{ background-image: url("{IMG_ICON_WP_TRASH_SRC}"); background-position: 0 0; }
+ul.profile-icons li.wp-trash-icon												{ width: 20px; height: 20px; }
+ul.profile-icons li.wp-trash-icon, ul.profile-icons li.wp-trash-icon a			{ background-image: url("{T_THEME_PATH}/images/wordpress/icon_wp_trash.gif"); background-position: 0 0; }
 ul.profile-icons li.wp-trash-icon a:hover										{ background-position: 50% 100%; }
 
 /* Untrash icon */
-ul.profile-icons li.wp-untrash-icon												{ width: {IMG_ICON_WP_TRASH_WIDTH}px; height: {IMG_ICON_WP_TRASH_WIDTH}px; }
-ul.profile-icons li.wp-untrash-icon, ul.profile-icons li.wp-untrash-icon a		{ background-image: url("{IMG_ICON_WP_TRASH_SRC}"); background-position: 50% 100%; }
+ul.profile-icons li.wp-untrash-icon												{ width: 20px; height: 20px; }
+ul.profile-icons li.wp-untrash-icon, ul.profile-icons li.wp-untrash-icon a		{ background-image: url("{T_THEME_PATH}/images/wordpress/icon_wp_trash.gif"); background-position: 50% 100%; }
 ul.profile-icons li.wp-untrash-icon a:hover										{ background-position: 0 0; }
