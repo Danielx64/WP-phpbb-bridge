@@ -470,7 +470,7 @@ class phpbb
 			'WPT_TEMPLATE_PATH'	=> get_template_directory_uri(),
 
 			'WPT_STYLESHEETPATH'=> get_stylesheet_directory(),
-			'A_BASE_URL'		=> esc_url( get_home_url( null, '/wp-content/themes/phpBB')),
+			'A_BASE_URL'		=> esc_url( get_home_url( null, '/wp-content/themes/phpbb-to-wp-connector')),
 
 			'T_THEME_PATH'		=> "{$phpbb_root_path}styles/" . self::$user->theme['theme_path'] . '/theme',
 			'T_STYLESHEET_LINK'	=> (!self::$user->theme['theme_storedb']) ? "{$phpbb_root_path}styles/" . self::$user->theme['theme_path'] . '/theme/stylesheet.css' : append_sid("{$phpbb_root_path}style." . PHP_EXT, 'id=' . self::$user->theme['style_id'] . '&amp;lang=' . self::$user->data['user_lang']),
